@@ -130,7 +130,7 @@
       <workItem from="1604599498010" duration="2514000" />
       <workItem from="1604802061207" duration="6250000" />
       <workItem from="1604884201836" duration="11834000" />
-      <workItem from="1605032079398" duration="7379000" />
+      <workItem from="1605032079398" duration="19450000" />
     </task>
     <servers />
   </component>
@@ -138,10 +138,14 @@
     <option name="version" value="3" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="453" y="165" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1605034881683">
+    <state x="453" y="165" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1605061430197">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="453" y="165" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1366.728@0.0.1366.728" timestamp="1605034881683" />
+    <state x="453" y="165" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1366.728@0.0.1366.728" timestamp="1605061430197" />
+    <state x="413" y="118" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1605064988277">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="413" y="118" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1366.728@0.0.1366.728" timestamp="1605064988277" />
     <state x="463" y="118" key="FileChooserDialogImpl" timestamp="1604947974723">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -152,7 +156,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/resources/views/backend/room/index.blade.php</url>
-          <line>51</line>
+          <line>53</line>
           <option name="timeStamp" value="7" />
         </line-breakpoint>
       </breakpoints>

@@ -3,7 +3,7 @@
 <div class="content-wrapper">
     <section class="content-header">
         <h1>
-            Danh Sách Phòng Trọ <a href="" class="btn btn-info pull-right"><i class="fa fa-plus"></i> Thêm Phòng Trọ</a>
+            Danh Sách Phòng Trọ <a href="{{route('admin.room.create')}}" class="btn btn-info pull-right"><i class="fa fa-plus"></i> Thêm Phòng Trọ</a>
         </h1>
     </section>
     <section class="content">
@@ -26,104 +26,35 @@
                         <table class="table table-hover">
                             <tbody>
                             <tr>
-                                <th>Tên Thương Hiệu</th>
+                                <th>Tên Tiêu Đề</th>
+                                <th>Loại Phòng</th>
+                                <th>Địa Chỉ</th>
+                                <th>Giá Phòng</th>
                                 <th>Hình ảnh</th>
-                                <th>WebSite</th>
-                                <th>Vị trí</th>
+                                <th>Ngày Đăng Bài</th>
                                 <th>Trạng thái</th>
                                 <th class="text-center">Hành động</th>
                             </tr>
                             </tbody>
-                            <tr class="item-1"> <!-- Thêm Class Cho Dòng -->
-                                <td>Le cuong}</td>
-                                <td>
-                                    <img src="" width="50" height="50">
-                                </td>
-                                <td>lecuong</td>
-                                <td>lecuong</td>
-                                <td>lecuong</td>
-                                <td class="text-center">
-                                    <a href="" class="btn btn-default">Xem</a>
-                                    <a href="" class="btn btn-info">Sửa</a>
-                                    <!-- Thêm sự kiện onlick cho nút xóa -->
-                                    <a href="javascript:void(0)" class="btn btn-danger" onclick="" >Xóa</a>
-                                </td>
-                            </tr>
-                            <tr class="item-1"> <!-- Thêm Class Cho Dòng -->
-                            <td>Le cuong}</td>
-                            <td>
-                                <img src="" width="50" height="50">
-                            </td>
-                            <td>lecuong</td>
-                            <td>lecuong</td>
-                            <td>lecuong</td>
-                            <td class="text-center">
-                                <a href="" class="btn btn-default">Xem</a>
-                                <a href="" class="btn btn-info">Sửa</a>
-                                <!-- Thêm sự kiện onlick cho nút xóa -->
-                                <a href="javascript:void(0)" class="btn btn-danger" onclick="" >Xóa</a>
-                            </td>
-                        </tr>
-                            <tr class="item-1"> <!-- Thêm Class Cho Dòng -->
-                            <td>Le cuong}</td>
-                            <td>
-                                <img src="" width="50" height="50">
-                            </td>
-                            <td>lecuong</td>
-                            <td>lecuong</td>
-                            <td>lecuong</td>
-                            <td class="text-center">
-                                <a href="" class="btn btn-default">Xem</a>
-                                <a href="" class="btn btn-info">Sửa</a>
-                                <!-- Thêm sự kiện onlick cho nút xóa -->
-                                <a href="javascript:void(0)" class="btn btn-danger" onclick="" >Xóa</a>
-                            </td>
-                        </tr>
-                            <tr class="item-1"> <!-- Thêm Class Cho Dòng -->
-                                <td>Le cuong}</td>
-                                <td>
-                                    <img src="" width="50" height="50">
-                                </td>
-                                <td>lecuong</td>
-                                <td>lecuong</td>
-                                <td>lecuong</td>
-                                <td class="text-center">
-                                    <a href="" class="btn btn-default">Xem</a>
-                                    <a href="" class="btn btn-info">Sửa</a>
-                                    <!-- Thêm sự kiện onlick cho nút xóa -->
-                                    <a href="javascript:void(0)" class="btn btn-danger" onclick="" >Xóa</a>
-                                </td>
-                            </tr>
-                            <tr class="item-1"> <!-- Thêm Class Cho Dòng -->
-                                <td>Le cuong}</td>
-                                <td>
-                                    <img src="" width="50" height="50">
-                                </td>
-                                <td>lecuong</td>
-                                <td>lecuong</td>
-                                <td>lecuong</td>
-                                <td class="text-center">
-                                    <a href="" class="btn btn-default">Xem</a>
-                                    <a href="" class="btn btn-info">Sửa</a>
-                                    <!-- Thêm sự kiện onlick cho nút xóa -->
-                                    <a href="javascript:void(0)" class="btn btn-danger" onclick="" >Xóa</a>
-                                </td>
-                            </tr>
-                            <tr class="item-1"> <!-- Thêm Class Cho Dòng -->
-                                <td>Le cuong}</td>
-                                <td>
-                                    <img src="" width="50" height="50">
-                                </td>
-                                <td>lecuong</td>
-                                <td>lecuong</td>
-                                <td>lecuong</td>
-                                <td class="text-center">
-                                    <a href="" class="btn btn-default">Xem</a>
-                                    <a href="" class="btn btn-info">Sửa</a>
-                                    <!-- Thêm sự kiện onlick cho nút xóa -->
-                                    <a href="javascript:void(0)" class="btn btn-danger" onclick="" >Xóa</a>
-                                </td>
-                            </tr>
+                            @foreach($data as $key => $item)
+                                <tr class="item-{{ $item->room_id }}"> <!-- Thêm Class Cho Dòng -->
+                                    <td>{{ $item->title }}</td>
+                                    <td>{{ $item->roomType_id  }}</td>
+                                    <td>{{ $item->address }}</td>
+                                    <td>{{ $item->price }}</td>
+                                    <td>
+                                        <img src="{{ $item->image }}" width="50" height="50">
+                                    </td>
+                                    <td>{{ $item->public_date }}</td>
+                                    <td>{{ $item->is_active }}</td>
+                                    <td class="text-center">
+                                        <a href="" class="btn btn-default">Xem</a>
+                                        <a href="" class="btn btn-info">Sửa</a>
+                                        <!-- Thêm sự kiện onlick cho nút xóa -->
+                                        <a href="javascript:void(0)" class="btn btn-danger" onclick="" >Xóa</a>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </table>
                     </div>
                 </div>

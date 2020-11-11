@@ -25,7 +25,7 @@
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu" data-widget="tree">
             <li class="active treeview">
-                <a href="admin/room/index">
+                <a href="admin/room">
                     <i class="fa fa-dashboard"></i> <span>QL Phòng Trọ</span>
                     <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
