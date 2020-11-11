@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\User_comment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -14,12 +16,15 @@ class UserController extends Controller
      */
     public function index()
     {
-        $data = User::all(); // lấy toàn bộ dữ liệu
+        $data = User::all();
+//        $data = User::where(['is_active' => 1])->orderBy('created_at', 'ASC')->get(); // lấy toàn bộ dữ liệu
         // gọi đến view
         return view('backend.user.index', [
             'data' => $data // truyền dữ liệu sang view Index
         ]);
     }
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -187,4 +192,18 @@ class UserController extends Controller
             'status' => true
         ], 200);
     }
+
+    public function getListRequestedOwner()
+    {
+//        dd("we're here");
+        $data = User::where(['role_id' => 2, 'is_active' => 0])->orderBy('created_at', 'ASC')->get();
+        return view('backend.user.index', [
+            'data' => $data // truyền dữ liệu sang view Index
+        ]);
+    }
+
+//    public function postComment(Request $request) // viet san de day
+//    {
+//   
+//    }
 }

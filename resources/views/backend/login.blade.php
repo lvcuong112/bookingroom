@@ -36,7 +36,7 @@
     </div>
     <!-- /.login-logo -->
     <div class="login-box-body">
-        <form role="form" action="#" method="post">
+        <form role="form" action="{{ route('admin.postLogin') }}" method="post">
             @csrf
             <div class="form-group has-feedback">
                 <input name="email" type="email" class="form-control" placeholder="Email">
@@ -53,7 +53,7 @@
                 @endif
             </div>
             @if (session('msg'))
-                <div class="form-group has-feedback"><a href="#" style="color: red">{{ session('msg') }}</a></div>
+                <div class="form-group has-feedback"><a href="javascript:void(0)" style="color: red">{{ session('msg') }}</a></div>
             @endif
 
             <div class="row">

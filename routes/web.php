@@ -24,9 +24,11 @@ Route::get('/admin/logout', 'AdminController@logout')->name('admin.logout');
 
 Route::post('/admin/postLogin', 'AdminController@postLogin')->name('admin.postLogin');
 
-Route::group(['prefix' => 'admin','as' => 'admin.'], function() {
+Route::group(['prefix' => 'admin','as' => 'admin.', 'middleware' => ['checkLogin']], function() {
     Route::get('/', 'AdminController@index')->name('dashboard');
     Route::resource('room', 'RoomController');
+    Route::get('/user/getListOwnerRequested', 'UserController@getListRequestedOwner')->name('user.getListOwnerRequested');
+
     Route::resource('user', 'UserController');
 
 });

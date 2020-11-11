@@ -1,5 +1,4 @@
 // ajaxSetup() là phương thức set giá trị mặc định cho tất cả các request ajax tiếp theo
-console.log("da link dc");
 // Để gửi được request ajax chúng ta cũng cần xác thực csrf giống như Form
 $.ajaxSetup({
     headers: {
@@ -7,7 +6,6 @@ $.ajaxSetup({
     }
 });
 
-console.log("da link dc");
 
 /* Xóa một row - user */
 function destroyUser(id) {
