@@ -1,6 +1,5 @@
 @extends('backend.layouts.main')
 @section('content')
-<div class="content-wrapper">
     <section class="content-header">
         <h1>
             Chỉnh sửa Thông Tin Nhà Trọ <a href="" class="btn btn-success pull-right"><i class="fa fa-list"></i> Danh Sách</a>
@@ -49,5 +48,4 @@
             </div>
         </div>
     </section>
-</div>
 @endsection

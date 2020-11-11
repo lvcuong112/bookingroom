@@ -1,6 +1,5 @@
 @extends('backend.layouts.main')
 @section('content')
-<div class="content-wrapper">
     <section class="content-header">
         <h1>
             Thêm Phòng Trọ <a href="{{route('admin.room.index')}}" class="btn btn-success pull-right"><i class="fa fa-list"></i> Danh Sách</a>
@@ -20,9 +19,9 @@
                                 <label for="exampleInputEmail1">Loại Phòng</label>
                                 <select class="form-control w-50" name="typeRoom">
                                     <option value="0">-- Chọn Loại Phòng  --</option>
-{{--                                    @foreach($categories as $category)--}}
-                                        <option value="1">Lê Cường</option>
-{{--                                    @endforeach--}}
+                                    {{--                                    @foreach($categories as $category)--}}
+                                    <option value="1">Lê Cường</option>
+                                    {{--                                    @endforeach--}}
                                 </select>
                             </div>
                             <div class="form-group">
@@ -128,5 +127,4 @@
             </div>
         </div>
     </section>
-</div>
 @endsection

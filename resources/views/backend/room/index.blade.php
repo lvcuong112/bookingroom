@@ -1,6 +1,5 @@
 @extends('backend.layouts.main')
 @section('content')
-<div class="content-wrapper">
     <section class="content-header">
         <h1>
             Danh Sách Phòng Trọ <a href="{{route('admin.room.create')}}" class="btn btn-info pull-right"><i class="fa fa-plus"></i> Thêm Phòng Trọ</a>
@@ -61,5 +60,4 @@
             </div>
         </div>
     </section>
-</div>
 @endsection

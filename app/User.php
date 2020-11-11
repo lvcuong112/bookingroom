@@ -36,5 +36,5 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-    protected $table = "user"; // chi dinh ten CSDL
+
 }
