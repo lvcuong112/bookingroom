@@ -48,8 +48,8 @@
                                     <td>{{ $item->public_date }}</td>
                                     <td>{{ $item->is_active }}</td>
                                     <td class="text-center">
-                                        <a href="" class="btn btn-default">Xem</a>
-                                        <a href="" class="btn btn-info">Sửa</a>
+                                        <a href="{{route('admin.room.show', ['id'=> $item->id ])}}" class="btn btn-default">Xem</a>
+                                        <a href="{{route('admin.room.edit', ['id'=> $item->id ])}}" class="btn btn-info">Sửa</a>
                                         <!-- Thêm sự kiện onlick cho nút xóa -->
                                         <a href="javascript:void(0)" class="btn btn-danger" onclick="" >Xóa</a>
                                     </td>

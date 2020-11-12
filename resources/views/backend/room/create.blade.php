@@ -10,9 +10,6 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="box box-primary">
-                    <div class="box-header with-border">
-                        <h3 class="box-title">Thông tin Thương Hiệu</h3>
-                    </div>
                     <form role="form" action="{{route('admin.room.store')}}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="box-body">

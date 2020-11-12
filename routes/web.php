@@ -37,6 +37,7 @@ Route::get('/room', function () {
 Route::group(['prefix' => 'admin','as' => 'admin.'], function() {
     Route::get('/', 'AdminController@index')->name('dashboard');
     Route::resource('room', 'RoomController');
+    Route::resource('roomtype', 'RoomTypeController');
 
 });
 

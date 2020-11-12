@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Room;
+use App\Room_type;
 use Illuminate\Http\Request;
 
 class RoomController extends Controller
@@ -93,7 +94,13 @@ class RoomController extends Controller
      */
     public function show($id)
     {
-        //
+        $data = Room::findorFail($id);
+        $roomTypeName = Room_type::where('roomType_id', $data->roomType_id)->first();
+
+        return view('backend.room.show', [
+            'data' => $data,
+            '$roomTypeName' => $roomTypeName
+        ]);
     }
 
     /**
@@ -104,7 +111,10 @@ class RoomController extends Controller
      */
     public function edit($id)
     {
-        //
+        $room = Room::findorFail($id);
+        return view('backend.room.edit', [
+            'room' => $room
+        ]);
     }
 
     /**
@@ -116,7 +126,51 @@ class RoomController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validatedData = $request->validate([
+            'title' => 'required|max:255',
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:10000'
+        ]);
+
+        $room =  Room::findorFail($id); // khởi tạo model
+        $room->roomType_id = $request->input('typeRoom');
+        $room->title = $request->input('title');
+        $room->address = $request->input('address');
+        $room->district_id = $request->input('district');
+        $room->city_id = $request->input('city');
+        $room->quantity = $request->input('quantity');
+        $room->price = $request->input('price');
+        // Upload file
+        if ($request->hasFile('image')) { // dòng này Kiểm tra xem có image có được chọn
+            // get file
+            $file = $request->file('image');
+            // đặt tên cho file image
+            $filename = time().'_'.$file->getClientOriginalName(); // $file->getClientOriginalName() == tên ban đầu của image
+            // Định nghĩa đường dẫn sẽ upload lên
+            $path_upload = 'uploads/product/';
+            // Thực hiện upload file
+            $request->file('image')->move($path_upload,$filename); // upload lên thư mục public/uploads/product
+
+            $room->image = $path_upload.$filename;
+        }
+        $room->area = $request->input('area'); // diện tích
+        $room->note = $request->input('note');
+        if ($request->has('owner')){
+            $room->live_with_owner = $request->input('owner');
+        }
+        $room->public_date = $request->input('publicDate');
+        $room->expired_date = $request->input('expiredDate');
+        $room->electric_price = $request->input('electricPrice');
+        $room->water_price = $request->input('waterPrice');
+        $room->user_id = $request->input('userID');
+        $room->approval_id = $request->input('approvalID');
+        $room->approval_date = $request->input('approvalDate');
+        if ($request->has('is_active')){//kiem tra is_active co ton tai khong?
+            $room->is_active = $request->input('is_active');
+        }
+        $room->save();
+
+        // chuyển hướng đến trang
+        return redirect()->route('admin.room.create');
     }
 
     /**
