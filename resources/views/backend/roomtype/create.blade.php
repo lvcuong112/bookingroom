@@ -40,7 +40,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputFile">Ngày Cập Nhật</label>
-                                    <input type="text" class="form-control" id="updated_at" name="updated_at" placeholder="Ngày cập nhật    ">
+                                    <input type="text" class="form-control" id="updated  _at" name="updated_at" placeholder="Ngày cập nhật    ">
                                 </div>
                             </div>
                             <div class="box-footer">

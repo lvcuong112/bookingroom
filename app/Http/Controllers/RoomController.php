@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Room;
 use App\Room_type;
+use App\City;
+use App\District;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class RoomController extends Controller
 {
@@ -28,7 +31,16 @@ class RoomController extends Controller
      */
     public function create()
     {
-        return view('backend.room.create');
+        $typeRoom = Room_type::all();
+        $city = City::all();
+        $district = District::all();
+        $getdate = date('Y-m-d');
+        return view('backend.room.create', [
+            'typeRoom' => $typeRoom,
+            'city' => $city,
+            'district' => $district,
+            'getdate' => $getdate
+        ]);
     }
 
     /**
@@ -43,7 +55,7 @@ class RoomController extends Controller
             'title' => 'required|max:255',
             'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:10000'
         ]);
-
+        $user = Auth::user();
         $room = new Room; // khởi tạo model
         $room->roomType_id = $request->input('typeRoom');
         $room->title = $request->input('title');
@@ -74,8 +86,10 @@ class RoomController extends Controller
         $room->expired_date = $request->input('expiredDate');
         $room->electric_price = $request->input('electricPrice');
         $room->water_price = $request->input('waterPrice');
-        $room->user_id = $request->input('userID');
-        $room->approval_id = $request->input('approvalID');
+        $room->user_id = $user->id;
+        if($user->role_id == 1) {
+            $room->approval_id = $user->rold_id;
+        }
         $room->approval_date = $request->input('approvalDate');
         if ($request->has('is_active')){//kiem tra is_active co ton tai khong?
             $room->is_active = $request->input('is_active');
@@ -170,7 +184,7 @@ class RoomController extends Controller
         $room->save();
 
         // chuyển hướng đến trang
-        return redirect()->route('admin.room.create');
+        return redirect()->route('admin.room.index');
     }
 
     /**
@@ -181,6 +195,12 @@ class RoomController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // gọi tới hàm destroy của laravel để xóa 1 object
+        Room::destroy($id);
+
+        // Trả về dữ liệu json và trạng thái kèm theo thành công là 200
+        return response()->json([
+            'status' => true
+        ], 200);
     }
 }

@@ -1,6 +1,5 @@
 @extends('backend.layouts.main')
 @section('content')
-<div class="content-wrapper">
     <section class="content-header">
         <h1>
             Chi Tiết Phòng Trọ <a href="{{route('admin.room.index')}}" class="btn btn-success pull-right"><i class="fa fa-plus"></i> Danh sách Thương hiệu</a>
@@ -92,5 +91,4 @@
             </div>
         </div>
     </section>
-</div>
 @endsection

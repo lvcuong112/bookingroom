@@ -1,6 +1,5 @@
 @extends('backend.layouts.main')
 @section('content')
-<div class="content-wrapper">
     <section class="content-header">
         <h1>
             Chỉnh sửa Thông Tin Nhà Trọ <a href="" class="btn btn-success pull-right"><i class="fa fa-list"></i> Danh Sách</a>
@@ -10,8 +9,9 @@
         <div class="row">
             <div class="col-md-9">
                 <div class="box box-primary">
-                    <form role="form" action="{{route('admin.room.store')}}" method="post" enctype="multipart/form-data">
+                    <form role="form" action="{{route('admin.room.update', ['id' => $room->id])}}" method="post" enctype="multipart/form-data">
                         @csrf
+                        @method('PUT')
                         <div class="box-body">
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Loại Phòng</label>
@@ -125,5 +125,4 @@
             </div>
         </div>
     </section>
-</div>
 @endsection
