@@ -28,8 +28,8 @@ Route::group(['prefix' => 'admin','as' => 'admin.', 'middleware' => ['checkLogin
     Route::get('/', 'AdminController@index')->name('dashboard');
     Route::resource('room', 'RoomController');
     Route::get('/user/getListOwnerRequested', 'UserController@getListRequestedOwner')->name('user.getListOwnerRequested');
-
     Route::resource('user', 'UserController');
+    Route::resource('roomtype', 'RoomTypeController');
 
 });
 
