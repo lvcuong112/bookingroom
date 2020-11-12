@@ -33,6 +33,7 @@ Route::group(['prefix' => 'admin','as' => 'admin.', 'middleware' => ['checkLogin
 
     Route::get('/comment/getAllUnApprovedComments', 'CommentController@getAllUnApprovedComments')->name('comment.getAllUnApprovedComments');
     Route::resource('comment', 'CommentController');
-
+    Route::get('/report/getAllUnApprovedReports', 'ReportController@getAllUnApprovedReports')->name('report.getAllUnApprovedReports');
+    Route::resource('report', 'ReportController');
 });
 

@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Notify;
 use App\User;
-use App\User_comment;
+use App\User_report;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class CommentController extends Controller
+class ReportController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,11 +17,10 @@ class CommentController extends Controller
      */
     public function index()
     {
-        //
-        $data =  User_comment::where(['is_approved' => 1])->orderBy('created_at', 'ASC')->get();
-        return view('backend.comment.index', [
+        $data =  User_report::all();
+        return view('backend.report.index', [
             'data' => $data,
-            'title' => 'Danh sách bình luận đã được duyệt'
+            'title' => 'Tất cả báo cáo'
         ]);
     }
 
@@ -43,13 +43,16 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        // comment gui len se co: user_id, room_id, content, create_time
-        $cmt = new User_comment();
-        $cmt->user_id = Auth::user()->id;
-        $cmt->room_id = $request->input('room_id');
-        $cmt->comment = $request->input('content');
-        $cmt->is_approved = 0;
-        $cmt->save();
+        //
+        $user = Auth::user();
+
+        $rp = new User_report();
+        $rp->sender_id = $user->id;
+        $rp->received_id = $request->input('room_id');
+        $rp->title = $request->input('title');
+        $rp->content = $request->input('content');
+        $rp->is_active = 0;
+        $rp->save();
     }
 
     /**
@@ -61,9 +64,10 @@ class CommentController extends Controller
     public function show($id)
     {
         //
-        $cmt = User_comment::findorFail($id);
-        return view('backend.comment.show', [
-            'data' => $cmt
+//        dd($id);
+        $rp = User_report::findorFail($id);
+        return view('backend.report.show', [
+            'data' => $rp
         ]);
     }
 
@@ -87,13 +91,13 @@ class CommentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-        $cmt = User_comment::findorFail($id);
+        // se duyet roi gui thong bao tai day
+        $rp = User_report::findorFail($id);
         $user = Auth::user();
-        $cmt->approved_by = $user->id;
-        $cmt->is_approved = 1;
-        $cmt->save();
-        return redirect()->route('admin.comment.getAllUnApprovedComments');
+        $rp->approved_by = $user->id;
+        $rp->is_active = 1;
+        $rp->save();
+        return redirect()->route('admin.report.getAllUnApprovedReports');
     }
 
     /**
@@ -105,7 +109,7 @@ class CommentController extends Controller
     public function destroy($id)
     {
         // gọi tới hàm destroy của laravel để xóa 1 object
-        User_comment::destroy($id);
+        User_report::destroy($id);
 
         // Trả về dữ liệu json và trạng thái kèm theo thành công là 200
         return response()->json([
@@ -113,21 +117,12 @@ class CommentController extends Controller
         ], 200);
     }
 
-    public function getAllUnApprovedComments()
+    public function getAllUnApprovedReports()
     {
-        $data =  User_comment::where(['is_approved' => 0])->orderBy('created_at', 'ASC')->get();
-        return view('backend.comment.index', [
+        $data =  User_report::where(['is_active' => 0])->orderBy('created_at', 'ASC')->get();
+        return view('backend.report.index', [
             'data' => $data,
-            'title' => 'Danh sách bình luận chưa được duyệt'
+            'title' => 'Danh sách báo cáo chưa được duyệt'
         ]);
     }
-
-//    public function approveComment($id)
-//    {
-//        $cmt = User_comment::findorFail($id);
-//        $user = Auth::user();
-//        $cmt->is_approved = 1;
-//        $cmt->approved_by = $user->id;
-//        $cmt->save();
-//    }
 }

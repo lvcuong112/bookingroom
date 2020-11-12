@@ -25,8 +25,9 @@
                         <table class="table table-hover">
                             <tbody>
                             <tr>
-                                <th>Người tạo</th>
+                                <th>Người báo cáo</th>
                                 <th>Tên phòng</th>
+                                <th>Tiêu đề</th>
                                 <th>Nội dung bình luận</th>
                                 <th>Ngày đăng bình luận</th>
                                 <th>Trạng thái</th>
@@ -35,15 +36,16 @@
                             </tbody>
                             @foreach($data as $key => $item)
                                 <tr class="item-{{ $item->id }}"> <!-- Thêm Class Cho Dòng -->
-                                    <td>{{ \App\User::findOrFail($item->user_id)->name }}</td>
-                                    <td>{{ \App\Room::findOrFail($item->room_id)->title  }}</td>
-                                    <td>{{ $item->comment }}</td>
+                                    <td>{{ \App\User::findOrFail($item->sender_id)->name }}</td>
+                                    <td>{{ \App\Room::findOrFail($item->receive_id)->title  }}</td>
+                                    <td>{{ $item->title }}</td>
+                                    <td>{{ $item->content }}</td>
                                     <td>{{ $item->created_at }}</td>
-                                    <td>{{ ($item->is_approved == 1) ? 'Đã duyệt' : 'Chưa được duyệt' }}</td>
+                                    <td>{{ ($item->is_active == 1) ? 'Đã xem' : 'Chưa xem' }}</td>
                                     <td class="text-center">
-                                        <a href="{{ route('admin.comment.show', ['id' => $item->id]) }}" class="btn btn-info">Chi tiết</a>
+                                        <a href="{{ route('admin.report.show', ['id' => $item->id]) }}" class="btn btn-info">Chi tiết</a>
                                         <!-- Thêm sự kiện onlick cho nút xóa -->
-                                        <a href="javascript:void(0)" class="btn btn-danger" onclick="destroyComment({{ $item->id }})" >Xóa</a>
+                                        <a href="javascript:void(0)" class="btn btn-danger" onclick="destroyReport({{ $item->id }})" >Xóa</a>
                                     </td>
                                 </tr>
                             @endforeach
