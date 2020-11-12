@@ -17,6 +17,8 @@ Route::get('/', function () {
 Route::get('/room', function () {
     return view('frontend/room');
 });
+Route::get('/userviewed/getAllRoomViewed', 'UserViewedController@getAllRoomViewed')->name('userviewed.getAllRoomViewed');
+Route::get('/userviewed/storeRoomViewed', 'UserViewedController@storeViewed')->name('userviewed.store'); // xu ly de lam sao user dang nhap moi dung dc
 Route::get('/admin/login', 'AdminController@login')->name('admin.login');
 //Route::get('/login', 'ShopController@login')->name('shop.login');
 // Đăng xuất
@@ -35,5 +37,6 @@ Route::group(['prefix' => 'admin','as' => 'admin.', 'middleware' => ['checkLogin
     Route::resource('comment', 'CommentController');
     Route::get('/report/getAllUnApprovedReports', 'ReportController@getAllUnApprovedReports')->name('report.getAllUnApprovedReports');
     Route::resource('report', 'ReportController');
+
 });
 
