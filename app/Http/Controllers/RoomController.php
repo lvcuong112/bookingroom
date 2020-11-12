@@ -95,7 +95,7 @@ class RoomController extends Controller
     public function show($id)
     {
         $data = Room::findorFail($id);
-        $roomTypeName = Room_type::where('roomType_id', $data->roomType_id)->first();
+        $roomTypeName = Room_type::where('id', $data->id)->first();
 
         return view('backend.room.show', [
             'data' => $data,

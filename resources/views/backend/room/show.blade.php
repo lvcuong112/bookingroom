@@ -15,7 +15,7 @@
                             <tbody>
                             <tr>
                                 <td><b>Id Loại Nhà Trọ</b></td>
-                                <td>{{ $data->roomType_id }}</td>
+                                <td>{{ $data->_id }}</td>
                             </tr>
                             <tr>
                                 <td><b>Tiêu Đề</b></td>
