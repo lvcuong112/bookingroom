@@ -48,7 +48,7 @@
             </li>
             <li class="treeview">
                 <a href="javascript:void(0)">
-                    <i class="fa fa-dashboard"></i> <span>Quản lý user</span>
+                    <i class="fa fa-dashboard"></i> <span>QL User</span>
                     <span class="pull-right-container">
                          <i class="fa fa-angle-left pull-right"></i>
                     </span>
@@ -62,6 +62,23 @@
 {{--                    <li class="active"><a href="index.html"><i class="fa fa-circle-o"></i> Dashboard v1</a></li>--}}
 {{--                    <li><a href="index2.html"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>--}}
 {{--                </ul>--}}
+            </li>
+            <li class="treeview">
+                <a href="javascript:void(0)">
+                    <i class="fa fa-dashboard"></i> <span>QL bình luận</span>
+                    <span class="pull-right-container">
+                         <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="active"><a href="{{ route('admin.comment.index') }}"><i class="fa fa-circle-o"></i>Tất cả bình luận</a></li>
+                    <li><a href="{{ route('admin.comment.getAllUnApprovedComments') }}"><i class="fa fa-circle-o"></i>Danh sách bình luận chờ duyệt</a></li>
+                </ul>
+
+                {{--                <ul class="treeview-menu">--}}
+                {{--                    <li class="active"><a href="index.html"><i class="fa fa-circle-o"></i> Dashboard v1</a></li>--}}
+                {{--                    <li><a href="index2.html"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>--}}
+                {{--                </ul>--}}
             </li>
             <li class="treeview">
                 <a href="#">

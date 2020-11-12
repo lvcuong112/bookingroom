@@ -31,5 +31,8 @@ Route::group(['prefix' => 'admin','as' => 'admin.', 'middleware' => ['checkLogin
 
     Route::resource('user', 'UserController');
 
+    Route::get('/comment/getAllUnApprovedComments', 'CommentController@getAllUnApprovedComments')->name('comment.getAllUnApprovedComments');
+    Route::resource('comment', 'CommentController');
+
 });
 
