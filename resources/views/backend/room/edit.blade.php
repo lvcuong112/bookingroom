@@ -2,7 +2,7 @@
 @section('content')
     <section class="content-header">
         <h1>
-            Chỉnh sửa Thông Tin Nhà Trọ <a href="" class="btn btn-success pull-right"><i class="fa fa-list"></i> Danh Sách</a>
+            Chỉnh sửa Thông Tin Nhà Trọ <a href="{{route('admin.room.index')}}" class="btn btn-success pull-right"><i class="fa fa-list"></i> Danh Sách</a>
         </h1>
     </section>
     <section class="content">
@@ -115,6 +115,14 @@
                                 <label>
                                     <input type="checkbox" value="{{$room->is_active}}" name="is_active"> Trạng thái hiển thị
                                 </label>
+                            </div>
+                            <span>Tiện Ích</span>
+                            <div class="form-group">
+                                @foreach($facility as $facilities)
+                                    <label style="margin-right: 20px;">
+                                        <input type="checkbox" value="{{$facilities->id}}" name="facilities[]">{{$facilities->title}}
+                                    </label>
+                                @endforeach
                             </div>
                         </div>
                         <div class="box-footer">

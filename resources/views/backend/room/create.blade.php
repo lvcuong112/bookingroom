@@ -65,7 +65,8 @@
 {{--                            ảnh--}}
                             <div class="form-group">
                                 <label for="exampleInputFile">Ảnh Phòng Trọ</label>
-                                <input type="file" class="" id="image" name="image">
+                                <input type="file" class="" id="image" name="image" >
+{{--                                multiple--}}
                             </div>
 {{--                            diện tích--}}
                             <div class="form-group">
@@ -124,13 +125,21 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputFile">Ngày Tạo </label>
-                                <input value="{{$getdate}}"  type="text" class="form-control" id="approvalDate" name="approvalDate" placeholder="Ngày phê duyệt">
+                                <label for="exampleInputFile">Ngày Phê Duyệt</label>
+                                <input type="text" class="form-control" id="approvalDate" name="approvalDate" placeholder="Ngày Phê Duyệt">
                             </div>
                             <div class="checkbox">
                                 <label>
                                     <input type="checkbox" value="1" name="is_active"> Trạng thái hiển thị
                                 </label>
+                            </div>
+                            <span>Tiện Ích</span>
+                            <div class="form-group">
+                                @foreach($facility as $facilities)
+                                <label style="margin-right: 20px;">
+                                    <input type="checkbox" value="{{$facilities->id}}" name="facilities[]">{{$facilities->title}}
+                                </label>
+                                @endforeach
                             </div>
                         </div>
                         <div class="box-footer">

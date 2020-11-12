@@ -1,17 +1,17 @@
 @extends('backend.layouts.main')
 @section('content')
-    <section class="content-header">
-        <h1>
-            Chi Tiết Phòng Trọ <a href="{{route('admin.room.index')}}" class="btn btn-success pull-right"><i class="fa fa-plus"></i> Danh sách Thương hiệu</a>
-        </h1>
-    </section>
-    <section class="content">
-        <div class="row">
-            <div class="col-md-6">
-                <div class="box box-primary">
-                    <div class="box-body">
-                        <table class="table table-bordered">
-                            <tbody>
+<section class="content-header">
+    <h1>
+        Chi Tiết Phòng Trọ <a href="{{route('admin.room.index')}}" class="btn btn-success pull-right"><i class="fa fa-plus"></i> Danh sách Thương hiệu</a>
+    </h1>
+</section>
+<section class="content">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="box box-primary">
+                <div class="box-body">
+                    <table class="table table-bordered">
+                        <tbody>
                             <tr>
                                 <td><b>Id Loại Nhà Trọ</b></td>
                                 <td>{{ $data->_id }}</td>
@@ -84,11 +84,19 @@
                                 <td><b> Id Người Phê Duyệt </b></td>
                                 <td>{{ $data->approval_id}}</td>
                             </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                            <tr>
+                                <td><b> Tiện Ích </b></td>
+                                <td>
+                                    @foreach($facilities as $facility)
+                                    {{$facility->title}}
+                                    @endforeach
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 @endsection

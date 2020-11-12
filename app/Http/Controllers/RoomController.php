@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Facilities;
+use App\Room_facilities;
 use App\Room;
 use App\Room_type;
 use App\City;
@@ -34,12 +36,12 @@ class RoomController extends Controller
         $typeRoom = Room_type::all();
         $city = City::all();
         $district = District::all();
-        $getdate = date('Y-m-d');
+        $facility = Facilities::all();
         return view('backend.room.create', [
             'typeRoom' => $typeRoom,
             'city' => $city,
             'district' => $district,
-            'getdate' => $getdate
+            'facility' => $facility
         ]);
     }
 
@@ -94,7 +96,11 @@ class RoomController extends Controller
         if ($request->has('is_active')){//kiem tra is_active co ton tai khong?
             $room->is_active = $request->input('is_active');
         }
+        $room->approval_date = $request->input('approvalDate');
+        $facilities = $request->input('facilities');
         $room->save();
+
+        $room->Facilities()->syncWithoutDetaching($facilities);
 
         // chuyển hướng đến trang
         return redirect()->route('admin.room.index');
@@ -110,10 +116,10 @@ class RoomController extends Controller
     {
         $data = Room::findorFail($id);
         $roomTypeName = Room_type::where('id', $data->id)->first();
-
         return view('backend.room.show', [
             'data' => $data,
-            '$roomTypeName' => $roomTypeName
+            '$roomTypeName' => $roomTypeName,
+            'facilities' => $data->facilities()->get()
         ]);
     }
 
@@ -126,8 +132,10 @@ class RoomController extends Controller
     public function edit($id)
     {
         $room = Room::findorFail($id);
+        $facility = Facilities::all();
         return view('backend.room.edit', [
-            'room' => $room
+            'room' => $room,
+            'facility' => $facility
         ]);
     }
 
@@ -181,7 +189,9 @@ class RoomController extends Controller
         if ($request->has('is_active')){//kiem tra is_active co ton tai khong?
             $room->is_active = $request->input('is_active');
         }
+        $facilities = $request->input('facilities');
         $room->save();
+        $room->Facilities()->syncWithoutDetaching($facilities);
 
         // chuyển hướng đến trang
         return redirect()->route('admin.room.index');

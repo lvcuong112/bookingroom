@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\District;
 use App\City;
 use Illuminate\Http\Request;
 
-class CityController extends Controller
+class DistrictController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +15,8 @@ class CityController extends Controller
      */
     public function index()
     {
-        $data = City::latest()->paginate(20);
-        return view('backend.city.index', [
+        $data = District::latest()->paginate(20);
+        return view('backend.district.index', [
             'data' => $data
         ]);
     }
@@ -27,7 +28,10 @@ class CityController extends Controller
      */
     public function create()
     {
-        return view('backend.city.create');
+        $district = City::all();
+        return view('backend.district.create', [
+            'city' => $district
+        ]);
     }
 
     /**
@@ -42,16 +46,17 @@ class CityController extends Controller
             'name' => 'required|max:255',
         ]);
 
-        $city = new City(); // khởi tạo model
-        $city->name = $request->input('name');
-        $city->create_by = $request->input('create_by');
-        $city->update_by = $request->input('update_by');
+        $district = new District(); // khởi tạo model
+        $district->name = $request->input('city');
+        $district->name = $request->input('name');
+        $district->create_by = $request->input('create_by');
+        $district->update_by = $request->input('update_by');
         if ($request->has('is_active')){//kiem tra is_active co ton tai khong?
-            $city->status = $request->input('status');
+            $district->status = $request->input('status');
         }
-        $city->save();
+        $district->save();
         // chuyển hướng đến trang
-        return redirect()->route('admin.city.index');
+        return redirect()->route('admin.district.index');
     }
 
     /**
@@ -73,9 +78,12 @@ class CityController extends Controller
      */
     public function edit($id)
     {
-        $city = City::findorFail($id);
-        return view('backend.city.edit', [
-            'city' => $city
+        $city = City::all();
+        $choseCity = City::findorFail($id);
+        $district = District::findorFail($id);
+        return view('backend.district.edit', [
+            'district' => $district,
+            'city'=> $city
         ]);
     }
 
@@ -92,16 +100,17 @@ class CityController extends Controller
             'name' => 'required|max:255',
         ]);
 
-        $city = City::findorFail($id); // khởi tạo model
-        $city->name = $request->input('name');
-        $city->create_by = $request->input('create_by');
-        $city->update_by = $request->input('update_by');
+        $district = District::findorFail($id); // khởi tạo model
+        $district->city_id = $request->input('city');
+        $district->name = $request->input('name');
+        $district->create_by = $request->input('create_by');
+        $district->update_by = $request->input('update_by');
         if ($request->has('is_active')){//kiem tra is_active co ton tai khong?
-            $city->status = $request->input('status');
+            $district->status = $request->input('is_active');
         }
-        $city->save();
+        $district->save();
         // chuyển hướng đến trang
-        return redirect()->route('admin.city.index');
+        return redirect()->route('admin.district.index');
     }
 
     /**
@@ -113,7 +122,7 @@ class CityController extends Controller
     public function destroy($id)
     {
         // gọi tới hàm destroy của laravel để xóa 1 object
-        City::destroy($id);
+        District::destroy($id);
 
         // Trả về dữ liệu json và trạng thái kèm theo thành công là 200
         return response()->json([
