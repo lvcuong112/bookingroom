@@ -17,8 +17,14 @@ Route::get('/', function () {
 Route::get('/room', function () {
     return view('frontend/room');
 });
-Route::get('/userviewed/getAllRoomViewed', 'UserViewedController@getAllRoomViewed')->name('userviewed.getAllRoomViewed');
-Route::get('/userviewed/storeRoomViewed', 'UserViewedController@storeViewed')->name('userviewed.store'); // xu ly de lam sao user dang nhap moi dung dc
+
+// xu ly de lam sao user dang nhap moi dung dc, se lam sau khi test xong viec get giu lieu = ajax
+
+Route::get('/user/getAllRoomViewed', 'UserViewedController@getAllRoomViewed')->name('userviewed.getAllRoomViewed');
+Route::get('/user/storeRoomViewed/{user_id}/{room_id}', 'UserViewedController@storeViewed')->name('userviewed.store');
+Route::get('/user/storeVoted/{user_id}/{room_id}/{count_star}', 'UserVotedController@storeVoted')->name('uservoted.store');
+Route::get('/user/storeLiked/{user_id}/{room_id}', 'UserLikedController@storeLiked')->name('userliked.store');
+
 Route::get('/admin/login', 'AdminController@login')->name('admin.login');
 //Route::get('/login', 'ShopController@login')->name('shop.login');
 // Đăng xuất
