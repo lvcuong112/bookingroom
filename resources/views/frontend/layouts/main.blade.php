@@ -79,7 +79,6 @@
     $(document).on('click', '.btn-contact', function(){
         $(window).scrollTop($('body').height());
     });
-
     fixedHeader();
     customSelect2();
     function fixedHeader(){
