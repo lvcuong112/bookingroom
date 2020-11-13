@@ -11,6 +11,9 @@
 |
 */
 
+use App\Room;
+use Illuminate\Support\Facades\Route;
+
 Route::get('/', function () {
     return view('frontend/home');
 });
@@ -30,8 +33,10 @@ Route::group(['prefix' => 'admin','as' => 'admin.', 'middleware' => ['checkLogin
     Route::get('/', 'AdminController@index')->name('dashboard');
     Route::resource('room', 'RoomController');
     Route::get('/user/getListOwnerRequested', 'UserController@getListRequestedOwner')->name('user.getListOwnerRequested');
-
     Route::resource('user', 'UserController');
+    Route::resource('roomtype', 'RoomTypeController');
+    Route::resource('city', 'CityController');
+    Route::resource('district', 'DistrictController');
 
     Route::get('/comment/getAllUnApprovedComments', 'CommentController@getAllUnApprovedComments')->name('comment.getAllUnApprovedComments');
     Route::resource('comment', 'CommentController');
@@ -40,3 +45,17 @@ Route::group(['prefix' => 'admin','as' => 'admin.', 'middleware' => ['checkLogin
 
 });
 
+//Route::get('/test/{id}', function($roomId) {
+//    // dd($room->facilities->get());
+//    $room = Room::find($roomId);
+//    $room->facilities()->syncWithoutDetaching([
+//        1 => [
+//            'description' => 'aaaaa'
+//        ],
+//        2 => [
+//            'description' => 'bbbbb'
+//        ]
+//    ]);
+//
+//    return "ok";
+//});

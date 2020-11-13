@@ -2,7 +2,7 @@
 @section('content')
 <section class="content-header">
     <h1>
-        Danh Sách Phòng Trọ <a href="{{route('admin.room.create')}}" class="btn btn-info pull-right"><i class="fa fa-plus"></i> Thêm Phòng Trọ</a>
+        Danh Sách Loại Phòng Trọ <a href="{{route('admin.roomtype.create')}}" class="btn btn-info pull-right"><i class="fa fa-plus"></i> Thêm Loại Phòng Trọ</a>
     </h1>
 </section>
 <section class="content">
@@ -25,32 +25,30 @@
                     <table class="table table-hover">
                         <tbody>
                         <tr>
-                            <th>Tên Tiêu Đề</th>
+                            <th>Id Loại Phòng Trọ</th>
                             <th>Loại Phòng</th>
-                            <th>Địa Chỉ</th>
-                            <th>Giá Phòng</th>
-                            <th>Hình ảnh</th>
-                            <th>Ngày Đăng Bài</th>
-                            <th>Trạng thái</th>
+                            <th>Tạo Bởi</th>
+                            <th>Cập Nhật Bởi</th>
+                            <th>Trạng Thái</th>
+                            <th>Ngày Tạo</th>
+                            <th>Ngày Cập Nhât</th>
                             <th class="text-center">Hành động</th>
                         </tr>
                         </tbody>
                         @foreach($data as $key => $item)
                             <tr class="item-{{ $item->id }}"> <!-- Thêm Class Cho Dòng -->
-                                <td>{{ $item->title }}</td>
-                                <td>{{ $item->roomType_id  }}</td>
-                                <td>{{ $item->address }}</td>
-                                <td>{{ $item->price }}</td>
-                                <td>
-                                    <img src="{{ $item->image }}" width="50" height="50">
-                                </td>
-                                <td>{{ $item->public_date }}</td>
+                                <td>{{ $item->id }}</td>
+                                <td>{{ $item->name }}</td>
+                                <td>{{ $item->create_by}}</td>
+                                <td>{{ $item->update_by }}</td>
                                 <td>{{ $item->is_active }}</td>
+                                <td>{{ $item->created_at }}</td>
+                                <td>{{ $item->update_at }}</td>
+
                                 <td class="text-center">
-                                    <a href="{{route('admin.room.show', ['id'=> $item->id ])}}" class="btn btn-default">Xem</a>
-                                    <a href="{{route('admin.room.edit', ['id'=> $item->id ])}}" class="btn btn-info">Sửa</a>
+                                    <a href="{{route('admin.roomtype.edit', ['id'=> $item->id ])}}" class="btn btn-info">Sửa</a>
                                     <!-- Thêm sự kiện onlick cho nút xóa -->
-                                    <a href="javascript:void(0)" class="btn btn-danger" onclick="destroyRoom({{ $item->id }})" >Xóa</a>
+                                    <a href="javascript:void(0)" class="btn btn-danger" onclick="destroyRoomType({{ $item->id }})" >Xóa</a>
                                 </td>
                             </tr>
                         @endforeach

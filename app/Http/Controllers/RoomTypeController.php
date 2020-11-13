@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\City;
+use App\Room_type;
+use App\User;
 use Illuminate\Http\Request;
 
-class CityController extends Controller
+class RoomTypeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +15,8 @@ class CityController extends Controller
      */
     public function index()
     {
-        $data = City::latest()->paginate(20);
-        return view('backend.city.index', [
+        $data = Room_type::latest()->paginate(20);
+        return view('backend.roomtype.index', [
             'data' => $data
         ]);
     }
@@ -27,7 +28,7 @@ class CityController extends Controller
      */
     public function create()
     {
-        return view('backend.city.create');
+        return view('backend.roomtype.create');
     }
 
     /**
@@ -42,16 +43,19 @@ class CityController extends Controller
             'name' => 'required|max:255',
         ]);
 
-        $city = new City(); // khởi tạo model
-        $city->name = $request->input('name');
-        $city->create_by = $request->input('create_by');
-        $city->update_by = $request->input('update_by');
+        $roomtype = new Room_type(); // khởi tạo model
+        $roomtype->name = $request->input('name');
+        $roomtype->create_by = $request->input('create_by');
+        $roomtype->update_by = $request->input('update_by');
         if ($request->has('is_active')){//kiem tra is_active co ton tai khong?
-            $city->status = $request->input('status');
+            $roomtype->is_active = $request->input('is_active');
         }
-        $city->save();
+        $roomtype->created_at = $request->input('created_at');
+        $roomtype->updated_at = $request->input('updated_at');
+
+        $roomtype->save();
         // chuyển hướng đến trang
-        return redirect()->route('admin.city.index');
+        return redirect()->route('admin.roomtype.index');
     }
 
     /**
@@ -62,7 +66,7 @@ class CityController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**
@@ -73,9 +77,10 @@ class CityController extends Controller
      */
     public function edit($id)
     {
-        $city = City::findorFail($id);
-        return view('backend.city.edit', [
-            'city' => $city
+
+        $roomType = Room_type::findorFail($id);
+        return view('backend.roomtype.edit', [
+            'roomType' => $roomType
         ]);
     }
 
@@ -92,16 +97,19 @@ class CityController extends Controller
             'name' => 'required|max:255',
         ]);
 
-        $city = City::findorFail($id); // khởi tạo model
-        $city->name = $request->input('name');
-        $city->create_by = $request->input('create_by');
-        $city->update_by = $request->input('update_by');
+        $roomtype =  Room_type::findorFail($id); // khởi tạo model
+        $roomtype->name = $request->input('name');
+        $roomtype->create_by = $request->input('create_by');
+        $roomtype->update_by = $request->input('update_by');
         if ($request->has('is_active')){//kiem tra is_active co ton tai khong?
-            $city->status = $request->input('status');
+            $roomtype->is_active = $request->input('is_active');
         }
-        $city->save();
+        $roomtype->created_at = $request->input('created_at');
+        $roomtype->updated_at = $request->input('updated_at');
+
+        $roomtype->save();
         // chuyển hướng đến trang
-        return redirect()->route('admin.city.index');
+        return redirect()->route('admin.roomtype.index');
     }
 
     /**
@@ -113,7 +121,7 @@ class CityController extends Controller
     public function destroy($id)
     {
         // gọi tới hàm destroy của laravel để xóa 1 object
-        City::destroy($id);
+        Room_type::destroy($id);
 
         // Trả về dữ liệu json và trạng thái kèm theo thành công là 200
         return response()->json([
