@@ -119,14 +119,18 @@
                                 <label for="exampleInputEmail1">Id Người Phê Duyệt</label>
                                 <select class="form-control w-50" name="approvalID">
                                     <option value="0">-- Chọn ID Người Phê Duyệt  --</option>
-    {{--                                         @foreach($categories as $category)--}}
+{{--                                             @foreach($categories as $category)--}}
                                     <option value="1">le cuong</option>
-    {{--                                        @endforeach--}}
+{{--                                            @endforeach--}}
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputFile">Ngày Phê Duyệt</label>
                                 <input type="text" class="form-control" id="approvalDate" name="approvalDate" placeholder="Ngày Phê Duyệt">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputFile">Price_Unit</label>
+                                <input type="text" class="form-control" id="priceUnit" name="priceUnit" placeholder="Price Unit">
                             </div>
                             <div class="checkbox">
                                 <label>

@@ -89,14 +89,16 @@ class RoomController extends Controller
         $room->electric_price = $request->input('electricPrice');
         $room->water_price = $request->input('waterPrice');
         $room->user_id = $user->id;
-        if($user->role_id == 1) {
-            $room->approval_id = $user->rold_id;
-        }
+//        if($user->role_id == 1) {
+//            $room->approval_id = $user->rold_id;
+//        }
+        $room->approval_id = $request->input('approvalID');
         $room->approval_date = $request->input('approvalDate');
         if ($request->has('is_active')){//kiem tra is_active co ton tai khong?
             $room->is_active = $request->input('is_active');
         }
         $room->approval_date = $request->input('approvalDate');
+        $room->price_unit = $request->input('priceUnit');
         $facilities = $request->input('facilities');
         $room->save();
 
@@ -185,10 +187,12 @@ class RoomController extends Controller
         $room->water_price = $request->input('waterPrice');
         $room->user_id = $request->input('userID');
         $room->approval_id = $request->input('approvalID');
+
         $room->approval_date = $request->input('approvalDate');
         if ($request->has('is_active')){//kiem tra is_active co ton tai khong?
             $room->is_active = $request->input('is_active');
         }
+        $room->price_unit = $request->input('priceUnit');
         $facilities = $request->input('facilities');
         $room->save();
         $room->Facilities()->syncWithoutDetaching($facilities);

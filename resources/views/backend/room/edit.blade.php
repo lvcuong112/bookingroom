@@ -116,6 +116,10 @@
                                     <input type="checkbox" value="{{$room->is_active}}" name="is_active"> Trạng thái hiển thị
                                 </label>
                             </div>
+                            <div class="form-group">
+                                <label for="exampleInputFile">Price_Unit</label>
+                                <input value="{{$room->price_unit}}" type="text" class="form-control" id="priceUnit" name="priceUnit" placeholder="giá nước/1 khối">
+                            </div>
                             <span>Tiện Ích</span>
                             <div class="form-group">
                                 @foreach($facility as $facilities)
