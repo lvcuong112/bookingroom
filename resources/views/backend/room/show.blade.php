@@ -2,7 +2,7 @@
 @section('content')
 <section class="content-header">
     <h1>
-        Chi Tiết Phòng Trọ <a href="{{route('admin.room.index')}}" class="btn btn-success pull-right"><i class="fa fa-plus"></i> Danh sách Thương hiệu</a>
+        Chi Tiết Phòng Trọ <a href="{{route('admin.room.index')}}" class="btn btn-success pull-right"><i class="fa fa-plus"></i> Danh sách </a>
     </h1>
 </section>
 <section class="content">

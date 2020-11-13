@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Facilities;
 use App\Room_facilities;
+use App\Room_image;
 use App\Room;
 use App\Room_type;
 use App\City;
@@ -53,10 +54,10 @@ class RoomController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'title' => 'required|max:255',
-            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:10000'
-        ]);
+//        $validatedData = $request->validate([
+//            'title' => 'required|max:255',
+//            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:10000'
+//        ]);
         $user = Auth::user();
         $room = new Room; // khởi tạo model
         $room->roomType_id = $request->input('typeRoom');
@@ -71,17 +72,17 @@ class RoomController extends Controller
             // get file
             $file = $request->file('image');
             // đặt tên cho file image
-            $filename = time().'_'.$file->getClientOriginalName(); // $file->getClientOriginalName() == tên ban đầu của image
+            $filename = time() . '_' . $file->getClientOriginalName(); // $file->getClientOriginalName() == tên ban đầu của image
             // Định nghĩa đường dẫn sẽ upload lên
-            $path_upload = 'uploads/product/';
+            $path_upload = 'uploads/room/';
             // Thực hiện upload file
-            $request->file('image')->move($path_upload,$filename); // upload lên thư mục public/uploads/product
+            $request->file('image')->move($path_upload, $filename); // upload lên thư mục public/uploads/product
 
-            $room->image = $path_upload.$filename;
+            $room->image = $path_upload . $filename;
         }
         $room->area = $request->input('area'); // diện tích
         $room->note = $request->input('note');
-        if ($request->has('owner')){
+        if ($request->has('owner')) {
             $room->live_with_owner = $request->input('owner');
         }
         $room->public_date = $request->input('publicDate');
@@ -94,18 +95,39 @@ class RoomController extends Controller
 //        }
         $room->approval_id = $request->input('approvalID');
         $room->approval_date = $request->input('approvalDate');
-        if ($request->has('is_active')){//kiem tra is_active co ton tai khong?
+        if ($request->has('is_active')) {//kiem tra is_active co ton tai khong?
             $room->is_active = $request->input('is_active');
         }
         $room->approval_date = $request->input('approvalDate');
         $room->price_unit = $request->input('priceUnit');
         $facilities = $request->input('facilities');
         $room->save();
+        if ($request->hasFile('detailImage')) {
+            // get file
+            $file = $request->file('detailImage');
+            // Định nghĩa đường dẫn sẽ upload lên
+            $path_upload = 'uploads/room/';
+//                // Thực hiện upload file
+            foreach ($file as $key => $item){
+                $r_image = new Room_image();
+                $r_image->room_id = $room->id;
+                $r_image->position = $key;
+                $f_name = time().'_'.$item->getClientOriginalName();
+                $item->move($path_upload, $f_name);
+                $r_image ->image = $path_upload.$f_name;
+                $r_image->save();
+                //alo
+//
+            };
 
-        $room->Facilities()->syncWithoutDetaching($facilities);
+        }
 
-        // chuyển hướng đến trang
-        return redirect()->route('admin.room.index');
+
+            $room->Facilities()->syncWithoutDetaching($facilities);
+//            $room->Room_image()->syncWithoutDetaching($detailImage);
+
+            // chuyển hướng đến trang
+            return redirect()->route('admin.room.index');
     }
 
     /**
@@ -134,10 +156,19 @@ class RoomController extends Controller
     public function edit($id)
     {
         $room = Room::findorFail($id);
+//        dd($room);
+
         $facility = Facilities::all();
+        $room_facilities = Room_facilities::where(['room_id' => $id])->get();
+        $exists_facilities = [];
+        foreach($room_facilities as $item) {
+            array_push($exists_facilities,$item->facilities_id );
+        }
+
         return view('backend.room.edit', [
             'room' => $room,
-            'facility' => $facility
+            'facility' => $facility,
+            'exists_facilities' => $exists_facilities
         ]);
     }
 
@@ -194,8 +225,11 @@ class RoomController extends Controller
         }
         $room->price_unit = $request->input('priceUnit');
         $facilities = $request->input('facilities');
+
         $room->save();
         $room->Facilities()->syncWithoutDetaching($facilities);
+//        $room->Room_image()->syncWithoutDetaching($detaiImage);
+
 
         // chuyển hướng đến trang
         return redirect()->route('admin.room.index');

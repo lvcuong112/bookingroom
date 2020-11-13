@@ -66,7 +66,6 @@
                             <div class="form-group">
                                 <label for="exampleInputFile">Ảnh Phòng Trọ</label>
                                 <input type="file" class="" id="image" name="image" >
-    {{--                                multiple--}}
                             </div>
     {{--                            diện tích--}}
                             <div class="form-group">
@@ -137,14 +136,6 @@
                                     <input type="checkbox" value="1" name="is_active"> Trạng thái hiển thị
                                 </label>
                             </div>
-                            <span>Tiện Ích</span>
-                            <div class="form-group">
-                                @foreach($facility as $facilities)
-                                <label style="margin-right: 20px;">
-                                    <input type="checkbox" value="{{$facilities->id}}" name="facilities[]">{{$facilities->title}}
-                                </label>
-                                @endforeach
-                            </div>
                         </div>
                         <div class="box-footer">
                             <button type="submit" class="btn btn-primary">Tạo</button>
@@ -152,24 +143,31 @@
                     </div>
                 </div>
                 <div class="col-md-4">
+                    <div class="tienich-box">
+                    <span class="title-box">Tiện Ích</span>
+                    <div class="form-group form-outBox fixfloat">
+                        @foreach($facility as $facilities)
+                            <label class="label-checkBox">
+                                <input type="checkbox" value="{{$facilities->id}}" name="facilities[]"><span>{{$facilities->title}}</span>
+                            </label>
+                        @endforeach
+                    </div>
+                    </div>
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Chi tiết ảnh sản phẩm</h3>
+                            <h3 class="box-title setmore">Thêm Chi Tiết Ảnh Phòng Trọ</h3>
                         </div>
                         <!-- /.box-header -->
                         <!-- form start -->
 
                         <div class="box-body">
-                            @for($i=1; $i<=5; $i++)
-                                <div class="form-group">
-                                    <label for="exampleInputFile">Ảnh sản phẩm {{$i}}</label>
-                                    <input type="file" class="" id="image" name="detailImage{{$i}}">
-                                </div>
-                            @endfor
+                            <div class="form-group">
+                                <label for="exampleInputFile">Ảnh Phòng Trọ</label>
+                                <input type="file" class="" id="image" name="detailImage[]" multiple>
+                            </div>
                         </div>
                         <!-- /.box-body -->
                         <div class="box-footer">
-                            {{--                                <button type="submit" class="btn btn-primary">Tạo</button>--}}
                             <input type="reset" class="btn btn-default" value="Reset">
                         </div>
 

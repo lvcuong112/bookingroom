@@ -7,6 +7,7 @@
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <base href="{{ asset('') }}">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="stylesheet" href="/backend/fixcss.css">
     <link rel="stylesheet" href="/backend/bower_components/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="/backend/bower_components/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="/backend/bower_components/Ionicons/css/ionicons.min.css">
