@@ -32,36 +32,29 @@
         <!-- /.search form -->
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu" data-widget="tree">
-            <li class="treeview">
-                <a href="{{ route('admin.room.index') }}">
-                    <i class="fa fa-dashboard"></i>
-                    <span>QL Phòng Trọ</span>
+            <li class="active treeview">
+                <a href="">
+                    <i class="fa fa-dashboard"></i> <span>QL Phòng Trọ</span>
                     <span class="pull-right-container">
                          <i class="fa fa-angle-left pull-right"></i>
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li class="active"><a href="#"><i class="fa fa-circle-o"></i>Tất cả phòng trọ</a></li>
+                    <li class="active"><a href="{{route('admin.room.index')}}"><i class="fa fa-circle-o"></i>Tất cả phòng trọ</a></li>
                     <li><a href="#"><i class="fa fa-circle-o"></i>Danh sách phòng trọ chờ duyệt</a></li>
                 </ul>
 
             </li>
-            <li class="treeview">
-                <a href="javascript:void(0)">
-                    <i class="fa fa-dashboard"></i> <span>QL User</span>
+            <li class="active treeview">
+                <a href="">
+                    <i class="fa fa-dashboard"></i> <span>QL Loại Phòng Trọ</span>
                     <span class="pull-right-container">
                          <i class="fa fa-angle-left pull-right"></i>
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li class="active"><a href="{{ route('admin.user.index') }}"><i class="fa fa-circle-o"></i>Tất cả các user</a></li>
-                    <li><a href="{{ route('admin.user.getListOwnerRequested') }}"><i class="fa fa-circle-o"></i>Danh sách Owner chờ duyệt</a></li>
+                    <li class="active"><a href="{{route('admin.roomtype.index')}}"><i class="fa fa-circle-o"></i>Tất cả loại phòng trọ</a></li>
                 </ul>
-
-{{--                <ul class="treeview-menu">--}}
-{{--                    <li class="active"><a href="index.html"><i class="fa fa-circle-o"></i> Dashboard v1</a></li>--}}
-{{--                    <li><a href="index2.html"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>--}}
-{{--                </ul>--}}
             </li>
             <li class="treeview">
                 <a href="javascript:void(0)">
@@ -88,29 +81,39 @@
                 </ul>
             </li>
             <li class="treeview">
-                <a href="#">
-                    <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+                <a href="javascript:void(0)">
+                    <i class="fa fa-dashboard"></i> <span>Quản lý user</span>
                     <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
+                         <i class="fa fa-angle-left pull-right"></i>
+                    </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li class="active"><a href="index.html"><i class="fa fa-circle-o"></i> Dashboard v1</a></li>
-                    <li><a href="index2.html"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
+                    <li class="active"><a href="{{ route('admin.user.index') }}"><i class="fa fa-circle-o"></i>Tất cả các user</a></li>
+                    <li><a href="{{ route('admin.user.getListOwnerRequested') }}"><i class="fa fa-circle-o"></i>Danh sách Owner chờ duyệt</a></li>
                 </ul>
             </li>
-            <li class="treeview">
-                <a href="#">
-                    <i class="fa fa-dashboard"></i> <span>Dashboard</span>
-                    <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
+            <li class="#">
+                <a href="{{route('admin.city.index')}}">
+                    <i class="fa fa-dashboard"></i> <span>QL DB Tỉnh/Thành Phố</span>
                 </a>
-                <ul class="treeview-menu">
-                    <li class="active"><a href="index.html"><i class="fa fa-circle-o"></i> Dashboard v1</a></li>
-                    <li><a href="index2.html"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
-                </ul>
             </li>
+            <li class="#">
+                <a href="{{route('admin.district.index')}}">
+                    <i class="fa fa-dashboard"></i> <span>QL DB Quận/Huyện</span>
+                </a>
+            </li>
+{{--            <li class="treeview">--}}
+{{--                <a href="#">--}}
+{{--                    <i class="fa fa-dashboard"></i> <span>Dashboard</span>--}}
+{{--                    <span class="pull-right-container">--}}
+{{--              <i class="fa fa-angle-left pull-right"></i>--}}
+{{--            </span>--}}
+{{--                </a>--}}
+{{--                <ul class="treeview-menu">--}}
+{{--                    <li class="active"><a href="index.html"><i class="fa fa-circle-o"></i> Dashboard v1</a></li>--}}
+{{--                    <li><a href="index2.html"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>--}}
+{{--                </ul>--}}
+{{--            </li>--}}
         </ul>
     </section>
     <!-- /.sidebar -->
