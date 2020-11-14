@@ -54,10 +54,9 @@ class RoomController extends Controller
      */
     public function store(Request $request)
     {
-//        $validatedData = $request->validate([
-//            'title' => 'required|max:255',
-//            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:10000'
-//        ]);
+        $validatedData = $request->validate([
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:10000'
+        ]);
         $user = Auth::user();
         $room = new Room; // khởi tạo model
         $room->roomType_id = $request->input('typeRoom');
@@ -67,6 +66,8 @@ class RoomController extends Controller
         $room->city_id = $request->input('city');
         $room->quantity = $request->input('quantity');
         $room->price = $request->input('price');
+        $room->price_unit = $request->input('priceUnit');
+
         // Upload file
         if ($request->hasFile('image')) { // dòng này Kiểm tra xem có image có được chọn
             // get file
@@ -82,24 +83,25 @@ class RoomController extends Controller
         }
         $room->area = $request->input('area'); // diện tích
         $room->note = $request->input('note');
-        if ($request->has('owner')) {
-            $room->live_with_owner = $request->input('owner');
+        $room->description = $request->input('description');
+        $live_with_owner = 0;
+        if ($request->has('with_owner')) {
+            $live_with_owner = $request->input('with_owner');
         }
-        $room->public_date = $request->input('publicDate');
-        $room->expired_date = $request->input('expiredDate');
+        $room->live_with_owner = $live_with_owner;
+
         $room->electric_price = $request->input('electricPrice');
         $room->water_price = $request->input('waterPrice');
         $room->user_id = $user->id;
-//        if($user->role_id == 1) {
-//            $room->approval_id = $user->rold_id;
-//        }
-        $room->approval_id = $request->input('approvalID');
-        $room->approval_date = $request->input('approvalDate');
-        if ($request->has('is_active')) {//kiem tra is_active co ton tai khong?
-            $room->is_active = $request->input('is_active');
+        if($user->role_id == 1) {
+            $room->approval_id = $user->role_id;
         }
-        $room->approval_date = $request->input('approvalDate');
-        $room->price_unit = $request->input('priceUnit');
+        $room->approval_date = now();
+        $is_active = 0;
+        if ($request->has('is_active')) {//kiem tra is_active co ton tai khong?
+            $is_active = $request->input('is_active');
+        }
+        $room->is_active = $is_active;
         $facilities = $request->input('facilities');
         $room->save();
         if ($request->hasFile('detailImage')) {
@@ -195,31 +197,28 @@ class RoomController extends Controller
         $room->quantity = $request->input('quantity');
         $room->price = $request->input('price');
         // Upload file
-        if ($request->hasFile('image')) { // dòng này Kiểm tra xem có image có được chọn
+        if ($request->hasFile('new_image')) { // dòng này Kiểm tra xem có image có được chọn
             // get file
-            $file = $request->file('image');
+            $file = $request->file('new_image');
             // đặt tên cho file image
             $filename = time().'_'.$file->getClientOriginalName(); // $file->getClientOriginalName() == tên ban đầu của image
             // Định nghĩa đường dẫn sẽ upload lên
             $path_upload = 'uploads/product/';
             // Thực hiện upload file
-            $request->file('image')->move($path_upload,$filename); // upload lên thư mục public/uploads/product
+            $request->file('new_image')->move($path_upload,$filename); // upload lên thư mục public/uploads/product
 
             $room->image = $path_upload.$filename;
         }
         $room->area = $request->input('area'); // diện tích
         $room->note = $request->input('note');
-        if ($request->has('owner')){
-            $room->live_with_owner = $request->input('owner');
+        $live_with_owner = 0;
+        if ($request->has('with_owner')){
+            $live_with_owner = $request->input('with_owner');
         }
-        $room->public_date = $request->input('publicDate');
+        $room->live_with_owner = $live_with_owner;
         $room->expired_date = $request->input('expiredDate');
         $room->electric_price = $request->input('electricPrice');
         $room->water_price = $request->input('waterPrice');
-        $room->user_id = $request->input('userID');
-        $room->approval_id = $request->input('approvalID');
-
-        $room->approval_date = $request->input('approvalDate');
         if ($request->has('is_active')){//kiem tra is_active co ton tai khong?
             $room->is_active = $request->input('is_active');
         }

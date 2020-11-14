@@ -53,12 +53,20 @@
                                     <input  value="{{ $room->quantity }}" type="text" class="form-control" id="quantity" name="quantity" placeholder="Nhập số lượng">
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Giá Phòng</label>
+                                    <label for="exampleInputEmail1">Giá Phòng (VNĐ)</label>
                                     <input value="{{ $room->price }}" type="text" class="form-control" id="price" name="price" placeholder="Nhập giá phòng">
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputFile">Ảnh Phòng Trọ</label>
-                                    <input value="{{ $room->image }}" type="file" class="" id="image" name="image">
+                                    <label for="exampleInputFile">Đơn vị</label>
+                                    <input value="{{$room->price_unit}}" type="text" class="form-control" id="priceUnit" name="priceUnit" placeholder="giá nước/1 khối">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputFile">Ảnh Phòng Trọ hiện tại</label>
+                                    <img src="{{ asset($room->image) }}" width="250">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputFile">Ảnh Phòng Trọ mới</label>
+                                    <input value="" type="file" class="" id="image" name="new_image">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputFile">Diện Tích Phòng</label>
@@ -70,56 +78,33 @@
                                 </div>
                                 <div class="form-group">
                                     <label>
-                                        <input type="checkbox" value="{{$room->live_with_owner}}" name="owner"> Chung Chủ
+                                        <input type="checkbox" value="1" name="with_owner" {{ ($room->live_with_owner==1) ? 'checked' : '' }}> Chung Chủ
                                     </label>
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputFile">Ngày Đăng Bài</label>
-                                    <input value="{{ $room->public_date }}" type="text" class="form-control" id="publicDate" name="publicDate" placeholder="Ngày đăng bài">
+                                    <label for="exampleInputFile">Ngày Phê Duyệt</label>
+                                    <input value="{{ $room->approval_date }}" type="text" class="form-control" id="approvalDate" name="approvalDate" placeholder="Chưa được phê duyệt" disabled>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputFile">Ngày Hết Hạn</label>
                                     <input value="{{ $room->expired_date }}" type="text" class="form-control" id="expiredDate" name="expiredDate" placeholder="Ngày hết hạn">
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputFile">Giá Điện</label>
+                                    <label for="exampleInputFile">Giá Điện (VNĐ) / kWh</label>
                                     <input value="{{ $room->electric_price }}" type="text" class="form-control" id="electricPrice" name="electricPrice" placeholder="Ngày hết hạn">
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputFile">Giá Nước</label>
+                                    <label for="exampleInputFile">Giá Nước (VNĐ) / m3</label>
                                     <input value="{{ $room->water_price }}" type="text" class="form-control" id="waterPrice" name="waterPrice" placeholder="Ngày hết hạn">
                                 </div>
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Id Người Đăng</label>
-                                    <select class="form-control w-50" name="userID">
-                                        <option value="0">-- Chọn ID Người Đăng  --</option>
-                                        {{--     @foreach($categories as $category)--}}
-                                        <option value="{{$room->approval_id}}">le cuong</option>
-                                        {{--    @endforeach--}}
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Id Người Phê Duyệt</label>
-                                    <select class="form-control w-50" name="approvalID">
-                                        <option value="0">-- Chọn ID Người Phê Duyệt  --</option>
-                                        {{--     @foreach($categories as $category)--}}
-                                        <option value="1">le cuong</option>
-                                        {{--    @endforeach--}}
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleInputFile">Ngày Phê Duyệt</label>
-                                    <input value="{{ $room->approval_date }}" type="text" class="form-control" id="approvalDate" name="approvalDate" placeholder="Ngày phê duyệt">
-                                </div>
+
+
                                 <div class="checkbox">
                                     <label>
                                         <input type="checkbox" value="1" name="is_active" {{ ($room->is_active == 1) ? 'checked' : ''  }}> Trạng thái hiển thị
                                     </label>
                                 </div>
-                                <div class="form-group">
-                                    <label for="exampleInputFile">Price_Unit</label>
-                                    <input value="{{$room->price_unit}}" type="text" class="form-control" id="priceUnit" name="priceUnit" placeholder="giá nước/1 khối">
-                                </div>
+
                             </div>
                             <div class="box-footer">
                                 <button type="submit" class="btn btn-primary">Cập nhật</button>

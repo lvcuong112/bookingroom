@@ -26,7 +26,7 @@
                             <tbody>
                             <tr>
                                 <th>Id</th>
-                                <th>Id Tỉnh/Thành</th>
+                                <th>Tỉnh/Thành phố</th>
                                 <th>Tên Quận/Huyện</th>
                                 <th>Tạo Bởi</th>
                                 <th>Cập Nhật Bởi</th>
@@ -39,11 +39,16 @@
                             @foreach($data as $key => $item)
                                 <tr class="item-{{ $item->id }}"> <!-- Thêm Class Cho Dòng -->
                                     <td>{{ $item->id }}</td>
-                                    <td>{{ $item->city_id }}</td>
+                                    <td>{{ \App\City::findOrFail($item->city_id )->name }}</td>
                                     <td>{{ $item->name  }}</td>
-                                    <td>{{ $item->create_by }}</td>
-                                    <td>{{ $item->update_by }}</td>
-                                    <td>{{ $item->is_active }}</td>
+
+                                    <td>{{ \App\User::findOrFail($item->create_by)->name }}</td>
+                                    @if($item->update_by != null)
+                                        <td>{{ \App\User::findOrFail($item->update_by)->name }}</td>
+                                    @else
+                                        <td>Chưa ai cập nhật</td>
+                                    @endif
+                                    <td>{{ ($item->is_active == 1) ? 'Hiển thị' : 'Không hiển thị' }}</td>
                                     <td>{{ $item->created_at }}</td>
                                     <td>{{ $item->updated_at }}</td>
                                     <td class="text-center">

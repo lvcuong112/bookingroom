@@ -2,7 +2,7 @@
 @section('content')
     <section class="content-header">
         <h1>
-            Chỉnh sửa Thông Tin Nhà Trọ <a href="{{route('admin.roomtype.index')}}" class="btn btn-success pull-right"><i class="fa fa-list"></i> Danh Sách</a>
+            Chỉnh sửa Thông Tin loại phòng <a href="{{route('admin.roomtype.index')}}" class="btn btn-success pull-right"><i class="fa fa-list"></i> Danh Sách</a>
         </h1>
     </section>
     <section class="content">
@@ -19,28 +19,26 @@
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Được Tạo Bởi</label>
-                                {{--@foreach($categories as $category)--}}
-                                <input value="{{$roomType->create_by}}" type="text" class="form-control" id="create_by" name="create_by" placeholder="Nhập tên ngươi tạo">
-                                {{--@endforeach--}}
+                                <input value=" {{ \App\User::findOrFail($roomType->create_by)->name }} " type="text" class="form-control" id="create_by" name="create_by" disabled>
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Cập Nhật Bởi</label>
                                 {{--@foreach($categories as $category)--}}
-                                <input value="{{$roomType->update_by}}" type="text" class="form-control" id="update_by" name="update_by" placeholder="Nhập tên người cập nhật">
+                                <input value="{{ ($roomType->update_by!=null) ? \App\User::findOrFail($roomType->update_by)->name : '' }}" type="text" class="form-control" id="update_by" name="update_by" placeholder="Chưa ai cập nhật" disabled>
                                 {{--@endforeach--}}
                             </div>
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" value="{{$roomType->is_active}}" name="is_active"> Trạng thái hiển thị
+                                    <input type="checkbox" value="1" name="is_active" {{ ($roomType->is_active==1) ? 'checked' : '' }}> Trạng thái hiển thị
                                 </label>
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputFile">Ngày Tạo Bài</label>
-                                <input value="{{$roomType->created_at}}" type="text" class="form-control" id="created_at" name="created_at" placeholder="Ngày tạo bài">
+                                <input value="{{ $roomType->created_at }}" type="text" class="form-control" id="created_at" name="created_at" disabled>
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputFile">Ngày Cập Nhật</label>
-                                <input value="{{$roomType->updated_at}}" type="text" class="form-control" id="updated  _at" name="updated_at" placeholder="Ngày cập nhật    ">
+                                <input value="{{$roomType->updated_at}}" type="text" class="form-control" id="updated  _at" name="updated_at" disabled>
                             </div>
                         </div>
                         <div class="box-footer">

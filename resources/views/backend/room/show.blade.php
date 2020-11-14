@@ -12,10 +12,7 @@
                 <div class="box-body">
                     <table class="table table-bordered">
                         <tbody>
-                            <tr>
-                                <td><b>Id Loại Nhà Trọ</b></td>
-                                <td>{{ $data->_id }}</td>
-                            </tr>
+
                             <tr>
                                 <td><b>Tiêu Đề</b></td>
                                 <td>{{ $data->title }}</td>
@@ -29,23 +26,23 @@
                                 <td>{{ $data->address }}</td>
                             </tr>
                             <tr>
-                                <td><b>Id Quận/Huyện</b></td>
-                                <td>{{ $data->district_id }}</td>
+                                <td><b>Quận/Huyện</b></td>
+                                <td>{{ \App\District::findOrFail($data->district_id)->name }}</td>
                             </tr>
                             <tr>
-                                <td><b>Id Tỉnh/Thành Phố</b></td>
-                                <td>{{ $data->city_id }}</td>
+                                <td><b>Tỉnh/Thành Phố</b></td>
+                                <td>{{ \App\City::findOrFail($data->city_id)->name }}</td>
                             </tr>
                             <tr>
                                 <td><b>Số Lượng Phòng</b></td>
                                 <td>{{ $data->quantity }}</td>
                             </tr>
                             <tr>
-                                <td><b>Giá Phòng</b></td>
+                                <td><b>Giá Phòng (VNĐ) </b></td>
                                 <td>{{ $data->price }}</td>
                             </tr>
                             <tr>
-                                <td><b>Hình ảnh:</b></td>
+                                <td><b>Hình ảnh tiêu đề:</b></td>
                                 <td><img src="{{ $data->image }}" width="250"></td>
                             </tr>
                             <tr>
@@ -58,7 +55,7 @@
                             </tr>
                             <tr>
                                 <td><b>Ở Chung Chủ </b></td>
-                                <td>{{ $data->live_with_owner }}</td>
+                                <td>{{ ($data->live_with_owner==1) ? 'Có' : 'Không' }}</td>
                             </tr>
                             <tr>
                                 <td><b>Ngày Đăng Bài</b></td>
@@ -69,16 +66,16 @@
                                 <td>{{ $data->expired_date }}</td>
                             </tr>
                             <tr>
-                                <td><b> Giá Điện </b></td>
+                                <td><b> Giá Điện / kWh </b></td>
                                 <td>{{ $data->electric_price}}</td>
                             </tr>
                             <tr>
-                                <td><b> Giá Nước </b></td>
+                                <td><b> Giá Nước / m3 </b></td>
                                 <td>{{ $data->water_price}}</td>
                             </tr>
                             <tr>
                                 <td><b> Ngày Phê Duyệt </b></td>
-                                <td>{{ $data->approval_date}}</td>
+                                <td>{{ $data->approval_date }}</td>
                             </tr>
                             <tr>
                                 <td><b> Id Người Phê Duyệt </b></td>

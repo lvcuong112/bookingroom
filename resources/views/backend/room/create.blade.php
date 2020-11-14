@@ -32,8 +32,8 @@
                                 <label for="exampleInputEmail1">Tỉnh/Thành Phố</label>
                                 <select class="form-control w-50" name="city">
                                     <option value="0">-- Chọn Tỉnh/Thành Phố  --</option>
-                                    @foreach($city as $cities)
-                                    <option value="{{$cities->id}}">{{$cities->name}}</option>
+                                    @foreach($city as $t_city)
+                                    <option value="{{$t_city->id}}">{{$t_city->name}}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -42,34 +42,42 @@
                                 <label for="exampleInputEmail1">Quận/Huyện</label>
                                 <select class="form-control w-50" name="district">
                                     <option value="0">-- Chọn Quận Huyện  --</option>
-                                    @foreach($district as $districts)
-                                        <option value="{{$districts->id}}">{{$districts->name}}</option>
+                                    @foreach($district as $t_district)
+                                        <option value="{{$t_district->id}}">{{$t_district->name}}</option>
                                     @endforeach
                                 </select>
                             </div>
     {{--                            địa chỉ--}}
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Địa chỉ Cụ Thể</label>
-                                <input type="text" class="form-control" id="address" name="address" placeholder="Address">
+                                <label for="exampleInputEmail1">Địa chỉ chính xác (số nhà ...) </label>
+                                <input type="text" class="form-control" id="address" name="address" placeholder="Nhập địa chỉ">
                             </div>
     {{--                            số lượng phòng--}}
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Số Lượng Phòng</label>
-                                <input type="text" class="form-control" id="quantity" name="quantity" placeholder="Nhập số lượng">
+                                <input type="text" class="form-control" id="quantity" name="quantity" placeholder="Nhập số lượng phòng">
                             </div>
     {{--                            giá phòng--}}
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Giá Phòng (vnđ)</label>
                                 <input type="text" class="form-control" id="price" name="price" placeholder="Nhập giá phòng">
                             </div>
+                            <div class="form-group">
+                                <label for="exampleInputFile">Đơn vị</label>
+                                <input type="text" class="form-control" id="priceUnit" name="priceUnit" placeholder="Price Unit">
+                            </div>
     {{--                            ảnh--}}
                             <div class="form-group">
                                 <label for="exampleInputFile">Ảnh Phòng Trọ</label>
                                 <input type="file" class="" id="image" name="image" >
                             </div>
+                            <div class="form-group">
+                                <label for="exampleInputFile">Mô tả</label>
+                                <input type="text" class="form-control" id="note" name="description" placeholder="Mô tả">
+                            </div>
     {{--                            diện tích--}}
                             <div class="form-group">
-                                <label for="exampleInputFile">Diện Tích Phòng</label>
+                                <label for="exampleInputFile">Diện Tích (m2)</label>
                                 <input type="text" class="form-control" id="area" name="area" placeholder="Nhập diện tích">
                             </div>
     {{--                            ghi chú--}}
@@ -80,57 +88,23 @@
     {{--                            chung chủ--}}
                             <div class="form-group">
                                 <label>
-                                    <input type="checkbox" value="1" name="owner"> Chung Chủ
+                                    <input type="checkbox" value="1" name="with_owner"> Chung Chủ
                                 </label>
                             </div>
-    {{--                            ngày đăng bài--}}
-                            <div class="form-group">
-                                <label for="exampleInputFile">Ngày Đăng Bài</label>
-                                <input type="text" class="form-control" id="publicDate" name="publicDate" placeholder="Ngày đăng bài">
-                            </div>
-    {{--                            ngày hết hạn--}}
-                            <div class="form-group">
-                                <label for="exampleInputFile">Ngày Hết Hạn</label>
-                                <input type="text" class="form-control" id="expiredDate" name="expiredDate" placeholder="Ngày hết hạn">
-                            </div>
+    {{--
     {{--                            giá điện--}}
                             <div class="form-group">
                                 <label for="exampleInputFile">Giá Điện</label>
-                                <input type="text" class="form-control" id="electricPrice" name="electricPrice" placeholder="Nhập giá điện/1 số">
+                                <input type="text" class="form-control" id="electricPrice" name="electricPrice" placeholder="Nhập giá điện / 1 kWh">
                             </div>
     {{--                            giá nước--}}
                             <div class="form-group">
                                 <label for="exampleInputFile">Giá Nước</label>
-                                <input type="text" class="form-control" id="waterPrice" name="waterPrice" placeholder="giá nước/1 khối">
+                                <input type="text" class="form-control" id="waterPrice" name="waterPrice" placeholder="Giá nước / m3">
                             </div>
 
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Id Người Đăng</label>
-                                    <select class="form-control w-50" name="userID">
-                                        <option value="0">-- Chọn ID Người Đăng  --</option>
-    {{--                                             @foreach($categories as $category)--}}
-                                        <option value="1">le cuong</option>
-    {{--                                            @endforeach--}}
-                                    </select>
-                            </div>
 
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Id Người Phê Duyệt</label>
-                                <select class="form-control w-50" name="approvalID">
-                                    <option value="0">-- Chọn ID Người Phê Duyệt  --</option>
-{{--                                             @foreach($categories as $category)--}}
-                                    <option value="1">le cuong</option>
-{{--                                            @endforeach--}}
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputFile">Ngày Phê Duyệt</label>
-                                <input type="text" class="form-control" id="approvalDate" name="approvalDate" placeholder="Ngày Phê Duyệt">
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputFile">Price_Unit</label>
-                                <input type="text" class="form-control" id="priceUnit" name="priceUnit" placeholder="Price Unit">
-                            </div>
+
                             <div class="checkbox">
                                 <label>
                                     <input type="checkbox" value="1" name="is_active"> Trạng thái hiển thị

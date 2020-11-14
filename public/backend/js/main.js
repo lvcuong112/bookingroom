@@ -76,7 +76,7 @@ function destroyReport(id) {
     }
 }
 function destroyRoom(id) {
-    var result = confirm("Bạn có chắc chắn muốn xóa phòng ?");
+    var result = confirm("Bạn có chắc chắn muốn xóa bài đăng phòng này ?");
     if (result) { // neu nhấn == ok , sẽ send request ajax
         $.ajax({
             url: base_url + '/admin/room/'+id, // base_url được khai báo ở đầu page == http://webshop.local
@@ -97,7 +97,7 @@ function destroyRoom(id) {
     }
 }
 function destroyRoomType(id) {
-    var result = confirm("Bạn có chắc chắn muốn xóa phòng ?");
+    var result = confirm("Bạn có chắc chắn muốn xóa loại phòng này ?");
     if (result) { // neu nhấn == ok , sẽ send request ajax
         $.ajax({
             url: base_url + '/admin/roomtype/'+id, // base_url được khai báo ở đầu page == http://webshop.local
@@ -119,7 +119,7 @@ function destroyRoomType(id) {
 }
 
 function destroyCity(id) {
-    var result = confirm("Bạn có chắc chắn muốn xóa phòng ?");
+    var result = confirm("Bạn có chắc chắn muốn xóa Tỉnh / Thành Phố này ?");
     if (result) { // neu nhấn == ok , sẽ send request ajax
         $.ajax({
             url: base_url + '/admin/city/'+id, // base_url được khai báo ở đầu page == http://webshop.local
@@ -140,7 +140,7 @@ function destroyCity(id) {
     }
 }
 function destroyDistrict(id) {
-    var result = confirm("Bạn có chắc chắn muốn xóa phòng ?");
+    var result = confirm("Bạn có chắc chắn muốn xóa Quận/Huyện này ?");
     if (result) { // neu nhấn == ok , sẽ send request ajax
         $.ajax({
             url: base_url + '/admin/district/'+id, // base_url được khai báo ở đầu page == http://webshop.local

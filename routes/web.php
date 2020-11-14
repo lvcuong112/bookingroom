@@ -50,18 +50,3 @@ Route::group(['prefix' => 'admin','as' => 'admin.', 'middleware' => ['checkLogin
     Route::resource('report', 'ReportController');
 
 });
-
-//Route::get('/test/{id}', function($roomId) {
-//    // dd($room->facilities->get());
-//    $room = Room::find($roomId);
-//    $room->facilities()->syncWithoutDetaching([
-//        1 => [
-//            'description' => 'aaaaa'
-//        ],
-//        2 => [
-//            'description' => 'bbbbb'
-//        ]
-//    ]);
-//
-//    return "ok";
-//});

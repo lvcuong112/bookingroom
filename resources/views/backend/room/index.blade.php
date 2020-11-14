@@ -45,7 +45,7 @@
                                     <img src="{{ $item->image }}" width="50" height="50">
                                 </td>
                                 <td>{{ $item->public_date }}</td>
-                                <td>{{ $item->is_active }}</td>
+                                <td>{{ ($item->is_active==1) ? 'Hiển thị' : 'Không' }}</td>
                                 <td class="text-center">
                                     <a href="{{route('admin.room.show', ['id'=> $item->id ])}}" class="btn btn-default">Xem</a>
                                     <a href="{{route('admin.room.edit', ['id'=> $item->id ])}}" class="btn btn-info">Sửa</a>

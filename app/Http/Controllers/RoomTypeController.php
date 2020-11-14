@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Room_type;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class RoomTypeController extends Controller
 {
@@ -42,16 +43,16 @@ class RoomTypeController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|max:255',
         ]);
-
+        $user = Auth::user();
         $roomtype = new Room_type(); // khởi tạo model
         $roomtype->name = $request->input('name');
-        $roomtype->create_by = $request->input('create_by');
-        $roomtype->update_by = $request->input('update_by');
+        $roomtype->create_by = $user->id;
+        $is_active = 0;
         if ($request->has('is_active')){//kiem tra is_active co ton tai khong?
-            $roomtype->is_active = $request->input('is_active');
+            $is_active = $request->input('is_active');
         }
-        $roomtype->created_at = $request->input('created_at');
-        $roomtype->updated_at = $request->input('updated_at');
+        $roomtype->is_active = $is_active;
+
 
         $roomtype->save();
         // chuyển hướng đến trang
@@ -99,14 +100,13 @@ class RoomTypeController extends Controller
 
         $roomtype =  Room_type::findorFail($id); // khởi tạo model
         $roomtype->name = $request->input('name');
-        $roomtype->create_by = $request->input('create_by');
-        $roomtype->update_by = $request->input('update_by');
-        if ($request->has('is_active')){//kiem tra is_active co ton tai khong?
-            $roomtype->is_active = $request->input('is_active');
-        }
-        $roomtype->created_at = $request->input('created_at');
-        $roomtype->updated_at = $request->input('updated_at');
+        $roomtype->update_by = Auth::user()->id;
 
+        $is_active = 0;
+        if ($request->has('is_active')){//kiem tra is_active co ton tai khong?
+            $is_active = $request->input('is_active');
+        }
+        $roomtype->is_active = $is_active;
         $roomtype->save();
         // chuyển hướng đến trang
         return redirect()->route('admin.roomtype.index');

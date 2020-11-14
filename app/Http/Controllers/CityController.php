@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\City;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CityController extends Controller
 {
@@ -41,14 +42,16 @@ class CityController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|max:255',
         ]);
+        $user = Auth::user();
 
         $city = new City(); // khởi tạo model
         $city->name = $request->input('name');
-        $city->create_by = $request->input('create_by');
-        $city->update_by = $request->input('update_by');
+        $city->create_by = $user->id;
+        $is_active = 0;
         if ($request->has('is_active')){//kiem tra is_active co ton tai khong?
-            $city->status = $request->input('status');
+            $is_active = $request->input('is_active');
         }
+        $city->is_active = $is_active;
         $city->save();
         // chuyển hướng đến trang
         return redirect()->route('admin.city.index');
@@ -91,14 +94,15 @@ class CityController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|max:255',
         ]);
-
+        $user = Auth::user();
         $city = City::findorFail($id); // khởi tạo model
         $city->name = $request->input('name');
-        $city->create_by = $request->input('create_by');
-        $city->update_by = $request->input('update_by');
+        $city->update_by = $user->id;
+        $is_active = 0;
         if ($request->has('is_active')){//kiem tra is_active co ton tai khong?
-            $city->status = $request->input('status');
+            $is_active = $request->input('is_active');
         }
+        $city->is_active = $is_active;
         $city->save();
         // chuyển hướng đến trang
         return redirect()->route('admin.city.index');

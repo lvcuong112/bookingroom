@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\District;
 use App\City;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DistrictController extends Controller
 {
@@ -28,9 +29,10 @@ class DistrictController extends Controller
      */
     public function create()
     {
-        $district = City::all();
+        $city = City::all();
         return view('backend.district.create', [
-            'city' => $district
+            'city' => $city,
+
         ]);
     }
 
@@ -45,15 +47,16 @@ class DistrictController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|max:255',
         ]);
-
+        $user = Auth::user();
         $district = new District(); // khởi tạo model
-        $district->name = $request->input('city');
         $district->name = $request->input('name');
-        $district->create_by = $request->input('create_by');
-        $district->update_by = $request->input('update_by');
+        $district->city_id = $request->input('city');
+        $district->create_by = $user->id;
+        $is_active = 0;
         if ($request->has('is_active')){//kiem tra is_active co ton tai khong?
-            $district->status = $request->input('status');
+            $is_active = $request->input('is_active');
         }
+        $district->is_active = $is_active;
         $district->save();
         // chuyển hướng đến trang
         return redirect()->route('admin.district.index');
@@ -79,8 +82,8 @@ class DistrictController extends Controller
     public function edit($id)
     {
         $city = City::all();
-        $choseCity = City::findorFail($id);
         $district = District::findorFail($id);
+        $choseCity = City::findorFail($district->city_id);
         return view('backend.district.edit', [
             'district' => $district,
             'city'=> $city
@@ -99,15 +102,16 @@ class DistrictController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|max:255',
         ]);
-
+        $user = Auth::user();
         $district = District::findorFail($id); // khởi tạo model
         $district->city_id = $request->input('city');
         $district->name = $request->input('name');
-        $district->create_by = $request->input('create_by');
-        $district->update_by = $request->input('update_by');
+        $district->update_by = $user->id;
+        $is_active = 0;
         if ($request->has('is_active')){//kiem tra is_active co ton tai khong?
-            $district->status = $request->input('is_active');
+            $is_active = $request->input('is_active');
         }
+        $district->is_active = $is_active;
         $district->save();
         // chuyển hướng đến trang
         return redirect()->route('admin.district.index');
