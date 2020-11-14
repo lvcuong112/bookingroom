@@ -2,7 +2,7 @@
 @section('content')
 <section class="content-header">
     <h1>
-        Chi Tiết Phòng Trọ <a href="{{route('admin.room.index')}}" class="btn btn-success pull-right"><i class="fa fa-plus"></i> Danh sách </a>
+        Chi Tiết Phòng Trọ <a href="{{route('admin.room.index')}}" class="btn btn-success pull-right"> Danh sách phòng trọ </a>
     </h1>
 </section>
 <section class="content">
@@ -57,14 +57,8 @@
                                 <td><b>Ở Chung Chủ </b></td>
                                 <td>{{ ($data->live_with_owner==1) ? 'Có' : 'Không' }}</td>
                             </tr>
-                            <tr>
-                                <td><b>Ngày Đăng Bài</b></td>
-                                <td>{{ $data->public_date }}</td>
-                            </tr>
-                            <tr>
-                                <td><b> Ngày Gỡ Bài </b></td>
-                                <td>{{ $data->expired_date }}</td>
-                            </tr>
+
+
                             <tr>
                                 <td><b> Giá Điện / kWh </b></td>
                                 <td>{{ $data->electric_price}}</td>
@@ -75,20 +69,55 @@
                             </tr>
                             <tr>
                                 <td><b> Ngày Phê Duyệt </b></td>
-                                <td>{{ $data->approval_date }}</td>
+                                @if($data->approval_date != null)
+                                    <td>{{ $data->approval_date }}</td>
+                                @else
+                                    <td>Chưa được phê duyệt</td>
+                                @endif
                             </tr>
                             <tr>
-                                <td><b> Id Người Phê Duyệt </b></td>
-                                <td>{{ $data->approval_id}}</td>
+                                <td><b> Ngày Hết Hạn </b></td>
+                                @if($data->expired_date != null)
+                                    <td>{{ $data->expired_date }}</td>
+                                @else
+                                    <td>Chưa được phê duyệt</td>
+                                @endif
+                            </tr>
+                            <tr>
+                                <td><b> Người Phê Duyệt </b></td>
+                                @if($data->approval_id != null )
+                                    <td>{{ \App\User::findOrFail($data->approval_id)->name }}</td>
+                                @else
+                                    <td>Chưa được phê duyệt</td>
+                                @endif
                             </tr>
                             <tr>
                                 <td><b> Tiện Ích </b></td>
                                 <td>
                                     @foreach($facilities as $facility)
-                                    {{$facility->title}}
+                                    {{$facility->title . ' | '}}
                                     @endforeach
                                 </td>
                             </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="box box-primary">
+                <div class="box-body">
+                    <h3>Ảnh chi tiết phòng trọ</h3>
+                    @foreach($room_detailImages as $item)
+                        <img src="{{ asset($item->image) }}" width="270px" height="160px" style="margin: 10px;">
+                    @endforeach
+                    <table class="table table-bordered">
+                        <tbody>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
                         </tbody>
                     </table>
                 </div>

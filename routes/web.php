@@ -48,5 +48,5 @@ Route::group(['prefix' => 'admin','as' => 'admin.', 'middleware' => ['checkLogin
     Route::resource('comment', 'CommentController');
     Route::get('/report/getAllUnApprovedReports', 'ReportController@getAllUnApprovedReports')->name('report.getAllUnApprovedReports');
     Route::resource('report', 'ReportController');
-
+    Route::delete('/roomimage/{id}', 'RoomController@deleteRoomImage')->name('room/deleteRoomImage');
 });
