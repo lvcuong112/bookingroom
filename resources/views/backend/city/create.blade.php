@@ -17,21 +17,10 @@
                                     <label for="exampleInputEmail1">Tên Tỉnh/Thành Phố</label>
                                     <input type="text" class="form-control" id="name" name="name" placeholder="Nhập tên Thành Phố">
                                 </div>
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Được Tạo Bởi</label>
-                                    {{--@foreach($categories as $category)--}}
-                                    <input type="text" class="form-control" id="create_by" name="create_by" placeholder="Nhập tên ngươi tạo">
-                                    {{--@endforeach--}}
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Cập Nhật Bởi</label>
-                                    {{--@foreach($categories as $category)--}}
-                                    <input type="text" class="form-control" id="update_by" name="update_by" placeholder="Nhập tên người cập nhật">
-                                    {{--@endforeach--}}
-                                </div>
+
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" value="1" name="status"> Trạng thái hiển thị
+                                        <input type="checkbox" value="1" name="is_active"> Trạng thái hiển thị
                                     </label>
                                 </div>
                             </div>

@@ -25,8 +25,7 @@
                     <table class="table table-hover">
                         <tbody>
                         <tr>
-                            <th>Id Loại Phòng Trọ</th>
-                            <th>Loại Phòng</th>
+                            <th>Tên Loại Phòng</th>
                             <th>Tạo Bởi</th>
                             <th>Cập Nhật Bởi</th>
                             <th>Trạng Thái</th>
@@ -37,13 +36,16 @@
                         </tbody>
                         @foreach($data as $key => $item)
                             <tr class="item-{{ $item->id }}"> <!-- Thêm Class Cho Dòng -->
-                                <td>{{ $item->id }}</td>
                                 <td>{{ $item->name }}</td>
-                                <td>{{ $item->create_by}}</td>
-                                <td>{{ $item->update_by }}</td>
-                                <td>{{ $item->is_active }}</td>
+                                <td>{{ \App\User::findOrFail($item->create_by)->name }}</td>
+                                @if($item->update_by != null)
+                                    <td>{{ \App\User::findOrFail($item->update_by)->name }}</td>
+                                @else
+                                    <td>Chưa ai cập nhật</td>
+                                @endif
+                                <td>{{ ($item->is_active==1) ? 'Hiển thị' : 'Không' }}</td>
                                 <td>{{ $item->created_at }}</td>
-                                <td>{{ $item->update_at }}</td>
+                                <td>{{ $item->updated_at }}</td>
 
                                 <td class="text-center">
                                     <a href="{{route('admin.roomtype.edit', ['id'=> $item->id ])}}" class="btn btn-info">Sửa</a>

@@ -48,20 +48,5 @@ Route::group(['prefix' => 'admin','as' => 'admin.', 'middleware' => ['checkLogin
     Route::resource('comment', 'CommentController');
     Route::get('/report/getAllUnApprovedReports', 'ReportController@getAllUnApprovedReports')->name('report.getAllUnApprovedReports');
     Route::resource('report', 'ReportController');
-
+    Route::delete('/roomimage/{id}', 'RoomController@deleteRoomImage')->name('room/deleteRoomImage');
 });
-
-//Route::get('/test/{id}', function($roomId) {
-//    // dd($room->facilities->get());
-//    $room = Room::find($roomId);
-//    $room->facilities()->syncWithoutDetaching([
-//        1 => [
-//            'description' => 'aaaaa'
-//        ],
-//        2 => [
-//            'description' => 'bbbbb'
-//        ]
-//    ]);
-//
-//    return "ok";
-//});

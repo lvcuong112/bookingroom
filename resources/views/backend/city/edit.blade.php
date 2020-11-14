@@ -19,28 +19,24 @@
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Được Tạo Bởi</label>
-                                {{--@foreach($categories as $category)--}}
-                                <input value="{{$city->create_by}}" type="text" class="form-control" id="create_by" name="create_by" placeholder="Nhập tên ngươi tạo">
-                                {{--@endforeach--}}
+                                <input value="{{ \App\User::findOrFail($city->create_by)->name }}" type="text" class="form-control" id="create_by" name="create_by" disabled>
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Cập Nhật Bởi</label>
-                                {{--@foreach($categories as $category)--}}
-                                <input value="{{$city->update_by}}" type="text" class="form-control" id="update_by" name="update_by" placeholder="Nhập tên người cập nhật">
-                                {{--@endforeach--}}
+                                <input value="{{ ($city->update_by!=null) ? \App\User::findOrFail($city->update_by)->name : 'Chưa ai cập nhật' }}" type="text" class="form-control" id="update_by" name="update_by" disabled>
                             </div>
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" value="{{$city->status}}" name="status"> Trạng thái hiển thị
+                                    <input type="checkbox" value="1" name="is_active" {{ ($city->is_active == 1) ? 'checked' : '' }}> Trạng thái hiển thị
                                 </label>
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputFile">Ngày Tạo Bài</label>
-                                <input value="{{$city->created_at}}" type="text" class="form-control" id="created_at" name="created_at" placeholder="Ngày tạo bài">
+                                <input value="{{$city->created_at}}" type="text" class="form-control" id="created_at" name="created_at" disabled>
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputFile">Ngày Cập Nhật</label>
-                                <input value="{{$city->updated_at}}" type="text" class="form-control" id="updated  _at" name="updated_at" placeholder="Ngày cập nhật    ">
+                                <input value="{{$city->updated_at}}" type="text" class="form-control" id="updated  _at" name="updated_at" disabled>
                             </div>
                         </div>
                         <div class="box-footer">

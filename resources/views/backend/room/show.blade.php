@@ -2,7 +2,7 @@
 @section('content')
 <section class="content-header">
     <h1>
-        Chi Tiết Phòng Trọ <a href="{{route('admin.room.index')}}" class="btn btn-success pull-right"><i class="fa fa-plus"></i> Danh sách </a>
+        Chi Tiết Phòng Trọ <a href="{{route('admin.room.index')}}" class="btn btn-success pull-right"> Danh sách phòng trọ </a>
     </h1>
 </section>
 <section class="content">
@@ -12,10 +12,7 @@
                 <div class="box-body">
                     <table class="table table-bordered">
                         <tbody>
-                            <tr>
-                                <td><b>Id Loại Nhà Trọ</b></td>
-                                <td>{{ $data->_id }}</td>
-                            </tr>
+
                             <tr>
                                 <td><b>Tiêu Đề</b></td>
                                 <td>{{ $data->title }}</td>
@@ -29,23 +26,23 @@
                                 <td>{{ $data->address }}</td>
                             </tr>
                             <tr>
-                                <td><b>Id Quận/Huyện</b></td>
-                                <td>{{ $data->district_id }}</td>
+                                <td><b>Quận/Huyện</b></td>
+                                <td>{{ \App\District::findOrFail($data->district_id)->name }}</td>
                             </tr>
                             <tr>
-                                <td><b>Id Tỉnh/Thành Phố</b></td>
-                                <td>{{ $data->city_id }}</td>
+                                <td><b>Tỉnh/Thành Phố</b></td>
+                                <td>{{ \App\City::findOrFail($data->city_id)->name }}</td>
                             </tr>
                             <tr>
                                 <td><b>Số Lượng Phòng</b></td>
                                 <td>{{ $data->quantity }}</td>
                             </tr>
                             <tr>
-                                <td><b>Giá Phòng</b></td>
+                                <td><b>Giá Phòng (VNĐ) </b></td>
                                 <td>{{ $data->price }}</td>
                             </tr>
                             <tr>
-                                <td><b>Hình ảnh:</b></td>
+                                <td><b>Hình ảnh tiêu đề:</b></td>
                                 <td><img src="{{ $data->image }}" width="250"></td>
                             </tr>
                             <tr>
@@ -58,40 +55,69 @@
                             </tr>
                             <tr>
                                 <td><b>Ở Chung Chủ </b></td>
-                                <td>{{ $data->live_with_owner }}</td>
+                                <td>{{ ($data->live_with_owner==1) ? 'Có' : 'Không' }}</td>
                             </tr>
+
+
                             <tr>
-                                <td><b>Ngày Đăng Bài</b></td>
-                                <td>{{ $data->public_date }}</td>
-                            </tr>
-                            <tr>
-                                <td><b> Ngày Gỡ Bài </b></td>
-                                <td>{{ $data->expired_date }}</td>
-                            </tr>
-                            <tr>
-                                <td><b> Giá Điện </b></td>
+                                <td><b> Giá Điện / kWh </b></td>
                                 <td>{{ $data->electric_price}}</td>
                             </tr>
                             <tr>
-                                <td><b> Giá Nước </b></td>
+                                <td><b> Giá Nước / m3 </b></td>
                                 <td>{{ $data->water_price}}</td>
                             </tr>
                             <tr>
                                 <td><b> Ngày Phê Duyệt </b></td>
-                                <td>{{ $data->approval_date}}</td>
+                                @if($data->approval_date != null)
+                                    <td>{{ $data->approval_date }}</td>
+                                @else
+                                    <td>Chưa được phê duyệt</td>
+                                @endif
                             </tr>
                             <tr>
-                                <td><b> Id Người Phê Duyệt </b></td>
-                                <td>{{ $data->approval_id}}</td>
+                                <td><b> Ngày Hết Hạn </b></td>
+                                @if($data->expired_date != null)
+                                    <td>{{ $data->expired_date }}</td>
+                                @else
+                                    <td>Chưa được phê duyệt</td>
+                                @endif
+                            </tr>
+                            <tr>
+                                <td><b> Người Phê Duyệt </b></td>
+                                @if($data->approval_id != null )
+                                    <td>{{ \App\User::findOrFail($data->approval_id)->name }}</td>
+                                @else
+                                    <td>Chưa được phê duyệt</td>
+                                @endif
                             </tr>
                             <tr>
                                 <td><b> Tiện Ích </b></td>
                                 <td>
                                     @foreach($facilities as $facility)
-                                    {{$facility->title}}
+                                    {{$facility->title . ' | '}}
                                     @endforeach
                                 </td>
                             </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="box box-primary">
+                <div class="box-body">
+                    <h3>Ảnh chi tiết phòng trọ</h3>
+                    @foreach($room_detailImages as $item)
+                        <img src="{{ asset($item->image) }}" width="270px" height="160px" style="margin: 10px;">
+                    @endforeach
+                    <table class="table table-bordered">
+                        <tbody>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
                         </tbody>
                     </table>
                 </div>

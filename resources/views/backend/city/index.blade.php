@@ -39,9 +39,13 @@
                                 <tr class="item-{{ $item->id }}"> <!-- Thêm Class Cho Dòng -->
                                     <td>{{ $item->id }}</td>
                                     <td>{{ $item->name  }}</td>
-                                    <td>{{ $item->create_by }}</td>
-                                    <td>{{ $item->update_by }}</td>
-                                    <td>{{ $item->status }}</td>
+                                    <td>{{ \App\User::findOrFail($item->create_by)->name }}</td>
+                                    @if($item->update_by != null)
+                                        <td>{{ \App\User::findOrFail($item->update_by)->name }}</td>
+                                    @else
+                                        <td>Chưa ai cập nhật</td>
+                                    @endif
+                                    <td>{{ ($item->is_active == 1) ? 'Hiển thị' : 'Không hiển thị' }}</td>
                                     <td>{{ $item->created_at }}</td>
                                     <td>{{ $item->updated_at }}</td>
                                     <td class="text-center">

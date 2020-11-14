@@ -55,11 +55,16 @@ class RoomController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
+<<<<<<< HEAD
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:10000',
+            'title' => 'required|max:255'
+=======
             'title' => 'required|max:255',
             'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:10000'
+>>>>>>> 1b959de10624fd7c4af077a01eff9342f6dfb76e
         ]);
         $user = Auth::user();
-        $room = new Room; // khởi tạo model
+        $room = new Room(); // khởi tạo model
         $room->roomType_id = $request->input('typeRoom');
         $room->title = $request->input('title');
         $room->address = $request->input('address');
@@ -67,6 +72,8 @@ class RoomController extends Controller
         $room->city_id = $request->input('city');
         $room->quantity = $request->input('quantity');
         $room->price = $request->input('price');
+        $room->price_unit = $request->input('priceUnit');
+
         // Upload file
         if ($request->hasFile('image')) { // dòng này Kiểm tra xem có image có được chọn
             // get file
@@ -82,24 +89,25 @@ class RoomController extends Controller
         }
         $room->area = $request->input('area'); // diện tích
         $room->note = $request->input('note');
-        if ($request->has('owner')) {
-            $room->live_with_owner = $request->input('owner');
+        $room->description = $request->input('description');
+        $live_with_owner = 0;
+        if ($request->has('with_owner')) {
+            $live_with_owner = $request->input('with_owner');
         }
-        $room->public_date = $request->input('publicDate');
-        $room->expired_date = $request->input('expiredDate');
+        $room->live_with_owner = $live_with_owner;
+
         $room->electric_price = $request->input('electricPrice');
         $room->water_price = $request->input('waterPrice');
         $room->user_id = $user->id;
-//        if($user->role_id == 1) {
-//            $room->approval_id = $user->rold_id;
-//        }
-        $room->approval_id = $request->input('approvalID');
-        $room->approval_date = $request->input('approvalDate');
-        if ($request->has('is_active')) {//kiem tra is_active co ton tai khong?
-            $room->is_active = $request->input('is_active');
+        if($user->role_id == 1) {
+            $room->approval_id = $user->role_id;
         }
-        $room->approval_date = $request->input('approvalDate');
-        $room->price_unit = $request->input('priceUnit');
+        $room->approval_date = now();
+        $is_active = 0;
+        if ($request->has('is_active')) {//kiem tra is_active co ton tai khong?
+            $is_active = $request->input('is_active');
+        }
+        $room->is_active = $is_active;
         $facilities = $request->input('facilities');
         $room->save();
         if ($request->hasFile('detailImage')) {
@@ -116,9 +124,9 @@ class RoomController extends Controller
                 $item->move($path_upload, $f_name);
                 $r_image ->image = $path_upload.$f_name;
                 $r_image->save();
-                //alo
-//
-            };
+
+
+            }
 
         }
 
@@ -139,11 +147,14 @@ class RoomController extends Controller
     public function show($id)
     {
         $data = Room::findorFail($id);
-        $roomTypeName = Room_type::where('id', $data->id)->first();
+        $roomTypeName = Room_type::where('id', $data->roomType_id)->first();
+        $facilities = $data->facilities()->get();
+        $room_detailImages =  Room_image::where(['room_id' => $data->id ])->orderBy('position', 'ASC')->get();
         return view('backend.room.show', [
             'data' => $data,
-            '$roomTypeName' => $roomTypeName,
-            'facilities' => $data->facilities()->get()
+            'roomTypeName' => $roomTypeName->name,
+            'room_detailImages' => $room_detailImages,
+            'facilities' => $facilities
         ]);
     }
 
@@ -156,18 +167,24 @@ class RoomController extends Controller
     public function edit($id)
     {
         $room = Room::findorFail($id);
-//        dd($room);
-
+        $typeRoom = Room_type::all();
         $facility = Facilities::all();
         $room_facilities = Room_facilities::where(['room_id' => $id])->get();
         $exists_facilities = [];
+        $room_detailImages =  Room_image::where(['room_id' => $room->id ])->orderBy('position', 'ASC')->get();
+        $city = City::all();
+        $district = District::all();
         foreach($room_facilities as $item) {
             array_push($exists_facilities,$item->facilities_id );
         }
 
         return view('backend.room.edit', [
             'room' => $room,
+            'typeRoom' => $typeRoom,
+            'city' => $city,
+            'district' => $district,
             'facility' => $facility,
+            'room_detailImages' => $room_detailImages,
             'exists_facilities' => $exists_facilities
         ]);
     }
@@ -187,6 +204,7 @@ class RoomController extends Controller
         ]);
 
         $room =  Room::findorFail($id); // khởi tạo model
+
         $room->roomType_id = $request->input('typeRoom');
         $room->title = $request->input('title');
         $room->address = $request->input('address');
@@ -195,37 +213,74 @@ class RoomController extends Controller
         $room->quantity = $request->input('quantity');
         $room->price = $request->input('price');
         // Upload file
-        if ($request->hasFile('image')) { // dòng này Kiểm tra xem có image có được chọn
+        if ($request->hasFile('new_image')) { // dòng này Kiểm tra xem có image có được chọn
+
+            @unlink(public_path($room->image)); // hàm unlink của PHP không phải laravel , chúng ta thêm @ đằng trước tránh bị lỗi
             // get file
-            $file = $request->file('image');
+            $file = $request->file('new_image');
             // đặt tên cho file image
             $filename = time().'_'.$file->getClientOriginalName(); // $file->getClientOriginalName() == tên ban đầu của image
             // Định nghĩa đường dẫn sẽ upload lên
-            $path_upload = 'uploads/product/';
+            $path_upload = 'uploads/room/';
             // Thực hiện upload file
-            $request->file('image')->move($path_upload,$filename); // upload lên thư mục public/uploads/product
+            $request->file('new_image')->move($path_upload,$filename); // upload lên thư mục public/uploads/product
 
             $room->image = $path_upload.$filename;
         }
+        // edit anh chi tiet da co
+        $list_ImageDetail = Room_image::where(['room_id' => $room->id])->get();
+        foreach ($list_ImageDetail as $item)
+        {
+            if ($request->hasFile('new_image'.$item->id)) { // dòng này Kiểm tra xem có image có được chọn
+                $i_detail = Room_image::findOrFail($item->id);
+                @unlink(public_path($i_detail->image)); // hàm unlink của PHP không phải laravel , chúng ta thêm @ đằng trước tránh bị lỗi
+                // get file
+                $file = $request->file('new_image'.$item->id);
+                // đặt tên cho file image
+                $filename = time().'_'.$file->getClientOriginalName(); // $file->getClientOriginalName() == tên ban đầu của image
+                // Định nghĩa đường dẫn sẽ upload lên
+                $path_upload = 'uploads/room/';
+                // Thực hiện upload file
+                $request->file('new_image'.$item->id)->move($path_upload,$filename); // upload lên thư mục public/uploads/product
+
+                $i_detail->image = $path_upload.$filename;
+                $i_detail->save();
+            }
+        }
+//         them anh chi tiet sp
+        if ($request->hasFile('new_detailImage')) {
+            // get file
+            $file = $request->file('new_detailImage');
+            // Định nghĩa đường dẫn sẽ upload lên
+            $path_upload = 'uploads/room/';
+//                // Thực hiện upload file
+            foreach ($file as $key => $item){
+                $r_image = new Room_image();
+                $r_image->room_id = $room->id;
+                $r_image->position = $key;
+                $f_name = time().'_'.$item->getClientOriginalName();
+                $item->move($path_upload, $f_name);
+                $r_image ->image = $path_upload.$f_name;
+                $r_image->save();
+            }
+
+        }
+
         $room->area = $request->input('area'); // diện tích
         $room->note = $request->input('note');
-        if ($request->has('owner')){
-            $room->live_with_owner = $request->input('owner');
+        $live_with_owner = 0;
+        if ($request->has('with_owner')){
+            $live_with_owner = $request->input('with_owner');
         }
-        $room->public_date = $request->input('publicDate');
+        $room->live_with_owner = $live_with_owner;
         $room->expired_date = $request->input('expiredDate');
         $room->electric_price = $request->input('electricPrice');
         $room->water_price = $request->input('waterPrice');
-        $room->user_id = $request->input('userID');
-        $room->approval_id = $request->input('approvalID');
-
-        $room->approval_date = $request->input('approvalDate');
         if ($request->has('is_active')){//kiem tra is_active co ton tai khong?
             $room->is_active = $request->input('is_active');
         }
         $room->price_unit = $request->input('priceUnit');
         $facilities = $request->input('facilities');
-
         $room->save();
         $room->Facilities()->syncWithoutDetaching($facilities);
 //        $room->Room_image()->syncWithoutDetaching($detaiImage);
@@ -247,6 +302,14 @@ class RoomController extends Controller
         Room::destroy($id);
 
         // Trả về dữ liệu json và trạng thái kèm theo thành công là 200
+        return response()->json([
+            'status' => true
+        ], 200);
+    }
+
+    public function deleteRoomImage($id)
+    {
+        Room_image::destroy($id);
         return response()->json([
             'status' => true
         ], 200);
