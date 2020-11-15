@@ -55,13 +55,12 @@ class RoomController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-<<<<<<< HEAD
+
             'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:10000',
-            'title' => 'required|max:255'
-=======
+            'title' => 'required|max:255',
             'title' => 'required|max:255',
             'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:10000'
->>>>>>> 1b959de10624fd7c4af077a01eff9342f6dfb76e
+
         ]);
         $user = Auth::user();
         $room = new Room(); // khởi tạo model
