@@ -38,7 +38,7 @@
                         @foreach($data as $key => $item)
                             <tr class="item-{{ $item->id }}"> <!-- Thêm Class Cho Dòng -->
                                 <td>{{ $item->title }}</td>
-                                <td>{{ $item->roomType_id  }}</td>
+                                <td>{{ $item->roomType_id}}</td>
                                 <td>{{ $item->address }}</td>
                                 <td>{{ $item->price }}</td>
                                 <td>

@@ -35,6 +35,10 @@ Route::get('/admin/logout', 'AdminController@logout')->name('admin.logout');
 
 Route::post('/admin/postLogin', 'AdminController@postLogin')->name('admin.postLogin');
 
+Route::get('/owner/register', 'OwnerController@register');
+
+Route::post('/owner/postRegister', 'OwnerController@postRegister')->name('admin.postRegister');
+
 Route::group(['prefix' => 'admin','as' => 'admin.', 'middleware' => ['checkLogin']], function() {
     Route::get('/', 'AdminController@index')->name('dashboard');
     Route::resource('room', 'RoomController');
@@ -43,10 +47,18 @@ Route::group(['prefix' => 'admin','as' => 'admin.', 'middleware' => ['checkLogin
     Route::resource('roomtype', 'RoomTypeController');
     Route::resource('city', 'CityController');
     Route::resource('district', 'DistrictController');
-
     Route::get('/comment/getAllUnApprovedComments', 'CommentController@getAllUnApprovedComments')->name('comment.getAllUnApprovedComments');
     Route::resource('comment', 'CommentController');
     Route::get('/report/getAllUnApprovedReports', 'ReportController@getAllUnApprovedReports')->name('report.getAllUnApprovedReports');
     Route::resource('report', 'ReportController');
 
+});
+
+Route::group(['prefix' => 'owner','as' => 'owner.'], function() {
+    Route::get('/register', 'OwnerController@register');
+    Route::post('/postRegister', 'OwnerController@postRegister')->name('postRegister');
+    Route::get('/', 'OwnerController@getAllRoom')->name('room.index');
+    Route::get('/show/{id}', 'OwnerController@showRoomDetail')->name('room.show');
+    Route::get('/create', 'OwnerController@viewCreateRoom')->name('room.create');
+    Route::post('/postCreate', 'OwnerController@store')->name('room.store');
 });
