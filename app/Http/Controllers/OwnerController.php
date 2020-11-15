@@ -11,6 +11,7 @@ use App\Room_image;
 use App\Room_type;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class OwnerController extends Controller
 {
@@ -18,10 +19,13 @@ class OwnerController extends Controller
     public function getAllRoom()
     {
         $user = Auth::user();
-        $list = Room::where([
-            'user_id' => $user->id,
-            'is_active' => 1
-        ])->orderBy('created_at', 'ASC')->get();
+        $list = Room::where(['user_id' => $user->id])->orderBy('created_at', 'ASC')->get();
+        $getDate = date('Y-m-d');
+        foreach ($list as $value) {
+            if ($getDate > $value->expired_date) {
+                $value->is_active = 0;
+            }
+        }
         return view('owner.room.index', [
             'list' => $list
         ]);
@@ -39,15 +43,21 @@ class OwnerController extends Controller
 
     public function showRoomDetail($id)
     {
-        $data = Room::findOrFail($id);
-        $edit_post = 1;
-        if($data->approved_id == null) {
-            $edit_post = 0;
+        $data = Room::findorFail($id);
+        $roomTypeName = Room_type::where('id', $data->roomType_id)->first();
+        $facilities = $data->facilities()->get();
+        $room_detailImages =  Room_image::where(['room_id' => $data->id ])->orderBy('position', 'ASC')->get();
+        $getDate = date('Y-m-d');
+        $expiredDate = $data->expired_date;
+        if ($getDate > $expiredDate) {
+            $data->is_active = 0;
         }
         return view('owner.room.show', [
             'data' => $data,
-            'edit_post' => $edit_post,
-            'facilities' => $data->facilities()->get()
+            'roomTypeName' => $roomTypeName->name,
+            'room_detailImages' => $room_detailImages,
+            'facilities' => $facilities,
+            'getDate' => $getDate
         ]);
     }
 
@@ -143,6 +153,54 @@ class OwnerController extends Controller
         }
         $room->Facilities()->syncWithoutDetaching($facilities);
         return redirect()->route('owner.room.index')->with('msg', 'Tạo Phòng Thành Công.Đợi Admin Duyệt');
+    }
+
+    public function viewEditRoom($id)
+    {
+        $room = Room::findorFail($id);
+        $typeRoom = Room_type::all();
+        $facility = Facilities::all();
+        $room_facilities = Room_facilities::where(['room_id' => $id])->get();
+        $exists_facilities = [];
+        $room_detailImages =  Room_image::where(['room_id' => $room->id ])->orderBy('position', 'ASC')->get();
+        $city = City::all();
+        $district = District::all();
+        foreach($room_facilities as $item) {
+            array_push($exists_facilities,$item->facilities_id );
+        }
+        $arrPickedCity = DB::table('room')->join('city', 'room.city_id', '=', 'city.id')->where([
+            'room.id' => $id
+        ])->get();
+        $pickedCity = $arrPickedCity[0];
+        $arrPickedDistrict = DB::table('room')->join('district', 'room.district_id', '=', 'district.id')->where([
+            'room.id' => $id
+        ])->get();
+        $pickedDistrict = $arrPickedDistrict[0];
+        $arrPickedTypeRoom = DB::table('room')->join('room_type', 'room.roomType_id', '=', 'room_type.id')->where([
+            'room.id' => $id
+        ])->get();
+        $pickedTypeRoom = $arrPickedTypeRoom[0];
+
+        return view('owner.room.edit', [
+            'room' => $room,
+            'typeRoom' => $typeRoom,
+            'city' => $city,
+            'district' => $district,
+            'facility' => $facility,
+            'room_detailImages' => $room_detailImages,
+            'exists_facilities' => $exists_facilities,
+            'pickedCity'=> $pickedCity,
+            'pickedDistrict' => $pickedDistrict,
+            'pickedTypeRoom' =>$pickedTypeRoom
+        ]);
+    }
+
+    public function viewExtend($roomId)
+    {
+        $data = $roomId;
+        return view('owner.room.extend', [
+            'data' => $data,
+        ]);
     }
 
 }

@@ -25,6 +25,7 @@
                     <table class="table table-hover">
                         <tbody>
                         <tr>
+                            <th>Id Bài Viết</th>
                             <th>Tên Tiêu Đề</th>
                             <th>Loại Phòng</th>
                             <th>Địa Chỉ</th>
@@ -37,6 +38,7 @@
                         </tbody>
                         @foreach($data as $key => $item)
                             <tr class="item-{{ $item->id }}"> <!-- Thêm Class Cho Dòng -->
+                                <td>{{ $item->id }}</td>
                                 <td>{{ $item->title }}</td>
                                 <td>{{ $item->roomType_id}}</td>
                                 <td>{{ $item->address }}</td>

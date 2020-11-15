@@ -51,14 +51,18 @@ Route::group(['prefix' => 'admin','as' => 'admin.', 'middleware' => ['checkLogin
     Route::resource('comment', 'CommentController');
     Route::get('/report/getAllUnApprovedReports', 'ReportController@getAllUnApprovedReports')->name('report.getAllUnApprovedReports');
     Route::resource('report', 'ReportController');
-
+    Route::delete('/roomimage/{id}', 'RoomController@deleteRoomImage')->name('room/deleteRoomImage');
 });
 
 Route::group(['prefix' => 'owner','as' => 'owner.'], function() {
     Route::get('/register', 'OwnerController@register');
     Route::post('/postRegister', 'OwnerController@postRegister')->name('postRegister');
-    Route::get('/', 'OwnerController@getAllRoom')->name('room.index');
+    Route::get('/','OwnerController@getAllRoom')->name('room.index');
     Route::get('/show/{id}', 'OwnerController@showRoomDetail')->name('room.show');
     Route::get('/create', 'OwnerController@viewCreateRoom')->name('room.create');
     Route::post('/postCreate', 'OwnerController@store')->name('room.store');
+    Route::get('/edit/{id}', 'OwnerController@viewEditRoom')->name('room.edit');
+    Route::post('/postEdit', 'OwnerController@update')->name('room.update');
+    Route::post('/extend/{roomId}', 'OwnerController@viewExtend')->name('room.extend');
+
 });

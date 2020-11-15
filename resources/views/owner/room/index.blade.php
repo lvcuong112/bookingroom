@@ -28,6 +28,7 @@
                         <table class="table table-hover">
                             <tbody>
                             <tr>
+                                <th>Id Bài Viết</th>
                                 <th>Tên Tiêu Đề</th>
                                 <th>Loại Phòng</th>
                                 <th>Địa Chỉ</th>
@@ -40,6 +41,7 @@
                             </tbody>
                             @foreach($list as $key => $item)
                                 <tr class="item-{{ $item->id }}"> <!-- Thêm Class Cho Dòng -->
+                                    <td>{{ $item->id }}</td>
                                     <td>{{ $item->title }}</td>
                                     <td>{{ $item->roomType_id  }}</td>
                                     <td>{{ $item->address }}</td>
@@ -51,7 +53,7 @@
                                     <td>{{ ($item->is_active==1) ? 'Hiển thị' : 'Không' }}</td>
                                     <td class="text-center">
                                         <a href="{{route('owner.room.show', ['id'=> $item->id ])}}" class="btn btn-default">Xem</a>
-                                        <a href="{{route('admin.room.edit', ['id'=> $item->id ])}}" class="btn btn-info" disabled>Sửa</a>
+                                        <a href="{{route('owner.room.edit', ['id'=> $item->id ])}}" class="btn btn-info" disabled>Sửa</a>
                                         <!-- Thêm sự kiện onlick cho nút xóa -->
                                         <a href="javascript:void(0)" class="btn btn-danger" onclick="destroyRoom({{ $item->id }})" >Xóa</a>
                                     </td>

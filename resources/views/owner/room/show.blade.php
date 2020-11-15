@@ -1,17 +1,38 @@
 @extends('owner.layouts.main')
 @section('content')
-    <section class="content-header">
-        <h1>
-            Chi Tiết Phòng Trọ <a href="{{route('')}}" class="btn btn-success pull-right"><i class="fa fa-plus"></i> Danh sách </a>
-        </h1>
-    </section>
-    <section class="content">
-        <div class="row">
+<style>
+    .listImg{
+        width: 50%;
+        float: left;
+    }
+    .listImg img{
+        -webkit-shape-image-threshold: 100%;
+        width:100%;
+        object-fit: cover;
+        height: 150px;
+    }
+    .Pad-img{
+        padding: 10px;
+    }
+</style>
+<section class="content-header">
+    <h1>
+        Chi Tiết Phòng Trọ <a href="{{route('owner.room.index')}}" class="btn btn-success pull-right"> Danh sách phòng trọ </a>
+    </h1>
+</section>
+<section class="content">
+    <div class="row">
+        <form role="form" action="{{route('owner.room.extend', ['roomID' => $data->roomType_id])}}"method="post" enctype="multipart/form-data">
+            @csrf
             <div class="col-md-6">
                 <div class="box box-primary">
                     <div class="box-body">
                         <table class="table table-bordered">
                             <tbody>
+                            <tr>
+                                <td><b>Id Loại Phòng</b></td>
+                                <td>{{ $data->roomType_id }}</td>
+                            </tr>
                             <tr>
                                 <td><b>Tiêu Đề</b></td>
                                 <td>{{ $data->title }}</td>
@@ -57,14 +78,6 @@
                                 <td>{{ ($data->live_with_owner==1) ? 'Có' : 'Không' }}</td>
                             </tr>
                             <tr>
-                                <td><b>Ngày Đăng Bài</b></td>
-                                <td>{{ $data->public_date }}</td>
-                            </tr>
-                            <tr>
-                                <td><b> Ngày Gỡ Bài </b></td>
-                                <td>{{ $data->expired_date }}</td>
-                            </tr>
-                            <tr>
                                 <td><b> Giá Điện / kWh </b></td>
                                 <td>{{ $data->electric_price}}</td>
                             </tr>
@@ -74,25 +87,67 @@
                             </tr>
                             <tr>
                                 <td><b> Ngày Phê Duyệt </b></td>
-                                <td>{{ $data->approval_date }}</td>
+                                @if($data->approval_date != null)
+                                    <td>{{ $data->approval_date }}</td>
+                                @else
+                                    <td>Chưa được phê duyệt</td>
+                                @endif
                             </tr>
                             <tr>
-                                <td><b> Id Người Phê Duyệt </b></td>
-                                <td>{{ $data->approval_id}}</td>
+                                <td><b> Ngày Hết Hạn </b></td>
+                                @if($data->expired_date != null)
+                                    <td>{{ $data->expired_date }}</td>
+                                @else
+                                    <td>Chưa được phê duyệt</td>
+                                @endif
                             </tr>
                             <tr>
                                 <td><b> Tiện Ích </b></td>
                                 <td>
                                     @foreach($facilities as $facility)
-                                        {{$facility->title}}
+                                        {{$facility->title . ' | '}}
                                     @endforeach
                                 </td>
                             </tr>
                             </tbody>
                         </table>
                     </div>
+                    @if ($getDate > $data->expired_date)
+                        <div class="box-footer">
+                            <button type="submit" class="btn btn-primary">Gia Hạn Bài Đăng</button>
+                            <span style="color: red"> Gia hạn để có thể tiếp tục hiển thị bài đăng</span>
+                        </div>
+                    @else
+                        <div class="box-footer">
+                            <span style="color: red"></span>
+                        </div>
+                    @endif
                 </div>
             </div>
-        </div>
-    </section>
+            <div class="col-md-6">
+                <div class="box box-primary">
+                    <div class="box-body">
+                        <h3>Ảnh chi tiết phòng trọ</h3>
+                        @foreach($room_detailImages as $item)
+                            <div class="listImg">
+                                <div class="Pad-img">
+                                    <img src="{{ asset($item->image) }}">
+                                </div>
+                            </div>
+                        @endforeach
+                        <table class="table table-bordered">
+                            <tbody>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
 @endsection
