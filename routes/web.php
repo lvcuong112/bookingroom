@@ -60,12 +60,16 @@ Route::group(['prefix' => 'admin','as' => 'admin.', 'middleware' => ['checkLogin
     Route::get('/approveExtendRequest/{request_id}','AdminController@extendDate')->name('approveExtendRequest');
     Route::get('/deleteRequest/writeReason/{request_id}', 'AdminController@writeReason')->name('deleteRequest.writeReason');
     Route::post('/deleteRequest/refuseRequest/{request_id}', 'AdminController@refuseExtendDate')->name('deleteRequest.refuseExtendDate');
+    Route::get('/showAllEditRoomRequest', 'AdminController@showAllEditRoomRequest')->name('showAllEditRoomRequest');
+    Route::get('/allowEditRoomRequest/{request_id}', 'AdminConTroller@allowEditRoom')->name('allowEditRoomRequest');
 });
 
 Route::group(['prefix' => 'owner','as' => 'owner.'], function() {
-    Route::get('/register', 'OwnerController@register');
-    Route::post('/postRegister', 'OwnerController@postRegister')->name('postRegister');
+
     Route::get('/','OwnerController@getAllRoom')->name('room.index');
+
+    Route::get('/register', 'OwnerController@register'); // chua co view?
+    Route::post('/postRegister', 'OwnerController@postRegister')->name('postRegister'); // chua lam
     Route::get('/show/{id}', 'OwnerController@showRoomDetail')->name('room.show');
     Route::get('/create', 'OwnerController@viewCreateRoom')->name('room.create');
     Route::post('/postCreate', 'OwnerController@store')->name('room.store');

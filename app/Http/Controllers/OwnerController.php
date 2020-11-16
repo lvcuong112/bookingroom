@@ -22,6 +22,8 @@ class OwnerController extends Controller
     {
         $user = Auth::user();
         $list = Room::where(['user_id' => $user->id])->orderBy('created_at', 'ASC')->get();
+
+        // xu ly het han bai dang
         $getDate = date('Y-m-d');
         foreach ($list as $value) {
             if ($getDate > $value->expired_date) {

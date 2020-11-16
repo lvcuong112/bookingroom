@@ -107,6 +107,11 @@
                     <i class="fa fa-dashboard"></i><span>QL yêu cầu gia hạn</span>
                 </a>
             </li>
+            <li class="#">
+                <a href="{{ route('admin.showAllEditRoomRequest') }}">
+                    <i class="fa fa-dashboard"></i><span>QL yêu cầu chỉnh sửa bài viết</span>
+                </a>
+            </li>
 {{--            <li class="treeview">--}}
 {{--                <a href="#">--}}
 {{--                    <i class="fa fa-dashboard"></i> <span>Dashboard</span>--}}
