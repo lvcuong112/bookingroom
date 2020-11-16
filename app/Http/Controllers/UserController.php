@@ -173,7 +173,7 @@ class UserController extends Controller
         $user->save();
 
         // chuyen dieu huong trang
-        return redirect()->route('admin.user.index');
+        return redirect()->route('admin.user.show', ['id' => $user->id])->with('msg', 'Cập nhật tài khoản thành công.');
     }
 
     /**
@@ -204,6 +204,6 @@ class UserController extends Controller
 
 //    public function postComment(Request $request) // viet san de day
 //    {
-//   
+//
 //    }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\ExtendPost;
 use App\Room;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -40,18 +41,32 @@ class OwnerController extends Controller
             'edit_post' => $edit_post
         ]);
     }
-
-    public function extendDate(Request $request, $room_id)
+    public function require_extendDate(Request $request, $room_id)
     {
-//        trong request se co $count, $date_unit, so ngay/thang/nam
-        $room = Room::findorFail($room_id);
-        $room->extend_date = $request->input('extended_date');
-        $room->save();
-        return view('', [
-
-        ]);
-//        $room->
-
+        // mac dinh unit_date: 1 la tuan, 2 la thang, 3 la nam
+        // mac dinh gia tien cho thue la 50k 1 tuan
+        $p = 50000;
+        $total_price = 0;
+        $unit_date = $request->input('unit_date');
+        $q = $request->input('quantity');
+        $r = new ExtendPost();
+        $user = Auth::user();
+        $r->room_id = $room_id;
+        $r->user_id = $user->id;
+        $r->quantity = $request->input('quantity');
+        $r->unit_date = $unit_date;
+        if($unit_date == 1) { // tuan
+            $total_price = $p*$q;
+        } else if ($unit_date == 2 ) { // thang
+            $total_price = $p*$q*4;
+        } else { // nam
+            $total_price = $p*$q*52;
+        }
+        $r->total_price = $total_price;
+        $r->save();
     }
+
+
+
 
 }

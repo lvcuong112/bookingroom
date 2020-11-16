@@ -123,7 +123,7 @@
                                     <label for="exampleInputFile">Giá Nước (VNĐ) / m3</label>
                                     <input value="{{ $room->water_price }}" type="text" class="form-control" id="waterPrice" name="waterPrice" placeholder="Ngày hết hạn">
                                 </div>
-
+                                
 
                                 <div class="checkbox">
                                     <label>

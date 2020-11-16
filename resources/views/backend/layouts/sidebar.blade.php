@@ -102,6 +102,11 @@
                     <i class="fa fa-dashboard"></i> <span>QL DB Quận/Huyện</span>
                 </a>
             </li>
+            <li class="#">
+                <a href="{{ route('admin.showAllExtendRoomRequest') }}">
+                    <i class="fa fa-dashboard"></i><span>QL yêu cầu gia hạn</span>
+                </a>
+            </li>
 {{--            <li class="treeview">--}}
 {{--                <a href="#">--}}
 {{--                    <i class="fa fa-dashboard"></i> <span>Dashboard</span>--}}

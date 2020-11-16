@@ -161,19 +161,20 @@ function destroyDistrict(id) {
     }
 }
 
-function destroyRoomImage(id) {
-    var result = confirm("Bạn có chắc chắn muốn xóa ảnh chi tiết này ?");
+
+function removeExtendRequest(id) {
+    var result = confirm("Bạn có chắc chắn muốn duyệt bài gia hạn này ?");
     if (result) { // neu nhấn == ok , sẽ send request ajax
         $.ajax({
-            url: base_url + '/admin/roomimage/'+id, // base_url được khai báo ở đầu page == http://webshop.local
-            type: 'DELETE',
+            url: base_url + '/admin/approveExtendRequest/'+id, // base_url được khai báo ở đầu page == http://webshop.local
+            type: 'GET',
             data: {}, // dữ liệu truyền sang nếu có
             dataType: "json", // kiểu dữ liệu trả về
             success: function (response) { // success : kết quả trả về sau khi gửi request ajax
                 // dữ liệu trả về là một object nên để gọi đến status chúng ta sẽ gọi như bên dưới
                 if (response.status != 'undefined' && response.status == true) {
                     // xóa dòng vừa được click delete
-                    $('#detailImage'+id).remove(); // class .item- ở trong class của thẻ td đã khai báo trong file index
+                    $('.item-'+id).closest('tr').remove(); // class .item- ở trong class của thẻ td đã khai báo trong file index
                 }
             },
             error: function (e) { // lỗi nếu có
@@ -182,3 +183,4 @@ function destroyRoomImage(id) {
         });
     }
 }
+
