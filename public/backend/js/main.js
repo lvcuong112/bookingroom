@@ -161,6 +161,29 @@ function destroyDistrict(id) {
     }
 }
 
+
+function removeExtendRequest(id) {
+    var result = confirm("Bạn có chắc chắn muốn duyệt bài gia hạn này ?");
+    if (result) { // neu nhấn == ok , sẽ send request ajax
+        $.ajax({
+            url: base_url + '/admin/approveExtendRequest/'+id, // base_url được khai báo ở đầu page == http://webshop.local
+            type: 'GET',
+            data: {}, // dữ liệu truyền sang nếu có
+            dataType: "json", // kiểu dữ liệu trả về
+            success: function (response) { // success : kết quả trả về sau khi gửi request ajax
+                // dữ liệu trả về là một object nên để gọi đến status chúng ta sẽ gọi như bên dưới
+                if (response.status != 'undefined' && response.status == true) {
+                    // xóa dòng vừa được click delete
+                    $('.item-'+id).closest('tr').remove(); // class .item- ở trong class của thẻ td đã khai báo trong file index
+                }
+            },
+            error: function (e) { // lỗi nếu có
+                console.log(e.message);
+            }
+        });
+    }
+}
+
 function destroyRoomImage(id) {
     var result = confirm("Bạn có chắc chắn muốn xóa ảnh chi tiết này ?");
     if (result) { // neu nhấn == ok , sẽ send request ajax
@@ -182,3 +205,4 @@ function destroyRoomImage(id) {
         });
     }
 }
+

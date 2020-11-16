@@ -5,6 +5,15 @@
             Thông tin user <a href="{{route('admin.user.index')}}" class="btn btn-success pull-right"><i class="fa fa-list"></i> Danh sách user</a>
         </h1>
     </section>
+    @if (session('msg'))
+        <div class="pad margin no-print">
+            <div class="alert alert-success alert-dismissible" style="" id="thongbao">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <h4><i class="icon fa fa-check"></i> Thông báo !</h4>
+                {{ session('msg') }}
+            </div>
+        </div>
+    @endif
     <section class="content">
         <div class="row">
             <!-- left column -->

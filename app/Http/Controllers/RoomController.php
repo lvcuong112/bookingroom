@@ -95,10 +95,24 @@ class RoomController extends Controller
         $room->electric_price = $request->input('electricPrice');
         $room->water_price = $request->input('waterPrice');
         $room->user_id = $user->id;
-        if($user->role_id == 1) {
-            $room->approval_id = $user->role_id;
-        }
+        $room->approval_id = $user->id;
         $room->approval_date = now();
+        $date = date('Y-m-d');
+        $room->public_date = $date;
+        $quantity = $request->input('date_quantity');
+        $unit_date = $request->input('unit_date');
+        $extendInt = date('Y-m-d');
+        if($unit_date == 1) {
+            $extendInt = mktime(0, 0, 0, date('m'), date('d')+$quantity*7, date('Y') );
+        } else if ($unit_date == 2) {
+            $extendInt = mktime(0, 0, 0, date('m')+$quantity, date('d'), date('Y') );
+        } else {
+            $extendInt = mktime(0, 0, 0, date('m'), date('d'), date('Y')+$quantity );
+
+        }
+        $extend = date('Y-m-d', $extendInt);
+        $room->expired_date = $extend;
+
         $is_active = 0;
         if ($request->has('is_active')) {//kiem tra is_active co ton tai khong?
             $is_active = $request->input('is_active');
@@ -286,9 +300,11 @@ class RoomController extends Controller
         $room->expired_date = $request->input('expiredDate');
         $room->electric_price = $request->input('electricPrice');
         $room->water_price = $request->input('waterPrice');
+        $is_active = 0;
         if ($request->has('is_active')){//kiem tra is_active co ton tai khong?
-            $room->is_active = $request->input('is_active');
+            $is_active = $request->input('is_active');
         }
+        $room->is_active = $is_active;
         $room->price_unit = $request->input('priceUnit');
         $facilities = $request->input('facilities');
         $room->save();

@@ -95,7 +95,7 @@
     {{--                            ghi chú--}}
                             <div class="form-group">
                                 <label for="exampleInputFile">Ghi Chú</label>
-                                <input type="text" class="form-control" id="note" name="note" placeholder="Ghi chú" required>
+                                <input type="text" class="form-control" id="note" name="note" placeholder="Ghi chú">
                             </div>
     {{--                            chung chủ--}}
                             <div class="form-group">
@@ -116,6 +116,19 @@
                                 <span class="form-message" style="color: red"></span>
                             </div>
 {{--                            trạng thái hiển thị--}}
+                            <div class="form-group">
+                                <label for="exampleInputFile">Chọn thời gian muốn hiển thị bài đăng</label>
+                                <div class="expired_date" style="display: flex;">
+                                    <input type="text" class="form-control" id="waterPrice" name="date_quantity" placeholder="Số tuần/tháng/năm (ít nhất 1 tuần)">
+                                    <select class="form-control w-50" name="unit_date">
+                                        <option value="1"> tuần </option>
+                                        <option value="2"> tháng</option>
+                                        <option value="3"> năm</option>
+                                    </select>
+                                </div>
+                            </div>
+
+
                             <div class="checkbox">
                                 <label>
                                     <input type="checkbox" value="1" name="is_active"> Trạng thái hiển thị
