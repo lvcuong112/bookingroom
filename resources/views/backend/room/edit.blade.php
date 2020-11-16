@@ -40,8 +40,8 @@
                             <div class="box-body">
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Loại Phòng</label>
-                                    <select class="form-control w-50" name="typeRoom">
-                                        <option value="0">-- Chọn Loại Phòng  --</option>
+                                    <select class="form-control w-50" name="typeRoom" required>
+                                        <option value="{{$pickedTypeRoom->id}}">{{$pickedTypeRoom->name}}</option>
                                         @foreach($typeRoom as $type)
                                             <option value="{{$type->id}}">{{$type->name}}</option>
                                         @endforeach
@@ -49,16 +49,16 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Tên Tiêu Đề</label>
-                                    <input value="{{ $room->title }}" type="text" class="form-control" id="title" name="title" placeholder="Nhập tên tiêu đề">
+                                    <input value="{{ $room->title }}" type="text" class="form-control" id="title" name="title" placeholder="Nhập tên tiêu đề" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Địa chỉ</label>
-                                    <input value="{{ $room->address }}" type="text" class="form-control" id="address" name="address" placeholder="Address">
+                                    <input value="{{ $room->address }}" type="text" class="form-control" id="address" name="address" placeholder="Address" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Tỉnh/Thành Phố</label>
-                                    <select class="form-control w-50" name="city">
-                                        <option value="0">-- Chọn Tỉnh/Thành Phố  --</option>
+                                    <select class="form-control w-50" name="city" required>
+                                        <option value="{{ $pickedCity->id }}">{{ $pickedCity->name }}</option>
                                         @foreach($city as $t_city)
                                             <option value="{{$t_city->id}}">{{$t_city->name}}</option>
                                         @endforeach
@@ -66,8 +66,8 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Quận/Huyện</label>
-                                    <select class="form-control w-50" name="district">
-                                        <option value="0">-- Chọn Quận Huyện  --</option>
+                                    <select class="form-control w-50" name="district" required>
+                                        <option value="{{$pickedDistrict->id}}">{{$pickedDistrict->name}}</option>
                                         @foreach($district as $t_district)
                                             <option value="{{$t_district->id}}">{{$t_district->name}}</option>
                                         @endforeach
@@ -76,15 +76,15 @@
 
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Số Lượng Phòng</label>
-                                    <input  value="{{ $room->quantity }}" type="text" class="form-control" id="quantity" name="quantity" placeholder="Nhập số lượng">
+                                    <input  value="{{ $room->quantity }}" type="text" class="form-control" id="quantity" name="quantity" placeholder="Nhập số lượng" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Giá Phòng (VNĐ)</label>
-                                    <input value="{{ $room->price }}" type="text" class="form-control" id="price" name="price" placeholder="Nhập giá phòng">
+                                    <input value="{{ $room->price }}" type="text" class="form-control" id="price" name="price" placeholder="Nhập giá phòng" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputFile">Đơn vị</label>
-                                    <input value="{{$room->price_unit}}" type="text" class="form-control" id="priceUnit" name="priceUnit" placeholder="giá nước/1 khối">
+                                    <input value="{{$room->price_unit}}" type="text" class="form-control" id="priceUnit" name="priceUnit" placeholder="giá nước/1 khối" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputFile">Ảnh tiêu đề phòng trọ hiện tại</label>
@@ -96,7 +96,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputFile">Diện Tích Phòng</label>
-                                    <input value="{{ $room->area }}" type="text" class="form-control" id="area" name="area" placeholder="Nhập diện tích">
+                                    <input value="{{ $room->area }}" type="text" class="form-control" id="area" name="area" placeholder="Nhập diện tích" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputFile">Ghi Chú</label>
@@ -117,11 +117,11 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputFile">Giá Điện (VNĐ) / kWh</label>
-                                    <input value="{{ $room->electric_price }}" type="text" class="form-control" id="electricPrice" name="electricPrice" placeholder="Ngày hết hạn">
+                                    <input value="{{ $room->electric_price }}" type="text" class="form-control" id="electricPrice" name="electricPrice" placeholder="Ngày hết hạn" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputFile">Giá Nước (VNĐ) / m3</label>
-                                    <input value="{{ $room->water_price }}" type="text" class="form-control" id="waterPrice" name="waterPrice" placeholder="Ngày hết hạn">
+                                    <input value="{{ $room->water_price }}" type="text" class="form-control" id="waterPrice" name="waterPrice" placeholder="Ngày hết hạn" required>
                                 </div>
                                 
 

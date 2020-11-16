@@ -10,7 +10,9 @@ use App\Room_type;
 use App\City;
 use App\District;
 use Illuminate\Http\Request;
+
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class RoomController extends Controller
 {
@@ -55,12 +57,7 @@ class RoomController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-
-            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:10000',
-            'title' => 'required|max:255',
-            'title' => 'required|max:255',
             'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:10000'
-
         ]);
         $user = Auth::user();
         $room = new Room(); // khởi tạo model
@@ -190,6 +187,18 @@ class RoomController extends Controller
         foreach($room_facilities as $item) {
             array_push($exists_facilities,$item->facilities_id );
         }
+        $arrPickedCity = DB::table('room')->join('city', 'room.city_id', '=', 'city.id')->where([
+            'room.id' => $id
+        ])->get();
+        $pickedCity = $arrPickedCity[0];
+        $arrPickedDistrict = DB::table('room')->join('district', 'room.district_id', '=', 'district.id')->where([
+            'room.id' => $id
+        ])->get();
+        $pickedDistrict = $arrPickedDistrict[0];
+        $arrPickedTypeRoom = DB::table('room')->join('room_type', 'room.roomType_id', '=', 'room_type.id')->where([
+            'room.id' => $id
+        ])->get();
+        $pickedTypeRoom = $arrPickedTypeRoom[0];
 
         return view('backend.room.edit', [
             'room' => $room,
@@ -198,7 +207,10 @@ class RoomController extends Controller
             'district' => $district,
             'facility' => $facility,
             'room_detailImages' => $room_detailImages,
-            'exists_facilities' => $exists_facilities
+            'exists_facilities' => $exists_facilities,
+            'pickedCity'=> $pickedCity,
+            'pickedDistrict' => $pickedDistrict,
+            'pickedTypeRoom' =>$pickedTypeRoom
         ]);
     }
 
@@ -217,7 +229,6 @@ class RoomController extends Controller
         ]);
 
         $room =  Room::findorFail($id); // khởi tạo model
-
         $room->roomType_id = $request->input('typeRoom');
         $room->title = $request->input('title');
         $room->address = $request->input('address');
@@ -289,9 +300,11 @@ class RoomController extends Controller
         $room->expired_date = $request->input('expiredDate');
         $room->electric_price = $request->input('electricPrice');
         $room->water_price = $request->input('waterPrice');
+        $is_active = 0;
         if ($request->has('is_active')){//kiem tra is_active co ton tai khong?
-            $room->is_active = $request->input('is_active');
+            $is_active = $request->input('is_active');
         }
+        $room->is_active = $is_active;
         $room->price_unit = $request->input('priceUnit');
         $facilities = $request->input('facilities');
         $room->save();
