@@ -118,10 +118,22 @@
                             <span style="color: red"> Gia hạn để có thể tiếp tục hiển thị bài đăng</span>
                         </div>
                     @else
-                        <div class="box-footer">
-                            <span style="color: red"></span>
-                        </div>
+                        @if ($data->canbe_edit == 1)
+                            <div class="box-footer">
+                                <a href="{{route('owner.room.edit', ['id'=> $data->id ])}}" class="btn btn-info">Sửa</a>
+                            </div>
+                        @else
+                            @if($show_Request == 1)
+                                <div class="box-footer">
+
+                                    <a href="{{route('owner.room.requestEdit', [ 'room_id' => $data->id ])}}" class="btn btn-info" >Yêu Cầu Quyền Sửa</a>
+                                </div>
+                            @else
+                                <p style="padding: 15px; color: red;">Yêu cầu chỉnh sửa đã được gửi. Vui lòng đợi admin phê duyệt</p>
+                            @endif
+                        @endif
                     @endif
+
                 </div>
             </div>
             <div class="col-md-6">

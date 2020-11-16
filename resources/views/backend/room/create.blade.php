@@ -175,6 +175,7 @@
                Validator.isRequiredelEctricPrice('#electricPrice'),
                Validator.isRequiredelWaterPrice('#waterPrice'),
                Validator.isRequiredelPriceUnit('#priceUnit'),
+               Validator.isRequiredDescription('#description'),
            ]
         });
 

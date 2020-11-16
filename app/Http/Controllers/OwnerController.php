@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\City;
 use App\District;
 use App\Facilities;
+use App\RequestEditRoom;
 use App\Room_facilities;
 use App\Room;
 use App\Room_image;
@@ -52,12 +53,22 @@ class OwnerController extends Controller
         if ($getDate > $expiredDate) {
             $data->is_active = 0;
         }
+
+        $show_Request = 0;
+        $request_edit = RequestEditRoom::where(['room_id' => $id])->first();
+        if($request_edit == null) {
+            $show_Request = 1;
+        }
+
+        $canEdit = $data->canbe_edit;
         return view('owner.room.show', [
             'data' => $data,
             'roomTypeName' => $roomTypeName->name,
             'room_detailImages' => $room_detailImages,
             'facilities' => $facilities,
-            'getDate' => $getDate
+            'getDate' => $getDate,
+            'show_Request' => $show_Request
+
         ]);
     }
 
@@ -127,14 +138,7 @@ class OwnerController extends Controller
         $room->electric_price = $request->input('electricPrice');
         $room->water_price = $request->input('waterPrice');
         $room->user_id = $user->id;
-        if($user->role_id == 1) {
-            $room->approval_id = $user->role_id;
-            $room->approval_date = now();
-        }
         $is_active = 0;
-        if ($request->has('is_active')) {
-            $is_active = $request->input('is_active');
-        }
         $room->is_active = $is_active;
         $facilities = $request->input('facilities');
         $room->save();
@@ -201,6 +205,26 @@ class OwnerController extends Controller
         return view('owner.room.extend', [
             'data' => $data,
         ]);
+    }
+
+    public function requestEditRoom($room_id)
+    {
+        $room = Room::findOrFail($room_id);
+        return view('owner.room.requestEditRoom', [
+            'room_id' => $room_id,
+            'room_title' => $room->title
+        ]);
+    }
+    public function sendRequestEditRoom(Request $request)
+    {
+        $r = new RequestEditRoom();
+        $user = Auth::user();
+        $r->user_id = $user->id;
+        $r->room_id = $request->input('room_id');
+        $r->reason = $request->input('reason');
+        $r->save();
+
+        return redirect()->route('owner.room.show', ['id'=> $request->input('room_id') ]);
     }
 
 }

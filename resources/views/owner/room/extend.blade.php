@@ -26,10 +26,9 @@
                                 <label for="exampleInputEmail1">Loại Hình Gia Hạn Vd:Tháng,Năm,Ngày</label>
                                 <select id="unit_date" class="form-control w-50" name="unit_date" required onchange="totalMoney()">
                                     <option value="">-- Chọn Loại HÌnh Gia Hạn</option>
-                                    <option value="30000">Ngày</option>
-                                    <option value="200000">Tuần</option>
-                                    <option value="500000">Tháng</option>
-                                    <option value="6000000">Năm</option>
+                                    <option value="1">Tuần</option>
+                                    <option value="2">Tháng</option>
+                                    <option value="3">Năm</option>
                                 </select>
                             </div>
                             <div class="form-group">
@@ -37,7 +36,7 @@
                                 <input value="" onchange="totalMoney()"  type="text" class="form-control" id="quantity" name="quantity" placeholder="Nhập số lượng vui lòng nhập số nguyên" required>
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Tổng Tiền</label>
+                                <label for="exampleInputEmail1">Tổng Tiền (VNĐ)</label>
                                 <input value=""  type="text" class="form-control" id="total_price" name="total_price" placeholder="Tổng tiền" readonly>
                             </div>
                         </div>
@@ -53,7 +52,15 @@
         function totalMoney() {
             var unit = document.getElementById('unit_date').value;
             var quantity = document.getElementById('quantity').value;
-            var totalMoney =  unit * quantity;
+            var totalMoney =  0;
+            if(unit == 1) {
+                totalMoney = quantity*50000;
+            } else if (unit == 2) {
+                totalMoney = quantity*50000*4;
+            } else if (unit == 3) {
+                totalMoney = quantity*50000*52;
+            }
+
             document.getElementById('total_price').value = totalMoney;
         }
     </script>

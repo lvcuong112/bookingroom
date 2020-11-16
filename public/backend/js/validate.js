@@ -110,6 +110,15 @@ Validator.isRequiredelPriceUnit = function (selector) {
     }
 }
 
+Validator.isRequiredDescription = function (selector) {
+    return {
+        selector: selector,
+        test: function (value) {
+            return value.trim() ? undefined : 'Vui Lòng Nhập mô tả'
+        }
+    }
+}
+
 //validator Select
 function validatorSelect(options) {
     var formElemnt = document.querySelector(options.form);

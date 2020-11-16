@@ -64,5 +64,7 @@ Route::group(['prefix' => 'owner','as' => 'owner.'], function() {
     Route::get('/edit/{id}', 'OwnerController@viewEditRoom')->name('room.edit');
     Route::post('/postEdit', 'OwnerController@update')->name('room.update');
     Route::post('/extend/{roomId}', 'OwnerController@viewExtend')->name('room.extend');
-
+//    Route::post('/extend/{roomId}', 'OwnerController@viewExtend')->name('room.extend');
+    Route::get('/requestEditRoom/{roomId}', 'OwnerController@requestEditRoom')->name('room.requestEdit');
+    Route::post('/sendRequestEditRoom', 'OwnerController@sendRequestEditRoom')->name('room.sendRequestEditRoom');
 });
