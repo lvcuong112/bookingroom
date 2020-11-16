@@ -1,5 +1,20 @@
 @extends('backend.layouts.main')
 @section('content')
+    <style>
+        .listImg{
+            width: 50%;
+            float: left;
+        }
+        .listImg img{
+            -webkit-shape-image-threshold: 100%;
+            width:100%;
+            object-fit: cover;
+            height: 150px;
+        }
+        .Pad-img{
+            padding: 10px;
+        }
+    </style>
 <section class="content-header">
     <h1>
         Chi Tiết Phòng Trọ <a href="{{route('admin.room.index')}}" class="btn btn-success pull-right"> Danh sách phòng trọ </a>
@@ -12,7 +27,6 @@
                 <div class="box-body">
                     <table class="table table-bordered">
                         <tbody>
-
                             <tr>
                                 <td><b>Tiêu Đề</b></td>
                                 <td>{{ $data->title }}</td>
@@ -109,7 +123,11 @@
                 <div class="box-body">
                     <h3>Ảnh chi tiết phòng trọ</h3>
                     @foreach($room_detailImages as $item)
-                        <img src="{{ asset($item->image) }}" width="270px" height="160px" style="margin: 10px;">
+                        <div class="listImg">
+                            <div class="Pad-img">
+                            <img src="{{ asset($item->image) }}">
+                            </div>
+                        </div>
                     @endforeach
                     <table class="table table-bordered">
                         <tbody>
