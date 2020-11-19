@@ -84,7 +84,7 @@ class UserController extends Controller
         $user->save();
 
         // chuyen dieu huong trang
-        return redirect()->route('admin.user.index');
+        return redirect()->route('admin.user.index')->with('msg', 'Tạo Tài Khoản Thành Công');
     }
 
     /**

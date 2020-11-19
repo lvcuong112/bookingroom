@@ -54,7 +54,7 @@ class CityController extends Controller
         $city->is_active = $is_active;
         $city->save();
         // chuyển hướng đến trang
-        return redirect()->route('admin.city.index');
+        return redirect()->route('admin.city.index')->with('msg', 'Tạo Tỉnh/Thành Phố Thành Công');
     }
 
     /**
@@ -105,7 +105,7 @@ class CityController extends Controller
         $city->is_active = $is_active;
         $city->save();
         // chuyển hướng đến trang
-        return redirect()->route('admin.city.index');
+        return redirect()->route('admin.city.index')->with('msg', 'Sửa Đổi Tỉnh/Thành Phố Thành Công');
     }
 
     /**
