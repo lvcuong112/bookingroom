@@ -59,7 +59,7 @@ class DistrictController extends Controller
         $district->is_active = $is_active;
         $district->save();
         // chuyển hướng đến trang
-        return redirect()->route('admin.district.index');
+        return redirect()->route('admin.district.index')->with('msg', 'Tạo Quận/Huyện Thành Công');
     }
 
     /**
@@ -114,7 +114,7 @@ class DistrictController extends Controller
         $district->is_active = $is_active;
         $district->save();
         // chuyển hướng đến trang
-        return redirect()->route('admin.district.index');
+        return redirect()->route('admin.district.index')->with('msg', 'Sửa Đổi Quận/Huyện Thành Công');
     }
 
     /**

@@ -56,7 +56,7 @@ class RoomTypeController extends Controller
 
         $roomtype->save();
         // chuyển hướng đến trang
-        return redirect()->route('admin.roomtype.index');
+        return redirect()->route('admin.roomtype.index')->with('msg', 'Tạo Loại Phòng Thành Công');
     }
 
     /**
@@ -109,7 +109,7 @@ class RoomTypeController extends Controller
         $roomtype->is_active = $is_active;
         $roomtype->save();
         // chuyển hướng đến trang
-        return redirect()->route('admin.roomtype.index');
+        return redirect()->route('admin.roomtype.index')->with('msg', 'Sửa Loại Phòng Thành Công');
     }
 
     /**

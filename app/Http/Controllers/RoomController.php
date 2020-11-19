@@ -145,7 +145,7 @@ class RoomController extends Controller
 //            $room->Room_image()->syncWithoutDetaching($detailImage);
 
             // chuyển hướng đến trang
-            return redirect()->route('admin.room.index');
+            return redirect()->route('admin.room.index')->with('msg', 'Lưu Thông Tin Phòng Thành Công');
     }
 
     /**
@@ -313,7 +313,7 @@ class RoomController extends Controller
 
 
         // chuyển hướng đến trang
-        return redirect()->route('admin.room.index');
+        return redirect()->route('admin.room.index')->with('msg', 'Sửa Đổi Thông TIn Phòng Thành Công');
     }
 
     /**

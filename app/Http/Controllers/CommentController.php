@@ -93,7 +93,7 @@ class CommentController extends Controller
         $cmt->approved_by = $user->id;
         $cmt->is_approved = 1;
         $cmt->save();
-        return redirect()->route('admin.comment.getAllUnApprovedComments');
+        return redirect()->route('admin.comment.getAllUnApprovedComments')->with('msg', 'Sửa Đổi Thành Công');
     }
 
     /**

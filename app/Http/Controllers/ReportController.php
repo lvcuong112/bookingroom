@@ -97,7 +97,7 @@ class ReportController extends Controller
         $rp->approved_by = $user->id;
         $rp->is_active = 1;
         $rp->save();
-        return redirect()->route('admin.report.getAllUnApprovedReports');
+        return redirect()->route('admin.report.getAllUnApprovedReports')->with('msg', 'Sửa Đổi Thành Công');
     }
 
     /**

@@ -1,5 +1,14 @@
 @extends('backend.layouts.main')
 @section('content')
+    @if (session('msg'))
+        <div class="pad margin no-print">
+            <div class="alert alert-success alert-dismissible" style="" id="thongbao">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <h4><i class="icon fa fa-check"></i> Thông báo !</h4>
+                {{ session('msg') }}
+            </div>
+        </div>
+    @endif
 <section class="content-header">
     <h1>
         Danh Sách Loại Phòng Trọ <a href="{{route('admin.roomtype.create')}}" class="btn btn-info pull-right"><i class="fa fa-plus"></i> Thêm Loại Phòng Trọ</a>
