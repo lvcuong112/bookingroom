@@ -8,37 +8,35 @@
     </div>
     <div class="filter">
         <div class="container">
-            <ul class="nav nav-tabs" id="myTab" role="tablist">
-                <li class="nav-item mr-4">
-                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#buy" role="tab" aria-controls="home" aria-selected="true"> Buy </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#rental" role="tab" aria-controls="profile" aria-selected="false">Rent </a>
-                </li>
-            </ul>
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade show active" id="buy" role="tabpanel" aria-labelledby="home-tab">
-                    <div class="box-filter d-flex justify-content-between">
-                        <div class="form-group m-0">
-                            <input type="text" placeholder="Enter keyword">
-
+                    <form action="{{ route('user.search') }}" method="GET">
+                        <div class="box-filter d-flex justify-content-between">
+                            <div class="form-group m-0">
+                                <input type="text" placeholder="Tỉnh/Thành Phố" name="city">
+                            </div>
+                            <div class="form-group m-0">
+                                <input type="text" placeholder="Quận/Huyện" name="district">
+                            </div>
+                            <div class="form-group m-0">
+                                <input type="text" placeholder="Giá tiền" name="price">
+                            </div>
+                            <div class="form-group m-0">
+                                <select name="typeRoom" id="" class="select2">
+                                    <option value="0"> Loại phòng </option>
+                                    @foreach($roomType as $type)
+                                        <option value="{{ $type->id }}"> {{ $type->name }} </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group m-0">
+                                <input type="text" placeholder="Diện tích (m2)" name="acreage">
+                            </div>
+                            <div class="form-group m-0">
+                                <button> Tìm Kiếm </button>
+                            </div>
                         </div>
-                        <div class="form-group m-0">
-                            <input type="text" placeholder="Enter keyword">
-
-                        </div>
-                        <div class="form-group m-0">
-                            <input type="text" placeholder="Enter keyword">
-
-                        </div>
-                        <div class="form-group m-0">
-                            <input type="text" placeholder="Enter keyword">
-
-                        </div>
-                        <div class="form-group m-0">
-                            <button> Search  </button>
-                        </div>
-                    </div>
+                    </form>
                 </div>
                 <div class="tab-pane fade" id="rental" role="tabpanel" aria-labelledby="profile-tab">
                     <div class="box-filter d-flex justify-content-between">

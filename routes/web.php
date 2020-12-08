@@ -14,9 +14,7 @@
 use App\Room;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('frontend/home');
-});
+Route::get('/','FrontendController@index');
 Route::get('/room', function () {
     return view('frontend/room');
 });
@@ -27,7 +25,6 @@ Route::get('/user/getAllRoomViewed', 'UserViewedController@getAllRoomViewed')->n
 Route::get('/user/storeRoomViewed/{user_id}/{room_id}', 'UserViewedController@storeViewed')->name('userviewed.store');
 Route::get('/user/storeVoted/{user_id}/{room_id}/{count_star}', 'UserVotedController@storeVoted')->name('uservoted.store');
 Route::get('/user/storeLiked/{user_id}/{room_id}', 'UserLikedController@storeLiked')->name('userliked.store');
-
 Route::get('/admin/login', 'AdminController@login')->name('admin.login');
 //Route::get('/login', 'ShopController@login')->name('shop.login');
 // Đăng xuất
@@ -36,11 +33,10 @@ Route::get('/admin/logout', 'AdminController@logout')->name('admin.logout');
 Route::post('/admin/postLogin', 'AdminController@postLogin')->name('admin.postLogin');
 
 //Route::get('/sendNoti/{title}/{msg}/{receiver_id}', 'AdminController@sendNoti');
-
-
 Route::get('/owner/register', 'OwnerController@register');
-
 Route::post('/owner/postRegister', 'OwnerController@postRegister')->name('admin.postRegister');
+Route::get('/user/search', 'FrontendController@search')->name('user.search');
+
 
 Route::group(['prefix' => 'admin','as' => 'admin.', 'middleware' => ['checkLogin']], function() {
     Route::get('/', 'AdminController@index')->name('dashboard');
