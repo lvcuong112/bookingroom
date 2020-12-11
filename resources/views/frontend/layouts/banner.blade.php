@@ -19,18 +19,18 @@
                                 <input type="text" placeholder="Quận/Huyện" name="district">
                             </div>
                             <div class="form-group m-0">
-                                <input type="text" placeholder="Giá tiền" name="price">
+                                <input type="number" placeholder="Giá tiền" name="price">
                             </div>
                             <div class="form-group m-0">
                                 <select name="typeRoom" id="" class="select2">
-                                    <option value="0"> Loại phòng </option>
+                                    <option value=""> Loại phòng </option>
                                     @foreach($roomType as $type)
                                         <option value="{{ $type->id }}"> {{ $type->name }} </option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class="form-group m-0">
-                                <input type="text" placeholder="Diện tích (m2)" name="acreage">
+                                <input type="number" placeholder="Diện tích (m2)" name="acreage">
                             </div>
                             <div class="form-group m-0">
                                 <button> Tìm Kiếm </button>

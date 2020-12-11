@@ -21,6 +21,13 @@ class FrontendController
             'roomType' => $roomType
         ]);
     }
+    public function room()
+    {
+        $roomType = Room_type::all();
+        return view('frontend.room', [
+            'roomType' => $roomType
+        ]);
+    }
     public function search(Request $request)
     {
         $city = $request->input('city');
@@ -31,20 +38,28 @@ class FrontendController
         $typeRoom = $request->input('typeRoom');
         $acreage = $request->input('acreage'); // diện tích
 
-        $room = DB::table('room')
-                    ->join('city', 'room.city_id', '=', 'city.id')
-                    ->join('district', 'room.district_id', '=', 'district.id')
-                    ->where([
-                        ['city.name', 'like', '%' . $city . '%'],
-                        ['district.name' , 'like', '%' . $district . '%'],
-                        ['room.roomType_id', 'like','%'. $typeRoom. '%'],
-                        ['room.area', 'like','%'. $acreage .'%']
-                    ])
-                    ->whereBetween('room.price', [$minPrice, $maxPrice])->get();
-
-
-        dd($room);
-
+        $room = Room::query();
+        if($request->has('city')) {
+            $room->join('city', 'room.city_id', '=', 'city.id')
+                 ->where('city.name', 'like', '%' . $city . '%');
+        }
+        if($request->has('district')) {
+            $room->join('district', 'room.district_id', '=', 'district.id')
+                 ->where('district.name' , 'like', '%' . $district . '%');
+        }
+        if($request->has('price')) {
+            $room->where([
+                ['price' , '>=', $minPrice],
+                ['price' , '<=', $maxPrice]
+            ]);
+        }
+        if($request->has('typeRoom')) {
+            $room->where('room.roomType_id', 'like','%'. $typeRoom. '%');
+        }
+        if($request->has('acreage')) {
+            $room->where('room.area', 'like','%'. $acreage .'%');
+        }
+        dd($room->get());
         $searchData = [];
 
 

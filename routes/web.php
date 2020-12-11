@@ -15,10 +15,7 @@ use App\Room;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/','FrontendController@index');
-Route::get('/room', function () {
-    return view('frontend/room');
-});
-
+Route::get('/room', 'FrontendController@room')->name('room');
 // xu ly de lam sao user dang nhap moi dung dc, se lam sau khi test xong viec get giu lieu = ajax
 
 Route::get('/user/getAllRoomViewed', 'UserViewedController@getAllRoomViewed')->name('userviewed.getAllRoomViewed');

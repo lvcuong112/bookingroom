@@ -13,7 +13,7 @@
                 <a href="/"> Trang chủ</a>
             </li>
             <li>
-                <a href="/"> Thuê trọ </a>
+                <a href="{{route('room')}}"> Thuê trọ </a>
             </li>
             <li>
                 <a type="button" class="btn-contact"> Liên hệ </a>
