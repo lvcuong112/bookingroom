@@ -2129,137 +2129,45 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  mounted: function mounted() {
-    console.log('Component mounted.');
+  name: "viewhome",
+  data: function data() {
+    return {
+      homeData: [],
+      cheapHomeData: []
+    };
+  },
+  created: function created() {
+    this.getHomeData();
+    this.getCheapHomeData();
+  },
+  methods: {
+    getHomeData: function getHomeData() {
+      var _this = this;
+
+      axios.get('/homeApi').then(function (res) {
+        console.log(res);
+
+        if (res.status === 200) {
+          _this.homeData = res.data;
+        }
+      })["catch"](function () {
+        console.log(err);
+      });
+    },
+    getCheapHomeData: function getCheapHomeData() {
+      var _this2 = this;
+
+      axios.get('/cheapHomeApi').then(function (res) {
+        console.log(res);
+
+        if (res.status === 200) {
+          _this2.cheapHomeData = res.data;
+        }
+      })["catch"](function () {
+        console.log(err);
+      });
+    }
   }
 });
 
@@ -2454,6 +2362,167 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     console.log('Component mounted.');
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/roomDetailComponent.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/roomDetailComponent.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "viewdetailroom",
+  $route: window.location.href,
+  data: function data() {
+    return {
+      roomDetailData: [],
+      roomFacilities: [],
+      roomImage: []
+    };
+  },
+  created: function created() {
+    var a = window.location.pathname;
+    var param = a.slice(12);
+    this.getDetailRoom(param);
+    this.getRoomFacilities(param);
+    this.getRoomImageDetail(param);
+  },
+  methods: {
+    getDetailRoom: function getDetailRoom($id) {
+      var _this = this;
+
+      axios.get('/roomDetailApi/' + $id).then(function (res) {
+        if (res.status === 200) {
+          _this.roomDetailData = res.data;
+        }
+      })["catch"](function () {
+        console.log(err);
+      });
+    },
+    getRoomFacilities: function getRoomFacilities($id) {
+      var _this2 = this;
+
+      axios.get('/roomFacilitiesApi/' + $id).then(function (res) {
+        if (res.status === 200) {
+          _this2.roomFacilities = res.data;
+        }
+      })["catch"](function () {
+        console.log(err);
+      });
+    },
+    getRoomImageDetail: function getRoomImageDetail($id) {
+      var _this3 = this;
+
+      axios.get('/roomImageDetailApi/' + $id).then(function (res) {
+        console.log(res);
+
+        if (res.status === 200) {
+          _this3.roomImage = res.data;
+        }
+      })["catch"](function () {
+        console.log(err);
+      });
+    }
   }
 });
 
@@ -38096,674 +38165,413 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "container" }, [
+    _c("section", { staticClass: "feature container  py-5" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "row" },
+        _vm._l(_vm.homeData, function(data, index) {
+          return _c("div", { key: data.id, staticClass: "col-md-3" }, [
+            _c(
+              "a",
+              {
+                attrs: {
+                  href: "/roomDetail/" + data.id,
+                  to: { params: { id: data.id } }
+                }
+              },
+              [
+                _c("div", { staticClass: "product" }, [
+                  _c("div", { staticClass: "tab d-flex" }, [
+                    _c("span", { staticClass: "mr-2 city" }, [
+                      _vm._v(" " + _vm._s(data.title) + " ")
+                    ]),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "mr-2 bg-red" }, [
+                      _vm._v(" Top " + _vm._s(index + 1) + " trending ")
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "img" }, [
+                    _c("img", { attrs: { src: data.image, alt: "" } })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "content" }, [
+                    _c("p", { staticClass: "price mb-2" }, [
+                      _c("strong", [_vm._v(" " + _vm._s(data.price) + " ")]),
+                      _vm._v("/"),
+                      _c("span", [_vm._v(_vm._s(data.price_unit))])
+                    ]),
+                    _vm._v(" "),
+                    _c("p", { staticClass: "name mb-2" }, [
+                      _vm._v(" " + _vm._s(data.address) + " ")
+                    ]),
+                    _vm._v(" "),
+                    _c("p", { staticClass: "desc m-0" }, [
+                      _vm._v(
+                        " số phòng: " +
+                          _vm._s(data.quantity) +
+                          ", Diện tích : " +
+                          _vm._s(data.area)
+                      )
+                    ])
+                  ])
+                ])
+              ]
+            )
+          ])
+        }),
+        0
+      )
+    ]),
+    _vm._v(" "),
+    _vm._m(1),
+    _vm._v(" "),
+    _vm._m(2),
+    _vm._v(" "),
+    _vm._m(3),
+    _vm._v(" "),
+    _c("section", { staticClass: "blog-index" }, [
+      _c("div", { staticClass: "container" }, [
+        _vm._m(4),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "row" },
+          _vm._l(_vm.cheapHomeData, function(data, index) {
+            return _c("div", { key: data.id, staticClass: "col-lg-4" }, [
+              _c("div", { staticClass: "blog" }, [
+                _c("div", { staticClass: "img" }, [
+                  _c("img", {
+                    staticClass: "img-fluid",
+                    attrs: { src: data.image, alt: "" }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "content" }, [
+                  _c("p", { staticClass: "price mb-2" }, [
+                    _c("strong", [_vm._v(" " + _vm._s(data.price) + " ")]),
+                    _vm._v("/"),
+                    _c("span", [_vm._v(_vm._s(data.price_unit))])
+                  ]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "name mb-2" }, [
+                    _vm._v(" " + _vm._s(data.address) + " ")
+                  ]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "desc m-0" }, [
+                    _vm._v(
+                      " số phòng: " +
+                        _vm._s(data.quantity) +
+                        ", Diện tích : " +
+                        _vm._s(data.area)
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("button", [_vm._v(" Xem thêm ")])
+                ])
+              ])
+            ])
+          }),
+          0
+        )
+      ])
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("section", { staticClass: "feature container  py-5" }, [
-        _c("div", { staticClass: "box-title mb-4" }, [
-          _c("h2", [_vm._v(" Sản phẩm thịnh hành  ")]),
+    return _c("div", { staticClass: "box-title mb-4" }, [
+      _c("h2", [_vm._v(" Sản phẩm thịnh hành  ")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "d-flex justify-content-between" }, [
+        _c("p", { staticClass: "m-0" }, [
+          _vm._v(" Nhà trọ được quan tâm nhiều nhất? ")
+        ]),
+        _vm._v(" "),
+        _c("p", { staticClass: "m-0" }, [
+          _c("a", { staticClass: "viewall", attrs: { href: "/room" } }, [
+            _vm._v(" View All "),
+            _c("span", [_c("i", { staticClass: "fas fa-chevron-right" })])
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("section", { staticClass: "category" }, [
+      _c("div", { staticClass: "container" }, [
+        _c("div", { staticClass: "box-title mb-5" }, [
+          _c("h2", { staticClass: "text-center" }, [
+            _vm._v(" Bạn đang tìm kiếm những gì?   ")
+          ]),
           _vm._v(" "),
-          _c("div", { staticClass: "d-flex justify-content-between" }, [
+          _c("div", { staticClass: "d-flex justify-content-center" }, [
             _c("p", { staticClass: "m-0" }, [
-              _vm._v(" Nhà trọ được quan tâm nhiều nhất? ")
-            ]),
-            _vm._v(" "),
-            _c("p", { staticClass: "m-0" }, [
-              _c("a", { staticClass: "viewall", attrs: { href: "/" } }, [
-                _vm._v(" View All "),
-                _c("span", [_c("i", { staticClass: "fas fa-chevron-right" })])
-              ])
+              _vm._v(
+                " Chúng tôi cung cấp đủ các loại hình nhà trọ để phục vụ tốt nhất "
+              )
             ])
           ])
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "product-slick" }, [
-          _c("div", { staticClass: "product-slick-item" }, [
-            _c("a", { attrs: { href: "#" } }, [
-              _c("div", { staticClass: "product" }, [
-                _c("div", { staticClass: "tab d-flex" }, [
-                  _c("span", { staticClass: "mr-2 city" }, [
-                    _vm._v(" Hà nội ")
-                  ]),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "mr-2 bg-red" }, [
-                    _vm._v(" Top trending ")
-                  ])
+        _c("div", { staticClass: "cate-box" }, [
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col-md-3" }, [
+              _c("div", { staticClass: "box-item" }, [
+                _c(
+                  "div",
+                  {
+                    staticClass:
+                      "icon  d-flex justify-content-center align-items-center"
+                  },
+                  [_c("i", { staticClass: "fas fa-home" })]
+                ),
+                _vm._v(" "),
+                _c("p", { staticClass: "name text-center" }, [
+                  _vm._v(" Trung Cư ")
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "img" }, [
-                  _c("img", {
-                    attrs: {
-                      src:
-                        "https://images.pexels.com/photos/2343468/pexels-photo-2343468.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-                      alt: ""
-                    }
-                  })
+                _c("p", { staticClass: "desc text-center" }, [
+                  _vm._v(" Những trung cư với đầy đủ tiện nghi")
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "content" }, [
-                  _c("p", { staticClass: "price mb-2" }, [
-                    _c("strong", [_vm._v(" 400,000VNĐ ")]),
-                    _vm._v("/"),
-                    _c("span", [_vm._v("đêm")])
-                  ]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "name mb-2" }, [
-                    _vm._v(" Khách Sạn 5 Sao ")
-                  ]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "desc m-0" }, [
-                    _vm._v(" Phòng ngủ: 2, có nhà bếp ")
-                  ])
+                _c("p", { staticClass: "text-center m-0" }, [
+                  _c("a", { attrs: { href: "#" } }, [_vm._v(" Tìm kiếm ")])
                 ])
               ])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "product-slick-item" }, [
-            _c("a", { attrs: { href: "#" } }, [
-              _c("div", { staticClass: "product" }, [
-                _c("div", { staticClass: "tab d-flex" }, [
-                  _c("span", { staticClass: "mr-2 city" }, [_vm._v(" Hà nội ")])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md-3" }, [
+              _c("div", { staticClass: "box-item" }, [
+                _c(
+                  "div",
+                  {
+                    staticClass:
+                      "icon  d-flex justify-content-center align-items-center"
+                  },
+                  [_c("i", { staticClass: "fas fa-hotel" })]
+                ),
+                _vm._v(" "),
+                _c("p", { staticClass: "name text-center" }, [
+                  _vm._v(" Trung Cư Mini  ")
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "img" }, [
-                  _c("img", {
-                    attrs: {
-                      src:
-                        "https://images.pexels.com/photos/462235/pexels-photo-462235.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-                      alt: ""
-                    }
-                  })
+                _c("p", { staticClass: "desc text-center" }, [
+                  _vm._v(" Những trung cư nhỏ tiện nghi giá rẻ ")
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "content" }, [
-                  _c("p", { staticClass: "price mb-2" }, [
-                    _c("strong", [_vm._v(" 200,000VNĐ ")]),
-                    _vm._v("/"),
-                    _c("span", [_vm._v("đêm")])
-                  ]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "name mb-2" }, [
-                    _vm._v(" Home stay  ")
-                  ]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "desc m-0" }, [
-                    _vm._v(" Phòng ngủ: 3, Phòng khách: 1 ")
-                  ])
+                _c("p", { staticClass: "text-center m-0" }, [
+                  _c("a", { attrs: { href: "#" } }, [_vm._v(" Tìm kiếm ")])
                 ])
               ])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "product-slick-item" }, [
-            _c("a", { attrs: { href: "#" } }, [
-              _c("div", { staticClass: "product" }, [
-                _c("div", { staticClass: "tab d-flex" }, [
-                  _c("span", { staticClass: "mr-3 city" }, [
-                    _vm._v(" Đà nẵng ")
-                  ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md-3" }, [
+              _c("div", { staticClass: "box-item" }, [
+                _c(
+                  "div",
+                  {
+                    staticClass:
+                      "icon  d-flex justify-content-center align-items-center"
+                  },
+                  [_c("i", { staticClass: "fas fa-memory" })]
+                ),
+                _vm._v(" "),
+                _c("p", { staticClass: "name text-center" }, [
+                  _vm._v(" Nhà Trọ  ")
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "img" }, [
-                  _c("img", {
-                    attrs: {
-                      src:
-                        "https://images.pexels.com/photos/1125136/pexels-photo-1125136.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-                      alt: ""
-                    }
-                  })
+                _c("p", { staticClass: "desc text-center" }, [
+                  _vm._v(" Những trọ với những tiện nghi khác nhau")
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "content" }, [
-                  _c("p", { staticClass: "price mb-2" }, [
-                    _c("strong", [_vm._v(" 200,000VNĐ ")]),
-                    _vm._v("/"),
-                    _c("span", [_vm._v("đêm")])
-                  ]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "name mb-2" }, [
-                    _vm._v(" Home stay  ")
-                  ]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "desc m-0" }, [
-                    _vm._v(" Phòng ngủ: 2 ")
-                  ])
+                _c("p", { staticClass: "text-center m-0" }, [
+                  _c("a", { attrs: { href: "#" } }, [_vm._v(" Tìm kiếm ")])
                 ])
               ])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "product-slick-item" }, [
-            _c("a", { attrs: { href: "#" } }, [
-              _c("div", { staticClass: "product" }, [
-                _c("div", { staticClass: "tab d-flex" }, [
-                  _c("span", { staticClass: "mr-2 city" }, [
-                    _vm._v(" Tp. Hồ chí minh ")
-                  ]),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "mr-2 bg-red" }, [
-                    _vm._v(" Top trending ")
-                  ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md-3" }, [
+              _c("div", { staticClass: "box-item" }, [
+                _c(
+                  "div",
+                  {
+                    staticClass:
+                      "icon  d-flex justify-content-center align-items-center"
+                  },
+                  [_c("i", { staticClass: "fas fa-home" })]
+                ),
+                _vm._v(" "),
+                _c("p", { staticClass: "name text-center" }, [
+                  _vm._v(" Nhà Trọ Giá Rẻ  ")
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "img" }, [
-                  _c("img", {
-                    attrs: {
-                      src:
-                        "https://images.pexels.com/photos/994605/pexels-photo-994605.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-                      alt: ""
-                    }
-                  })
+                _c("p", { staticClass: "desc text-center" }, [
+                  _vm._v(" Những nhà trọ với giá thuê phòng thấp ")
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "content" }, [
-                  _c("p", { staticClass: "price mb-2" }, [
-                    _c("strong", [_vm._v(" 100,000VNĐ ")]),
-                    _vm._v("/"),
-                    _c("span", [_vm._v("đêm")])
-                  ]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "name mb-2" }, [
-                    _vm._v(" Home stay ")
-                  ]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "desc m-0" }, [
-                    _vm._v(" Có chỗ cắm trại ")
-                  ])
-                ])
-              ])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "product-slick-item" }, [
-            _c("a", { attrs: { href: "#" } }, [
-              _c("div", { staticClass: "product" }, [
-                _c("div", { staticClass: "tab d-flex" }, [
-                  _c("span", { staticClass: "mr-2 city" }, [
-                    _vm._v(" Hải phòng ")
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "img" }, [
-                  _c("img", {
-                    attrs: {
-                      src:
-                        "https://images.pexels.com/photos/2343468/pexels-photo-2343468.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-                      alt: ""
-                    }
-                  })
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "content" }, [
-                  _c("p", { staticClass: "price mb-2" }, [
-                    _c("strong", [_vm._v(" 400,000VNĐ ")]),
-                    _vm._v("/"),
-                    _c("span", [_vm._v("đêm")])
-                  ]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "name mb-2" }, [
-                    _vm._v(" Khách Sạn 5 Sao ")
-                  ]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "desc m-0" }, [
-                    _vm._v(" Phòng ngủ: 2, có nhà bếp ")
-                  ])
-                ])
-              ])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "product-slick-item" }, [
-            _c("a", { attrs: { href: "#" } }, [
-              _c("div", { staticClass: "product" }, [
-                _c("div", { staticClass: "tab d-flex" }, [
-                  _c("span", { staticClass: "mr-2 city" }, [
-                    _vm._v(" Đà nẵng ")
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "img" }, [
-                  _c("img", {
-                    attrs: {
-                      src:
-                        "https://images.pexels.com/photos/994605/pexels-photo-994605.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-                      alt: ""
-                    }
-                  })
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "content" }, [
-                  _c("p", { staticClass: "price mb-2" }, [
-                    _c("strong", [_vm._v(" 400,000VNĐ ")]),
-                    _vm._v("/"),
-                    _c("span", [_vm._v("đêm")])
-                  ]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "name mb-2" }, [
-                    _vm._v(" Khách Sạn 5 Sao ")
-                  ]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "desc m-0" }, [
-                    _vm._v(" Phòng ngủ: 2, có nhà bếp ")
-                  ])
-                ])
-              ])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "product-slick-item" }, [
-            _c("a", { attrs: { href: "#" } }, [
-              _c("div", { staticClass: "product" }, [
-                _c("div", { staticClass: "tab d-flex" }, [
-                  _c("span", { staticClass: "mr-2 city" }, [
-                    _vm._v(" Hải phòng ")
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "img" }, [
-                  _c("img", {
-                    attrs: {
-                      src:
-                        "https://images.pexels.com/photos/2343468/pexels-photo-2343468.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-                      alt: ""
-                    }
-                  })
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "content" }, [
-                  _c("p", { staticClass: "price mb-2" }, [
-                    _c("strong", [_vm._v(" 400,000VNĐ ")]),
-                    _vm._v("/"),
-                    _c("span", [_vm._v("đêm")])
-                  ]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "name mb-2" }, [
-                    _vm._v(" Khách Sạn 5 Sao ")
-                  ]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "desc m-0" }, [
-                    _vm._v(" Phòng ngủ: 2, có nhà bếp ")
-                  ])
+                _c("p", { staticClass: "text-center m-0" }, [
+                  _c("a", { attrs: { href: "#" } }, [_vm._v(" Tìm kiếm ")])
                 ])
               ])
             ])
           ])
         ])
-      ]),
-      _vm._v(" "),
-      _c("section", { staticClass: "category" }, [
-        _c("div", { staticClass: "container" }, [
-          _c("div", { staticClass: "box-title mb-5" }, [
-            _c("h2", { staticClass: "text-center" }, [
-              _vm._v(" Bạn đang tìm kiếm những gì?   ")
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "d-flex justify-content-center" }, [
-              _c("p", { staticClass: "m-0" }, [
-                _vm._v(
-                  " Chúng tôi cung cấp đủ các loại hình nhà trọ để phục vụ tốt nhất "
-                )
-              ])
-            ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("section", { staticClass: "address py-5" }, [
+      _c("div", { staticClass: "container" }, [
+        _c("div", { staticClass: "box-title mb-5" }, [
+          _c("h2", { staticClass: "text-center" }, [
+            _vm._v(" Thành phố bạn muốn thuê trọ ")
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "cate-box" }, [
-            _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col-md-3" }, [
-                _c("div", { staticClass: "box-item" }, [
-                  _c(
-                    "div",
-                    {
-                      staticClass:
-                        "icon  d-flex justify-content-center align-items-center"
-                    },
-                    [_c("i", { staticClass: "fas fa-home" })]
-                  ),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "name text-center" }, [
-                    _vm._v(" Home stay  ")
-                  ]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "desc text-center" }, [
-                    _vm._v(" Những khách sạn nghỉ dưỡng tuyệt vời")
-                  ]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "text-center m-0" }, [
-                    _c("a", { attrs: { href: "#" } }, [_vm._v(" Tìm kiếm ")])
-                  ])
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-md-3" }, [
-                _c("div", { staticClass: "box-item" }, [
-                  _c(
-                    "div",
-                    {
-                      staticClass:
-                        "icon  d-flex justify-content-center align-items-center"
-                    },
-                    [_c("i", { staticClass: "fas fa-hotel" })]
-                  ),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "name text-center" }, [
-                    _vm._v(" Khách sạn  ")
-                  ]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "desc text-center" }, [
-                    _vm._v(" Những khách sạn nghỉ dưỡng tuyệt vời")
-                  ]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "text-center m-0" }, [
-                    _c("a", { attrs: { href: "#" } }, [_vm._v(" Tìm kiếm ")])
-                  ])
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-md-3" }, [
-                _c("div", { staticClass: "box-item" }, [
-                  _c(
-                    "div",
-                    {
-                      staticClass:
-                        "icon  d-flex justify-content-center align-items-center"
-                    },
-                    [_c("i", { staticClass: "fas fa-memory" })]
-                  ),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "name text-center" }, [
-                    _vm._v(" Biệt thự  ")
-                  ]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "desc text-center" }, [
-                    _vm._v(" Những khách sạn nghỉ dưỡng tuyệt vời")
-                  ]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "text-center m-0" }, [
-                    _c("a", { attrs: { href: "#" } }, [_vm._v(" Tìm kiếm ")])
-                  ])
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-md-3" }, [
-                _c("div", { staticClass: "box-item" }, [
-                  _c(
-                    "div",
-                    {
-                      staticClass:
-                        "icon  d-flex justify-content-center align-items-center"
-                    },
-                    [_c("i", { staticClass: "fas fa-home" })]
-                  ),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "name text-center" }, [
-                    _vm._v(" Khách sạn  ")
-                  ]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "desc text-center" }, [
-                    _vm._v(" Những khách sạn nghỉ dưỡng tuyệt vời")
-                  ]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "text-center m-0" }, [
-                    _c("a", { attrs: { href: "#" } }, [_vm._v(" Tìm kiếm ")])
-                  ])
-                ])
-              ])
-            ])
-          ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("section", { staticClass: "address py-5" }, [
-        _c("div", { staticClass: "container" }, [
-          _c("div", { staticClass: "box-title mb-5" }, [
-            _c("h2", { staticClass: "text-center" }, [
-              _vm._v(" Thành phố bạn muốn thuê trọ ")
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "d-flex justify-content-center" }, [
-              _c("p", { staticClass: "m-0" }, [
-                _vm._v(
-                  " Chúng tôi cung cấp đầy đủ dịch vụ thuê trọ các thành phố  "
-                )
-              ])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "cities" }, [
-            _c("div", { staticClass: " row" }, [
-              _c("div", { staticClass: "col-md-4" }, [
-                _c("a", { attrs: { href: "#" } }, [
-                  _c("div", { staticClass: "product city" }, [
-                    _c("div", { staticClass: "img" }, [
-                      _c("img", {
-                        attrs: {
-                          src:
-                            "https://images.pexels.com/photos/1838640/pexels-photo-1838640.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-                          alt: ""
-                        }
-                      })
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "content" }, [
-                      _c("p", { staticClass: "price mb-2" }, [
-                        _c("strong", [_vm._v(" Hà Nội  ")])
-                      ]),
-                      _vm._v(" "),
-                      _c("p", { staticClass: "desc m-0" }, [
-                        _vm._v("  1002 nơi nghỉ dưỡng ")
-                      ])
-                    ])
-                  ])
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-md-4" }, [
-                _c("a", { attrs: { href: "#" } }, [
-                  _c("div", { staticClass: "product city" }, [
-                    _c("div", { staticClass: "img" }, [
-                      _c("img", {
-                        attrs: {
-                          src:
-                            "https://images.pexels.com/photos/462030/pexels-photo-462030.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-                          alt: ""
-                        }
-                      })
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "content" }, [
-                      _c("p", { staticClass: "price mb-2" }, [
-                        _c("strong", [_vm._v(" Đà Nẵng   ")])
-                      ]),
-                      _vm._v(" "),
-                      _c("p", { staticClass: "desc m-0" }, [
-                        _vm._v("  1560 nơi nghỉ dưỡng ")
-                      ])
-                    ])
-                  ])
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-md-4" }, [
-                _c("a", { attrs: { href: "#" } }, [
-                  _c("div", { staticClass: "product city" }, [
-                    _c("div", { staticClass: "img" }, [
-                      _c("img", {
-                        attrs: {
-                          src:
-                            "https://images.pexels.com/photos/457882/pexels-photo-457882.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-                          alt: ""
-                        }
-                      })
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "content" }, [
-                      _c("p", { staticClass: "price mb-2" }, [
-                        _c("strong", [_vm._v(" Hồ Chí Mình  ")])
-                      ]),
-                      _vm._v(" "),
-                      _c("p", { staticClass: "desc m-0" }, [
-                        _vm._v("  2001 nơi nghỉ dưỡng ")
-                      ])
-                    ])
-                  ])
-                ])
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "text-center mt-5" }, [
-              _c("a", { staticClass: "seemore", attrs: { href: "#" } }, [
-                _vm._v("  Xem thêm ")
-              ])
-            ])
-          ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("section", { staticClass: "relation-address" }, [
-        _c("div", { staticClass: "content" }, [
-          _c("div", { staticClass: "box-title mb-4" }, [
-            _c("h2", { staticClass: "text-center" }, [
-              _vm._v(" Tìm nhà trọ quanh địa điểm nổi tiếng")
-            ]),
-            _vm._v(" "),
-            _c("p", { staticClass: "text-center" }, [
-              _vm._v(" Có thể tìm nhà xung quanh các trường đại học ")
-            ])
-          ]),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "form-group d-flex justify-content-center" },
-            [
-              _c("button", { staticClass: "ml-3" }, [
-                _vm._v(" Tìm kiếm ngay  ")
-              ])
-            ]
-          )
-        ])
-      ]),
-      _vm._v(" "),
-      _c("section", { staticClass: "blog-index" }, [
-        _c("div", { staticClass: "container" }, [
-          _c("div", { staticClass: "box-title mb-5" }, [
-            _c("h2", { staticClass: "text-center" }, [
-              _vm._v(" Top Trọ rẻ nhất ")
-            ]),
-            _vm._v(" "),
-            _c("p", { staticClass: "text-center" }, [
+          _c("div", { staticClass: "d-flex justify-content-center" }, [
+            _c("p", { staticClass: "m-0" }, [
               _vm._v(
-                " Tham khảo giá tiền để thuận tiện cho việc tìm kiếm trọ  "
+                " Chúng tôi cung cấp đầy đủ dịch vụ thuê trọ các thành phố  "
               )
             ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "row" }, [
-            _c("div", { staticClass: "col-lg-4" }, [
-              _c("div", { staticClass: "blog" }, [
-                _c("div", { staticClass: "img" }, [
-                  _c("img", {
-                    staticClass: "img-fluid",
-                    attrs: {
-                      src:
-                        "https://images.pexels.com/photos/1571470/pexels-photo-1571470.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-                      alt: ""
-                    }
-                  })
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "content" }, [
-                  _c("p", { staticClass: "date text-uppercase mb-2" }, [
-                    _vm._v(" Mạnh Dũng, 20/10/2020")
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "cities" }, [
+          _c("div", { staticClass: " row" }, [
+            _c("div", { staticClass: "col-md-4" }, [
+              _c("a", { attrs: { href: "#" } }, [
+                _c("div", { staticClass: "product city" }, [
+                  _c("div", { staticClass: "img" }, [
+                    _c("img", {
+                      attrs: {
+                        src:
+                          "https://images.pexels.com/photos/1838640/pexels-photo-1838640.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+                        alt: ""
+                      }
+                    })
                   ]),
                   _vm._v(" "),
-                  _c("p", { staticClass: "title mb-0" }, [
-                    _vm._v(" Du lịch Hà Nội  ")
-                  ]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "desc" }, [
-                    _vm._v(
-                      " Hà nội là một trong những điểm du lịch nổi tiếng nhất Việt Nam.Hà nội là một trong những điểm du lịch nổi tiếng nhất Việt Nam."
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("button", [_vm._v(" Xem thêm ")])
+                  _c("div", { staticClass: "content" }, [
+                    _c("p", { staticClass: "price mb-2" }, [
+                      _c("strong", [_vm._v(" Hà Nội  ")])
+                    ]),
+                    _vm._v(" "),
+                    _c("p", { staticClass: "desc m-0" }, [
+                      _vm._v("  1002 nơi nghỉ dưỡng ")
+                    ])
+                  ])
                 ])
               ])
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "col-lg-4" }, [
-              _c("div", { staticClass: "blog" }, [
-                _c("div", { staticClass: "img" }, [
-                  _c("img", {
-                    staticClass: "img-fluid",
-                    attrs: {
-                      src:
-                        "https://images.pexels.com/photos/1571470/pexels-photo-1571470.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-                      alt: ""
-                    }
-                  })
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "content" }, [
-                  _c("p", { staticClass: "date text-uppercase mb-2" }, [
-                    _vm._v(" Mạnh Dũng, 20/10/2020")
+            _c("div", { staticClass: "col-md-4" }, [
+              _c("a", { attrs: { href: "#" } }, [
+                _c("div", { staticClass: "product city" }, [
+                  _c("div", { staticClass: "img" }, [
+                    _c("img", {
+                      attrs: {
+                        src:
+                          "https://images.pexels.com/photos/462030/pexels-photo-462030.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+                        alt: ""
+                      }
+                    })
                   ]),
                   _vm._v(" "),
-                  _c("p", { staticClass: "title mb-0" }, [
-                    _vm._v(" Du lịch Hải Phòng  ")
-                  ]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "desc" }, [
-                    _vm._v(
-                      " Hải Phòng là một trong những điểm du lịch nổi tiếng nhất Việt Nam.Hà nội là một trong những điểm du lịch nổi tiếng nhất Việt Nam."
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("button", [_vm._v(" Xem thêm ")])
+                  _c("div", { staticClass: "content" }, [
+                    _c("p", { staticClass: "price mb-2" }, [
+                      _c("strong", [_vm._v(" Đà Nẵng   ")])
+                    ]),
+                    _vm._v(" "),
+                    _c("p", { staticClass: "desc m-0" }, [
+                      _vm._v("  1560 nơi nghỉ dưỡng ")
+                    ])
+                  ])
                 ])
               ])
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "col-lg-4" }, [
-              _c("div", { staticClass: "blog" }, [
-                _c("div", { staticClass: "img" }, [
-                  _c("img", {
-                    staticClass: "img-fluid",
-                    attrs: {
-                      src:
-                        "https://images.pexels.com/photos/1571470/pexels-photo-1571470.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-                      alt: ""
-                    }
-                  })
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "content" }, [
-                  _c("p", { staticClass: "date text-uppercase mb-2" }, [
-                    _vm._v(" Mạnh Dũng, 20/10/2020")
+            _c("div", { staticClass: "col-md-4" }, [
+              _c("a", { attrs: { href: "#" } }, [
+                _c("div", { staticClass: "product city" }, [
+                  _c("div", { staticClass: "img" }, [
+                    _c("img", {
+                      attrs: {
+                        src:
+                          "https://images.pexels.com/photos/457882/pexels-photo-457882.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+                        alt: ""
+                      }
+                    })
                   ]),
                   _vm._v(" "),
-                  _c("p", { staticClass: "title mb-0" }, [
-                    _vm._v(" Du lịch Nha Trang  ")
-                  ]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "desc" }, [
-                    _vm._v(
-                      " Nha trang là một trong những điểm du lịch nổi tiếng nhất Việt Nam.Hà nội là một trong những điểm du lịch nổi tiếng nhất Việt Nam."
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("button", [_vm._v(" Xem thêm ")])
+                  _c("div", { staticClass: "content" }, [
+                    _c("p", { staticClass: "price mb-2" }, [
+                      _c("strong", [_vm._v(" Hồ Chí Mình  ")])
+                    ]),
+                    _vm._v(" "),
+                    _c("p", { staticClass: "desc m-0" }, [
+                      _vm._v("  2001 nơi nghỉ dưỡng ")
+                    ])
+                  ])
                 ])
               ])
             ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "text-center mt-5" }, [
+            _c("a", { staticClass: "seemore", attrs: { href: "#" } }, [
+              _vm._v("  Xem thêm ")
+            ])
           ])
         ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("section", { staticClass: "relation-address" }, [
+      _c("div", { staticClass: "content" }, [
+        _c("div", { staticClass: "box-title mb-4" }, [
+          _c("h2", { staticClass: "text-center" }, [
+            _vm._v(" Tìm nhà trọ quanh địa điểm nổi tiếng")
+          ]),
+          _vm._v(" "),
+          _c("p", { staticClass: "text-center" }, [
+            _vm._v(" Có thể tìm nhà xung quanh các trường đại học ")
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "form-group d-flex justify-content-center" }, [
+          _c("button", { staticClass: "ml-3" }, [_vm._v(" Tìm kiếm ngay  ")])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "box-title mb-5" }, [
+      _c("h2", { staticClass: "text-center" }, [
+        _vm._v(" Top phòng trọ rẻ nhất ")
+      ]),
+      _vm._v(" "),
+      _c("p", { staticClass: "text-center" }, [
+        _vm._v(" Tham khảo giá tiền để thuận tiện cho việc tìm kiếm trọ  ")
       ])
     ])
   }
@@ -39230,6 +39038,309 @@ var staticRenderFns = [
               )
             ])
           ])
+        ])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/roomDetailComponent.vue?vue&type=template&id=02492a54&":
+/*!**********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/roomDetailComponent.vue?vue&type=template&id=02492a54& ***!
+  \**********************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "container" }, [
+    _c("section", { staticClass: "rent-detail" }, [
+      _c(
+        "div",
+        { staticClass: "container" },
+        [
+          _vm._l(_vm.roomDetailData, function(data, index) {
+            return _c(
+              "div",
+              {
+                key: data.id,
+                staticClass: "link-sumary mb-3 d-flex align-items-center"
+              },
+              [
+                _vm._m(0, true),
+                _vm._v(" "),
+                _vm._m(1, true),
+                _vm._v(" "),
+                _vm._m(2, true),
+                _vm._v(" "),
+                _vm._m(3, true),
+                _vm._v(" "),
+                _c("span", [
+                  _c("a", { attrs: { href: "" } }, [
+                    _vm._v(
+                      " Thông tin chi tiết trọ " + _vm._s(data.title) + " "
+                    )
+                  ])
+                ])
+              ]
+            )
+          }),
+          _vm._v(" "),
+          _c("div", { staticClass: "row" }, [
+            _c(
+              "div",
+              { staticClass: "col-lg-8" },
+              [
+                _vm._l(_vm.roomDetailData, function(data, index) {
+                  return _c("div", { key: data.id }, [
+                    _c("div", { staticClass: "box-title mb-4" }, [
+                      _c("h2", [_vm._v("  " + _vm._s(data.title) + "  ")])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "info" }, [
+                      _c("p", [
+                        _c("i", { staticClass: "fas fa-map-marker" }),
+                        _vm._v(" " + _vm._s(data.address) + " ")
+                      ]),
+                      _vm._v(" "),
+                      _c("p", [
+                        _c("i", { staticClass: "fas fa-hotel" }),
+                        _vm._v(" " + _vm._s(data.name) + " ")
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "content-detail" }, [
+                      _c("p", [
+                        _vm._v(
+                          "- Chỗ ở của chúng tôi thuộc loại " +
+                            _vm._s(data.name) +
+                            " . Có giá cả và các tiện tiện nghi phù hợp với nhiều phân khúc khách hàng."
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("p", [_vm._v("- " + _vm._s(data.description) + ".")]),
+                      _vm._v(" "),
+                      _c("p", [
+                        _vm._v("- Diện tích phòng trọ : "),
+                        _c("b", [_vm._v(_vm._s(data.area) + " m2")]),
+                        _vm._v(" , Số phòng : "),
+                        _c("b", [_vm._v(_vm._s(data.quantity))])
+                      ]),
+                      _vm._v(" "),
+                      data.live_with_owner === 1
+                        ? _c("p", [
+                            _vm._v("- Chung chủ : "),
+                            _c("b", [_vm._v("Có")])
+                          ])
+                        : _c("p", [
+                            _vm._v("- Chung chủ : "),
+                            _c("b", [_vm._v("Không")])
+                          ]),
+                      _vm._v(" "),
+                      _c("p", [_vm._v("- " + _vm._s(data.note))])
+                    ])
+                  ])
+                }),
+                _vm._v(" "),
+                _vm._m(4),
+                _vm._v(" "),
+                _c("div", { staticClass: "utilities" }, [
+                  _c("div", { staticClass: "sub-title mb-3" }, [
+                    _c(
+                      "ul",
+                      { staticClass: "d-flex flex-wrap" },
+                      _vm._l(_vm.roomFacilities, function(data, index) {
+                        return _c("li", { key: data.id }, [
+                          _c("i", { staticClass: "fas fa-tv" }),
+                          _vm._v(
+                            " " +
+                              _vm._s(data.title) +
+                              "\n                                "
+                          )
+                        ])
+                      }),
+                      0
+                    )
+                  ])
+                ]),
+                _vm._v(" "),
+                _vm._m(5),
+                _vm._v(" "),
+                _vm._l(_vm.roomDetailData, function(data, index) {
+                  return _c(
+                    "ul",
+                    { key: data.id, staticClass: "table-price" },
+                    [
+                      _c(
+                        "li",
+                        { staticClass: "d-flex justify-content-between" },
+                        [
+                          _c("span", [_vm._v(" Một Tháng ")]),
+                          _vm._v(" "),
+                          _c("strong", [
+                            _vm._v(" " + _vm._s(data.price) + "đ  ")
+                          ])
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "li",
+                        { staticClass: "d-flex justify-content-between" },
+                        [
+                          _c("span", [_vm._v(" Ba Tháng ")]),
+                          _vm._v(" "),
+                          _c("strong", [
+                            _vm._v(
+                              " " +
+                                _vm._s(data.price + data.price + data.price) +
+                                "đ  "
+                            )
+                          ])
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "li",
+                        { staticClass: "d-flex justify-content-between" },
+                        [
+                          _c("span", [_vm._v(" Sáu Tháng ")]),
+                          _vm._v(" "),
+                          _c("strong", [
+                            _vm._v(
+                              " " +
+                                _vm._s(
+                                  data.price +
+                                    data.price +
+                                    data.price +
+                                    data.price +
+                                    data.price +
+                                    data.price
+                                ) +
+                                "đ  "
+                            )
+                          ])
+                        ]
+                      )
+                    ]
+                  )
+                })
+              ],
+              2
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "col-lg-4" },
+              _vm._l(_vm.roomDetailData, function(data, index) {
+                return _c("div", { key: data.id, staticClass: "box-order" }, [
+                  _c("p", { staticClass: "price mb-4" }, [
+                    _c("strong", [_vm._v(_vm._s(data.price) + "đ")]),
+                    _vm._v("/Tháng\n                        ")
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", { attrs: { for: "" } }, [_vm._v(" Giá điện")]),
+                    _vm._v(" "),
+                    _c("input", {
+                      attrs: { readonly: "" },
+                      domProps: { value: data.electric_price + " đ/1 số điện" }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", { attrs: { for: "" } }, [_vm._v(" Giá nước ")]),
+                    _vm._v(" "),
+                    _c("input", {
+                      attrs: { readonly: "" },
+                      domProps: { value: data.water_price + " đ/1 khối nước" }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", {}, [
+                    _c("button", [
+                      _c("i", { staticClass: "fas fa-bolt" }),
+                      _vm._v(
+                        "\n                                Liên hệ thuệ phòng tại   " +
+                          _vm._s(data.telephone) +
+                          "\n                            "
+                      )
+                    ])
+                  ])
+                ])
+              }),
+              0
+            )
+          ])
+        ],
+        2
+      )
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", [
+      _c("a", { attrs: { href: "/" } }, [_vm._v("Trang chủ")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", [_c("i", { staticClass: "fas fa-caret-right" })])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", [
+      _c("a", { attrs: { href: "/room" } }, [_vm._v(" Thuê trọ ")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", [_c("i", { staticClass: "fas fa-caret-right" })])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "box-title mt-5 mb-3" }, [
+      _c("h2", { staticClass: "title" }, [_vm._v("  Tiện nghi phòng trọ  ")]),
+      _vm._v(" "),
+      _c("p", { staticClass: "desc" }, [
+        _c("i", [_vm._v("Các dịch vụ tiện nghi có tại phòng trọ ")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "box-title mt-5 mb-3" }, [
+      _c("h2", { staticClass: "title" }, [_vm._v("  Giá phòng   ")]),
+      _vm._v(" "),
+      _c("p", { staticClass: "desc" }, [
+        _c("i", [
+          _vm._v(
+            "Giá phòng có thể thay đổi linh hoạt khi thống nhất với chủ trọ "
+          )
         ])
       ])
     ])
@@ -51427,6 +51538,7 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 Vue.component('example-component', __webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue")["default"]);
 Vue.component('home-component', __webpack_require__(/*! ./components/homeComponent.vue */ "./resources/js/components/homeComponent.vue")["default"]);
 Vue.component('room-component', __webpack_require__(/*! ./components/roomComponnent */ "./resources/js/components/roomComponnent.vue")["default"]);
+Vue.component('room-detail-component', __webpack_require__(/*! ./components/roomDetailComponent */ "./resources/js/components/roomDetailComponent.vue")["default"]);
 var app = new Vue({
   el: '#app'
 });
@@ -51495,15 +51607,14 @@ if (token) {
 /*!******************************************************!*\
   !*** ./resources/js/components/ExampleComponent.vue ***!
   \******************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ExampleComponent.vue?vue&type=template&id=299e239e& */ "./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e&");
 /* harmony import */ var _ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ExampleComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js&");
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -51533,7 +51644,7 @@ component.options.__file = "resources/js/components/ExampleComponent.vue"
 /*!*******************************************************************************!*\
   !*** ./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js& ***!
   \*******************************************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -51694,6 +51805,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_roomComponnent_vue_vue_type_template_id_23c96b31___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_roomComponnent_vue_vue_type_template_id_23c96b31___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/roomDetailComponent.vue":
+/*!*********************************************************!*\
+  !*** ./resources/js/components/roomDetailComponent.vue ***!
+  \*********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _roomDetailComponent_vue_vue_type_template_id_02492a54___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./roomDetailComponent.vue?vue&type=template&id=02492a54& */ "./resources/js/components/roomDetailComponent.vue?vue&type=template&id=02492a54&");
+/* harmony import */ var _roomDetailComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./roomDetailComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/roomDetailComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _roomDetailComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _roomDetailComponent_vue_vue_type_template_id_02492a54___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _roomDetailComponent_vue_vue_type_template_id_02492a54___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/roomDetailComponent.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/roomDetailComponent.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************!*\
+  !*** ./resources/js/components/roomDetailComponent.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_roomDetailComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./roomDetailComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/roomDetailComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_roomDetailComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/roomDetailComponent.vue?vue&type=template&id=02492a54&":
+/*!****************************************************************************************!*\
+  !*** ./resources/js/components/roomDetailComponent.vue?vue&type=template&id=02492a54& ***!
+  \****************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_roomDetailComponent_vue_vue_type_template_id_02492a54___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./roomDetailComponent.vue?vue&type=template&id=02492a54& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/roomDetailComponent.vue?vue&type=template&id=02492a54&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_roomDetailComponent_vue_vue_type_template_id_02492a54___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_roomDetailComponent_vue_vue_type_template_id_02492a54___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

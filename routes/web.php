@@ -13,11 +13,17 @@
 
 use App\Room;
 use Illuminate\Support\Facades\Route;
-
+// home
 Route::get('/','FrontendController@index');
+Route::get('/homeApi', 'FrontendController@homeApi');
+Route::get('/cheapHomeApi', 'FrontendController@cheapHomeApi');
+//room
 Route::get('/room', 'FrontendController@room')->name('room');
-// xu ly de lam sao user dang nhap moi dung dc, se lam sau khi test xong viec get giu lieu = ajax
-
+Route::get('/roomDetail/{id}', 'FrontendController@roomDetail')->name('roomdetail');
+Route::get('/roomDetailApi/{id}','FrontendController@roomDetailApi');
+Route::get('/roomFacilitiesApi/{id}','FrontendController@roomFacilitiesApi');
+Route::get('/roomImageDetailApi/{id}','FrontendController@imageRoomDetailApi');
+//gg
 Route::get('/user/getAllRoomViewed', 'UserViewedController@getAllRoomViewed')->name('userviewed.getAllRoomViewed');
 Route::get('/user/storeRoomViewed/{user_id}/{room_id}', 'UserViewedController@storeViewed')->name('userviewed.store');
 Route::get('/user/storeVoted/{user_id}/{room_id}/{count_star}', 'UserVotedController@storeVoted')->name('uservoted.store');

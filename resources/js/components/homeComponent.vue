@@ -5,134 +5,32 @@
                 <h2> Sản phẩm thịnh hành  </h2>
                 <div class="d-flex justify-content-between">
                     <p class="m-0"> Nhà trọ được quan tâm nhiều nhất? </p>
-                    <p class="m-0"> <a href="/" class="viewall"> View All <span> <i class="fas fa-chevron-right"></i> </span></a></p>
+                    <p class="m-0"> <a href="/room" class="viewall"> View All <span> <i class="fas fa-chevron-right"></i> </span></a></p>
                 </div>
             </div>
-            <div class="product-slick">
-                <div class="product-slick-item">
-                    <a href="#">
-                        <div class="product">
-                            <div class="tab d-flex" >
-                                <span class="mr-2 city"> Hà nội </span>
-                                <span class="mr-2 bg-red"> Top trending </span>
-                            </div>
-                            <div class="img">
-                                <img src="https://images.pexels.com/photos/2343468/pexels-photo-2343468.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="">
-                            </div>
-                            <div class="content">
-                                <p class="price mb-2"> <strong> 400,000VNĐ </strong>/<span>đêm</span></p>
-                                <p class="name mb-2"> Khách Sạn 5 Sao </p>
-                                <p class="desc m-0"> Phòng ngủ: 2, có nhà bếp </p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="product-slick-item">
-                    <a href="#">
-                        <div class="product">
-                            <div class="tab d-flex" >
-                                <span class="mr-2 city"> Hà nội </span>
-                            </div>
-                            <div class="img">
-                                <img src="https://images.pexels.com/photos/462235/pexels-photo-462235.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="">
-                            </div>
-                            <div class="content">
-                                <p class="price mb-2"> <strong> 200,000VNĐ </strong>/<span>đêm</span></p>
-                                <p class="name mb-2"> Home stay  </p>
-                                <p class="desc m-0"> Phòng ngủ: 3, Phòng khách: 1 </p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="product-slick-item">
-                    <a href="#">
-                        <div class="product">
-                            <div class="tab d-flex" >
-                                <span class="mr-3 city"> Đà nẵng </span>
 
+            <div class="row">
+                <div class="col-md-3" :key="data.id" v-for="(data,index) in homeData">
+                        <a :href="'/roomDetail/' + data.id" :to="{params: {id: data.id }}">
+                            <div class="product">
+                                <div class="tab d-flex" >
+                                    <span class="mr-2 city"> {{ data.title }} </span>
+                                    <span class="mr-2 bg-red"> Top {{index + 1}} trending </span>
+                                </div>
+                                <div class="img">
+                                    <img :src="data.image" alt="">
+                                </div>
+                                <div class="content">
+                                    <p class="price mb-2"> <strong> {{ data.price }} </strong>/<span>{{ data.price_unit }}</span></p>
+                                    <p class="name mb-2"> {{ data.address }} </p>
+                                    <p class="desc m-0"> số phòng: {{ data.quantity }}, Diện tích : {{ data.area }}</p>
+                                </div>
                             </div>
-                            <div class="img">
-                                <img src="https://images.pexels.com/photos/1125136/pexels-photo-1125136.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="">
-                            </div>
-                            <div class="content">
-                                <p class="price mb-2"> <strong> 200,000VNĐ </strong>/<span>đêm</span></p>
-                                <p class="name mb-2"> Home stay  </p>
-                                <p class="desc m-0"> Phòng ngủ: 2 </p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="product-slick-item">
-                    <a href="#">
-                        <div class="product">
-                            <div class="tab d-flex" >
-                                <span class="mr-2 city"> Tp. Hồ chí minh </span>
-                                <span class="mr-2 bg-red"> Top trending </span>
-                            </div>
-                            <div class="img">
-                                <img src="https://images.pexels.com/photos/994605/pexels-photo-994605.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="">
-                            </div>
-                            <div class="content">
-                                <p class="price mb-2"> <strong> 100,000VNĐ </strong>/<span>đêm</span></p>
-                                <p class="name mb-2"> Home stay </p>
-                                <p class="desc m-0"> Có chỗ cắm trại </p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="product-slick-item">
-                    <a href="#">
-                        <div class="product">
-                            <div class="tab d-flex" >
-                                <span class="mr-2 city"> Hải phòng </span>
-                            </div>
-                            <div class="img">
-                                <img src="https://images.pexels.com/photos/2343468/pexels-photo-2343468.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="">
-                            </div>
-                            <div class="content">
-                                <p class="price mb-2"> <strong> 400,000VNĐ </strong>/<span>đêm</span></p>
-                                <p class="name mb-2"> Khách Sạn 5 Sao </p>
-                                <p class="desc m-0"> Phòng ngủ: 2, có nhà bếp </p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="product-slick-item">
-                    <a href="#">
-                        <div class="product">
-                            <div class="tab d-flex" >
-                                <span class="mr-2 city"> Đà nẵng </span>
-
-                            </div>
-                            <div class="img">
-                                <img src="https://images.pexels.com/photos/994605/pexels-photo-994605.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="">
-                            </div>
-                            <div class="content">
-                                <p class="price mb-2"> <strong> 400,000VNĐ </strong>/<span>đêm</span></p>
-                                <p class="name mb-2"> Khách Sạn 5 Sao </p>
-                                <p class="desc m-0"> Phòng ngủ: 2, có nhà bếp </p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="product-slick-item">
-                    <a href="#">
-                        <div class="product">
-                            <div class="tab d-flex" >
-                                <span class="mr-2 city"> Hải phòng </span>
-                            </div>
-                            <div class="img">
-                                <img src="https://images.pexels.com/photos/2343468/pexels-photo-2343468.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="">
-                            </div>
-                            <div class="content">
-                                <p class="price mb-2"> <strong> 400,000VNĐ </strong>/<span>đêm</span></p>
-                                <p class="name mb-2"> Khách Sạn 5 Sao </p>
-                                <p class="desc m-0"> Phòng ngủ: 2, có nhà bếp </p>
-                            </div>
-                        </div>
-                    </a>
+                        </a>
                 </div>
             </div>
+
+
         </section>
         <section class="category">
             <div class="container">
@@ -150,8 +48,8 @@
                                 <div class="icon  d-flex justify-content-center align-items-center">
                                     <i class="fas fa-home"></i>
                                 </div>
-                                <p class="name text-center"> Home stay  </p>
-                                <p class="desc text-center"> Những khách sạn nghỉ dưỡng tuyệt vời</p>
+                                <p class="name text-center"> Trung Cư </p>
+                                <p class="desc text-center"> Những trung cư với đầy đủ tiện nghi</p>
                                 <p class="text-center m-0"> <a href="#"> Tìm kiếm </a></p>
                             </div>
                         </div>
@@ -160,8 +58,8 @@
                                 <div class="icon  d-flex justify-content-center align-items-center">
                                     <i class="fas fa-hotel"></i>
                                 </div>
-                                <p class="name text-center"> Khách sạn  </p>
-                                <p class="desc text-center"> Những khách sạn nghỉ dưỡng tuyệt vời</p>
+                                <p class="name text-center"> Trung Cư Mini  </p>
+                                <p class="desc text-center"> Những trung cư nhỏ tiện nghi giá rẻ </p>
                                 <p class="text-center m-0"> <a href="#"> Tìm kiếm </a></p>
                             </div>
                         </div>
@@ -170,8 +68,8 @@
                                 <div class="icon  d-flex justify-content-center align-items-center">
                                     <i class="fas fa-memory"></i>
                                 </div>
-                                <p class="name text-center"> Biệt thự  </p>
-                                <p class="desc text-center"> Những khách sạn nghỉ dưỡng tuyệt vời</p>
+                                <p class="name text-center"> Nhà Trọ  </p>
+                                <p class="desc text-center"> Những trọ với những tiện nghi khác nhau</p>
                                 <p class="text-center m-0"> <a href="#"> Tìm kiếm </a></p>
                             </div>
                         </div>
@@ -180,8 +78,8 @@
                                 <div class="icon  d-flex justify-content-center align-items-center">
                                     <i class="fas fa-home"></i>
                                 </div>
-                                <p class="name text-center"> Khách sạn  </p>
-                                <p class="desc text-center"> Những khách sạn nghỉ dưỡng tuyệt vời</p>
+                                <p class="name text-center"> Nhà Trọ Giá Rẻ  </p>
+                                <p class="desc text-center"> Những nhà trọ với giá thuê phòng thấp </p>
                                 <p class="text-center m-0"> <a href="#"> Tìm kiếm </a></p>
                             </div>
                         </div>
@@ -265,45 +163,19 @@
         <section class="blog-index">
             <div class="container">
                 <div class="box-title mb-5">
-                    <h2 class="text-center"> Top Trọ rẻ nhất </h2>
+                    <h2 class="text-center"> Top phòng trọ rẻ nhất </h2>
                     <p class="text-center"> Tham khảo giá tiền để thuận tiện cho việc tìm kiếm trọ  </p>
                 </div>
                 <div class="row">
-                    <div class="col-lg-4">
+                    <div class="col-lg-4" :key="data.id" v-for="(data,index) in cheapHomeData">
                         <div class="blog">
                             <div class="img">
-                                <img src="https://images.pexels.com/photos/1571470/pexels-photo-1571470.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="" class="img-fluid">
+                                <img :src="data.image" alt="" class="img-fluid">
                             </div>
                             <div class="content">
-                                <p class="date text-uppercase mb-2"> Mạnh Dũng, 20/10/2020</p>
-                                <p class="title mb-0"> Du lịch Hà Nội  </p>
-                                <p class="desc"> Hà nội là một trong những điểm du lịch nổi tiếng nhất Việt Nam.Hà nội là một trong những điểm du lịch nổi tiếng nhất Việt Nam.</p>
-                                <button> Xem thêm </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="blog">
-                            <div class="img">
-                                <img src="https://images.pexels.com/photos/1571470/pexels-photo-1571470.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="" class="img-fluid">
-                            </div>
-                            <div class="content">
-                                <p class="date text-uppercase mb-2"> Mạnh Dũng, 20/10/2020</p>
-                                <p class="title mb-0"> Du lịch Hải Phòng  </p>
-                                <p class="desc"> Hải Phòng là một trong những điểm du lịch nổi tiếng nhất Việt Nam.Hà nội là một trong những điểm du lịch nổi tiếng nhất Việt Nam.</p>
-                                <button> Xem thêm </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="blog">
-                            <div class="img">
-                                <img src="https://images.pexels.com/photos/1571470/pexels-photo-1571470.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="" class="img-fluid">
-                            </div>
-                            <div class="content">
-                                <p class="date text-uppercase mb-2"> Mạnh Dũng, 20/10/2020</p>
-                                <p class="title mb-0"> Du lịch Nha Trang  </p>
-                                <p class="desc"> Nha trang là một trong những điểm du lịch nổi tiếng nhất Việt Nam.Hà nội là một trong những điểm du lịch nổi tiếng nhất Việt Nam.</p>
+                                <p class="price mb-2"> <strong> {{ data.price }} </strong>/<span>{{ data.price_unit }}</span></p>
+                                <p class="name mb-2"> {{ data.address }} </p>
+                                <p class="desc m-0"> số phòng: {{ data.quantity }}, Diện tích : {{ data.area }}</p>
                                 <button> Xem thêm </button>
                             </div>
                         </div>
@@ -316,8 +188,38 @@
 
 <script>
 export default {
-    mounted() {
-        console.log('Component mounted.')
+    name:"viewhome",
+    data () {
+      return {
+          homeData:[],
+          cheapHomeData: []
+      }
+    },
+    created() {
+        this.getHomeData();
+        this.getCheapHomeData();
+    },
+    methods : {
+        getHomeData () {
+            axios.get('/homeApi').then((res) => {
+                console.log(res);
+                if (res.status === 200) {
+                    this.homeData = res.data;
+                }
+            }).catch(() => {
+                console.log(err);
+            })
+        },
+        getCheapHomeData () {
+            axios.get('/cheapHomeApi').then((res) => {
+                console.log(res);
+                if (res.status === 200) {
+                    this.cheapHomeData = res.data;
+                }
+            }).catch(() => {
+                console.log(err);
+            })
+        }
     }
 }
 </script>

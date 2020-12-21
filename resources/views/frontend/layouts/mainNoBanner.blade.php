@@ -37,6 +37,8 @@
     });
     fixedHeader();
     customSelect2();
+    setSlickImages();
+    setSlickFeature();
     function fixedHeader(){
         $(window).scroll(function () {
             if ($(this).scrollTop() > 0) {
@@ -49,6 +51,67 @@
     function customSelect2(){
         $(".select2").select2({
             width: 'resolve'
+        });
+    }
+    function setSlickImages() {
+        $(".slick-images").slick({
+            dots: false,
+            infinite: true,
+            autoplay: true,
+            speed: 400,
+            autoplaySpeed: 5000,
+            slidesToShow: 2,
+            slidesToScroll: 1,
+            responsive: [
+                {
+                    breakpoint: 991,
+                    settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 1
+                    }
+                },
+                {
+                    breakpoint: 480,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1
+                    }
+                }
+            ]
+        });
+    }
+    function setSlickFeature() {
+        $(".product-slick").slick({
+            dots: false,
+            infinite: true,
+            autoplay: true,
+            speed: 400,
+            autoplaySpeed: 5000,
+            slidesToShow: 4,
+            slidesToScroll: 1,
+            responsive: [
+                {
+                    breakpoint: 991,
+                    settings: {
+                        slidesToShow: 3,
+                        slidesToScroll: 1
+                    }
+                },
+                {
+                    breakpoint: 600,
+                    settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 2
+                    }
+                },
+                {
+                    breakpoint: 480,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1
+                    }
+                }
+            ]
         });
     }
 </script>
