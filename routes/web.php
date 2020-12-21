@@ -23,6 +23,9 @@ Route::get('/roomDetail/{id}', 'FrontendController@roomDetail')->name('roomdetai
 Route::get('/roomDetailApi/{id}','FrontendController@roomDetailApi');
 Route::get('/roomFacilitiesApi/{id}','FrontendController@roomFacilitiesApi');
 Route::get('/roomImageDetailApi/{id}','FrontendController@imageRoomDetailApi');
+//login register
+Route::get('/login', 'FrontendController@login');
+Route::get('/register', 'FrontendController@register');
 //gg
 Route::get('/user/getAllRoomViewed', 'UserViewedController@getAllRoomViewed')->name('userviewed.getAllRoomViewed');
 Route::get('/user/storeRoomViewed/{user_id}/{room_id}', 'UserViewedController@storeViewed')->name('userviewed.store');

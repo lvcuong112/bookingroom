@@ -1,0 +1,43 @@
+.dialog-report .input-report-content {
+    margin-bottom: 20px;
+}
+    .dialog-report .input-report-content .report-input {
+        height: 40px;
+        box-sizing: border-box;
+        border: 1px solid #D2D2D2;
+        border-radius: 5px;
+        width: 100%;
+        padding: 0 20px;
+    }
+    .dialog-report .report-footer {
+        text-align: center;
+    }
+    .dialog-report .report-footer .report-button{
+        height: 40px;
+        margin-left: 30px;
+        cursor: pointer;
+        box-sizing: border-box;
+        border-radius: 24px;
+        border: none;
+        color: #ffffff;
+    }
+    .dialog-report .report-footer .report-button:hover {
+        color: #000000;
+        border: 1px solid #515252;
+        font-size: 20px;
+    }
+    .dialog-report .report-footer .report-button:focus {
+        color: #000000;
+        border: 1px solid #515252;
+        font-size: 20px;
+        outline: none;
+    }
+
+    .dialog-report .report-footer #send-report {
+        width: 150px;
+        background: linear-gradient(90deg,#e02b2b,#ec7474);
+    }
+    .dialog-report .report-footer #cancel-report {
+        width: 100px;
+            background-color: #9c9898;
+    }

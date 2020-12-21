@@ -74,6 +74,11 @@ class FrontendController
             ->where(['room_image.room_id' => $id])->get();
         return json_encode($imageRoomDetailApi);
     }
+    //login register
+    public function login ()
+    {
+        return view('frontend.login');
+    }
     //search
     public function search(Request $request)
     {

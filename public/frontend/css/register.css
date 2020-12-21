@@ -1,0 +1,101 @@
+.dialog-register .register-content{
+    color: #515252;
+}
+        /* logo */
+        .register-body .register-header{
+            height: 50px;
+            display: flex;
+            padding-left: 40px;
+        }
+        .register-body .register-header .logo-name {
+            height: 50px;
+            font-weight: bold;
+            font-size: 25px;
+            margin: 10px 10px;
+
+        }
+        /* thêm ảnh đại diện */
+        #avatar .dialog-avt-img {
+            height: 160px;
+            width: 160px;
+            border: 1px solid #D2D2D2;
+            border-radius: 50%;
+            background-image: url('img/default-avatar.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            margin: 0px auto;
+        }
+            .dialog-register .register-content .register-form .form1{
+                display: flex;
+            }
+            .dialog-register .register-content .register-form .form2 {
+                display: flex;
+
+            }
+            .input-register-content{
+                margin: 0px 10px 10px 10px;
+
+            }
+            .register-input {
+                height: 40px;
+                box-sizing: border-box;
+                border: 1px solid #D2D2D2;
+                border-radius: 5px;
+                width: 100%;
+                padding: 0 20px;
+            }
+            .register-input:focus{
+                border: 2px solid #515252;
+                outline: none;
+            }
+
+ /* dấu (*) đỏ            */
+#label-required {
+    color: red;
+}
+
+/* footer */
+        .dialog-register .register-content .register-footer {
+            display: flex;
+            width: 100%;
+            height: 60px;
+            /* background-color: #e9ebee; */
+            border-radius: 0 0 5px 5px;
+            align-items: center;
+            justify-content: flex-end; /*căn cuối*/
+            padding: 12px 24px;
+            box-sizing: border-box;
+        }
+        .dialog-register .register-content .register-footer .register-button {
+            height: 40px;
+            margin-left: 30px;
+            cursor: pointer;
+            box-sizing: border-box;
+            border-radius: 24px;
+            border: none;
+            color: #ffffff;
+        }
+        .dialog-register .register-content .register-footer .register-button:hover {
+            color: #000000;
+            border: 1px solid #515252;
+            font-size: 20px;
+        }
+        .dialog-register .register-content .register-footer .register-button:focus {
+            color: #000000;
+            border: 1px solid #515252;
+            outline: none;
+            font-size: 20px;
+        }
+        .register-footer #register {
+            width: 150px;
+            background: linear-gradient(90deg,#e02b2b,#ec7474);
+        }
+        .register-footer #cancel-register {
+            width: 100px;
+            background-color: #9c9898;
+        }
+
+        /*  css trường bắt buộc */
+        .importain {
+            border: 2px solid #e02b2b;
+        }

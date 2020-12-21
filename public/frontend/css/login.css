@@ -1,0 +1,83 @@
+/* dialog đăng nhập */
+.dialog-login .login-content {
+    display: flex;
+    color: #515252;
+}
+
+    .dialog-login .login-content .login-bg{
+        width: 50%;
+    }
+        .dialog-login .login-content .login-bg .login-bg-img {
+            height: 280px;
+            width: 280px;
+            margin: 20px auto;
+            box-sizing: border-box;
+            border-radius: 50%;
+            background-image: url("img/img.room.png");
+            background-size: cover;
+            background-repeat: no-repeat;
+            
+        }
+            .dialog-login .login-content .login-bg .login-bg-content {
+                text-align: center;
+                color: #515252;
+                font-size: 16px;
+                font-weight: bold;
+                margin-top: 40px;
+            }
+
+
+    .dialog-login .login-content .login-form {
+        width: 50%;
+        text-align: center;
+    }
+    .dialog-login .login-content .login-form .login-form-header
+    {
+        margin-bottom: 20px;
+        height: 50px;
+        display: flex;
+        justify-content: center;
+    }
+    .login-form .login-form-header .logo-name {
+        height: 50px;
+        font-weight: bold;
+        font-size: 25px;
+        margin: 10px 10px;
+        
+    }
+    .dialog-login .login-content .login-form .login-input{
+        width: 300px;
+        height: 50px;
+        box-sizing: border-box;
+        border-radius: 24px;
+        border: none;
+        color: #666;
+        background-color: #e6e6e6;
+        background-size: 16px;
+        background-repeat: no-repeat;
+        background-position: 16px 16px;
+        padding: 0 42px;
+        margin-bottom: 20px;
+    }
+        .dialog-login .login-content .login-form .login-input:focus{
+            border: 2px solid #515252;
+            outline: none;
+        }
+    .dialog-login .login-content .login-form .login-button .login {
+        height: 50px;
+        width: 200px;
+        box-sizing: border-box;
+        border-radius: 24px;
+        border: none;
+        background: linear-gradient(90deg,#e02b2b,#ec7474);
+        color: #ffffff;
+        cursor: pointer;
+    }
+    .dialog-login .login-content .login-form .login-button .login:hover {
+         color: #000000;
+         border: 2px solid #515252;
+    }
+    .dialog-login .login-content .login-form .login-button .login:focus {
+        border: 2px solid #515252;
+        outline: none;
+    }

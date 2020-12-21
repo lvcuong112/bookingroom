@@ -19,10 +19,10 @@
                 <a type="button" class="btn-contact"> Liên hệ </a>
             </li>
             <li>
-                <a type="button" class="btn-contact"> Đăng nhập </a>
+                <a href="/login"> Đăng nhập </a>
             </li>
             <li>
-                <a type="button" class="btn-contact"> Đăng ký </a>
+                <a href="/register"> Đăng ký </a>
             </li>
         </ul>
         <!-- <button class="btn-menu-moblie d-block d-lg-none">
