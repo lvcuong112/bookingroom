@@ -80,81 +80,24 @@
                             </div>
                         </div>
                         <div class="row result">
-                            <div class="col-md-6">
+                            <div class="col-md-6" :key="data.id" v-for="(data,index) in searchData">
                                 <div class="house-item">
-                                    <div class="box-img d-flex align-items-center justify-content-center">
-                                        <img src="https://images.pexels.com/photos/2079249/pexels-photo-2079249.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Ảnh ngôi nhà">
-                                        <p class="tab">
-                                            <span> Discount</span>
-                                        </p>
-                                        <p class="price m-0"> <span> $1000</span></p>
-                                    </div>
+                                    <a :href="'/roomDetail/' + data.id">
+                                        <div class="box-img d-flex align-items-center justify-content-center">
+                                            <img :src="data.image" alt="Ảnh ngôi nhà">
+                                            <p class="tab">
+                                            </p>
+                                        </div>
+                                    </a>
                                     <div class="info">
-                                        <p class="cate"> Homstay </p>
-                                        <p class="name"> <a href="#"> Ngôi nhà mất lộc</a>  </p>
-                                        <p class="address"> <i class="fas fa-map-marker-alt mr-2"></i> 42, Yên Hòa, Cầu Giấy</p>
+                                        <p class="cate"> Giá Phòng <span> {{ data.price }} VNĐ</span> </p>
+                                        <p class="name"> <a :href="'/roomDetail/' + data.id"> {{ data.title }}</a>  </p>
+                                        <p class="address"> <i class="fas fa-map-marker-alt mr-2"></i> {{ data.address }}</p>
                                         <p class="desc">
-                                            2 phòng ngủ, 1 phòng khách, có chỗ để ô tô
+                                            Số phòng ngủ: {{ data.quantity }}, Diện tích: {{ data.area }} m2
                                         </p>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="house-item">
-                                    <div class="box-img d-flex align-items-center justify-content-center">
-                                        <img src="https://images.pexels.com/photos/1054974/pexels-photo-1054974.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="Ảnh ngôi nhà">
-                                        <p class="tab">
-                                            <span> Discount</span>
-                                        </p>
-                                        <p class="price m-0"> <span> $2000</span> </p>
-                                    </div>
-                                    <div class="info">
-                                        <p class="cate"> Resort </p>
-                                        <p class="name"> <a href="#"> Luxury Family </a>  </p>
-                                        <p class="address"> <i class="fas fa-map-marker-alt mr-2"></i> 44, Trần Thái Tông, Cầu Giấy</p>
                                         <p class="desc">
-                                            3 phòng ngủ, 1 phòng khách
-                                        </p>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="house-item">
-                                    <div class="box-img d-flex align-items-center justify-content-center">
-                                        <img src="https://images.pexels.com/photos/584399/living-room-couch-interior-room-584399.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Ảnh ngôi nhà">
-                                        <p class="tab">
-                                            <span> Discount</span>
-                                        </p>
-                                        <p class="price m-0"> <span> $1000</span></p>
-                                    </div>
-                                    <div class="info">
-                                        <p class="cate"> Resort  </p>
-                                        <p class="name"> <a href="#"> Đẳng cấp 5 sao </a>  </p>
-                                        <p class="address"> <i class="fas fa-map-marker-alt mr-2"></i> IPH , Xuân Thủy, Cầu Giấy</p>
-                                        <p class="desc">
-                                            Có sân goft
-                                        </p>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="house-item">
-                                    <div class="box-img d-flex align-items-center justify-content-center">
-                                        <img src="https://images.pexels.com/photos/2079249/pexels-photo-2079249.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Ảnh ngôi nhà">
-                                        <p class="tab">
-                                            <span> Discount</span>
-                                        </p>
-                                        <p class="price m-0"> <span> $1000</span></p>
-                                    </div>
-                                    <div class="info">
-                                        <p class="cate"> Hotel  </p>
-                                        <p class="name"> <a href="#"> Khách sạn 6 sao </a>  </p>
-                                        <p class="address"> <i class="fas fa-map-marker-alt mr-2"></i> 42, Yên Hòa, Cầu Giấy</p>
-                                        <p class="desc">
-                                            2 phòng ngủ, 1 phòng khách, có chỗ để ô tô
+                                            Điện : {{ data.electric_price }}VNĐ/1 số , Nước : {{ water_price }}VNĐ/1 khối
                                         </p>
 
                                     </div>
@@ -177,47 +120,23 @@
 
 <script>
 export default {
-    name: "viewdetailroom",
-    $route: window.location.href,
-
+    name: "search",
     data() {
         return {
-            roomDetailData: [],
-            roomFacilities: [],
-            roomImage: []
+            searchData: [],
         }
     },
     created() {
-        let a = window.location.pathname;
-        let param = a.slice(12);
-        this.getDetailRoom(param);
-        this.getRoomFacilities(param);
-        this.getRoomImageDetail(param);
+        let a = window.location.href;
+        let param = a.slice(29);
+        this.getSearchData(param);
     },
     methods: {
-        getDetailRoom($id) {
-            axios.get('/roomDetailApi/' + $id).then((res) => {
-                if (res.status === 200) {
-                    this.roomDetailData = res.data;
-                }
-            }).catch(() => {
-                console.log(err);
-            })
-        },
-        getRoomFacilities($id) {
-            axios.get('/roomFacilitiesApi/' + $id).then((res) => {
-                if (res.status === 200) {
-                    this.roomFacilities = res.data;
-                }
-            }).catch(() => {
-                console.log(err);
-            })
-        },
-        getRoomImageDetail($id) {
-            axios.get('/roomImageDetailApi/' + $id).then((res) => {
+        getSearchData($id) {
+            axios.get('/user/search?' + $id).then((res) => {
                 console.log(res);
                 if (res.status === 200) {
-                    this.roomImage = res.data;
+                    this.searchData = res.data;
                 }
             }).catch(() => {
                 console.log(err);

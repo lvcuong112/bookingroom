@@ -42,7 +42,7 @@
                 </div>
                 <div class="cate-box">
                     <div class="row">
-                        <form action="user/search" class="col-md-4">
+                        <form action="/search" class="col-md-4">
                                 <div class="box-item">
                                     <div class="icon  d-flex justify-content-center align-items-center">
                                         <i class="fas fa-home"></i>
@@ -53,7 +53,7 @@
                                     <p class="text-center m-0"><button type="submit">Tìm kiếm</button></p>
                                 </div>
                         </form>
-                        <form action="user/search" class="col-md-4">
+                        <form action="/search" class="col-md-4">
                             <div class="box-item">
                                 <div class="icon  d-flex justify-content-center align-items-center">
                                     <i class="fas fa-hotel"></i>
@@ -64,7 +64,7 @@
                                 <p class="text-center m-0">  <button type="submit">Tìm kiếm</button></p>
                             </div>
                         </form>
-                        <form action="user/search" class="col-md-4">
+                        <form action="/search" class="col-md-4">
                             <div class="box-item">
                                 <div class="icon  d-flex justify-content-center align-items-center">
                                     <i class="fas fa-memory"></i>
@@ -91,7 +91,7 @@
                 <div class="cities">
                     <div class=" row">
                         <div class="col-md-6">
-                            <form action="user/search">
+                            <form action="/search">
                                 <div class="product city">
                                     <button type="submit">
                                         <div class="img">
@@ -109,7 +109,7 @@
 
                         </div>
                         <div class="col-md-6">
-                            <form action="user/search">
+                            <form action="/search">
                                 <div class="product city">
                                     <button type="submit" style="width: 100%;height: 120%;" >
                                         <div class="img">

@@ -52,22 +52,22 @@
                         <ul class="table-price" :key="data.id" v-for="(data,index) in roomDetailData">
                             <li class="d-flex justify-content-between" >
                                 <span> Một Tháng </span>
-                                <strong> {{ data.price }}đ  </strong>
+                                <strong> {{ data.price }}VNĐ  </strong>
                             </li>
                             <li class="d-flex justify-content-between" >
                                 <span> Ba Tháng </span>
-                                <strong> {{ data.price + data.price + data.price }}đ  </strong>
+                                <strong> {{ data.price + data.price + data.price }}VNĐ </strong>
                             </li>
                             <li class="d-flex justify-content-between" >
                                 <span> Sáu Tháng </span>
-                                <strong> {{ data.price + data.price + data.price + data.price + data.price + data.price }}đ  </strong>
+                                <strong> {{ data.price + data.price + data.price + data.price + data.price + data.price }}VNĐ</strong>
                             </li>
                         </ul>
                     </div>
                     <div class="col-lg-4">
                         <div class="box-order" :key="data.id" v-for="(data,index) in roomDetailData">
                             <p class="price mb-4">
-                                <strong>{{ data.price }}đ</strong>/Tháng
+                                <strong>{{ data.price }}VNĐ</strong>/Tháng
                             </p>
                             <div class="form-group">
                                 <label for=""> Giá điện</label>

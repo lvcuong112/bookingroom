@@ -24,9 +24,11 @@ class FrontendController
     {
         $roomType = Room_type::all();
         $city = City::all();
+        $district = District::all();
         return view('frontend.home', [
             'roomType' => $roomType,
-            'city' => $city
+            'city' => $city,
+            'district' => $district
         ]);
     }
     public function homeApi()  // api trang chủ
@@ -167,8 +169,6 @@ class FrontendController
         $city = $request->input('city');
         $district = $request->input('district');
         $price = $request->input('price');
-        $minPrice = $price - $price/2;
-        $maxPrice = $price + $price/2;
         $typeRoom = $request->input('typeRoom');
         $acreage = $request->input('acreage'); // diện tích
 
@@ -177,33 +177,15 @@ class FrontendController
             $room->where('city_id', '=', $city);
         }
         if($request->has('district')) {
-            $room->join('district', 'room.district_id', '=', 'district.id')
-                 ->where('district.name' , 'like', '%' . $district . '%');
-        }
-        if($request->has('price')) {
-            $room->where([
-                ['price' , '>=', $minPrice],
-                ['price' , '<=', $maxPrice]
-            ]);
+            $room->where('district_id' , '=', $district);
         }
         if($request->has('typeRoom')) {
             $room->where('room.roomType_id', 'like','%'. $typeRoom. '%');
         }
         if($request->has('acreage')) {
-            $room->where('room.area', 'like','%'. $acreage .'%');
+            $room->where('area', '=', $acreage );
         }
-        dd($room->get());
-        $searchData = [];
-
-
-
-        $totalResult = $products->total();
-
-        return view('shop.search', [
-            'products' => $products,
-            'totalResult' => $totalResult,
-            'keyword' => $keyword ? $keyword : ''
-        ]);
-        return view('frontend.search');
+        $data = $room->get();
+        return json_encode($data);
     }
 }
