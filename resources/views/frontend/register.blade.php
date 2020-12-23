@@ -17,15 +17,15 @@
                             <div class="form1-right" style="flex: 1;">
                                 <div class="input-register-content" id ="Email" style="flex: 1;">
                                     <label>Email</label><br>
-                                    <input class="register-input" id="inputEmail" type="email" name="email" >
+                                    <input class="register-input" id="inputEmail" type="email" name="email" pattern=".+@.+(\.[a-z]{2,3})" title="Kiểm tra lại định dạng email" required>
                                 </div>
                                 <div class="input-register-content" id="Password" style="flex: 1;" >
                                     <label>Mật khẩu (<span id="label-required">*</span>)</label><br>
-                                    <input class="register-input required" id="inputPassword" name="password" type="password" />
+                                    <input class="register-input required" id="inputPassword" name="password" type="password" required>
                                 </div>
                                 <div class="input-register-content" id="Password" style="flex: 1;" >
                                     <label>Nhập lại mật khẩu (<span id="label-required">*</span>)</label><br>
-                                    <input class="register-input required" id="inputPassword" name="rePassword" type="password" />
+                                    <input class="register-input required" id="inputPassword" name="rePassword" type="password" required>
                                 </div>
                                 <div class="input-register-content" id="Password" style="flex: 1;" >
                                     <label>Đăng kí dưới tư cách là (<span id="label-required">*</span>)</label><br>
@@ -39,23 +39,23 @@
                         <div class="form3" >
                             <div class="input-register-content" id="FullName">
                                 <label>Họ và tên (<span id="label-required">*</span>)</label><br>
-                                <input class="register-input required" id="inputFullName" name="name" type="text" />
+                                <input class="register-input required" id="inputFullName" name="name" type="text" required>
                             </div>
                             <div class="input-register-content" id="DateOfBirth">
                                 <label>Ngày sinh (<span id="label-required">*</span>)</label><br>
-                                <input class="register-input required" id="inputDateOfBirth" name="birthday" type="date" />
+                                <input class="register-input required" id="inputDateOfBirth" name="birthday" type="date" required>
                             </div>
                             <div class="input-register-content" id="CMND">
                                 <label>Số CMND/CCCD (<span id="label-required">*</span>)</label><br>
-                                <input class="register-input required" id="inputCMND" type="number" name="cmnd" >
+                                <input class="register-input required" id="inputCMND" type="tel" name="cmnd" pattern="\d{11,12}" title="Vui lòng kiểm tra lại số chứng minh nhân dân" required>
                             </div>
                             <div class="input-register-content" id="PhoneNumber" style="flex: 1;" >
                                 <label>Số điện thoại (<span id="label-required">*</span>)</label><br>
-                                <input class="register-input required" id="inputPhoneNumber" name="phone" type="number" />
+                                <input class="register-input required" id="inputPhoneNumber" name="phone" type="tel" pattern="\d{10,11}" title="Vui lòng kiểm tra lại số điện thoại" required>
                             </div>
                             <div class="input-register-content" id="Address" style="flex: 1;">
                                 <label>Địa chỉ</label><br>
-                                <input class="register-input" id="inputAddress" type="text" name="address" >
+                                <input class="register-input" id="inputAddress" type="text" name="address" required >
                             </div>
                         </div>
                     </div>

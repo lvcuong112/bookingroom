@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="../frontend/css/page.css">
 
     <link rel="stylesheet" href="../frontend/css/register.css">
+    <link rel="stylesheet" href="../frontend/css/report.css">
     <link rel="stylesheet" href="../frontend/lib/jquery-ui-1.12.1.custom/jquery-ui.css">
     <link rel="stylesheet" href="../frontend/lib/jquery-ui-1.12.1.custom/jquery-ui.min.css">
 </head>

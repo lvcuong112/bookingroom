@@ -34,7 +34,7 @@
                 </li>
             @else
                 <li>
-                    <a href="" data-toggle="modal" data-target="#myModalLogin">Đăng Nhập</a>
+                    <a type="button" data-toggle="modal" data-target="#myModalLogin">Đăng Nhập</a>
                 </li>
                 <li>
                     <a href="/register"> Đăng ký </a>
