@@ -195,15 +195,11 @@ class UserController extends Controller
 
     public function getListRequestedOwner()
     {
-//        dd("we're here");
         $data = User::where(['role_id' => 2, 'is_active' => 0])->orderBy('created_at', 'ASC')->get();
         return view('backend.user.index', [
             'data' => $data // truyền dữ liệu sang view Index
         ]);
     }
 
-//    public function postComment(Request $request) // viet san de day
-//    {
-//
-//    }
+
 }
