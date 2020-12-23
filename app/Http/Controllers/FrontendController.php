@@ -10,9 +10,12 @@ use App\Room_image;
 use App\Room_type;
 use App\District;
 use App\City;
+use App\User;
+use App\UserAcc;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class FrontendController
 {
@@ -20,8 +23,10 @@ class FrontendController
     public function index()
     {
         $roomType = Room_type::all();
+        $city = City::all();
         return view('frontend.home', [
-            'roomType' => $roomType
+            'roomType' => $roomType,
+            'city' => $city
         ]);
     }
     public function homeApi()  // api trang chủ
@@ -75,12 +80,89 @@ class FrontendController
         return json_encode($imageRoomDetailApi);
     }
     //login register
-    public function login ()
+    public function customerLogin (Request $Request)
     {
-        return view('frontend.login');
+        $username = $Request->input('username');
+        $password = md5($Request->input('password'));
+        $is_active = 1;
+        $roleCustomerId = 3;
+        $roleOwnerId = 2;
+        $customer = UserAcc::where([
+            'email' => $username,
+            'password' => $password
+        ])->get();
+        if (count($customer) == 0) {
+            return redirect()->route('home')->with('msg', 'Vùi lòng kiểm tra lại tài khoản !!');
+        } else {
+            $checkStatus = UserAcc::where([
+                'email' => $username,
+                'is_active' => $is_active
+            ])->get();
+            if (count($checkStatus) == 0) {
+                return redirect()->route('home')->with('msg', 'Tài khoản của bạn đã bị vô hiệu hóa !!');
+            } else {
+                foreach ($checkStatus as $data)
+                if($data->role_id == $roleCustomerId) {
+                    session(['customer'=>$data->name]);
+                    return redirect(route('home'));
+                } else if ($data->role_id == $roleOwnerId) {
+                    session(['owner'=>$data->name]);
+                    return redirect(route('home'));
+                }
+            }
+        }
+    }
+    public function logout ()
+    {
+        session()->forget('customer');
+        return redirect(route('home'));
+    }
+    public function register ()
+    {
+        return view('frontend.register');
+    }
+    public function CustomerRegister (Request $Request)
+    {
+        $email = $Request->input('email');
+        $customer = UserAcc::where([
+            'email' => $email
+        ])->get();
+        if (count($customer) == 0) {
+            $email = $Request->input('email');
+            $password = md5($Request->input('password'));
+            $role = $Request->input('roleId');
+            $name = $Request->input('name');
+            $birthday = $Request->input('birthday');
+            $cmnd = $Request->input('cmnd');
+            $mobile =$Request->input('phone');
+            $address = $Request->input('address');
+            $image = $Request->input('image');
+            UserAcc::insert(
+                array(
+                    'email' => $email,
+                    'password' => $password,
+                    'role_id' => $role,
+                    'name' => $name,
+                    'address' => $address,
+                    'birthday' => $birthday,
+                    'CMND' => $cmnd,
+                    'phone' => $mobile,
+                    'image' => $image,
+                    'is_active' => 1
+                )
+            );
+            session(['customer'=>$email]);//customer ở đây là của $customer gọi ở trên
+            return redirect(route('home'))->with('msg', 'Đăng ký thành công . Vui lòng đăng nhập để sử dụng tiện ích ');
+        } else {
+            return redirect(route('frontRegister'))->with('msg','Tài khoản đã tồn tại');
+        }
     }
     //search
-    public function search(Request $request)
+    public function search ()
+    {
+        return view('frontend.search');
+    }
+    public function searchApi(Request $request)
     {
         $city = $request->input('city');
         $district = $request->input('district');
@@ -92,8 +174,7 @@ class FrontendController
 
         $room = Room::query();
         if($request->has('city')) {
-            $room->join('city', 'room.city_id', '=', 'city.id')
-                 ->where('city.name', 'like', '%' . $city . '%');
+            $room->where('city_id', '=', $city);
         }
         if($request->has('district')) {
             $room->join('district', 'room.district_id', '=', 'district.id')

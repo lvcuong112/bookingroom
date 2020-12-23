@@ -16,6 +16,10 @@
     <link rel="stylesheet" href="../frontend/css/layout.css">
     <link rel="stylesheet" href="../frontend/css/index.css">
     <link rel="stylesheet" href="../frontend/css/page.css">
+
+    <link rel="stylesheet" href="../frontend/css/register.css">
+    <link rel="stylesheet" href="../frontend/lib/jquery-ui-1.12.1.custom/jquery-ui.css">
+    <link rel="stylesheet" href="../frontend/lib/jquery-ui-1.12.1.custom/jquery-ui.min.css">
 </head>
 <body>
 @include('frontend.layouts.header')
@@ -29,6 +33,12 @@
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
 <script src="../frontend/slick-1.8.1/slick/slick.js"></script>
+
+
+<script type="text/javascript" src="../frontend/lib/jquery-ui-1.12.1.custom/jquery-ui.js" ></script>
+<script type="text/javascript" src="../frontend/lib/jquery-ui-1.12.1.custom/jquery-ui.min.js" ></script>
+<script type="text/javascript" src="../frontend/js/js.js" ></script>
+
 
 
 <script>

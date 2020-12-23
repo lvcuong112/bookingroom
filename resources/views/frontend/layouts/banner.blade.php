@@ -13,7 +13,12 @@
                     <form action="{{ route('user.search') }}" method="GET">
                         <div class="box-filter d-flex justify-content-between">
                             <div class="form-group m-0">
-                                <input type="text" placeholder="Tỉnh/Thành Phố" name="city">
+                                <select name="city" id="" class="select2">
+                                    <option value=""> Chọn tỉnh </option>
+                                    @foreach($city as $cities)
+                                        <option value="{{ $cities->id }}">{{ $cities->name }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                             <div class="form-group m-0">
                                 <input type="text" placeholder="Quận/Huyện" name="district">

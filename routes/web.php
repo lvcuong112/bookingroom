@@ -14,7 +14,7 @@
 use App\Room;
 use Illuminate\Support\Facades\Route;
 // home
-Route::get('/','FrontendController@index');
+Route::get('/','FrontendController@index')->name('home');
 Route::get('/homeApi', 'FrontendController@homeApi');
 Route::get('/cheapHomeApi', 'FrontendController@cheapHomeApi');
 //room
@@ -24,26 +24,23 @@ Route::get('/roomDetailApi/{id}','FrontendController@roomDetailApi');
 Route::get('/roomFacilitiesApi/{id}','FrontendController@roomFacilitiesApi');
 Route::get('/roomImageDetailApi/{id}','FrontendController@imageRoomDetailApi');
 //login register
-Route::get('/login', 'FrontendController@login');
-Route::get('/register', 'FrontendController@register');
+Route::post('login', 'FrontendController@customerLogin')->name('login');
+Route::get('logout','FrontendController@logout')->name('logout');
+route::get('/register','FrontendController@register')->name('frontRegister');
+Route::post('postRegister', 'FrontendController@CustomerRegister')->name('register');
 //gg
 Route::get('/user/getAllRoomViewed', 'UserViewedController@getAllRoomViewed')->name('userviewed.getAllRoomViewed');
 Route::get('/user/storeRoomViewed/{user_id}/{room_id}', 'UserViewedController@storeViewed')->name('userviewed.store');
 Route::get('/user/storeVoted/{user_id}/{room_id}/{count_star}', 'UserVotedController@storeVoted')->name('uservoted.store');
 Route::get('/user/storeLiked/{user_id}/{room_id}', 'UserLikedController@storeLiked')->name('userliked.store');
 Route::get('/admin/login', 'AdminController@login')->name('admin.login');
-//Route::get('/login', 'ShopController@login')->name('shop.login');
-// Đăng xuất
+//fillter
+Route::get('/search', 'FrontendController@search')->name('frontend.search');
+Route::get('/user/search', 'FrontendController@searchApi')->name('user.search');
+
+// Admin
 Route::get('/admin/logout', 'AdminController@logout')->name('admin.logout');
-
 Route::post('/admin/postLogin', 'AdminController@postLogin')->name('admin.postLogin');
-
-//Route::get('/sendNoti/{title}/{msg}/{receiver_id}', 'AdminController@sendNoti');
-Route::get('/owner/register', 'OwnerController@register');
-Route::post('/owner/postRegister', 'OwnerController@postRegister')->name('admin.postRegister');
-Route::get('/user/search', 'FrontendController@search')->name('user.search');
-
-
 Route::group(['prefix' => 'admin','as' => 'admin.', 'middleware' => ['checkLogin']], function() {
     Route::get('/', 'AdminController@index')->name('dashboard');
     Route::resource('room', 'RoomController');
@@ -64,6 +61,9 @@ Route::group(['prefix' => 'admin','as' => 'admin.', 'middleware' => ['checkLogin
     Route::post('/deleteRequest/refuseRequest/{request_id}', 'AdminController@refuseExtendDate')->name('deleteRequest.refuseExtendDate');
 });
 
+//owner
+Route::get('/owner/register', 'OwnerController@register');
+Route::post('/owner/postRegister', 'OwnerController@postRegister')->name('admin.postRegister');
 Route::group(['prefix' => 'owner','as' => 'owner.'], function() {
     Route::get('/register', 'OwnerController@register');
     Route::post('/postRegister', 'OwnerController@postRegister')->name('postRegister');
