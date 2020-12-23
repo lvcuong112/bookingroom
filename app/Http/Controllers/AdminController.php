@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\ExtendPost;
 use App\Notify;
+use App\RequestEditRoom;
 use App\Room;
 use App\User;
 use Illuminate\Http\Request;
@@ -13,7 +14,9 @@ class AdminController extends Controller
 {
     public function index()
     {
-        return view('backend.home');
+        return view('backend.home', [
+//            'title' => '?'
+        ]);
     }
 
     public function  login() {
@@ -74,6 +77,8 @@ class AdminController extends Controller
             return redirect('/');
         }
     }
+
+
 
     public function showAllExtendRoomRequest()
     {
@@ -172,6 +177,33 @@ class AdminController extends Controller
         return response()->json([
             'status' => true
         ], 200);
+    }
+
+    public function showAllEditRoomRequest()
+    {
+        $data = RequestEditRoom::where([ 'approved_by' => null ])->orderBy('created_at', 'ASC')->get();
+        $title = 'Danh sách yêu cầu chỉnh sửa bài viết';
+        return view('backend.manageRequest.allEditRoomRequest', [
+            'data' => $data,
+            'title' => $title
+        ]);
+    }
+
+    public function allowEditRoom($request_id)
+    {
+        $request = RequestEditRoom::findOrFail($request_id);
+        $room = Room::findOrFail($request->room_id);
+        $room->canbe_edit = 1;
+        $room->save();
+        $request->approved_by = Auth::user()->id;
+        $request->save();
+        $title = 'Yêu cầu chỉnh sửa bài viết ' . $room->title . 'được gia hạn';
+        $msg = 'Yêu cầu chỉnh sửa bài viết của bạn đã được cho phép. Bây giờ bạn có thể chỉnh sửa bài viết của mình';
+        $this->sendNoti($title, $msg, $request->user_id);
+        return response()->json([
+            'status' => true
+        ], 200);
+
     }
 
     public function test()
