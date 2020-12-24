@@ -11,6 +11,7 @@ use App\Room_type;
 use App\District;
 use App\City;
 use App\User;
+use App\User_like;
 use App\UserAcc;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -52,13 +53,15 @@ class FrontendController
     public function roomDetail($id)
     {
         $data = Room::findorFail($id);
+        $roomId = $data->id;
         $roomType = Room_type::all();
         $imageRoomDetail = DB::table('room_image')->where(['room_image.room_id' => $id])->get();
         $relateRoom = DB::table('room')->where(['room.roomType_id' => $data->roomType_id])->limit(7)->get();
         return view('frontend.roomdetail', [
             'roomType' => $roomType,
             'imageRoomDetail' => $imageRoomDetail,
-            'relateRoom' => $relateRoom
+            'relateRoom' => $relateRoom,
+            'roomId' => $roomId
         ]);
     }
     public function roomDetailApi($id)
@@ -105,7 +108,7 @@ class FrontendController
             } else {
                 foreach ($checkStatus as $data)
                 if($data->role_id == $roleCustomerId) {
-                    session(['customer'=>$data->name]);
+                    session(['customer'=>$username]);
                     return redirect(route('home'));
                 } else if ($data->role_id == $roleOwnerId) {
                     session(['owner'=>$data->name]);
@@ -116,8 +119,14 @@ class FrontendController
     }
     public function logout ()
     {
-        session()->forget('customer');
-        return redirect(route('home'));
+        if (session('customer')) {
+            session()->forget('customer');
+            return redirect(route('home'));
+        }
+        if (session('owner')) {
+            session()->forget('owner');
+            return redirect(route('home'));
+        }
     }
     public function register ()
     {
@@ -153,7 +162,6 @@ class FrontendController
                     'is_active' => 1
                 )
             );
-            session(['customer'=>$email]);//customer ở đây là của $customer gọi ở trên
             return redirect(route('home'))->with('msg', 'Đăng ký thành công . Vui lòng đăng nhập để sử dụng tiện ích ');
         } else {
             return redirect(route('frontRegister'))->with('msg','Tài khoản đã tồn tại');
@@ -187,5 +195,24 @@ class FrontendController
         }
         $data = $room->get();
         return json_encode($data);
+    }
+    public function customerLike (Request $request)
+    {
+        $userData = $request->session('customer')->get('customer');
+        $customerData = UserAcc::where(['email' => $userData])->get();
+        foreach ($customerData as $data) {
+            $userId = $data->id;
+        }
+        $roomId = $request->input('roomId');
+        if (User_like::where(['room_id' => $roomId, 'user_id' => $userId])->exists()) {
+            return redirect()->back()->with('msg','Bạn đã thích bài viết này trước đó rồi !!');
+        } else {
+            User_like::insert([
+                'user_id' => $userId,
+                'room_id' => $roomId
+            ]);
+            return redirect()->back()->with('msg', 'Bạn đã thích bài viết này !!');
+        }
+
     }
 }

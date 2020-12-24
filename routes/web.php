@@ -37,6 +37,8 @@ Route::get('/admin/login', 'AdminController@login')->name('admin.login');
 //fillter
 Route::get('/search', 'FrontendController@search')->name('frontend.search');
 Route::get('/user/search', 'FrontendController@searchApi')->name('user.search');
+//cmt like
+Route::post('/like', 'FrontendController@customerLike')->name('like');
 
 // Admin
 Route::get('/admin/logout', 'AdminController@logout')->name('admin.logout');
