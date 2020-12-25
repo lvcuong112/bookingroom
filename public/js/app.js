@@ -2114,6 +2114,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "viewhome",
   data: function data() {
@@ -2152,6 +2153,238 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function () {
         console.log(err);
       });
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/likeRoomComponent.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/likeRoomComponent.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "viewLikeRoom",
+  data: function data() {
+    return {
+      likeRoomData: []
+    };
+  },
+  created: function created() {
+    this.getLikeRoomData();
+  },
+  methods: {
+    getLikeRoomData: function getLikeRoomData() {
+      var _this = this;
+
+      axios.get('/likeRoomApi').then(function (res) {
+        if (res.status === 200) {
+          _this.likeRoomData = res.data;
+          console.log(_this.likeRoomData);
+        }
+      })["catch"](function () {
+        console.log(err);
+      });
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/myAccountComponent.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/myAccountComponent.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "myaccount",
+  data: function data() {
+    return {
+      accountData: [],
+      rePassword: {
+        'newPassword': null,
+        'reNewPassword': null,
+        'notice': null
+      }
+    };
+  },
+  created: function created() {
+    this.getAccountData();
+  },
+  methods: {
+    getAccountData: function getAccountData() {
+      var _this = this;
+
+      axios.get('/accountApi').then(function (res) {
+        if (res.status === 200) {
+          _this.accountData = res.data;
+        }
+      })["catch"](function () {
+        console.log(err);
+      });
+    },
+    checkPass: function checkPass() {
+      if (this.rePassword.reNewPassword != this.rePassword.newPassword) {
+        this.rePassword.notice = "Mật khẩu nhập lại chưa đúng";
+      } else {
+        this.rePassword.notice = "";
+      }
     }
   }
 });
@@ -2284,69 +2517,190 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  mounted: function mounted() {
-    console.log('Component mounted.');
+  name: "viewallroom",
+  data: function data() {
+    return {
+      roomData: [],
+      city: [],
+      district: [],
+      typeRoom: [],
+      allRoom: [],
+      searchInput: {
+        'city': null,
+        'district': null,
+        'typeRoom': null,
+        'price': null,
+        'area': null
+      },
+      sortType: null,
+      total: 0,
+      page: 1
+    };
+  },
+  created: function created() {
+    this.getRoomData();
+    this.getCity();
+    this.getDistrict();
+    this.getTypeRoom();
+  },
+  methods: {
+    changePage: function changePage(index) {
+      console.log(index);
+      this.page = index;
+    },
+    getRoomData: function getRoomData() {
+      var _this = this;
+
+      axios.get('/roomApi').then(function (res) {
+        if (res.status === 200) {
+          _this.roomData = res.data;
+          _this.allRoom = res.data;
+          _this.total = parseInt(res.data.length / 6) + 1; // let count = count(this.roomData);
+          // console.log(count);
+        }
+      })["catch"](function () {
+        console.log(err);
+      });
+    },
+    getCity: function getCity() {
+      var _this2 = this;
+
+      axios.get('/cityApi').then(function (res) {
+        if (res.status === 200) {
+          _this2.city = res.data;
+        }
+      })["catch"](function () {
+        console.log(err);
+      });
+    },
+    getDistrict: function getDistrict() {
+      var _this3 = this;
+
+      axios.get('/districtApi').then(function (res) {
+        if (res.status === 200) {
+          _this3.district = res.data;
+        }
+      })["catch"](function () {
+        console.log(err);
+      });
+    },
+    getTypeRoom: function getTypeRoom() {
+      var _this4 = this;
+
+      axios.get('/roomTypeApi').then(function (res) {
+        if (res.status === 200) {
+          _this4.typeRoom = res.data;
+        }
+      })["catch"](function () {
+        console.log(err);
+      });
+    },
+    onSearch: function onSearch() {
+      var _this5 = this;
+
+      var roomFilter = [];
+      this.allRoom.forEach(function (room) {
+        var check = true;
+
+        if (_this5.searchInput.typeRoom != null && room.roomType_id != _this5.searchInput.typeRoom) {
+          check = false;
+        }
+
+        if (_this5.searchInput.district != null && room.district_id != _this5.searchInput.district) {
+          check = false;
+        }
+
+        if (_this5.searchInput.city != null && room.city_id != _this5.searchInput.city) {
+          check = false;
+        }
+
+        if (_this5.searchInput.price != null) {
+          var price = _this5.searchInput.price;
+
+          switch (price) {
+            case 2000000:
+              if (room.price > 2000000) check = false;
+              break;
+
+            case 2500000:
+              if (room.price < 2000000 || room.price > 3000000) check = false;
+              break;
+
+            case 3500000:
+              if (room.price < 3000000 || room.price > 4000000) check = false;
+              break;
+
+            case 4500000:
+              if (room.price < 4000000 || room.price > 5000000) check = false;
+              break;
+
+            case 5000000:
+              if (room.price < 5000000) check = false;
+              break;
+          }
+        }
+
+        if (_this5.searchInput.area != null) {
+          var area = _this5.searchInput.area;
+
+          switch (area) {
+            case 15:
+              if (room.area > 15) check = false;
+              break;
+
+            case 20:
+              if (room.area < 15 || room.area > 25) check = false;
+              break;
+
+            case 30:
+              if (room.area < 25 || room.area > 35) check = false;
+              break;
+
+            case 40:
+              if (room.area < 35 || room.area > 45) check = false;
+              break;
+
+            case 45:
+              if (room.area < 45) check = false;
+              break;
+          }
+        }
+
+        if (check == true) {
+          roomFilter.push(room);
+        }
+      });
+      this.roomData = roomFilter;
+      this.total = parseInt(roomFilter.length / 6) + 1;
+    },
+    onSort: function onSort() {
+      switch (this.sortType) {
+        case 0:
+          this.roomData.sort(function (a, b) {
+            if (Date.parse(a.public_date) > Date.parse(b.public_date)) return -1;
+            if (Date.parse(a.public_date) < Date.parse(b.public_date)) return 1;
+            return 0;
+          });
+          break;
+
+        case 1:
+          this.roomData.sort(function (a, b) {
+            if (a.price > b.price) return -1;
+            if (a.price < b.price) return 1;
+            return 0;
+          });
+          break;
+
+        case 2:
+          this.roomData.sort(function (a, b) {
+            if (a.price > b.price) return 1;
+            if (a.price < b.price) return -1;
+            return 0;
+          });
+          break;
+      }
+    }
   }
 });
 
@@ -38356,7 +38710,7 @@ var render = function() {
                     _vm._v(" "),
                     _c("p", { staticClass: "desc m-0" }, [
                       _vm._v(
-                        " số phòng: " +
+                        " Số phòng: " +
                           _vm._s(data.quantity) +
                           ", Diện tích : " +
                           _vm._s(data.area)
@@ -38736,6 +39090,745 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/likeRoomComponent.vue?vue&type=template&id=b03e6060&":
+/*!********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/likeRoomComponent.vue?vue&type=template&id=b03e6060& ***!
+  \********************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "container" }, [
+    _vm._m(0),
+    _vm._v(" "),
+    _c("section", { staticClass: "rent" }, [
+      _c("div", { staticClass: "container" }, [
+        _c("div", { staticClass: "row" }, [
+          _vm._m(1),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-lg-12" }, [
+            _c(
+              "div",
+              {
+                staticClass:
+                  "result-alert d-flex align-items-center justify-content-between"
+              },
+              [
+                _c("p", { staticClass: "m-0" }, [
+                  _vm._v(" " + _vm._s(_vm.likeRoomData.length) + " kết quả ")
+                ])
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "row result" },
+              _vm._l(_vm.likeRoomData, function(data) {
+                return _c("div", { key: data.id, staticClass: "col-md-6" }, [
+                  _c("div", { staticClass: "house-item" }, [
+                    _c("a", { attrs: { href: "/roomDetail/" + data.id } }, [
+                      _c(
+                        "div",
+                        {
+                          staticClass:
+                            "box-img d-flex align-items-center justify-content-center"
+                        },
+                        [
+                          _c("img", {
+                            attrs: { src: data.image, alt: "Ảnh ngôi nhà" }
+                          }),
+                          _vm._v(" "),
+                          _c("p", { staticClass: "tab" })
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "info" }, [
+                      _c("p", { staticClass: "cate" }, [
+                        _vm._v(" Giá Phòng "),
+                        _c("span", [_vm._v(" " + _vm._s(data.price) + " VNĐ")])
+                      ]),
+                      _vm._v(" "),
+                      _c("p", { staticClass: "name" }, [
+                        _c("a", { attrs: { href: "/roomDetail/" + data.id } }, [
+                          _vm._v(" " + _vm._s(data.title))
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("p", { staticClass: "address" }, [
+                        _c("i", { staticClass: "fas fa-map-marker-alt mr-2" }),
+                        _vm._v(" " + _vm._s(data.address))
+                      ]),
+                      _vm._v(" "),
+                      _c("p", { staticClass: "desc" }, [
+                        _vm._v(
+                          "\n                                        Số phòng ngủ: " +
+                            _vm._s(data.quantity) +
+                            ", Diện tích: " +
+                            _vm._s(data.area) +
+                            " m2\n                                    "
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("p", { staticClass: "desc" }, [
+                        _vm._v(
+                          "\n                                        Điện : " +
+                            _vm._s(data.electric_price) +
+                            "VNĐ/1 số , Nước : " +
+                            _vm._s(_vm.water_price) +
+                            "VNĐ/1 khối\n                                    "
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "b",
+                        {
+                          staticClass: "desc",
+                          staticStyle: { color: "black" }
+                        },
+                        [
+                          _vm._v(
+                            "\n                                        Ngày đăng bài : " +
+                              _vm._s(data.public_date) +
+                              "\n                                    "
+                          )
+                        ]
+                      )
+                    ])
+                  ])
+                ])
+              }),
+              0
+            )
+          ])
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("section", { staticClass: "banner-page" }, [
+      _c("div", { staticClass: "container" }, [
+        _c("div", { staticClass: "box-title mb-4" }, [
+          _c("h2", { staticClass: "text-center" }, [
+            _vm._v("  Thuê nhà ở khắp cả nước  ")
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "d-flex justify-content-center" }, [
+            _c("p", { staticClass: "m-0 " }, [
+              _vm._v(
+                " Đặt phòng home stay, nhà nghỉ, khách sạn, resort ở mọi nơi bạn dừng chân "
+              )
+            ])
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-12" }, [
+      _c("div", { staticClass: "box-title mb-4" }, [
+        _c("h2", { staticClass: "mb-4" }, [
+          _vm._v("  Những Bài Viết Đã Thích  ")
+        ])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/myAccountComponent.vue?vue&type=template&id=d838c2b2&":
+/*!*********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/myAccountComponent.vue?vue&type=template&id=d838c2b2& ***!
+  \*********************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "container" }, [
+    _c(
+      "div",
+      {
+        staticClass: "dialog-register",
+        attrs: { title: "Thông Tin Tài Khoản" }
+      },
+      [
+        _c(
+          "div",
+          {
+            staticClass: "register-content",
+            staticStyle: {
+              width: "65%",
+              padding: "60px",
+              "margin-left": "15%",
+              border: "1px solid #00000026",
+              "margin-bottom": "50px"
+            }
+          },
+          [
+            _c(
+              "div",
+              { staticClass: "register-body" },
+              _vm._l(_vm.accountData, function(data, index) {
+                return _c(
+                  "div",
+                  { key: data.id, staticClass: "register-form" },
+                  [
+                    _c("div", { staticClass: "form1" }, [
+                      _c(
+                        "div",
+                        {
+                          staticClass: "form1-left",
+                          staticStyle: { flex: "1" }
+                        },
+                        [
+                          _c(
+                            "div",
+                            {
+                              staticClass: "input-register-content",
+                              attrs: { id: "avatar" }
+                            },
+                            [
+                              _c("div", { staticClass: "dialog-avt-img" }, [
+                                _c("input", {
+                                  staticStyle: {
+                                    width: "65%",
+                                    margin: "65px 30px"
+                                  },
+                                  attrs: { type: "file", name: "image" },
+                                  domProps: { value: data.image }
+                                })
+                              ])
+                            ]
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "form1-right" }, [
+                        _c(
+                          "div",
+                          {
+                            staticClass: "modal fade",
+                            attrs: { id: "myModal", role: "dialog" }
+                          },
+                          [
+                            _c("div", { staticClass: "modal-dialog" }, [
+                              _c(
+                                "div",
+                                {
+                                  staticClass: "modal-content",
+                                  staticStyle: { padding: "20px" }
+                                },
+                                [
+                                  _c(
+                                    "form",
+                                    {
+                                      attrs: {
+                                        action: "/repassword",
+                                        method: "get"
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "div",
+                                        {
+                                          staticClass: "dialog-login",
+                                          attrs: { title: "Đăng nhập" }
+                                        },
+                                        [
+                                          _c(
+                                            "div",
+                                            { staticClass: "login-content" },
+                                            [
+                                              _c(
+                                                "div",
+                                                {
+                                                  staticClass: "login-form",
+                                                  staticStyle: {
+                                                    width: "100%",
+                                                    "text-align": "left"
+                                                  }
+                                                },
+                                                [
+                                                  _vm._m(0, true),
+                                                  _vm._v(" "),
+                                                  _vm._m(1, true),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "div",
+                                                    {
+                                                      staticClass:
+                                                        "login-Password"
+                                                    },
+                                                    [
+                                                      _c("input", {
+                                                        directives: [
+                                                          {
+                                                            name: "model",
+                                                            rawName: "v-model",
+                                                            value:
+                                                              _vm.rePassword
+                                                                .newPassword,
+                                                            expression:
+                                                              "rePassword.newPassword"
+                                                          }
+                                                        ],
+                                                        staticClass:
+                                                          "login-input",
+                                                        staticStyle: {
+                                                          width: "100%"
+                                                        },
+                                                        attrs: {
+                                                          name: "newPassword",
+                                                          id: "iplgPassword",
+                                                          type: "password",
+                                                          placeholder:
+                                                            "Nhập mật khẩu mới",
+                                                          require: ""
+                                                        },
+                                                        domProps: {
+                                                          value:
+                                                            _vm.rePassword
+                                                              .newPassword
+                                                        },
+                                                        on: {
+                                                          input: function(
+                                                            $event
+                                                          ) {
+                                                            if (
+                                                              $event.target
+                                                                .composing
+                                                            ) {
+                                                              return
+                                                            }
+                                                            _vm.$set(
+                                                              _vm.rePassword,
+                                                              "newPassword",
+                                                              $event.target
+                                                                .value
+                                                            )
+                                                          }
+                                                        }
+                                                      })
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "div",
+                                                    {
+                                                      staticClass:
+                                                        "login-Password"
+                                                    },
+                                                    [
+                                                      _c("input", {
+                                                        directives: [
+                                                          {
+                                                            name: "model",
+                                                            rawName: "v-model",
+                                                            value:
+                                                              _vm.rePassword
+                                                                .reNewPassword,
+                                                            expression:
+                                                              "rePassword.reNewPassword"
+                                                          }
+                                                        ],
+                                                        staticClass:
+                                                          "login-input",
+                                                        staticStyle: {
+                                                          width: "100%"
+                                                        },
+                                                        attrs: {
+                                                          name: "reNewPassword",
+                                                          id: "iplgPassword",
+                                                          type: "password",
+                                                          placeholder:
+                                                            "Nhập lại mật khẩu mới",
+                                                          require: ""
+                                                        },
+                                                        domProps: {
+                                                          value:
+                                                            _vm.rePassword
+                                                              .reNewPassword
+                                                        },
+                                                        on: {
+                                                          change: _vm.checkPass,
+                                                          input: function(
+                                                            $event
+                                                          ) {
+                                                            if (
+                                                              $event.target
+                                                                .composing
+                                                            ) {
+                                                              return
+                                                            }
+                                                            _vm.$set(
+                                                              _vm.rePassword,
+                                                              "reNewPassword",
+                                                              $event.target
+                                                                .value
+                                                            )
+                                                          }
+                                                        }
+                                                      }),
+                                                      _vm._v(" "),
+                                                      _c(
+                                                        "span",
+                                                        {
+                                                          staticStyle: {
+                                                            color: "red"
+                                                          }
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            " " +
+                                                              _vm._s(
+                                                                _vm.rePassword
+                                                                  .notice
+                                                              ) +
+                                                              " "
+                                                          )
+                                                        ]
+                                                      )
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _vm._m(2, true)
+                                                ]
+                                              )
+                                            ]
+                                          )
+                                        ]
+                                      )
+                                    ]
+                                  )
+                                ]
+                              )
+                            ])
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _vm._m(3, true)
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form3" }, [
+                      _c(
+                        "div",
+                        {
+                          staticClass: "input-register-content",
+                          staticStyle: { flex: "1" },
+                          attrs: { id: "Email" }
+                        },
+                        [
+                          _c("label", [_vm._v("Email")]),
+                          _c("br"),
+                          _vm._v(" "),
+                          _c("input", {
+                            staticClass: "register-input",
+                            attrs: {
+                              id: "inputEmail",
+                              type: "email",
+                              name: "email",
+                              readonly: ""
+                            },
+                            domProps: { value: data.email }
+                          })
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass: "input-register-content",
+                          attrs: { id: "FullName" }
+                        },
+                        [
+                          _vm._m(4, true),
+                          _c("br"),
+                          _vm._v(" "),
+                          _c("input", {
+                            staticClass: "register-input required",
+                            attrs: {
+                              id: "inputFullName",
+                              name: "name",
+                              type: "text",
+                              readonly: ""
+                            },
+                            domProps: { value: data.name }
+                          })
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass: "input-register-content",
+                          attrs: { id: "DateOfBirth" }
+                        },
+                        [
+                          _vm._m(5, true),
+                          _c("br"),
+                          _vm._v(" "),
+                          _c("input", {
+                            staticClass: "register-input required",
+                            attrs: {
+                              id: "inputDateOfBirth",
+                              name: "birthday",
+                              type: "date",
+                              readonly: ""
+                            },
+                            domProps: { value: data.birthday }
+                          })
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass: "input-register-content",
+                          attrs: { id: "CMND" }
+                        },
+                        [
+                          _vm._m(6, true),
+                          _c("br"),
+                          _vm._v(" "),
+                          _c("input", {
+                            staticClass: "register-input required",
+                            attrs: {
+                              id: "inputCMND",
+                              type: "tel",
+                              name: "cmnd",
+                              pattern: "\\d{11,12}",
+                              title:
+                                "Vui lòng kiểm tra lại số chứng minh nhân dân",
+                              readonly: ""
+                            },
+                            domProps: { value: data.CMND }
+                          })
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass: "input-register-content",
+                          staticStyle: { flex: "1" },
+                          attrs: { id: "PhoneNumber" }
+                        },
+                        [
+                          _vm._m(7, true),
+                          _c("br"),
+                          _vm._v(" "),
+                          _c("input", {
+                            staticClass: "register-input required",
+                            attrs: {
+                              id: "inputPhoneNumber",
+                              name: "phone",
+                              type: "tel",
+                              pattern: "\\d{10,11}",
+                              title: "Vui lòng kiểm tra lại số điện thoại",
+                              readonly: ""
+                            },
+                            domProps: { value: data.phone }
+                          })
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass: "input-register-content",
+                          staticStyle: { flex: "1" },
+                          attrs: { id: "Address" }
+                        },
+                        [
+                          _c("label", [_vm._v("Địa chỉ")]),
+                          _c("br"),
+                          _vm._v(" "),
+                          _c("input", {
+                            staticClass: "register-input",
+                            attrs: {
+                              id: "inputAddress",
+                              type: "text",
+                              name: "address",
+                              readonly: ""
+                            },
+                            domProps: { value: data.address }
+                          })
+                        ]
+                      )
+                    ])
+                  ]
+                )
+              }),
+              0
+            )
+          ]
+        )
+      ]
+    )
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass: "login-form-header",
+        staticStyle: { "text-align": "left", "justify-content": "left" }
+      },
+      [
+        _c("img", {
+          attrs: {
+            src:
+              "https://grandetest.com/theme/findhouse-html/images/header-logo2.png"
+          }
+        }),
+        _vm._v(" "),
+        _c("div", { staticClass: "logo-name" }, [_vm._v(" Booking Room ")])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "login-UserName" }, [
+      _c("input", {
+        staticClass: "login-input",
+        staticStyle: { width: "100%" },
+        attrs: {
+          name: "password",
+          id: "iplgUserName",
+          type: "password",
+          placeholder: "Nhập mật khẩu cũ của bạn",
+          require: ""
+        }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "login-button" }, [
+      _c("button", { staticClass: "login", attrs: { type: "submit" } }, [
+        _vm._v("Đổi MK")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "register-footer", staticStyle: { height: "100%" } },
+      [
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-info btn-lg",
+            attrs: {
+              type: "submit",
+              "data-toggle": "modal",
+              "data-target": "#myModal"
+            }
+          },
+          [_vm._v("Đổi Mật Khẩu")]
+        ),
+        _vm._v(" "),
+        _c(
+          "a",
+          {
+            staticClass: "btn btn-info btn-lg",
+            staticStyle: { "margin-left": "10px", width: "60%" },
+            attrs: { href: "/likeRoom", id: "register" }
+          },
+          [
+            _c("span", { staticClass: "Save-text" }, [
+              _vm._v(" Những Phòng Đã Thích")
+            ])
+          ]
+        )
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", [
+      _vm._v("Họ và tên ("),
+      _c("span", { attrs: { id: "label-required" } }, [_vm._v("*")]),
+      _vm._v(")")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", [
+      _vm._v("Ngày sinh ("),
+      _c("span", { attrs: { id: "label-required" } }, [_vm._v("*")]),
+      _vm._v(")")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", [
+      _vm._v("Số CMND/CCCD ("),
+      _c("span", { attrs: { id: "label-required" } }, [_vm._v("*")]),
+      _vm._v(")")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", [
+      _vm._v("Số điện thoại ("),
+      _c("span", { attrs: { id: "label-required" } }, [_vm._v("*")]),
+      _vm._v(")")
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/roomComponnent.vue?vue&type=template&id=23c96b31&":
 /*!*****************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/roomComponnent.vue?vue&type=template&id=23c96b31& ***!
@@ -38751,449 +39844,533 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "container" }, [
+    _vm._m(0),
+    _vm._v(" "),
+    _c("section", { staticClass: "rent" }, [
+      _c("div", { staticClass: "container" }, [
+        _c("div", { staticClass: "row" }, [
+          _vm._m(1),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-lg-4" }, [
+            _c("div", { staticClass: "rent-filter" }, [
+              _c("div", { staticClass: "form-group" }, [
+                _c(
+                  "select",
+                  {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.searchInput.city,
+                        expression: "searchInput.city"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: { name: "city" },
+                    on: {
+                      change: [
+                        function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.$set(
+                            _vm.searchInput,
+                            "city",
+                            $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          )
+                        },
+                        _vm.onSearch
+                      ]
+                    }
+                  },
+                  [
+                    _c("option", { attrs: { value: "null" } }, [
+                      _vm._v(" Chọn tỉnh/thành phố ")
+                    ]),
+                    _vm._v(" "),
+                    _vm._l(_vm.city, function(data, index) {
+                      return _c(
+                        "option",
+                        { key: data.id, domProps: { value: data.id } },
+                        [_vm._v(" " + _vm._s(data.name) + " ")]
+                      )
+                    })
+                  ],
+                  2
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
+                _c(
+                  "select",
+                  {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.searchInput.district,
+                        expression: "searchInput.district"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: { name: "district" },
+                    on: {
+                      change: [
+                        function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.$set(
+                            _vm.searchInput,
+                            "district",
+                            $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          )
+                        },
+                        _vm.onSearch
+                      ]
+                    }
+                  },
+                  [
+                    _c("option", { attrs: { value: "null" } }, [
+                      _vm._v(" Chọn quận/huyện ")
+                    ]),
+                    _vm._v(" "),
+                    _vm._l(_vm.district, function(data, index) {
+                      return _c(
+                        "option",
+                        { key: data.id, domProps: { value: data.id } },
+                        [_vm._v(" " + _vm._s(data.name) + " ")]
+                      )
+                    })
+                  ],
+                  2
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
+                _c(
+                  "select",
+                  {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.searchInput.typeRoom,
+                        expression: "searchInput.typeRoom"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: { name: "typeRoom" },
+                    on: {
+                      change: [
+                        function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.$set(
+                            _vm.searchInput,
+                            "typeRoom",
+                            $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          )
+                        },
+                        _vm.onSearch
+                      ]
+                    }
+                  },
+                  [
+                    _c("option", { domProps: { value: null } }, [
+                      _vm._v(" Chọn loại phòng ")
+                    ]),
+                    _vm._v(" "),
+                    _vm._l(_vm.typeRoom, function(data, index) {
+                      return _c(
+                        "option",
+                        { key: data.id, domProps: { value: data.id } },
+                        [_vm._v(" " + _vm._s(data.name) + " ")]
+                      )
+                    })
+                  ],
+                  2
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
+                _c(
+                  "select",
+                  {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.searchInput.price,
+                        expression: "searchInput.price"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: { name: "price" },
+                    on: {
+                      change: [
+                        function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.$set(
+                            _vm.searchInput,
+                            "price",
+                            $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          )
+                        },
+                        _vm.onSearch
+                      ]
+                    }
+                  },
+                  [
+                    _c("option", { domProps: { value: null } }, [
+                      _vm._v(" Chọn giá phòng (VNĐ)")
+                    ]),
+                    _vm._v(" "),
+                    _c("option", { domProps: { value: 2000000 } }, [
+                      _vm._v(" Dưới 2 triệu ")
+                    ]),
+                    _vm._v(" "),
+                    _c("option", { domProps: { value: 2500000 } }, [
+                      _vm._v(" Từ 2 triệu đến 3 triệu ")
+                    ]),
+                    _vm._v(" "),
+                    _c("option", { domProps: { value: 3500000 } }, [
+                      _vm._v(" Từ 3 triệu đến 4 triệu ")
+                    ]),
+                    _vm._v(" "),
+                    _c("option", { domProps: { value: 4500000 } }, [
+                      _vm._v(" Từ 4 triệu đến 5 triệu ")
+                    ]),
+                    _vm._v(" "),
+                    _c("option", { domProps: { value: 5000000 } }, [
+                      _vm._v(" Trên 5 triệu ")
+                    ])
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
+                _c(
+                  "select",
+                  {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.searchInput.area,
+                        expression: "searchInput.area"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    on: {
+                      change: [
+                        function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.$set(
+                            _vm.searchInput,
+                            "area",
+                            $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          )
+                        },
+                        _vm.onSearch
+                      ]
+                    }
+                  },
+                  [
+                    _c("option", { domProps: { value: null } }, [
+                      _vm._v(" Chọn diện tích (m2)  ")
+                    ]),
+                    _vm._v(" "),
+                    _c("option", { domProps: { value: 15 } }, [
+                      _vm._v("Dưới 15m2")
+                    ]),
+                    _vm._v(" "),
+                    _c("option", { domProps: { value: 20 } }, [
+                      _vm._v("Tư 15m2 đến 25m2")
+                    ]),
+                    _vm._v(" "),
+                    _c("option", { domProps: { value: 30 } }, [
+                      _vm._v("Từ 25m2 đến 35m2 ")
+                    ]),
+                    _vm._v(" "),
+                    _c("option", { domProps: { value: 40 } }, [
+                      _vm._v("Từ 35m2 đến 45m2")
+                    ]),
+                    _vm._v(" "),
+                    _c("option", { domProps: { value: 45 } }, [
+                      _vm._v("Trên 45m2")
+                    ])
+                  ]
+                )
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-lg-8" }, [
+            _c(
+              "div",
+              {
+                staticClass:
+                  "result-alert d-flex align-items-center justify-content-between"
+              },
+              [
+                _c("p", { staticClass: "m-0" }, [
+                  _vm._v(" " + _vm._s(_vm.roomData.length) + " kết quả ")
+                ]),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "sortSelect d-flex align-items-center" },
+                  [
+                    _vm._m(2),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group m-0" }, [
+                      _c(
+                        "select",
+                        {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.sortType,
+                              expression: "sortType"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          on: {
+                            change: [
+                              function($event) {
+                                var $$selectedVal = Array.prototype.filter
+                                  .call($event.target.options, function(o) {
+                                    return o.selected
+                                  })
+                                  .map(function(o) {
+                                    var val = "_value" in o ? o._value : o.value
+                                    return val
+                                  })
+                                _vm.sortType = $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              },
+                              _vm.onSort
+                            ]
+                          }
+                        },
+                        [
+                          _c("option", { domProps: { value: 0 } }, [
+                            _vm._v(" Mới nhất   ")
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { domProps: { value: 1 } }, [
+                            _vm._v(" Giá Phòng Giảm Dần")
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { domProps: { value: 2 } }, [
+                            _vm._v(" Giá Phòng Tăng Dần")
+                          ])
+                        ]
+                      )
+                    ])
+                  ]
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "row result" },
+              _vm._l(
+                _vm.roomData.slice((_vm.page - 1) * 6, _vm.page * 6),
+                function(data) {
+                  return _c("div", { key: data.id, staticClass: "col-md-6" }, [
+                    _c("div", { staticClass: "house-item" }, [
+                      _c("a", { attrs: { href: "/roomDetail/" + data.id } }, [
+                        _c(
+                          "div",
+                          {
+                            staticClass:
+                              "box-img d-flex align-items-center justify-content-center"
+                          },
+                          [
+                            _c("img", {
+                              attrs: { src: data.image, alt: "Ảnh ngôi nhà" }
+                            }),
+                            _vm._v(" "),
+                            _c("p", { staticClass: "tab" })
+                          ]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "info" }, [
+                        _c("p", { staticClass: "cate" }, [
+                          _vm._v(" Giá Phòng "),
+                          _c("span", [
+                            _vm._v(" " + _vm._s(data.price) + " VNĐ")
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("p", { staticClass: "name" }, [
+                          _c(
+                            "a",
+                            { attrs: { href: "/roomDetail/" + data.id } },
+                            [_vm._v(" " + _vm._s(data.title))]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("p", { staticClass: "address" }, [
+                          _c("i", {
+                            staticClass: "fas fa-map-marker-alt mr-2"
+                          }),
+                          _vm._v(" " + _vm._s(data.address))
+                        ]),
+                        _vm._v(" "),
+                        _c("p", { staticClass: "desc" }, [
+                          _vm._v(
+                            "\n                                            Số phòng ngủ: " +
+                              _vm._s(data.quantity) +
+                              ", Diện tích: " +
+                              _vm._s(data.area) +
+                              " m2\n                                        "
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("p", { staticClass: "desc" }, [
+                          _vm._v(
+                            "\n                                            Điện : " +
+                              _vm._s(data.electric_price) +
+                              "VNĐ/1 số , Nước : " +
+                              _vm._s(_vm.water_price) +
+                              "VNĐ/1 khối\n                                        "
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "b",
+                          {
+                            staticClass: "desc",
+                            staticStyle: { color: "black" }
+                          },
+                          [
+                            _vm._v(
+                              "\n                                            Ngày đăng bài : " +
+                                _vm._s(data.public_date) +
+                                "\n                                        "
+                            )
+                          ]
+                        )
+                      ])
+                    ])
+                  ])
+                }
+              ),
+              0
+            ),
+            _vm._v(" "),
+            _c(
+              "ul",
+              { staticClass: "pagination mt-2 d-flex justify-content-center" },
+              _vm._l(_vm.total, function(index) {
+                return _c(
+                  "li",
+                  {
+                    class: _vm.page == index ? "active" : "",
+                    on: {
+                      click: function($event) {
+                        return _vm.changePage(index)
+                      }
+                    }
+                  },
+                  [_vm._v(" " + _vm._s(index))]
+                )
+              }),
+              0
+            )
+          ])
+        ])
+      ])
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("section", { staticClass: "banner-page" }, [
-        _c("div", { staticClass: "container" }, [
-          _c("div", { staticClass: "box-title mb-4" }, [
-            _c("h2", { staticClass: "text-center" }, [
-              _vm._v("  Thuê nhà ở khắp cả nước  ")
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "d-flex justify-content-center" }, [
-              _c("p", { staticClass: "m-0 " }, [
-                _vm._v(
-                  " Đặt phòng home stay, nhà nghỉ, khách sạn, resort ở mọi nơi bạn dừng chân "
-                )
-              ])
-            ])
-          ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("section", { staticClass: "rent" }, [
-        _c("div", { staticClass: "container" }, [
-          _c("div", { staticClass: "row" }, [
-            _c("div", { staticClass: "col-12" }, [
-              _c("div", { staticClass: "box-title mb-4" }, [
-                _c("h2", { staticClass: "mb-4" }, [
-                  _vm._v("  Tìm kiếm chỗ nghỉ  ")
-                ])
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-lg-4" }, [
-              _c("div", { staticClass: "rent-filter" }, [
-                _c("div", { staticClass: "form-group" }, [
-                  _c(
-                    "select",
-                    { staticClass: "select2", attrs: { name: "city", id: "" } },
-                    [
-                      _c("option", { attrs: { value: "0" } }, [
-                        _vm._v(" Chọn địa điểm ")
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "0" } }, [
-                        _vm._v(" Hà Nội ")
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "1" } }, [
-                        _vm._v(" Hải Phòng")
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "2" } }, [
-                        _vm._v(" Đà Nẵng ")
-                      ])
-                    ]
-                  )
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "form-group" }, [
-                  _c(
-                    "select",
-                    {
-                      staticClass: "select2",
-                      attrs: { name: "typedata", id: "" }
-                    },
-                    [
-                      _c("option", { attrs: { value: "0" } }, [
-                        _vm._v(" Category ")
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "0" } }, [
-                        _vm._v(" Home stay  ")
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "1" } }, [
-                        _vm._v(" Nhà nghỉ ")
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "2" } }, [
-                        _vm._v(" Khách sạn  ")
-                      ])
-                    ]
-                  )
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "form-group" }, [
-                  _c(
-                    "select",
-                    {
-                      staticClass: "select2",
-                      attrs: { name: "typedata", id: "" }
-                    },
-                    [
-                      _c("option", { attrs: { value: "0" } }, [
-                        _vm._v(" Chỗ để xe ")
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "0" } }, [
-                        _vm._v(" 1   ")
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "1" } }, [_vm._v(" 2 ")]),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "2" } }, [
-                        _vm._v(" Không giới hạn   ")
-                      ])
-                    ]
-                  )
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "form-group" }, [
-                  _c(
-                    "select",
-                    {
-                      staticClass: "select2",
-                      attrs: { name: "typedata", id: "" }
-                    },
-                    [
-                      _c("option", { attrs: { value: "0" } }, [
-                        _vm._v(" Phòng ngủ ")
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "0" } }, [_vm._v(" 2 ")]),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "1" } }, [_vm._v(" 3 ")]),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "2" } }, [_vm._v(" 4  ")])
-                    ]
-                  )
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "form-group" }, [
-                  _c(
-                    "select",
-                    {
-                      staticClass: "select2",
-                      attrs: { name: "typedata", id: "" }
-                    },
-                    [
-                      _c("option", { attrs: { value: "0" } }, [
-                        _vm._v(" Giá thuê / đêm  ")
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "0" } }, [
-                        _vm._v(" Dưới 2 triệu ")
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "1" } }, [
-                        _vm._v(" Từ 2 đến 3 triệu ")
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "2" } }, [
-                        _vm._v(" Trên 3 triệu ")
-                      ])
-                    ]
-                  )
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "form-group mb-0" }, [
-                  _c("button", { staticClass: "search" }, [
-                    _vm._v(" Tìm kiếm ")
-                  ])
-                ])
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-lg-8" }, [
-              _c(
-                "div",
-                {
-                  staticClass:
-                    "result-alert d-flex align-items-center justify-content-between"
-                },
-                [
-                  _c("p", { staticClass: "m-0" }, [_vm._v(" 9 kết quả ")]),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticClass: "sortSelect d-flex align-items-center" },
-                    [
-                      _c("p", { staticClass: "m-0 mr-2" }, [
-                        _c("strong", [_vm._v(" Sắp xếp theo:  ")])
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "form-group m-0" }, [
-                        _c(
-                          "select",
-                          {
-                            staticClass: "select2",
-                            attrs: { name: "typedata", id: "" }
-                          },
-                          [
-                            _c("option", { attrs: { value: "0" } }, [
-                              _vm._v(" Mới nhất   ")
-                            ]),
-                            _vm._v(" "),
-                            _c("option", { attrs: { value: "1" } }, [
-                              _vm._v(" Nhiều người thuê ")
-                            ]),
-                            _vm._v(" "),
-                            _c("option", { attrs: { value: "2" } }, [
-                              _vm._v(" Gần nhất   ")
-                            ])
-                          ]
-                        )
-                      ])
-                    ]
-                  )
-                ]
-              ),
-              _vm._v(" "),
-              _c("div", { staticClass: "row result" }, [
-                _c("div", { staticClass: "col-md-6" }, [
-                  _c("div", { staticClass: "house-item" }, [
-                    _c(
-                      "div",
-                      {
-                        staticClass:
-                          "box-img d-flex align-items-center justify-content-center"
-                      },
-                      [
-                        _c("img", {
-                          attrs: {
-                            src:
-                              "https://images.pexels.com/photos/2079249/pexels-photo-2079249.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-                            alt: "Ảnh ngôi nhà"
-                          }
-                        }),
-                        _vm._v(" "),
-                        _c("p", { staticClass: "tab" }, [
-                          _c("span", [_vm._v(" Discount")])
-                        ]),
-                        _vm._v(" "),
-                        _c("p", { staticClass: "price m-0" }, [
-                          _c("span", [_vm._v(" $1000")]),
-                          _vm._v(" / month")
-                        ])
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "info" }, [
-                      _c("p", { staticClass: "cate" }, [_vm._v(" Homstay ")]),
-                      _vm._v(" "),
-                      _c("p", { staticClass: "name" }, [
-                        _c("a", { attrs: { href: "#" } }, [
-                          _vm._v(" Ngôi nhà mất lộc")
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("p", { staticClass: "address" }, [
-                        _c("i", { staticClass: "fas fa-map-marker-alt mr-2" }),
-                        _vm._v(" 42, Yên Hòa, Cầu Giấy")
-                      ]),
-                      _vm._v(" "),
-                      _c("p", { staticClass: "desc" }, [
-                        _vm._v(
-                          "\n                                        2 phòng ngủ, 1 phòng khách, có chỗ để ô tô\n                                    "
-                        )
-                      ])
-                    ])
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-md-6" }, [
-                  _c("div", { staticClass: "house-item" }, [
-                    _c(
-                      "div",
-                      {
-                        staticClass:
-                          "box-img d-flex align-items-center justify-content-center"
-                      },
-                      [
-                        _c("img", {
-                          attrs: {
-                            src:
-                              "https://images.pexels.com/photos/1054974/pexels-photo-1054974.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-                            alt: "Ảnh ngôi nhà"
-                          }
-                        }),
-                        _vm._v(" "),
-                        _c("p", { staticClass: "tab" }, [
-                          _c("span", [_vm._v(" Discount")])
-                        ]),
-                        _vm._v(" "),
-                        _c("p", { staticClass: "price m-0" }, [
-                          _c("span", [_vm._v(" $2000")]),
-                          _vm._v(" / month")
-                        ])
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "info" }, [
-                      _c("p", { staticClass: "cate" }, [_vm._v(" Resort ")]),
-                      _vm._v(" "),
-                      _c("p", { staticClass: "name" }, [
-                        _c("a", { attrs: { href: "#" } }, [
-                          _vm._v(" Luxury Family ")
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("p", { staticClass: "address" }, [
-                        _c("i", { staticClass: "fas fa-map-marker-alt mr-2" }),
-                        _vm._v(" 44, Trần Thái Tông, Cầu Giấy")
-                      ]),
-                      _vm._v(" "),
-                      _c("p", { staticClass: "desc" }, [
-                        _vm._v(
-                          "\n                                        3 phòng ngủ, 1 phòng khách\n                                    "
-                        )
-                      ])
-                    ])
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-md-6" }, [
-                  _c("div", { staticClass: "house-item" }, [
-                    _c(
-                      "div",
-                      {
-                        staticClass:
-                          "box-img d-flex align-items-center justify-content-center"
-                      },
-                      [
-                        _c("img", {
-                          attrs: {
-                            src:
-                              "https://images.pexels.com/photos/584399/living-room-couch-interior-room-584399.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-                            alt: "Ảnh ngôi nhà"
-                          }
-                        }),
-                        _vm._v(" "),
-                        _c("p", { staticClass: "tab" }, [
-                          _c("span", [_vm._v(" Discount")])
-                        ]),
-                        _vm._v(" "),
-                        _c("p", { staticClass: "price m-0" }, [
-                          _c("span", [_vm._v(" $1000")]),
-                          _vm._v(" / month")
-                        ])
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "info" }, [
-                      _c("p", { staticClass: "cate" }, [_vm._v(" Resort  ")]),
-                      _vm._v(" "),
-                      _c("p", { staticClass: "name" }, [
-                        _c("a", { attrs: { href: "#" } }, [
-                          _vm._v(" Đẳng cấp 5 sao ")
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("p", { staticClass: "address" }, [
-                        _c("i", { staticClass: "fas fa-map-marker-alt mr-2" }),
-                        _vm._v(" IPH , Xuân Thủy, Cầu Giấy")
-                      ]),
-                      _vm._v(" "),
-                      _c("p", { staticClass: "desc" }, [
-                        _vm._v(
-                          "\n                                        Có sân goft\n                                    "
-                        )
-                      ])
-                    ])
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-md-6" }, [
-                  _c("div", { staticClass: "house-item" }, [
-                    _c(
-                      "div",
-                      {
-                        staticClass:
-                          "box-img d-flex align-items-center justify-content-center"
-                      },
-                      [
-                        _c("img", {
-                          attrs: {
-                            src:
-                              "https://images.pexels.com/photos/2079249/pexels-photo-2079249.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-                            alt: "Ảnh ngôi nhà"
-                          }
-                        }),
-                        _vm._v(" "),
-                        _c("p", { staticClass: "tab" }, [
-                          _c("span", [_vm._v(" Discount")])
-                        ]),
-                        _vm._v(" "),
-                        _c("p", { staticClass: "price m-0" }, [
-                          _c("span", [_vm._v(" $1000")]),
-                          _vm._v(" / month")
-                        ])
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "info" }, [
-                      _c("p", { staticClass: "cate" }, [_vm._v(" Hotel  ")]),
-                      _vm._v(" "),
-                      _c("p", { staticClass: "name" }, [
-                        _c("a", { attrs: { href: "#" } }, [
-                          _vm._v(" Khách sạn 6 sao ")
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("p", { staticClass: "address" }, [
-                        _c("i", { staticClass: "fas fa-map-marker-alt mr-2" }),
-                        _vm._v(" 42, Yên Hòa, Cầu Giấy")
-                      ]),
-                      _vm._v(" "),
-                      _c("p", { staticClass: "desc" }, [
-                        _vm._v(
-                          "\n                                        2 phòng ngủ, 1 phòng khách, có chỗ để ô tô\n                                    "
-                        )
-                      ])
-                    ])
-                  ])
-                ])
-              ]),
-              _vm._v(" "),
-              _c(
-                "ul",
-                {
-                  staticClass: "pagination mt-2 d-flex justify-content-center"
-                },
-                [
-                  _c("li", [_vm._v(" 1")]),
-                  _vm._v(" "),
-                  _c("li", { staticClass: "active" }, [_vm._v(" 2")]),
-                  _vm._v(" "),
-                  _c("li", [_vm._v(" 3")]),
-                  _vm._v(" "),
-                  _c("li", [_vm._v(" 4")]),
-                  _vm._v(" "),
-                  _c("li", [_vm._v(" 5")])
-                ]
+    return _c("section", { staticClass: "banner-page" }, [
+      _c("div", { staticClass: "container" }, [
+        _c("div", { staticClass: "box-title mb-4" }, [
+          _c("h2", { staticClass: "text-center" }, [
+            _vm._v("  Thuê nhà ở khắp cả nước  ")
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "d-flex justify-content-center" }, [
+            _c("p", { staticClass: "m-0 " }, [
+              _vm._v(
+                " Đặt phòng home stay, nhà nghỉ, khách sạn, resort ở mọi nơi bạn dừng chân "
               )
             ])
           ])
         ])
       ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-12" }, [
+      _c("div", { staticClass: "box-title mb-4" }, [
+        _c("h2", { staticClass: "mb-4" }, [_vm._v("  Tìm kiếm chỗ nghỉ  ")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", { staticClass: "m-0 mr-2" }, [
+      _c("strong", [_vm._v(" Sắp xếp theo:  ")])
     ])
   }
 ]
@@ -52000,6 +53177,8 @@ Vue.component('home-component', __webpack_require__(/*! ./components/homeCompone
 Vue.component('room-component', __webpack_require__(/*! ./components/roomComponnent */ "./resources/js/components/roomComponnent.vue")["default"]);
 Vue.component('room-detail-component', __webpack_require__(/*! ./components/roomDetailComponent */ "./resources/js/components/roomDetailComponent.vue")["default"]);
 Vue.component('search-component', __webpack_require__(/*! ./components/searchComponent */ "./resources/js/components/searchComponent.vue")["default"]);
+Vue.component('account-component', __webpack_require__(/*! ./components/myAccountComponent */ "./resources/js/components/myAccountComponent.vue")["default"]);
+Vue.component('likeroom-component', __webpack_require__(/*! ./components/likeRoomComponent */ "./resources/js/components/likeRoomComponent.vue")["default"]);
 var app = new Vue({
   el: '#app'
 });
@@ -52197,6 +53376,144 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_homeComponent_vue_vue_type_template_id_e52ce0ba___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_homeComponent_vue_vue_type_template_id_e52ce0ba___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/likeRoomComponent.vue":
+/*!*******************************************************!*\
+  !*** ./resources/js/components/likeRoomComponent.vue ***!
+  \*******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _likeRoomComponent_vue_vue_type_template_id_b03e6060___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./likeRoomComponent.vue?vue&type=template&id=b03e6060& */ "./resources/js/components/likeRoomComponent.vue?vue&type=template&id=b03e6060&");
+/* harmony import */ var _likeRoomComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./likeRoomComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/likeRoomComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _likeRoomComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _likeRoomComponent_vue_vue_type_template_id_b03e6060___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _likeRoomComponent_vue_vue_type_template_id_b03e6060___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/likeRoomComponent.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/likeRoomComponent.vue?vue&type=script&lang=js&":
+/*!********************************************************************************!*\
+  !*** ./resources/js/components/likeRoomComponent.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_likeRoomComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./likeRoomComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/likeRoomComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_likeRoomComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/likeRoomComponent.vue?vue&type=template&id=b03e6060&":
+/*!**************************************************************************************!*\
+  !*** ./resources/js/components/likeRoomComponent.vue?vue&type=template&id=b03e6060& ***!
+  \**************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_likeRoomComponent_vue_vue_type_template_id_b03e6060___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./likeRoomComponent.vue?vue&type=template&id=b03e6060& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/likeRoomComponent.vue?vue&type=template&id=b03e6060&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_likeRoomComponent_vue_vue_type_template_id_b03e6060___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_likeRoomComponent_vue_vue_type_template_id_b03e6060___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/myAccountComponent.vue":
+/*!********************************************************!*\
+  !*** ./resources/js/components/myAccountComponent.vue ***!
+  \********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _myAccountComponent_vue_vue_type_template_id_d838c2b2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./myAccountComponent.vue?vue&type=template&id=d838c2b2& */ "./resources/js/components/myAccountComponent.vue?vue&type=template&id=d838c2b2&");
+/* harmony import */ var _myAccountComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./myAccountComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/myAccountComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _myAccountComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _myAccountComponent_vue_vue_type_template_id_d838c2b2___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _myAccountComponent_vue_vue_type_template_id_d838c2b2___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/myAccountComponent.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/myAccountComponent.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************!*\
+  !*** ./resources/js/components/myAccountComponent.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_myAccountComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./myAccountComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/myAccountComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_myAccountComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/myAccountComponent.vue?vue&type=template&id=d838c2b2&":
+/*!***************************************************************************************!*\
+  !*** ./resources/js/components/myAccountComponent.vue?vue&type=template&id=d838c2b2& ***!
+  \***************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_myAccountComponent_vue_vue_type_template_id_d838c2b2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./myAccountComponent.vue?vue&type=template&id=d838c2b2& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/myAccountComponent.vue?vue&type=template&id=d838c2b2&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_myAccountComponent_vue_vue_type_template_id_d838c2b2___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_myAccountComponent_vue_vue_type_template_id_d838c2b2___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

@@ -19,6 +19,10 @@ Route::get('/homeApi', 'FrontendController@homeApi');
 Route::get('/cheapHomeApi', 'FrontendController@cheapHomeApi');
 //room
 Route::get('/room', 'FrontendController@room')->name('room');
+Route::get('roomApi', 'FrontendController@roomApi')->name('roomApi');
+Route::get('/cityApi','FrontendController@cityApi');
+Route::get('/districtApi','FrontendController@districtApi');
+Route::get('/roomTypeApi','FrontendController@roomTypeApi');
 Route::get('/roomDetail/{id}', 'FrontendController@roomDetail')->name('roomdetail');
 Route::get('/roomDetailApi/{id}','FrontendController@roomDetailApi');
 Route::get('/roomFacilitiesApi/{id}','FrontendController@roomFacilitiesApi');
@@ -28,6 +32,7 @@ Route::post('login', 'FrontendController@customerLogin')->name('login');
 Route::get('logout','FrontendController@logout')->name('logout');
 route::get('/register','FrontendController@register')->name('frontRegister');
 Route::post('postRegister', 'FrontendController@CustomerRegister')->name('register');
+Route::get('/repassword', 'FrontendController@rePassword')->name('repassword');
 //gg
 Route::get('/user/getAllRoomViewed', 'UserViewedController@getAllRoomViewed')->name('userviewed.getAllRoomViewed');
 Route::get('/user/storeRoomViewed/{user_id}/{room_id}', 'UserViewedController@storeViewed')->name('userviewed.store');
@@ -39,7 +44,15 @@ Route::get('/search', 'FrontendController@search')->name('frontend.search');
 Route::get('/user/search', 'FrontendController@searchApi')->name('user.search');
 //cmt like
 Route::post('/like', 'FrontendController@customerLike')->name('like');
-
+Route::post('/report', 'FrontendController@reportRoom')->name('report');
+Route::post('/comment', 'FrontendController@commentVote')->name('comment');
+Route::get('allComment','FrontendController@allComment')->name('allComment');
+Route::get('allCommentApi', 'FrontendController@getCommentApi');
+//myaccount
+Route::get('/myaccount', 'FrontendController@myAccount')->name('myaccount');
+Route::get('/accountApi', 'FrontendController@accountApi');
+Route::get('/likeRoom', 'FrontendController@likeRoom');
+Route::get('/likeRoomApi', 'FrontendController@likeRoomApi');
 // Admin
 Route::get('/admin/logout', 'AdminController@logout')->name('admin.logout');
 Route::post('/admin/postLogin', 'AdminController@postLogin')->name('admin.postLogin');

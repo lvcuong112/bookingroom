@@ -21,11 +21,12 @@
                                 </div>
                                 <div class="input-register-content" id="Password" style="flex: 1;" >
                                     <label>Mật khẩu (<span id="label-required">*</span>)</label><br>
-                                    <input class="register-input required" id="inputPassword" name="password" type="password" required>
+                                    <input class="register-input required" id="password" name="password" type="password" required>
                                 </div>
                                 <div class="input-register-content" id="Password" style="flex: 1;" >
                                     <label>Nhập lại mật khẩu (<span id="label-required">*</span>)</label><br>
-                                    <input class="register-input required" id="inputPassword" name="rePassword" type="password" required>
+                                    <input class="register-input required" id="rePassword" name="rePassword" type="password" oninput="checkPass()" required>
+                                    <span class="" id="checkPass" style="color: red" ></span>
                                 </div>
                                 <div class="input-register-content" id="Password" style="flex: 1;" >
                                     <label>Đăng kí dưới tư cách là (<span id="label-required">*</span>)</label><br>
@@ -66,22 +67,4 @@
             </form>
         </div>
     </div>
-
-<script>
-    function OKRegisterClick() {
-        var okie = true; //chua co loi
-        $('#register').click(function () {
-            if($('#inputFullName').val() == ""){
-                $('#inputFullName').addClass('importain');
-                okie = false;
-            }
-            else if ($('#inputCMND').val() == ""){
-                $('#inputCMND').addClass('importain');
-                okie = false;
-            }
-            if (okie) alert('Đăng ký thành công')
-
-        });
-    }
-</script>
 @endsection

@@ -125,6 +125,16 @@
             ]
         });
     }
+    function checkPass() {
+        let pass = document.getElementById('password').value;
+        let rePass = document.getElementById('rePassword').value;
+        if (pass != rePass) {
+            document.getElementById('checkPass').innerHTML = 'Mật khẩu không trùng khớp';
+        }else {
+            document.getElementById('checkPass').innerHTML = '';
+        }
+
+    }
 </script>
 </body>
 </html>

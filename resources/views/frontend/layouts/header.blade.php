@@ -2,7 +2,7 @@
     <div class="container-fluid d-flex justify-content-between align-items-center container-lg">
         <div class="logo d-flex align-item-center">
             <a href="/Home"><img src="https://grandetest.com/theme/findhouse-html/images/header-logo2.png" /></a>
-            <span class="ml-2"> Thuê Trọ </span>
+            <span class="ml-2"> Booking Room </span>
             <div class="box-search ml-5 d-flex align-item-center">
                 <input type="text" name="search" placeholder="Tìm kiếm?">
                 <button> <i class="fas fa-search"></i> </button>

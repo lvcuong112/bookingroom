@@ -11,8 +11,12 @@ use App\Room_type;
 use App\District;
 use App\City;
 use App\User;
+use App\User_comment;
 use App\User_like;
+use App\User_views;
+use App\User_vote;
 use App\UserAcc;
+use App\User_report;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -34,7 +38,7 @@ class FrontendController
     }
     public function homeApi()  // api trang chủ
     {
-        $roomApi = Room::orderBy('views', 'desc')->limit(8)->get();
+        $roomApi = Room::orderBy('views', 'desc')->where(['is_active' => 1])->limit(8)->get();
         return json_encode($roomApi);
     }
     public function cheapHomeApi() // top phòng trọ rẻ nhất
@@ -43,12 +47,33 @@ class FrontendController
         return json_encode($roomApi);
     }
     //room
-    public function room()
+    public function room ()
     {
         $roomType = Room_type::all();
         return view('frontend.room', [
             'roomType' => $roomType
         ]);
+    }
+    public function roomApi ()
+    {
+        $roomData = Room::where(['is_active' => 1])->get();
+        return json_encode($roomData);
+
+    }
+    public function cityApi ()
+    {
+        $dataCity = City::all();
+        return json_encode($dataCity);
+    }
+    public function districtApi ()
+    {
+        $dataDistrict = District::all();
+        return json_encode($dataDistrict);
+    }
+    public function roomTypeApi ()
+    {
+        $dataRoomType = Room_type::all();
+        return json_encode($dataRoomType);
     }
     public function roomDetail($id)
     {
@@ -56,12 +81,12 @@ class FrontendController
         $roomId = $data->id;
         $roomType = Room_type::all();
         $imageRoomDetail = DB::table('room_image')->where(['room_image.room_id' => $id])->get();
-        $relateRoom = DB::table('room')->where(['room.roomType_id' => $data->roomType_id])->limit(7)->get();
+        $countLike = User_like::where(['room_id' => $roomId])->count();
         return view('frontend.roomdetail', [
             'roomType' => $roomType,
             'imageRoomDetail' => $imageRoomDetail,
-            'relateRoom' => $relateRoom,
-            'roomId' => $roomId
+            'roomId' => $roomId,
+            'countLike' => $countLike
         ]);
     }
     public function roomDetailApi($id)
@@ -167,6 +192,57 @@ class FrontendController
             return redirect(route('frontRegister'))->with('msg','Tài khoản đã tồn tại');
         }
     }
+    public function myAccount () {
+        return view('frontend.myaccount');
+    }
+    public function accountApi (Request $request)
+    {
+        $userData = $request->session('customer')->get('customer');
+        $customerData = UserAcc::where(['email' => $userData])->get();
+        foreach ($customerData as $data) {
+            $userId = $data->id;
+        }
+        $info = UserAcc::where(['id' => $userId])->get();
+        return json_encode($info);
+    }
+    public function rePassword (Request $request)
+    {
+        $userData = $request->session('customer')->get('customer');
+        $customerData = UserAcc::where(['email' => $userData])->get();
+        foreach ($customerData as $data) {
+            $userId = $data->id;
+        }
+        $customer = UserAcc::findorFail($userId);
+        $oldPass = md5($request->input('password'));
+        $newPass = md5($request->input('newPassword'));
+        $checkPass = UserAcc::where(['id' => $userId])->get();
+        foreach ($checkPass as $data) {
+            $checkPass = $data->password;
+        }
+        if ($oldPass != $checkPass){
+            return redirect()->back()->with('msg', 'Mật Khẩu của bạn nhập không đúng . Xin vui lòng kiểm tra lại !!');
+        } else {
+            $customer->password = $newPass;
+            $customer->save();
+            return redirect()->back()->with('msg', 'Đổi mật khẩu thành công !!');
+        }
+    }
+    public function likeRoom ()
+    {
+        return view('frontend.likeRoom');
+    }
+    public function likeRoomApi (Request $request)
+    {
+        $userData = $request->session('customer')->get('customer');
+        $customerData = UserAcc::where(['email' => $userData])->get();
+        foreach ($customerData as $data) {
+            $userId = $data->id;
+        }
+        $likeRoom = DB:: table('user_like')->join('room' , 'room.id', '=', 'user_like.room_id')
+                                                ->where(['user_like.user_id' => $userId])->get();
+        return json_encode($likeRoom);
+    }
+
     //search
     public function search ()
     {
@@ -214,5 +290,64 @@ class FrontendController
             return redirect()->back()->with('msg', 'Bạn đã thích bài viết này !!');
         }
 
+    }
+    public function reportRoom (Request $request)
+    {
+        $userData = $request->session('customer')->get('customer');
+        $customerData = UserAcc::where(['email' => $userData])->get();
+        foreach ($customerData as $data) {
+            $userId = $data->id;
+        }
+        $roomId = $request->input('roomId');
+        $title = $request->input('title');
+        $content = $request->input('content');
+        $created_at = date(now());
+
+        User_report::insert([
+            'receive_id' => $roomId,
+            'title' => $title,
+            'content' => $content,
+            'sender_id' => $userId,
+            'created_at' => $created_at
+        ]);
+        return redirect()->back()->with('msg','Cảm ơn bạn đã có những phản hồi về cho đội ngũ Admin !!');
+    }
+    public function commentVote (Request $request)
+    {
+        $userData = $request->session('customer')->get('customer');
+        $customerData = UserAcc::where(['email' => $userData])->get();
+        foreach ($customerData as $data) {
+            $userId = $data->id;
+        }
+        $roomId = $request->input('roomId');
+        $comment = $request->input('content');
+        $created_at = date(now());
+        $vote = $request->input('vote');
+
+        User_comment::insert([
+            'user_id' => $userId,
+            'room_id' => $roomId,
+            'comment' => $comment,
+            'created_at' => $created_at
+        ]);
+        User_vote::insert([
+            'user_id' => $userId,
+            'room_id' => $roomId,
+            'star' => $vote,
+            'created_at' => $created_at
+        ]);
+        return redirect()->back()->with('msg','Bình luận của bạn đã được gửi . Vui lòng đợi Admin duyệt');
+    }
+    public function allComment (Request $request) {
+        $roomId = $request->input('roomId');
+        $data = DB::table('user_comment')
+                ->join('user_vote', 'user_comment.room_id', '=', 'user_vote.room_id')
+                ->where([
+                    'user_comment.room_id' => $roomId,
+                    'user_comment.is_approved' => 1
+                ])->get();
+        return view('frontend.comment',[
+            'data' => $data
+        ]);
     }
 }
