@@ -39,6 +39,7 @@ Route::get('/user/storeRoomViewed/{user_id}/{room_id}', 'UserViewedController@st
 Route::get('/user/storeVoted/{user_id}/{room_id}/{count_star}', 'UserVotedController@storeVoted')->name('uservoted.store');
 Route::get('/user/storeLiked/{user_id}/{room_id}', 'UserLikedController@storeLiked')->name('userliked.store');
 Route::get('/admin/login', 'AdminController@login')->name('admin.login');
+Route::get('/owner/login', 'OwnerController@login')->name('owner.login');
 //fillter
 Route::get('/search', 'FrontendController@search')->name('frontend.search');
 Route::get('/user/search', 'FrontendController@searchApi')->name('user.search');
@@ -81,11 +82,11 @@ Route::group(['prefix' => 'admin','as' => 'admin.', 'middleware' => ['checkLogin
 //owner
 Route::get('/owner/register', 'OwnerController@register');
 Route::post('/owner/postRegister', 'OwnerController@postRegister')->name('admin.postRegister');
-Route::group(['prefix' => 'owner','as' => 'owner.'], function() {
-
+Route::get('/owner/logout', 'OwnerController@logout')->name('owner.logout');
+Route::post('/owner/postLogin', 'OwnerController@postLogin')->name('owner.postLogin');
+Route::group(['prefix' => 'owner','as' => 'owner.', 'middleware' => ['CheckLoginOwner']], function() {
     Route::get('/','OwnerController@getAllRoom')->name('room.index');
-
-    Route::get('/register', 'OwnerController@register'); // chua co view?
+    Route::get('/register', 'OwnerController@register')->name('register');
     Route::post('/postRegister', 'OwnerController@postRegister')->name('postRegister'); // chua lam
     Route::get('/show/{id}', 'OwnerController@showRoomDetail')->name('room.show');
     Route::get('/create', 'OwnerController@viewCreateRoom')->name('room.create');

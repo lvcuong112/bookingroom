@@ -33,11 +33,18 @@
                     <a href="{{ route('owner.room.index') }}"> QL Nhà Trọ </a>
                 </li>
             @else
-                <li>
-                    <a type="button" data-toggle="modal" data-target="#myModalLogin">Đăng Nhập</a>
+                <li id="drop">
+                    <a href="">Đăng Nhập</a>
+                    <ul class="sub-drop">
+                        <li style="display: none" ><a type="button" data-toggle="modal" data-target="#myModalLogin">Đăng Nhập</a></li>
+                        <li style="display: none"><a href="/owner">Đăng Nhập Chủ Trọ</a></li>
+                    </ul>
                 </li>
                 <li>
                     <a href="/register"> Đăng ký </a>
+                </li>
+                <li>
+                    <a href="{{ route('owner.register') }}">Đăng kí Chủ Trọ</a>
                 </li>
             @endif
         </ul>

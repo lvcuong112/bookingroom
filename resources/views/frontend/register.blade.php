@@ -32,7 +32,6 @@
                                     <label>Đăng kí dưới tư cách là (<span id="label-required">*</span>)</label><br>
                                     <select name="roleId" id="" style="height: 40px; box-sizing: border-box;border: 1px solid #D2D2D2;border-radius: 5px;width: 100%;padding: 0 20px;">
                                         <option value="3"> Khách Hàng </option>
-                                        <option value="2"> Chủ Trọ </option>
                                     </select>
                                 </div>
                             </div>

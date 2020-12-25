@@ -17,7 +17,64 @@ use Illuminate\Support\Facades\DB;
 
 class OwnerController extends Controller
 {
-//     Controller nay chua test dc gi vi chua co frontend, du lieu, route
+    public function  login() {
+        if(!Auth::check()) {
+            return view('owner.login');
+        } else {
+
+            $user = Auth::user();
+            if($user->role_id == 2 ) {
+                return redirect(route('owner.room.index'));
+            } else if($user->role_id == 1 || $user->role_id == 3) {
+                return redirect('/');
+            }
+        }
+    }
+
+    public function postLogin(Request $request)
+    {
+        //validate du lieu
+        $request->validate([
+            'email' => 'required|string|email|max:255',
+            'password' => 'required|string|min:6'
+        ]);
+
+        $data = [
+            'email' => $request->input('email'),
+            'password' => $request->input('password')
+        ];
+
+
+        // check success
+        if (Auth::attempt($data, $request->has('remember'))) {
+            $user = Auth::user();
+            if($user->is_active == 0) {
+                Auth::logout();
+                return redirect()->back()->with('msg', 'Tài khoản của bạn chưa được kích hoạt');
+            } else {
+                if($user->role_id == 2 ) {
+                    return redirect(route('owner.room.index'));
+                } else if($user->role_id == 1) {
+                    return redirect('/');
+                }
+            }
+        }
+        return redirect()->back()->with('msg', 'Email hoặc Password không chính xác');
+    }
+
+    public function logout()
+    {
+        $user = Auth::user();
+        Auth::logout();
+        // chuyển về trang đăng nhập
+        if($user->role_id == 2) {
+            return redirect()->route('owner.login');
+        }
+        else if ($user->role_id == 1 || $user->role_id == 3) {
+            return redirect('/');
+        }
+    }
+
     public function getAllRoom()
     {
         $user = Auth::user();
@@ -33,7 +90,6 @@ class OwnerController extends Controller
         return view('owner.room.index', [
             'list' => $list
         ]);
-        // or return json ?
     }
 
     public function getAllUnApprovedRoom()

@@ -80,7 +80,7 @@
                 <div class="col-xs-8">
                     <div class="checkbox icheck">
                         <label>
-                             <a href="{{route('admin.login')}}"><span> Đã có tài khoản ?</span></a>
+                             <a href="{{route('owner.login')}}"><span> Đã có tài khoản ?</span></a>
                         </label>
                     </div>
                 </div>

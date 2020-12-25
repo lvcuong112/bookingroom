@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 
-class CheckLogin
+class CheckLoginOwner
 {
     /**
      * Handle an incoming request.
@@ -21,22 +21,21 @@ class CheckLogin
         {
             $user = Auth::user();
             // check quyền admin && trạng thái hoạt động
-            if ($user->role_id == 1 && $user->is_active == 1 )
+            if ($user->role_id == 2 && $user->is_active == 1 )
             {
                 return $next($request);
             }
-            else if (($user->role_id == 2 || $user->role_id == 3) && $user->is_active == 1 )
+            else if (($user->role_id == 1 || $user->role_id == 3) && $user->is_active == 1 )
             {
                 return redirect('/');
             }
             else
             {
                 Auth::logout();
-                return redirect()->route('admin.login');
+                return redirect()->route('owner.login');
             }
         }
 
-        return redirect()->route('admin.login');
+        return redirect()->route('owner.login');
     }
 }
-
