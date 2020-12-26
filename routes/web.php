@@ -93,8 +93,9 @@ Route::group(['prefix' => 'owner','as' => 'owner.', 'middleware' => ['CheckLogin
     Route::get('/create', 'OwnerController@viewCreateRoom')->name('room.create');
     Route::post('/postCreate', 'OwnerController@store')->name('room.store');
     Route::get('/edit/{id}', 'OwnerController@viewEditRoom')->name('room.edit');
-    Route::post('/postEdit', 'OwnerController@update')->name('room.update');
+    Route::post('/postEdit/{id}', 'OwnerController@update')->name('room.update');
     Route::post('/extend/{roomId}', 'OwnerController@viewExtend')->name('room.extend');
+    Route::post('/postExtend', 'OwnerController@postExtend')->name('postExtend');
 //    Route::post('/extend/{roomId}', 'OwnerController@viewExtend')->name('room.extend');
     Route::get('/requestEditRoom/{roomId}', 'OwnerController@requestEditRoom')->name('room.requestEdit');
     Route::post('/sendRequestEditRoom', 'OwnerController@sendRequestEditRoom')->name('room.sendRequestEditRoom');

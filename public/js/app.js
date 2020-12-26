@@ -2535,7 +2535,8 @@ __webpack_require__.r(__webpack_exports__);
       },
       sortType: null,
       total: 0,
-      page: 1
+      page: 1,
+      allDistrict: []
     };
   },
   created: function created() {
@@ -2579,7 +2580,7 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get('/districtApi').then(function (res) {
         if (res.status === 200) {
-          _this3.district = res.data;
+          _this3.allDistrict = res.data;
         }
       })["catch"](function () {
         console.log(err);
@@ -2596,27 +2597,37 @@ __webpack_require__.r(__webpack_exports__);
         console.log(err);
       });
     },
-    onSearch: function onSearch() {
+    filterDistrict: function filterDistrict() {
       var _this5 = this;
+
+      this.district = [];
+      this.allDistrict.forEach(function (district) {
+        if (district.city_id == _this5.searchInput.city) {
+          _this5.district.push(district);
+        }
+      });
+    },
+    onSearch: function onSearch() {
+      var _this6 = this;
 
       var roomFilter = [];
       this.allRoom.forEach(function (room) {
         var check = true;
 
-        if (_this5.searchInput.typeRoom != null && room.roomType_id != _this5.searchInput.typeRoom) {
+        if (_this6.searchInput.typeRoom != null && room.roomType_id != _this6.searchInput.typeRoom) {
           check = false;
         }
 
-        if (_this5.searchInput.district != null && room.district_id != _this5.searchInput.district) {
+        if (_this6.searchInput.district != null && room.district_id != _this6.searchInput.district) {
           check = false;
         }
 
-        if (_this5.searchInput.city != null && room.city_id != _this5.searchInput.city) {
+        if (_this6.searchInput.city != null && room.city_id != _this6.searchInput.city) {
           check = false;
         }
 
-        if (_this5.searchInput.price != null) {
-          var price = _this5.searchInput.price;
+        if (_this6.searchInput.price != null) {
+          var price = _this6.searchInput.price;
 
           switch (price) {
             case 2000000:
@@ -2641,8 +2652,8 @@ __webpack_require__.r(__webpack_exports__);
           }
         }
 
-        if (_this5.searchInput.area != null) {
-          var area = _this5.searchInput.area;
+        if (_this6.searchInput.area != null) {
+          var area = _this6.searchInput.area;
 
           switch (area) {
             case 15:
@@ -39887,7 +39898,10 @@ var render = function() {
                               : $$selectedVal[0]
                           )
                         },
-                        _vm.onSearch
+                        function($event) {
+                          _vm.onSearch()
+                          _vm.filterDistrict()
+                        }
                       ]
                     }
                   },

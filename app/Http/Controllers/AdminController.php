@@ -181,7 +181,8 @@ class AdminController extends Controller
 
     public function showAllEditRoomRequest()
     {
-        $data = RequestEditRoom::where([ 'approved_by' => null ])->orderBy('created_at', 'ASC')->get();
+        $check = null;
+        $data = RequestEditRoom::where([ 'approved_by' => $check ])->orderBy('created_at', 'ASC')->get();
         $title = 'Danh sách yêu cầu chỉnh sửa bài viết';
         return view('backend.manageRequest.allEditRoomRequest', [
             'data' => $data,

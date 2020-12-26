@@ -34,6 +34,7 @@
         @yield('content')
     </div>
     @include('owner.layouts.footer')
+
 </div>
 <script src="/backend/bower_components/jquery/dist/jquery.min.js"></script>
 <script src="/backend/bower_components/jquery-ui/jquery-ui.min.js"></script>

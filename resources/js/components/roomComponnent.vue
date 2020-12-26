@@ -21,7 +21,7 @@
                     <div class="col-lg-4">
                         <div class="rent-filter">
                             <div class="form-group">
-                                <select name="city" class="form-control" v-model="searchInput.city" @change="onSearch">
+                                <select name="city" class="form-control" v-model="searchInput.city" @change="onSearch(); filterDistrict()">
                                     <option value="null"> Chọn tỉnh/thành phố </option>
                                     <option :value="data.id" :key="data.id" v-for="(data,index) in city"> {{ data.name }} </option>
                                 </select>
@@ -134,7 +134,8 @@ export default {
             },
             sortType: null,
             total: 0,
-            page: 1
+            page: 1,
+            allDistrict: []
         }
     },
     created() {
@@ -173,7 +174,7 @@ export default {
         getDistrict () {
             axios.get('/districtApi').then((res) => {
                 if (res.status === 200) {
-                    this.district = res.data;
+                    this.allDistrict = res.data;
                 }
             }).catch(() => {
                 console.log(err);
@@ -186,6 +187,14 @@ export default {
                 }
             }).catch(() => {
                 console.log(err);
+            })
+        },
+        filterDistrict () {
+            this.district = [];
+            this.allDistrict.forEach( district => {
+                if (district.city_id == this.searchInput.city) {
+                    this.district.push(district);
+                }
             })
         },
         onSearch () {
