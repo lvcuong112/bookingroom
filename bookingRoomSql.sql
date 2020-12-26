@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th12 26, 2020 lúc 10:34 AM
+-- Thời gian đã tạo: Th12 26, 2020 lúc 05:17 PM
 -- Phiên bản máy phục vụ: 10.4.11-MariaDB
 -- Phiên bản PHP: 7.4.3
 
@@ -43,11 +43,9 @@ CREATE TABLE `city` (
 --
 
 INSERT INTO `city` (`id`, `name`, `create_by`, `update_by`, `is_active`, `created_at`, `updated_at`) VALUES
-(1, 'Hà Nội', 3, 3, 1, NULL, NULL),
-(2, 'Lào Cai', 3, NULL, 0, NULL, NULL),
-(3, 'Hạ Long', 5, 5, 1, '2020-11-13 07:10:21', '2020-11-13 08:43:36'),
-(5, 'TP Hồ Chí Minh', 5, NULL, 1, '2020-11-13 08:56:21', '2020-11-13 08:56:21'),
-(6, 'Ninh Bình', 5, NULL, 1, '2020-11-16 15:34:03', '2020-11-16 15:34:03');
+(1, 'Hà Nội', 3, 5, 1, '2020-11-13 08:56:21', '2020-12-26 16:08:44'),
+(2, 'TP Hồ Chí Minh', 5, NULL, 1, '2020-11-13 08:56:21', '2020-11-13 08:56:21'),
+(3, 'Hưng Yên', 5, 5, 1, '2020-11-16 15:34:03', '2020-12-26 16:13:05');
 
 -- --------------------------------------------------------
 
@@ -71,22 +69,33 @@ CREATE TABLE `district` (
 --
 
 INSERT INTO `district` (`id`, `name`, `city_id`, `create_by`, `update_by`, `is_active`, `created_at`, `updated_at`) VALUES
-(1, 'Đông Anh', 1, 3, 3, 1, NULL, NULL),
-(2, 'Cầu Giấy', 1, 3, 3, 1, NULL, NULL),
-(3, 'Đống Đa', 1, 3, 3, 1, NULL, NULL),
-(4, 'Thanh Xuân', 1, 3, 3, 1, NULL, NULL),
-(5, 'Tây Hồ', 1, 3, 3, 1, NULL, NULL),
-(6, 'Hoàn Kiếm', 1, 3, 3, 1, NULL, NULL),
-(7, 'Ba Đình', 1, 3, 3, 1, NULL, NULL),
-(8, 'Hai Bà Trưng', 1, 3, 3, 1, NULL, NULL),
-(9, 'Hoàng Mai', 1, 3, 3, 1, NULL, NULL),
-(10, 'Long Biên', 1, 3, 3, 1, NULL, NULL),
-(11, 'Nam Từ Liêm', 1, 3, 3, 1, NULL, NULL),
-(12, 'Bắc Từ Liêm', 1, 3, 3, 1, NULL, NULL),
-(13, 'Hà Đông', 1, 3, 3, 1, NULL, NULL),
-(16, 'Dung Nguyen', 2, 5, 5, 1, '2020-11-13 07:37:18', '2020-11-13 07:42:35'),
-(17, 'Belier', 3, 5, NULL, 1, '2020-11-13 08:55:09', '2020-11-13 08:55:09'),
-(18, 'Lê Cường', 6, 5, NULL, 1, '2020-11-16 15:34:21', '2020-11-16 15:34:21');
+(1, 'Đông Anh', 1, 3, 3, 1, '2020-11-13 07:37:18', NULL),
+(2, 'Cầu Giấy', 1, 3, 3, 1, '2020-11-13 07:37:18', NULL),
+(3, 'Đống Đa', 1, 3, 3, 1, '2020-11-13 07:37:18', NULL),
+(4, 'Thanh Xuân', 1, 3, 3, 1, '2020-11-13 07:37:18', NULL),
+(5, 'Tây Hồ', 1, 3, 3, 1, '2020-11-13 07:37:18', NULL),
+(6, 'Hoàn Kiếm', 1, 3, 3, 1, '2020-11-13 07:37:18', NULL),
+(7, 'Ba Đình', 1, 3, 3, 1, '2020-11-13 07:37:18', NULL),
+(8, 'Hai Bà Trưng', 1, 3, 3, 1, '2020-11-13 07:37:18', NULL),
+(9, 'Hoàng Mai', 1, 3, 3, 1, '2020-11-13 07:37:18', NULL),
+(10, 'Long Biên', 1, 3, 3, 1, '2020-11-13 07:37:18', NULL),
+(11, 'Nam Từ Liêm', 1, 3, 3, 1, '2020-11-13 07:37:18', NULL),
+(12, 'Bắc Từ Liêm', 1, 3, 3, 1, '2020-11-13 07:37:18', NULL),
+(13, 'Hà Đông', 1, 3, 3, 1, '2020-11-13 07:37:18', NULL),
+(19, 'Quận Bình Tân', 2, 5, NULL, 1, '2020-12-26 16:11:23', '2020-12-26 16:11:23'),
+(20, 'Quận Bình Thạnh', 2, 5, NULL, 1, '2020-12-26 16:11:44', '2020-12-26 16:11:44'),
+(21, 'Quận Gò Vấp', 2, 5, NULL, 1, '2020-12-26 16:11:53', '2020-12-26 16:11:53'),
+(22, 'Quận Phú Nhuận', 2, 5, NULL, 1, '2020-12-26 16:12:03', '2020-12-26 16:12:03'),
+(23, 'Quận Tân Bình', 2, 5, NULL, 1, '2020-12-26 16:12:13', '2020-12-26 16:12:13'),
+(24, 'Quận Tân Phú', 2, 5, NULL, 1, '2020-12-26 16:12:21', '2020-12-26 16:12:21'),
+(25, 'Quận Thủ Đức', 2, 5, NULL, 1, '2020-12-26 16:12:33', '2020-12-26 16:12:33'),
+(26, 'Huyện Cần Giờ', 2, 5, NULL, 1, '2020-12-26 16:12:40', '2020-12-26 16:12:40'),
+(27, 'TP Hưng Yên', 3, 5, NULL, 1, '2020-12-26 16:13:17', '2020-12-26 16:13:17'),
+(28, 'Phù Cừ', 3, 5, NULL, 1, '2020-12-26 16:13:28', '2020-12-26 16:13:28'),
+(29, 'Tiên Lữ', 3, 5, NULL, 1, '2020-12-26 16:13:35', '2020-12-26 16:13:35'),
+(30, 'Văn Giang', 3, 5, NULL, 1, '2020-12-26 16:13:46', '2020-12-26 16:13:46'),
+(31, 'Văn Lâm', 3, 5, NULL, 1, '2020-12-26 16:13:55', '2020-12-26 16:13:55'),
+(32, 'Ân Thi', 3, 5, NULL, 1, '2020-12-26 16:14:05', '2020-12-26 16:14:05');
 
 -- --------------------------------------------------------
 
@@ -115,7 +124,10 @@ CREATE TABLE `extend_post` (
 INSERT INTO `extend_post` (`id`, `room_id`, `user_id`, `total_price`, `quantity`, `approved_by`, `approved_date`, `created_at`, `updated_at`, `unit_date`, `phone`) VALUES
 (1, 8, 3, 50000.00, 1, NULL, '0000-00-00', NULL, '2020-11-15 08:54:07', 1, '0366065678'),
 (2, 6, 3, 50000.00, 1, 5, '2020-11-15', NULL, '2020-11-15 08:57:23', 1, '0123456789'),
-(3, 6, 3, 50000.00, 1, 5, '2020-11-15', NULL, '2020-11-15 14:24:50', 0, '0123');
+(3, 6, 3, 50000.00, 1, 5, '2020-11-15', NULL, '2020-11-15 14:24:50', 0, '0123'),
+(5, 1, 3, 800000.00, 4, 0, NULL, '2020-12-26 14:50:13', '2020-12-26 14:50:13', 2, '0123456789'),
+(6, 1, 3, 800000.00, 4, 0, NULL, '2020-12-26 14:50:46', '2020-12-26 14:50:46', 2, '0123456789'),
+(7, 1, 3, 200000.00, 4, 5, '2020-12-26', '2020-12-26 14:52:04', '2020-12-26 14:52:25', 1, '0123456789');
 
 -- --------------------------------------------------------
 
@@ -207,7 +219,9 @@ INSERT INTO `notify` (`id`, `receive_id`, `title`, `content`, `be_seen`, `create
 (1, 2, 'Thông báo', 'Đây là 1 thông báo', 0, NULL, NULL),
 (2, 2, 'daylatitle', 'daylacontent', 0, '2020-11-15 14:09:22', '2020-11-15 14:09:22'),
 (3, 3, 'Bài đăng Belier đã được gia hạn thành công!', 'Chào Jisoo !. Bài đăng của bạn đã được gia hạn thành công với mức phí 50000 VNĐ. Cảm ơn bạn đã tin tưởng và sử dụng dịch vụ của chúng tôi.', 0, '2020-11-15 14:24:50', '2020-11-15 14:24:50'),
-(4, 2, 'Gia hạn bài đăng Belier bị từ chối !', 'Bởi vì chúng tôi không thích!. Chúng tôi rất tiếc khi không thể duyệt yêu cầu này.', 0, '2020-11-15 14:46:51', '2020-11-15 14:46:51');
+(4, 2, 'Gia hạn bài đăng Belier bị từ chối !', 'Bởi vì chúng tôi không thích!. Chúng tôi rất tiếc khi không thể duyệt yêu cầu này.', 0, '2020-11-15 14:46:51', '2020-11-15 14:46:51'),
+(5, 3, 'Yêu cầu chỉnh sửa bài viết Trung Cư Cao Cấp Cầu Giấyđược gia hạn', 'Yêu cầu chỉnh sửa bài viết của bạn đã được cho phép. Bây giờ bạn có thể chỉnh sửa bài viết của mình', 0, '2020-12-26 14:06:33', '2020-12-26 14:06:33'),
+(6, 3, 'Bài đăng Ha Noi đã được gia hạn thành công!', 'Chào Jisooo !. Bài đăng của bạn đã được gia hạn thành công với mức phí 200000 VNĐ. Cảm ơn bạn đã tin tưởng và sử dụng dịch vụ của chúng tôi.', 0, '2020-12-26 14:52:25', '2020-12-26 14:52:25');
 
 -- --------------------------------------------------------
 
@@ -300,7 +314,7 @@ CREATE TABLE `room` (
 --
 
 INSERT INTO `room` (`id`, `roomType_id`, `title`, `description`, `address`, `district_id`, `city_id`, `quantity`, `price`, `image`, `area`, `note`, `live_with_owner`, `public_date`, `expired_date`, `electric_price`, `water_price`, `approval_date`, `approval_id`, `user_id`, `is_active`, `created_at`, `updated_at`, `price_unit`, `canbe_edit`, `views`, `rented`, `is_approved`) VALUES
-(1, 1, 'Ha Noi', 'day la 1 bai test', '42 yên hòa , cầu giấy , hà nội', 1, 1, 3, 10000, 'https://i.imgur.com/PIfDxwn.jpg', 0, 'gần đại học quốc gia hà nội', 1, '2020-11-12', '2020-11-12', 3000.00, 3000, '2020-11-12', 2, 1, 1, NULL, NULL, '', 1, NULL, 0, NULL),
+(1, 1, 'Ha Noi', 'day la 1 bai test', '42 yên hòa , cầu giấy , hà nội', 1, 1, 3, 10000, 'https://i.imgur.com/PIfDxwn.jpg', 0, 'gần đại học quốc gia hà nội', 1, '2020-11-12', '2021-01-23', 3000.00, 3000, '2020-12-26', 5, 1, 1, NULL, '2020-12-26 14:52:25', '', 1, NULL, 0, NULL),
 (2, 1, 'Sai Gon', 'day la 1 bai test', '42 yên hòa , cầu giấy , hà nội', 1, 1, 3, 20000, 'https://i.imgur.com/PIfDxwn.jpg', 0, 'gần đại học quốc gia hà nội', 1, '2020-11-12', '2020-11-12', 3000.00, 3000, '2020-11-12', 2, 1, 1, NULL, NULL, '', 1, NULL, 0, NULL),
 (3, 1, 'Chung Cu', 'day la 1 bai test', '42 yên hòa , cầu giấy , hà nội', 1, 1, 3, 30000, 'https://i.imgur.com/PIfDxwn.jpg', 0, 'gần đại học quốc gia hà nội', 1, '2020-11-12', '2020-11-12', 3000.00, 3000, '2020-11-12', 2, 1, 0, NULL, NULL, '', 1, NULL, 0, NULL),
 (4, 1, 'Dat o', 'day la 1 bai test', '42 yên hòa , cầu giấy , hà nội', 1, 1, 3, 40000, 'https://i.imgur.com/PIfDxwn.jpg', 0, 'gần đại học quốc gia hà nội', 1, '2020-11-12', '2020-11-12', 3000.00, 3000, '2020-11-12', 2, 1, 0, NULL, NULL, '', 1, NULL, 0, NULL),
@@ -308,7 +322,7 @@ INSERT INTO `room` (`id`, `roomType_id`, `title`, `description`, `address`, `dis
 (8, 1, 'Luka Modric', 'belier', 'DAV', 8, 1, 2, 1000000, 'uploads/room/1605280506_124572185_3185365711569107_1989024877858944999_o.jpg', 30, 'assadasdasd', 1, '2020-11-12', '2020-11-22', 3000.00, 2000, '2020-11-15', 5, 5, 1, '2020-11-13 08:15:06', '2020-11-15 08:50:02', 'Tháng', 1, NULL, 0, NULL),
 (10, 1, 'dream house', 'k co gi', 'DAV', 1, 1, 2, 1000000, 'uploads/room/1605455970_mit-rhymastic.jpg', 60, 'k co gi', 1, NULL, '2020-11-29', 3000.00, 5000, '2020-11-15', 5, 5, 0, '2020-11-15 15:59:30', '2020-11-16 06:57:21', 'Tháng', 1, NULL, 0, NULL),
 (11, 2, 'piano', 'ds', '2 vu ngoc phann', 11, 1, 4, 20000, 'uploads/room/1605540104_20190202_142100.jpg', 30, 'ádasdas', 1, NULL, NULL, 3000.00, 3000, NULL, NULL, 5, 0, '2020-11-16 15:21:44', '2020-11-16 15:21:44', 'Quy', 1, 0, 0, NULL),
-(12, 1, 'Trung Cư Cao Cấp Cầu Giấy', 'ds', '5 trích sài', 4, 5, 3, 20000, 'uploads/room/1608967039_download.jpg', 30, 'ko co gi', 1, NULL, '2021-11-29', 3000.00, 3000, NULL, NULL, 3, 1, '2020-12-26 07:17:19', '2020-12-26 07:17:19', 'Quy', 0, 0, 0, NULL),
+(12, 1, 'Trung Cư Cao Cấp Cầu Giấy Hà Nội', 'ds', '5 trích sài', 4, 1, 3, 20000, 'uploads/room/1608967039_download.jpg', 30, 'ko co gi', 1, NULL, NULL, 3000.00, 3000, NULL, NULL, 3, 1, '2020-12-26 07:17:19', '2020-12-26 14:23:29', 'Quy', 1, 0, 0, NULL),
 (13, 2, 'dssadadk', 'ds', '32 yen hòa', 16, 3, 4, 20000, 'uploads/room/1608971993_Capture.PNG', 20, 'dsd', 1, NULL, NULL, 3000.00, 3000, NULL, NULL, 3, 0, '2020-12-26 08:39:53', '2020-12-26 08:39:53', 'test', 1, 0, 0, NULL);
 
 -- --------------------------------------------------------
@@ -410,10 +424,8 @@ CREATE TABLE `room_type` (
 
 INSERT INTO `room_type` (`id`, `name`, `create_by`, `update_by`, `is_active`, `created_at`, `updated_at`) VALUES
 (1, 'Chung cư', 4, 3, 1, NULL, NULL),
-(2, 'Nhà mặt đất', 4, 3, 1, NULL, NULL),
-(4, 'HiHi', 5, NULL, 1, '2020-11-16 15:30:37', '2020-11-16 15:30:37'),
-(5, 'Cường', 5, NULL, 1, '2020-11-16 15:30:52', '2020-11-16 15:30:52'),
-(6, 'gg', 5, NULL, 1, '2020-11-16 15:31:20', '2020-11-16 15:31:20');
+(2, 'Trung Cư Mini', 5, NULL, 1, '2020-12-26 16:16:01', '2020-12-26 16:16:01'),
+(3, 'Nhà Trọ', 5, NULL, 1, '2020-12-26 16:16:08', '2020-12-26 16:16:08');
 
 -- --------------------------------------------------------
 
@@ -446,9 +458,10 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `birthday`, `phone`, `CMND`, `email`, `password`, `image`, `role_id`, `is_active`, `address`, `approval_id`, `date_approval`, `remember_token`, `created_at`, `updated_at`) VALUES
 (2, 'Tr Binh Giang', '22/09/2001', '0123456987', '10032001', 'bgtr@gmail.com', '$2y$10$JMMkMn7aYIrdOos5Z7uVkewGRikSna/XIPUldPMqygfpBgVFYxkTi', 'uploads/user/1605087758_118641206_3244593622290217_8666695886033189326_n.jpg', 1, 1, 'Ho Chi Minh City, Vietnam', NULL, NULL, NULL, '2020-11-11 01:59:06', '2020-11-11 02:42:38'),
-(3, 'Jisooo', '22/09/2001', '0123456789', '88886789', 'miasoya@gmail.com', '$2y$10$a1nWTaKqKgM3pdiB9uiEq.evz31RTunl5OW0fENiYDNyZ/8OnhAdO', 'uploads/user/1605087789_jisooyah.jfif', 2, 1, 'DAV', NULL, NULL, 'VrczPVruF0RljfnUdNzGpA3GI4zcuzUxYTKSEipWmG5vsTP08Ag514J3e3jR', '2020-11-11 02:43:09', '2020-12-26 07:15:09'),
+(3, 'Jisooo', '22/09/2001', '0123456789', '88886789', 'miasoya@gmail.com', '$2y$10$a1nWTaKqKgM3pdiB9uiEq.evz31RTunl5OW0fENiYDNyZ/8OnhAdO', 'uploads/user/1605087789_jisooyah.jfif', 2, 1, 'DAV', NULL, NULL, 'Kvp01oUW7sWYNycMn8hkq8NV2HRQxlbaQMzTeQpB2VGidYtD9gS0jCMrDY8z', '2020-11-11 02:43:09', '2020-12-26 07:15:09'),
 (4, 'Mimosa Chu', '23/10/1992', '0349625555', '19024705183012', 'mimosachu@gmail.com', '$2y$10$BcZwqyNWlwIH4W9Mh0.CDuwFwoElZnHP7xsOHnMnYpM2vQgNIdwdS', 'uploads/user/1605103552_SophieCheneviere_belierskate_021.jpg', 2, 1, 'Hang Dau', NULL, NULL, NULL, '2020-11-11 07:05:52', '2020-11-15 00:11:14'),
-(5, 'N M Dung', '22/09/2001', '0366065647', '19024705183012', 'devergo@gmail.com', '$2y$10$a1nWTaKqKgM3pdiB9uiEq.evz31RTunl5OW0fENiYDNyZ/8OnhAdO', 'https://vcdn1-ione.vnecdn.net/2019/02/16/Amme10-1550288079.jpg?w=460&h=0&q=100&dpr=1&fit=crop&s=IsQJN1TuiAwzhfWTWaGb4w', 1, 1, 'Dong Anh - Ha Noi', NULL, NULL, NULL, '2020-11-11 07:47:10', '2020-11-11 07:47:10');
+(5, 'Le Cuong', '22/09/2001', '0366065647', '19024705183012', 'devergo@gmail.com', '$2y$10$a1nWTaKqKgM3pdiB9uiEq.evz31RTunl5OW0fENiYDNyZ/8OnhAdO', 'https://vcdn1-ione.vnecdn.net/2019/02/16/Amme10-1550288079.jpg?w=460&h=0&q=100&dpr=1&fit=crop&s=IsQJN1TuiAwzhfWTWaGb4w', 1, 1, 'Dong Anh - Ha Noi', NULL, NULL, NULL, '2020-11-11 07:47:10', '2020-12-26 16:08:30'),
+(6, 'Lê Văn Cường', '01/12/2000', '0911130699', '12345678910', 'levancuong@gmail.com', '$2y$10$Ncn1cQXgT730POR2quWhJevBkNn4KTU2DCy.jSyD/E1O6Dtwrj8IO', 'uploads/user/1608999319_download.jpg', 1, 1, 'Số nhà 32 ngõ 42 yên hòa', NULL, NULL, NULL, '2020-12-26 16:15:19', '2020-12-26 16:15:19');
 
 -- --------------------------------------------------------
 
@@ -545,7 +558,7 @@ CREATE TABLE `user_requesteditroom` (
 --
 
 INSERT INTO `user_requesteditroom` (`id`, `user_id`, `room_id`, `reason`, `approved_by`, `created_at`, `updated_at`) VALUES
-(0, 0, 0, '', NULL, NULL, NULL);
+(2, 3, 12, 'test', 5, '2020-12-26 14:02:21', '2020-12-26 14:06:33');
 
 -- --------------------------------------------------------
 
@@ -721,13 +734,13 @@ ALTER TABLE `city`
 -- AUTO_INCREMENT cho bảng `district`
 --
 ALTER TABLE `district`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT cho bảng `extend_post`
 --
 ALTER TABLE `extend_post`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT cho bảng `facilities`
@@ -745,7 +758,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT cho bảng `notify`
 --
 ALTER TABLE `notify`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT cho bảng `order`
@@ -787,13 +800,13 @@ ALTER TABLE `room_relation_address`
 -- AUTO_INCREMENT cho bảng `room_type`
 --
 ALTER TABLE `room_type`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT cho bảng `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT cho bảng `user_comment`
@@ -817,7 +830,7 @@ ALTER TABLE `user_report`
 -- AUTO_INCREMENT cho bảng `user_requesteditroom`
 --
 ALTER TABLE `user_requesteditroom`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT cho bảng `user_views`
