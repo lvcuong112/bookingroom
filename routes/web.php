@@ -13,31 +13,50 @@
 
 use App\Room;
 use Illuminate\Support\Facades\Route;
-
-Route::get('/','FrontendController@index');
-Route::get('/room', function () {
-    return view('frontend/room');
-});
-
-// xu ly de lam sao user dang nhap moi dung dc, se lam sau khi test xong viec get giu lieu = ajax
-
+// home
+Route::get('/','FrontendController@index')->name('home');
+Route::get('/homeApi', 'FrontendController@homeApi');
+Route::get('/cheapHomeApi', 'FrontendController@cheapHomeApi');
+//room
+Route::get('/room', 'FrontendController@room')->name('room');
+Route::get('roomApi', 'FrontendController@roomApi')->name('roomApi');
+Route::get('/cityApi','FrontendController@cityApi');
+Route::get('/districtApi','FrontendController@districtApi');
+Route::get('/roomTypeApi','FrontendController@roomTypeApi');
+Route::get('/roomDetail/{id}', 'FrontendController@roomDetail')->name('roomdetail');
+Route::get('/roomDetailApi/{id}','FrontendController@roomDetailApi');
+Route::get('/roomFacilitiesApi/{id}','FrontendController@roomFacilitiesApi');
+Route::get('/roomImageDetailApi/{id}','FrontendController@imageRoomDetailApi');
+//login register
+Route::post('login', 'FrontendController@customerLogin')->name('login');
+Route::get('logout','FrontendController@logout')->name('logout');
+route::get('/register','FrontendController@register')->name('frontRegister');
+Route::post('postRegister', 'FrontendController@CustomerRegister')->name('register');
+Route::get('/repassword', 'FrontendController@rePassword')->name('repassword');
+//gg
 Route::get('/user/getAllRoomViewed', 'UserViewedController@getAllRoomViewed')->name('userviewed.getAllRoomViewed');
 Route::get('/user/storeRoomViewed/{user_id}/{room_id}', 'UserViewedController@storeViewed')->name('userviewed.store');
 Route::get('/user/storeVoted/{user_id}/{room_id}/{count_star}', 'UserVotedController@storeVoted')->name('uservoted.store');
 Route::get('/user/storeLiked/{user_id}/{room_id}', 'UserLikedController@storeLiked')->name('userliked.store');
 Route::get('/admin/login', 'AdminController@login')->name('admin.login');
-//Route::get('/login', 'ShopController@login')->name('shop.login');
-// Đăng xuất
+Route::get('/owner/login', 'OwnerController@login')->name('owner.login');
+//fillter
+Route::get('/search', 'FrontendController@search')->name('frontend.search');
+Route::get('/user/search', 'FrontendController@searchApi')->name('user.search');
+//cmt like
+Route::post('/like', 'FrontendController@customerLike')->name('like');
+Route::post('/report', 'FrontendController@reportRoom')->name('report');
+Route::post('/comment', 'FrontendController@commentVote')->name('comment');
+Route::get('allComment','FrontendController@allComment')->name('allComment');
+Route::get('allCommentApi', 'FrontendController@getCommentApi');
+//myaccount
+Route::get('/myaccount', 'FrontendController@myAccount')->name('myaccount');
+Route::get('/accountApi', 'FrontendController@accountApi');
+Route::get('/likeRoom', 'FrontendController@likeRoom');
+Route::get('/likeRoomApi', 'FrontendController@likeRoomApi');
+// Admin
 Route::get('/admin/logout', 'AdminController@logout')->name('admin.logout');
-
 Route::post('/admin/postLogin', 'AdminController@postLogin')->name('admin.postLogin');
-
-//Route::get('/sendNoti/{title}/{msg}/{receiver_id}', 'AdminController@sendNoti');
-Route::get('/owner/register', 'OwnerController@register');
-Route::post('/owner/postRegister', 'OwnerController@postRegister')->name('admin.postRegister');
-Route::get('/user/search', 'FrontendController@search')->name('user.search');
-
-
 Route::group(['prefix' => 'admin','as' => 'admin.', 'middleware' => ['checkLogin']], function() {
     Route::get('/', 'AdminController@index')->name('dashboard');
     Route::resource('room', 'RoomController');
@@ -58,21 +77,32 @@ Route::group(['prefix' => 'admin','as' => 'admin.', 'middleware' => ['checkLogin
     Route::post('/deleteRequest/refuseRequest/{request_id}', 'AdminController@refuseExtendDate')->name('deleteRequest.refuseExtendDate');
     Route::get('/showAllEditRoomRequest', 'AdminController@showAllEditRoomRequest')->name('showAllEditRoomRequest');
     Route::get('/allowEditRoomRequest/{request_id}', 'AdminConTroller@allowEditRoom')->name('allowEditRoomRequest');
+    Route::get('/search', 'AdminConTroller@search')->name('search');
 });
 
-Route::group(['prefix' => 'owner','as' => 'owner.'], function() {
-
+//owner
+Route::get('/owner/register', 'OwnerController@register');
+Route::post('/owner/postRegister', 'OwnerController@postRegister')->name('admin.postRegister');
+Route::get('/owner/logout', 'OwnerController@logout')->name('owner.logout');
+Route::post('/owner/postLogin', 'OwnerController@postLogin')->name('owner.postLogin');
+Route::group(['prefix' => 'owner','as' => 'owner.', 'middleware' => ['CheckLoginOwner']], function() {
     Route::get('/','OwnerController@getAllRoom')->name('room.index');
-
-    Route::get('/register', 'OwnerController@register'); // chua co view?
+    Route::get('/register', 'OwnerController@register')->name('register');
     Route::post('/postRegister', 'OwnerController@postRegister')->name('postRegister'); // chua lam
     Route::get('/show/{id}', 'OwnerController@showRoomDetail')->name('room.show');
     Route::get('/create', 'OwnerController@viewCreateRoom')->name('room.create');
     Route::post('/postCreate', 'OwnerController@store')->name('room.store');
     Route::get('/edit/{id}', 'OwnerController@viewEditRoom')->name('room.edit');
-    Route::post('/postEdit', 'OwnerController@update')->name('room.update');
+    Route::post('/postEdit/{id}', 'OwnerController@update')->name('room.update');
     Route::post('/extend/{roomId}', 'OwnerController@viewExtend')->name('room.extend');
+    Route::post('/postExtend', 'OwnerController@postExtend')->name('postExtend');
 //    Route::post('/extend/{roomId}', 'OwnerController@viewExtend')->name('room.extend');
     Route::get('/requestEditRoom/{roomId}', 'OwnerController@requestEditRoom')->name('room.requestEdit');
     Route::post('/sendRequestEditRoom', 'OwnerController@sendRequestEditRoom')->name('room.sendRequestEditRoom');
+    Route::get('/userIndex', 'OwnerController@userIndex')->name('userIndex');
+    Route::get('/userShow/{id}', 'OwnerController@userShow')->name('userShow');
+    Route::get('/userEdit/{id}', 'OwnerController@userEdit')->name('userEdit');
+    Route::post('/postUserEdit/{id}', 'OwnerController@postUserEdit')->name('postUserEdit');
+    Route::get('/countLike', 'OwnerController@countLike')->name('countLike');
+    Route::get('/search', 'OwnerController@search')->name('search');
 });

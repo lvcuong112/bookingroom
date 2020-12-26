@@ -34,7 +34,6 @@
         <div class="row">
             <form role="form" action="{{route('owner.room.update', ['id' => $room->id])}}" method="post" enctype="multipart/form-data">
                 @csrf
-                @method('PUT')
                 <div class="col-md-6">
                     <div class="box box-primary">
                         <div class="box-body">

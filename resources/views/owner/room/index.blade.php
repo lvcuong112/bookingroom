@@ -21,12 +21,13 @@
                     <div class="box-header">
                         <div class="box-tools">
                             <div class="input-group input-group-sm hidden-xs" style="width: 150px;">
-                                <input type="text" name="table_search" class="form-control pull-right"
-                                       placeholder="Search">
-
-                                <div class="input-group-btn">
-                                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
-                                </div>
+                                <form action="{{ route('owner.search') }}" method="get">
+                                    @csrf
+                                    <input style="margin-right: 70px;" type="text" name="table_search" class="form-control pull-right" placeholder="Search">
+                                    <div class="input-group-btn" style="float: right;margin: -35px 60px">
+                                        <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -59,8 +60,12 @@
                                     <td>{{ ($item->is_active==1) ? 'Hiển thị' : 'Không' }}</td>
                                     <td class="text-center">
                                         <a href="{{route('owner.room.show', ['id'=> $item->id ])}}" class="btn btn-default">Xem</a>
-                                        <a href="{{route('owner.room.edit', ['id'=> $item->id ])}}" class="btn btn-info" disabled>Sửa</a>
-                                        <!-- Thêm sự kiện onlick cho nút xóa -->
+                                        @if($item->canbe_edit === 1)
+                                            <a href="{{route('owner.room.edit', ['id'=> $item->id ])}}" class="btn btn-info">Sửa</a>
+                                        @else
+                                            <a></a>
+                                        @endif
+                                             <!-- Thêm sự kiện onlick cho nút xóa -->
                                         <a href="javascript:void(0)" class="btn btn-danger" onclick="destroyRoom({{ $item->id }})" >Xóa</a>
                                     </td>
                                 </tr>

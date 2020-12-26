@@ -39,3 +39,4 @@ class CheckLogin
         return redirect()->route('admin.login');
     }
 }
+

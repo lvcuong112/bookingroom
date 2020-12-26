@@ -13,7 +13,7 @@
     </section>
     <section class="content">
         <div class="row">
-            <form role="form" action="" method="post" enctype="multipart/form-data">
+            <form role="form" action="{{ route('owner.postExtend') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="div-center" >
                     <div class="box box-primary">
