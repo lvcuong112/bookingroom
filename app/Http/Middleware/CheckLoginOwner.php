@@ -25,7 +25,7 @@ class CheckLoginOwner
             {
                 return $next($request);
             }
-            else if (($user->role_id == 1 || $user->role_id == 3) && $user->is_active == 1 )
+            else if (($user->role_id == 3) && $user->is_active == 1 )
             {
                 return redirect('/');
             }

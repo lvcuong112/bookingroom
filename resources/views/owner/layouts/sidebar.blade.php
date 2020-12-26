@@ -16,7 +16,7 @@ $user = \Illuminate\Support\Facades\Auth::user();
             </div>
             <div class="pull-left info">
                 <p>{{ $user->name }}</p>
-                <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                <a href="{{ route('owner.room.index') }}"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
         </div>
         <!-- search form -->
@@ -41,9 +41,16 @@ $user = \Illuminate\Support\Facades\Auth::user();
                 </a>
                 <ul class="treeview-menu">
                     <li><a href="{{route('owner.room.index')}}"><i class="fa fa-circle-o"></i>Danh Sách Bài Đăng</a></li>
-                    <li><a href=""><i class="fa fa-circle-o"></i>Yêu cầu quyền sửa</a></li>
+                    <li><a href="{{ route('owner.countLike') }}"><i class="fa fa-circle-o"></i>Xem Thống Kê Lượt Thích</a></li>
                 </ul>
-
+            </li>
+            <li>
+                <a href="{{ route('owner.userIndex') }}">
+                    <i class="fa fa-dashboard"></i> <span>QL Tài Khoản</span>
+                    <span class="pull-right-container">
+                         <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
             </li>
         </ul>
     </section>

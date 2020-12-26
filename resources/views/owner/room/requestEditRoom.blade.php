@@ -28,7 +28,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Lý do</label>
-                                <textarea  class="form-control" id="reason" name="reason"> </textarea>
+                                <input style="height: 150px;" class="form-control" id="reason" name="reason" required> </input>
                             </div>
                         </div>
                         <div class="box-footer">

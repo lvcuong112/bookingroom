@@ -11,6 +11,8 @@ use App\Room_facilities;
 use App\Room;
 use App\Room_image;
 use App\Room_type;
+use App\User;
+use App\User_like;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -25,8 +27,10 @@ class OwnerController extends Controller
             $user = Auth::user();
             if($user->role_id == 2 ) {
                 return redirect(route('owner.room.index'));
-            } else if($user->role_id == 1 || $user->role_id == 3) {
+            } else if($user->role_id == 3) {
                 return redirect('/');
+            } else if ($user->role_id == 1 ) {
+                return redirect('/admin');
             }
         }
     }
@@ -86,9 +90,11 @@ class OwnerController extends Controller
             if ($getDate > $value->expired_date) {
                 $value->is_active = 0;
             }
+            $checkEdit = $value->canbe_edit;
         }
         return view('owner.room.index', [
-            'list' => $list
+            'list' => $list,
+            'checkEdit' => $checkEdit
         ]);
     }
 
@@ -232,7 +238,7 @@ class OwnerController extends Controller
             };
         }
         $room->Facilities()->syncWithoutDetaching($facilities);
-        return redirect()->route('owner.room.index')->with('msg', 'Tạo Phòng Thành Công.Đợi Admin Duyệt');
+        return redirect()->route('owner.room.index')->with('msg', 'Hãy Click vào xem thông tin chi tiết để gia hạn bài đăng và đợi Amdin duyệt .Xin cảm ơn !!');
     }
 
     public function viewEditRoom($id)
@@ -302,5 +308,105 @@ class OwnerController extends Controller
 
         return redirect()->route('owner.room.show', ['id'=> $request->input('room_id') ]);
     }
+    public function userIndex ()
+    {
+        $user = Auth::user();
+        $data = User::where(['id' => $user->id])->get();
+        return view('owner.account.index', [
+            'data' => $data // truyền dữ liệu sang view Index
+        ]);
+    }
+    public function userShow ($id)
+    {
+        $user = User::findorFail($id);
+        return view('owner.account.show', [
+            'user' => $user
+        ]);
+    }
+    public function userEdit ($id)
+    {
+        $user = User::findorFail($id);
+        return view('owner.account.edit', [
+            'user' => $user
+        ]);
+    }
+    public function postUserEdit(Request $request, $id)
+    {
+        //validate
+        $validatedData = $request->validate([
+            'name' => 'required|max:255',
+            'email' => 'required|email',
+            'avatar' => 'image|mimes:jpeg,png,jpg,gif,svg|max:10000'
+        ]);
 
+        $user = User::findorFail($id);
+
+        $is_active = 0;
+        if ($request->has('is_active')) { // kiem tra is_active co ton tai khong?
+            $is_active = $request->input('is_active');
+        }
+
+        //luu vào csdl
+        $user->name = $request->input('name'); // họ tên
+        $user->email = $request->input('email'); // email
+        $user->role_id = $request->input('role_id'); // phân quyền
+        $user->birthday = $request->input('birthday');
+        $user->phone = $request->input('phone');
+        $user->cmnd = $request->input('cmnd');
+        $user->address = $request->input('address');
+        if ($request->input('new_password')) {
+            $user->password = bcrypt($request->input('new_password')); // mật khẩu mới
+        }
+
+        if ($request->hasFile('new_avatar')) {
+            // xóa file cũ
+            @unlink(public_path($user->avatar)); // hàm unlink của PHP không phải laravel , chúng ta thêm @ đằng trước tránh bị lỗi
+            // get file
+            $file = $request->file('new_avatar');
+            // get ten
+            $filename = time().'_'.$file->getClientOriginalName();
+            // duong dan upload
+            $path_upload = 'uploads/user/';
+            // upload file
+            $request->file('new_avatar')->move($path_upload,$filename);
+
+            $user->image = $path_upload.$filename;
+        }
+
+        $user->is_active = $is_active;
+        $user->save();
+
+        // chuyen dieu huong trang
+        return redirect()->route('owner.userShow', ['id' => $user->id])->with('msg', 'Cập nhật tài khoản thành công.');
+    }
+    public function countLike ()
+    {
+        $user = Auth::user();
+        $data = User::where(['id' => $user->id])->get();
+        foreach ($data as $userData) {
+            $userId = $userData->id;
+        }
+        $roomData = [];
+        $likeData = Room::where(['room.user_id' => $userId])->get();
+        foreach ($likeData as $data) {
+            $roomId = $data->id;
+            $countLike = User_like::where(['room_id' => $roomId])->count();
+            array_push($roomData, $data);
+            array_push($roomData, $countLike);
+        }
+        return view('owner.countLike', [
+            'roomData' => $roomData
+        ]);
+    }
+    public function search (Request $request) {
+        $searchInput = $request->input('table_search');
+        $searchData = DB::table('room')->where('title','like', '%'. $searchInput.'%')->get();
+        foreach ($searchData as $check) {
+            $checkEdit = $check->canbe_edit;
+        }
+        return view('owner.search', [
+            'searchData' => $searchData,
+            'checkEdit' => $checkEdit
+        ]);
+    }
 }

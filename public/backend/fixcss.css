@@ -31,3 +31,6 @@
 .setmore{
     font-weight: 700;
 }
+.navbar .nav .dropdown:hover .dropdown-menu{
+    display: block;
+}

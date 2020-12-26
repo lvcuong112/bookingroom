@@ -40,11 +40,12 @@
                         <li style="display: none"><a href="/owner">Đăng Nhập Chủ Trọ</a></li>
                     </ul>
                 </li>
-                <li>
-                    <a href="/register"> Đăng ký </a>
-                </li>
-                <li>
-                    <a href="{{ route('owner.register') }}">Đăng kí Chủ Trọ</a>
+                <li id="drop">
+                    <a> Đăng ký </a>
+                    <ul class="sub-drop">
+                        <li style="display: none" ><a href="/register">Đăng kí khách hàng</a></li>
+                        <li style="display: none"><a href="{{ route('owner.register') }}">Đăng ký chủ trọ</a></li>
+                    </ul>
                 </li>
             @endif
         </ul>

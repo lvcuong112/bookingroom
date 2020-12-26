@@ -77,6 +77,7 @@ Route::group(['prefix' => 'admin','as' => 'admin.', 'middleware' => ['checkLogin
     Route::post('/deleteRequest/refuseRequest/{request_id}', 'AdminController@refuseExtendDate')->name('deleteRequest.refuseExtendDate');
     Route::get('/showAllEditRoomRequest', 'AdminController@showAllEditRoomRequest')->name('showAllEditRoomRequest');
     Route::get('/allowEditRoomRequest/{request_id}', 'AdminConTroller@allowEditRoom')->name('allowEditRoomRequest');
+    Route::get('/search', 'AdminConTroller@search')->name('search');
 });
 
 //owner
@@ -97,4 +98,10 @@ Route::group(['prefix' => 'owner','as' => 'owner.', 'middleware' => ['CheckLogin
 //    Route::post('/extend/{roomId}', 'OwnerController@viewExtend')->name('room.extend');
     Route::get('/requestEditRoom/{roomId}', 'OwnerController@requestEditRoom')->name('room.requestEdit');
     Route::post('/sendRequestEditRoom', 'OwnerController@sendRequestEditRoom')->name('room.sendRequestEditRoom');
+    Route::get('/userIndex', 'OwnerController@userIndex')->name('userIndex');
+    Route::get('/userShow/{id}', 'OwnerController@userShow')->name('userShow');
+    Route::get('/userEdit/{id}', 'OwnerController@userEdit')->name('userEdit');
+    Route::post('/postUserEdit/{id}', 'OwnerController@postUserEdit')->name('postUserEdit');
+    Route::get('/countLike', 'OwnerController@countLike')->name('countLike');
+    Route::get('/search', 'OwnerController@search')->name('search');
 });

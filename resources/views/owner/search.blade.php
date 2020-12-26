@@ -21,13 +21,12 @@
                     <div class="box-header">
                         <div class="box-tools">
                             <div class="input-group input-group-sm hidden-xs" style="width: 150px;">
-                                <form action="{{ route('owner.search') }}" method="get">
-                                    @csrf
-                                    <input style="margin-right: 70px;" type="text" name="table_search" class="form-control pull-right" placeholder="Search">
-                                    <div class="input-group-btn" style="float: right;margin: -35px 60px">
-                                        <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
-                                    </div>
-                                </form>
+                                <input type="text" name="table_search" class="form-control pull-right"
+                                       placeholder="Search">
+
+                                <div class="input-group-btn">
+                                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -46,7 +45,7 @@
                                 <th class="text-center">Hành động</th>
                             </tr>
                             </tbody>
-                            @foreach($list as $key => $item)
+                            @foreach($searchData as $key => $item)
                                 <tr class="item-{{ $item->id }}"> <!-- Thêm Class Cho Dòng -->
                                     <td>{{ $item->id }}</td>
                                     <td>{{ $item->title }}</td>
@@ -65,7 +64,7 @@
                                         @else
                                             <a></a>
                                         @endif
-                                             <!-- Thêm sự kiện onlick cho nút xóa -->
+                                    <!-- Thêm sự kiện onlick cho nút xóa -->
                                         <a href="javascript:void(0)" class="btn btn-danger" onclick="destroyRoom({{ $item->id }})" >Xóa</a>
                                     </td>
                                 </tr>

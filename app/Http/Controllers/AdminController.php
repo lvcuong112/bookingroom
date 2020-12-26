@@ -9,13 +9,13 @@ use App\Room;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
     public function index()
     {
         return view('backend.home', [
-//            'title' => '?'
         ]);
     }
 
@@ -222,5 +222,17 @@ class AdminController extends Controller
         }
         $extend = date('Y-m-d', $extendInt);
         dd($extend);
+    }
+    public function search (Request $request)
+    {
+        $searchInput = $request->input('table_search');
+        $searchData = DB::table('room')->where('title','like', '%'. $searchInput.'%')->get();
+        foreach ($searchData as $check) {
+            $checkEdit = $check->canbe_edit;
+        }
+        return view('backend.search', [
+            'searchData' => $searchData,
+            'checkEdit' => $checkEdit
+        ]);
     }
 }
