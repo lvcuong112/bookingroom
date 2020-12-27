@@ -2578,6 +2578,13 @@ __webpack_require__.r(__webpack_exports__);
       var _this6 = this;
 
       var roomFilter = [];
+
+      if (this.searchInput.city == null) {}
+
+      if (this.searchInput.typeRoom == null) {}
+
+      if (this.searchInput.district == null) {}
+
       this.allRoom.forEach(function (room) {
         var check = true;
 
@@ -2585,11 +2592,11 @@ __webpack_require__.r(__webpack_exports__);
           check = false;
         }
 
-        if (_this6.searchInput.district != null && room.district_id != _this6.searchInput.district) {
+        if (_this6.searchInput.city != null && room.city_id != _this6.searchInput.city) {
           check = false;
         }
 
-        if (_this6.searchInput.city != null && room.city_id != _this6.searchInput.city) {
+        if (_this6.searchInput.district != null && room.district_id != _this6.searchInput.district) {
           check = false;
         }
 
@@ -39743,7 +39750,7 @@ var render = function() {
                     }
                   },
                   [
-                    _c("option", { attrs: { value: "null" } }, [
+                    _c("option", { domProps: { value: null } }, [
                       _vm._v(" Chọn tỉnh/thành phố ")
                     ]),
                     _vm._v(" "),
@@ -39797,7 +39804,7 @@ var render = function() {
                     }
                   },
                   [
-                    _c("option", { attrs: { value: "null" } }, [
+                    _c("option", { domProps: { value: null } }, [
                       _vm._v(" Chọn quận/huyện ")
                     ]),
                     _vm._v(" "),
@@ -40558,7 +40565,20 @@ var render = function() {
           _vm._m(1),
           _vm._v(" "),
           _c("div", { staticClass: "col-lg-12" }, [
-            _vm._m(2),
+            _c(
+              "div",
+              {
+                staticClass:
+                  "result-alert d-flex align-items-center justify-content-between"
+              },
+              [
+                _c("p", { staticClass: "m-0" }, [
+                  _vm._v(" " + _vm._s(_vm.searchData.length) + " kết quả ")
+                ]),
+                _vm._v(" "),
+                _vm._m(2)
+              ]
+            ),
             _vm._v(" "),
             _c(
               "div",
@@ -40670,42 +40690,27 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass:
-          "result-alert d-flex align-items-center justify-content-between"
-      },
-      [
-        _c("p", { staticClass: "m-0" }, [_vm._v(" 9 kết quả ")]),
-        _vm._v(" "),
-        _c("div", { staticClass: "sortSelect d-flex align-items-center" }, [
-          _c("p", { staticClass: "m-0 mr-2" }, [
-            _c("strong", [_vm._v(" Sắp xếp theo:  ")])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "form-group m-0" }, [
-            _c(
-              "select",
-              { staticClass: "select2", attrs: { name: "typedata", id: "" } },
-              [
-                _c("option", { attrs: { value: "0" } }, [
-                  _vm._v(" Mới nhất   ")
-                ]),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "1" } }, [
-                  _vm._v(" Nhiều người thuê ")
-                ]),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "2" } }, [
-                  _vm._v(" Gần nhất   ")
-                ])
-              ]
-            )
-          ])
-        ])
-      ]
-    )
+    return _c("div", { staticClass: "sortSelect d-flex align-items-center" }, [
+      _c("p", { staticClass: "m-0 mr-2" }, [
+        _c("strong", [_vm._v(" Sắp xếp theo:  ")])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group m-0" }, [
+        _c(
+          "select",
+          { staticClass: "select2", attrs: { name: "typedata", id: "" } },
+          [
+            _c("option", { attrs: { value: "0" } }, [_vm._v(" Mới nhất   ")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "1" } }, [
+              _vm._v(" Nhiều người thuê ")
+            ]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "2" } }, [_vm._v(" Gần nhất   ")])
+          ]
+        )
+      ])
+    ])
   },
   function() {
     var _vm = this

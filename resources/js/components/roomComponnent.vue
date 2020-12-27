@@ -22,13 +22,13 @@
                         <div class="rent-filter">
                             <div class="form-group">
                                 <select name="city" class="form-control" v-model="searchInput.city" @change="onSearch(); filterDistrict()">
-                                    <option value="null"> Chọn tỉnh/thành phố </option>
+                                    <option :value="null"> Chọn tỉnh/thành phố </option>
                                     <option :value="data.id" :key="data.id" v-for="(data,index) in city"> {{ data.name }} </option>
                                 </select>
                             </div>
                             <div class="form-group">
                                 <select name="district" class="form-control" v-model="searchInput.district" @change="onSearch">
-                                    <option value="null"> Chọn quận/huyện </option>
+                                    <option :value="null"> Chọn quận/huyện </option>
                                     <option :value="data.id" :key="data.id" v-for="(data,index) in district"> {{ data.name }} </option>
                                 </select>
                             </div>
@@ -199,15 +199,24 @@ export default {
         },
         onSearch () {
             let roomFilter = []
+            if (this.searchInput.city == null) {
+
+            }
+            if (this.searchInput.typeRoom == null) {
+
+            }
+            if (this.searchInput.district == null) {
+
+            }
             this.allRoom.forEach(room => {
                 let check = true
                 if (this.searchInput.typeRoom != null && room.roomType_id != this.searchInput.typeRoom) {
                     check = false
                 }
-                if (this.searchInput.district != null && room.district_id != this.searchInput.district) {
+                if (this.searchInput.city != null && room.city_id != this.searchInput.city) {
                     check = false
                 }
-                if (this.searchInput.city != null && room.city_id != this.searchInput.city) {
+                if (this.searchInput.district != null && room.district_id != this.searchInput.district) {
                     check = false
                 }
                 if (this.searchInput.price != null) {
@@ -250,6 +259,7 @@ export default {
                             break;
                     }
                 }
+
                 if (check == true) {
                     roomFilter.push(room)
                 }

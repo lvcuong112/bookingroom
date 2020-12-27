@@ -18,10 +18,10 @@
                 <div class="col-lg-4">
                     <h5> Liên hệ  </h5>
                     <ul class="contact d-flex ">
-                        <li><a href="#"> <i class="fab fa-facebook-f"></i> </a></li>
-                        <li><a href="#"> <i class="fab fa-youtube"></i> </a></li>
-                        <li><a href="#"> <i class="fab fa-twitter"></i> </a></li>
-                        <li><a href="#"> <i class="fab fa-instagram"></i></a></li>
+                        <li><a href="https://www.facebook.com/BookingRoom-102977331731882"> <i class="fab fa-facebook-f"></i> </a></li>
+                        <li><a href="https://www.facebook.com/BookingRoom-102977331731882"> <i class="fab fa-youtube"></i> </a></li>
+                        <li><a href="https://www.facebook.com/BookingRoom-102977331731882"> <i class="fab fa-twitter"></i> </a></li>
+                        <li><a href="https://www.facebook.com/BookingRoom-102977331731882"> <i class="fab fa-instagram"></i></a></li>
                     </ul>
                 </div>
             </div>

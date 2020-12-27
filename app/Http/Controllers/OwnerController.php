@@ -93,11 +93,9 @@ class OwnerController extends Controller
             if ($getDate > $value->expired_date) {
                 $value->is_active = 0;
             }
-            $checkEdit = $value->canbe_edit;
         }
         return view('owner.room.index', [
             'list' => $list,
-            'checkEdit' => $checkEdit
         ]);
     }
 

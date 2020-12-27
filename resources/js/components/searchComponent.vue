@@ -20,7 +20,7 @@
                     </div>
                     <div class="col-lg-12">
                         <div class="result-alert d-flex align-items-center justify-content-between">
-                            <p class="m-0"> 9 kết quả </p>
+                            <p class="m-0"> {{ searchData.length }} kết quả </p>
                             <div class="sortSelect d-flex align-items-center">
                                 <p class="m-0 mr-2"> <strong> Sắp xếp theo:  </strong></p>
                                 <div class="form-group m-0">

@@ -34,53 +34,82 @@
                 </li>
             @else
                 <li id="drop">
-                    <a href="">Đăng Nhập</a>
-                    <ul class="sub-drop">
-                        <li style="display: none" ><a type="button" data-toggle="modal" data-target="#myModalLogin">Đăng Nhập</a></li>
-                        <li style="display: none"><a href="/owner">Đăng Nhập Chủ Trọ</a></li>
-                    </ul>
+                    <button type="button" style="border: none; background-color: white" data-toggle="modal" data-target="#myModal">Đăng Nhập</button>
                 </li>
                 <li id="drop">
-                    <a> Đăng ký </a>
-                    <ul class="sub-drop">
-                        <li style="display: none" ><a href="/register">Đăng kí khách hàng</a></li>
-                        <li style="display: none"><a href="/owner/register">Đăng ký chủ trọ</a></li>
-                    </ul>
+                    <button type="button" style="border: none; background-color: white" data-toggle="modal" data-target="#myModalRegister">Đăng ký</button>
                 </li>
             @endif
         </ul>
 
-        <!-- Modal login-->
-        <div id="myModalLogin" class="modal fade" role="dialog">
-            <div class="modal-dialog" style="max-width: 500px;">
-                <div class="modal-content" style="padding:20px">
-                    <form action="{{route('login')}}" method="POST">
-                        @csrf
-                        <div class="dialog-login" title="Đăng nhập"  >
-                            <div class="login-content">
-                                <div class="login-form" style="width: 100%;text-align: left">
-                                    <div class="login-form-header" style="text-align:left;justify-content: left;">
-                                        <img src="https://grandetest.com/theme/findhouse-html/images/header-logo2.png">
-                                        <div class="logo-name"> Booking Room </div>
-                                    </div>
-                                    <div class="login-UserName">
-                                        <input name="username" class="login-input" id="iplgUserName" type="text" placeholder="Tên đăng nhập"  style="width: 100%;"></input>
-                                    </div>
-                                    <div class="login-Password">
-                                        <input name="password" class="login-input" id="iplgPassword" type="password" placeholder="Mật khẩu" style="width: 100%;"></input>
-                                    </div>
-                                    <div class="login-button">
-                                        <button class="login" type="submit">Đăng nhập</button>
-                                    </div>
+
+    </div>
+</header>
+    <!-- Modal login-->
+    <div id="myModalLogin" class="modal fade" role="dialog">
+        <div class="modal-dialog" style="max-width: 500px;">
+            <div class="modal-content" style="padding:20px">
+                <form action="{{route('login')}}" method="POST">
+                    @csrf
+                    <div class="dialog-login" title="Đăng nhập"  >
+                        <div class="login-content">
+                            <div class="login-form" style="width: 100%;text-align: left">
+                                <div class="login-form-header" style="text-align:left;justify-content: left;">
+                                    <img src="https://grandetest.com/theme/findhouse-html/images/header-logo2.png">
+                                    <div class="logo-name"> Booking Room </div>
+                                </div>
+                                <div class="login-UserName">
+                                    <input name="username" class="login-input" id="iplgUserName" type="text" placeholder="Tên đăng nhập"  style="width: 100%;"></input>
+                                </div>
+                                <div class="login-Password">
+                                    <input name="password" class="login-input" id="iplgPassword" type="password" placeholder="Mật khẩu" style="width: 100%;"></input>
+                                </div>
+                                <div class="login-button">
+                                    <button class="login" type="submit">Đăng nhập</button>
                                 </div>
                             </div>
                         </div>
-                    </form>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog" style="max-width: 500px;">
+            <div class="modal-content" style="padding: 40px 40px;">
+                <div class="dialog-login" title="Đăng nhập"  >
+                    <div class="login-content">
+                        <div class="login-form" style="width: 100%;text-align: left">
+                            <div class="login-button">
+                                <button class="login" data-toggle="modal" data-target="#myModalLogin" data-dismiss="modal" style="float: left">Tư Cách Khách Hàng</button>
+                            </div>
+                            <div class="login-button">
+                                <a href="/owner"><button class="login" style="float: right">Tư Cách Chủ Trọ</button></a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</header>
+    <div id="myModalRegister" class="modal fade" role="dialog">
+        <div class="modal-dialog" style="max-width: 500px;">
+            <div class="modal-content" style="padding: 40px 40px;">
+                <div class="dialog-login" title="Đăng Kí"  >
+                    <div class="login-content">
+                        <div class="login-form" style="width: 100%;text-align: left">
+                            <div class="login-button">
+                                <a href="/register"><button class="login" style="float: left">Tư Cách Khách Hàng</button></a>
+                            </div>
+                            <div class="login-button">
+                                <a href="/owner/register"><button class="login" style="float: right">Tư Cách Chủ Trọ</button></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 @if (session('msg'))
     <div class="pad margin no-print">
         <div class="alert alert-success alert-dismissible" style="" id="thongbao">

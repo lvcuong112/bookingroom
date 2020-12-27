@@ -50,7 +50,8 @@ header.fixed{
     z-index: 99;
 }
 header .menu li{
-    padding: .5em 1.5em;
+    padding: 15px 30px;
+    margin: 0 -10px;
 
 }
 header .menu li a{
@@ -58,7 +59,12 @@ header .menu li a{
 }
 header .logo span{
     font-size: 2em;
+    width: 220px;
     font-family: "Nunito-Bold";
+}
+header .sub-drop li {
+    /*display: none;*/
+
 }
 header .menu #drop:hover .sub-drop li{
     display: block !important;
