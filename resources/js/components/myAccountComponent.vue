@@ -14,7 +14,7 @@
                             </div>
                             <div class="form1-right">
 <!--                                đổi mk-->
-                                <div id="myModal" class="modal fade" role="dialog">
+                                <div id="myModalChangePass" class="modal fade" role="dialog">
                                     <div class="modal-dialog">
                                         <div class="modal-content" style="padding:20px">
                                             <form action="/repassword" method="get">
@@ -46,7 +46,7 @@
                                     </div>
                                 </div>
                                 <div class="register-footer" style="height: 100%;">
-                                    <button type="submit" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Đổi Mật Khẩu</button>
+                                    <button type="submit" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModalChangePass">Đổi Mật Khẩu</button>
                                     <a href="/likeRoom" class="btn btn-info btn-lg" id="register" style="margin-left: 10px; width: 60%;">
                                         <span class="Save-text"> Những Phòng Đã Thích</span>
                                     </a>

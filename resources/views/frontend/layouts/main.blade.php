@@ -88,6 +88,12 @@
             width: 'resolve'
         });
     }
+    $(document).on('click', '.showMenu', function(){
+        $('.Nav-tar').toggleClass('show');
+    });
+    $(document).on('click', '.btn-close', function(){
+        $('.Nav-tar').toggleClass('show');
+    });
 </script>
 
 </body>

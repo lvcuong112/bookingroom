@@ -1,8 +1,8 @@
-@extends('backend.layouts.main')
+@extends('owner.layouts.main')
 @section('content')
     <section class="content-header">
         <h1>
-            Sửa thông tin người dùng <a href="{{route('admin.user.index')}}" class="btn btn-success pull-right"><i class="fa fa-list"></i> Danh Sách User</a>
+            Sửa thông tin người dùng <a href="{{route('owner.userIndex')}}" class="btn btn-success pull-right"><i class="fa fa-list"></i> Danh Sách User</a>
         </h1>
     </section>
 
@@ -23,10 +23,8 @@
                         <div class="box-body">
                             <div class="form-group">
                                 <label>Chọn Quyền</label>
-                                <select class="form-control" name="role_id">
-                                    <option value="1" {{ ($user->role_id == 1) ? 'selected' : '' }}>Admin</option>
+                                <select class="form-control" name="role_id" readonly>
                                     <option value="2" {{ ($user->role_id == 2) ? 'selected' : '' }}>Owner</option>
-                                    <option value="2" {{ ($user->role_id == 3) ? 'selected' : '' }}>Customer</option>
                                 </select>
                             </div>
                             <div class="form-group">
@@ -65,7 +63,7 @@
                             </div>
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" value="1" name="is_active" {{ ($user->is_active == 1) ? 'checked' : '' }}> Kích hoạt tài khoản
+                                    <input type="hidden" value="1" name="is_active">
                                 </label>
                             </div>
                         </div>

@@ -50,7 +50,7 @@ header.fixed{
     z-index: 99;
 }
 header .menu li{
-    padding: 15px 30px;
+    padding: 15px 25px;
     margin: 0 -10px;
 
 }
@@ -102,10 +102,10 @@ header .menu #drop:hover .sub-drop li{
     background: #24324a;
 }
 footer h5{
-   font-family: "Nunito-SemiBold";
-   margin-bottom: 1em;
-   font-size: 1.4em;
-   color: #fff;
+    font-family: "Nunito-SemiBold";
+    margin-bottom: 1em;
+    font-size: 1.4em;
+    color: #fff;
 }
 footer ul li a , footer .desc{
     color: #d4d4d4;
@@ -134,31 +134,135 @@ footer .coppy-right{
     color: #fff;
     background: #1d273a;
 }
-@media only screen and (min-width: 1200px) {
+.Nav-tar{
+    position: relative;
+    width: auto;
+    height: auto;
+    background: #fff;
+    z-index: 99;
+}
+.Nav-tar .menu{
+    width: auto;
+    background: #fff;
+    height: 100%;
+}
+
+@media only screen and (max-width: 1200px) {
     html{
         font-size: 14px ;
     }
+    .d-lg-flex{
+        display: block !important;
+    }
+    .d-flex {
+        display: inline-block!important;
+    }
+    .header{
+
+    }
+    nav {margin-top: 40px; }
+
+
+
 
 }
-@media only screen and (min-width: 1200px) {
+@media only screen and (max-width: 1200px) {
+    html{
+        font-size: 14px ;
+    }
+    .d-lg-flex{
+        display: block !important;
+    }
+    .d-flex {
+        display: inline-block!important;
+    }
+    .header{
+        height: 154px;
+    }
+    .banner-index{
+        z-index: -999999;
+    }
+    .Header_tab {
+        height: 112px;
+    }
+    header .menu li {
+        padding: 1px 12px;
+        margin: 0 -10px;
+    }
+    .Nav-tar{
+        position: fixed;
+        top :0;
+        left :0 ;
+        width: 100vw;
+        height: 100vh;
+        background: #c1c1c154;
+        padding: 0;
+        margin: 0;
+        display: none;
+    }
+    .Nav-tar.show{
+        display: block;
+    }
+    .Nav-tar .menu{
+        width: 280px;
+        background: #fff;
+        height: 100%;
+        padding: 1em ;
+    }
+
+
+}
+@media only screen and (max-width: 968px) {
     html{
         font-size: 16px ;
     }
+    .box-search input{
+        display: none;
+    }
+    .box-search button{
+        display: none;
+    }
+    .Header_tab {
+        height: 124px;
+    }
+}
+@media only screen and (max-width: 768px) {
+
+    header .logo span {
+        font-size: 22px;
+        width: 220px;
+        font-family: "Nunito-Bold";
+    }
+    nav .drop-down {
+        width: 177px;
+    }
+}
+@media only screen and (max-width: 992px){
 
 }
-@media only screen and (min-width: 1450px) {
-/*     html{
-        font-size: 16px ;
+@media only screen and (max-width: 648px) {
+    /*     html{
+            font-size: 20px ;
+        }
+        .container{
+            max-width: 1440px;
+        } */
+    nav .drop-down {
+        width: 160px;
     }
-    .container{
-        max-width: 1320px;
-    } */
 }
-@media only screen and (min-width: 1600px) {
-/*     html{
-        font-size: 20px ;
+@media only screen and (max-width: 648px) {
+    header .logo span {
+        font-size: 18px;
+        width: 220px;
+        font-family: "Nunito-Bold";
     }
-    .container{
-        max-width: 1440px;
-    } */
-  }
+    header {
+        padding: 20px;
+    }
+    .Header_tab {
+        height: 90px;
+    }
+
+}
+

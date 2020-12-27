@@ -30,6 +30,15 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
 <body class="hold-transition login-page">
+@if (session('msg'))
+    <div class="pad margin no-print">
+        <div class="alert alert-success alert-dismissible" style="" id="thongbao">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <h4><i class="icon fa fa-check"></i> Thông báo !</h4>
+            {{ session('msg') }}
+        </div>
+    </div>
+@endif
 <div class="login-box">
     <div class="login-logo">
         <a href=""><b>Rent House</b></a>

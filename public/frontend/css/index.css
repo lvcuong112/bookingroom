@@ -193,6 +193,7 @@
     color: #fff;
     margin: 1rem auto;
     transition: all ease-out .2s;
+    margin-left: 90px;
 }
 .cate-box .box-item:hover .icon{
     background:  #ff5a5f;

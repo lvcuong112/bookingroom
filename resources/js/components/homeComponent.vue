@@ -13,7 +13,7 @@
                         <form action="/search" class="col-md-4">
                                 <div class="box-item">
                                     <div class="icon  d-flex justify-content-center align-items-center">
-                                        <i class="fas fa-home"></i>
+                                        <i class="fas fa-home" style="margin: 25px;"></i>
                                     </div>
                                     <input type="hidden" value="1" name="typeRoom">
                                     <p class="name text-center">Trung Cư</p>
@@ -24,7 +24,7 @@
                         <form action="/search" class="col-md-4">
                             <div class="box-item">
                                 <div class="icon  d-flex justify-content-center align-items-center">
-                                    <i class="fas fa-hotel"></i>
+                                    <i class="fas fa-hotel" style="margin: 25px;"></i>
                                 </div>
                                 <input type="hidden" value="2" name="typeRoom">
                                 <p class="name text-center"> Trung Cư Mini  </p>
@@ -35,7 +35,7 @@
                         <form action="/search" class="col-md-4">
                             <div class="box-item">
                                 <div class="icon  d-flex justify-content-center align-items-center">
-                                    <i class="fas fa-memory"></i>
+                                    <i class="fas fa-memory" style="margin: 25px;"></i>
                                 </div>
                                 <input type="hidden" value="3" name="typeRoom">
                                 <p class="name text-center"> Nhà Trọ  </p>

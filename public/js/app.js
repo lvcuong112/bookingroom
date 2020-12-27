@@ -38698,7 +38698,12 @@ var staticRenderFns = [
                       staticClass:
                         "icon  d-flex justify-content-center align-items-center"
                     },
-                    [_c("i", { staticClass: "fas fa-home" })]
+                    [
+                      _c("i", {
+                        staticClass: "fas fa-home",
+                        staticStyle: { margin: "25px" }
+                      })
+                    ]
                   ),
                   _vm._v(" "),
                   _c("input", {
@@ -38733,7 +38738,12 @@ var staticRenderFns = [
                       staticClass:
                         "icon  d-flex justify-content-center align-items-center"
                     },
-                    [_c("i", { staticClass: "fas fa-hotel" })]
+                    [
+                      _c("i", {
+                        staticClass: "fas fa-hotel",
+                        staticStyle: { margin: "25px" }
+                      })
+                    ]
                   ),
                   _vm._v(" "),
                   _c("input", {
@@ -38768,7 +38778,12 @@ var staticRenderFns = [
                       staticClass:
                         "icon  d-flex justify-content-center align-items-center"
                     },
-                    [_c("i", { staticClass: "fas fa-memory" })]
+                    [
+                      _c("i", {
+                        staticClass: "fas fa-memory",
+                        staticStyle: { margin: "25px" }
+                      })
+                    ]
                   ),
                   _vm._v(" "),
                   _c("input", {
@@ -39188,7 +39203,7 @@ var render = function() {
                           "div",
                           {
                             staticClass: "modal fade",
-                            attrs: { id: "myModal", role: "dialog" }
+                            attrs: { id: "myModalChangePass", role: "dialog" }
                           },
                           [
                             _c("div", { staticClass: "modal-dialog" }, [
@@ -39614,7 +39629,7 @@ var staticRenderFns = [
             attrs: {
               type: "submit",
               "data-toggle": "modal",
-              "data-target": "#myModal"
+              "data-target": "#myModalChangePass"
             }
           },
           [_vm._v("Đổi Mật Khẩu")]

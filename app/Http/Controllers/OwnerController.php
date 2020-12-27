@@ -479,10 +479,6 @@ class OwnerController extends Controller
 
         $user = User::findorFail($id);
 
-        $is_active = 0;
-        if ($request->has('is_active')) { // kiem tra is_active co ton tai khong?
-            $is_active = $request->input('is_active');
-        }
 
         //luu vào csdl
         $user->name = $request->input('name'); // họ tên
@@ -511,11 +507,11 @@ class OwnerController extends Controller
             $user->image = $path_upload.$filename;
         }
 
-        $user->is_active = $is_active;
+        $user->is_active = $request->input('is_active');
         $user->save();
 
         // chuyen dieu huong trang
-        return redirect()->route('owner.userShow', ['id' => $user->id])->with('msg', 'Cập nhật tài khoản thành công.');
+        return redirect(route('owner.userShow', ['id' => $user->id]))->with('msg', 'Cập nhật tài khoản thành công');
     }
     public function countLike ()
     {

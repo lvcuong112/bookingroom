@@ -5,6 +5,8 @@ $(document).ready(function () {
     OKRegisterClick();
 })
 
+
+
 khai báo dialog đăng nhập
 function loginClick() {
     dialog_login = $(".dialog-login").dialog({
@@ -47,7 +49,8 @@ function reportClick() {
         dialog_report.dialog('open');
    });
    $('#cancel-report').click(function () {
-    dialog_report.dialog('close');
-});
+        dialog_report.dialog('close');
+    });
 
 };
+

@@ -13,7 +13,7 @@
             </div>
         </section>
         <div class="Box-lh" style="max-width: 1140px;margin: 0 auto;  padding: 0 30px;">
-            <button style="background: linear-gradient( #ff5a5f , #ff6d72);height: 50px;width: 160px; float: right" type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">
+            <button style="background: linear-gradient( #ff5a5f , #ff6d72);height: 50px;width: 160px; float: right" type="button" class="btn btn-info" data-toggle="modal" data-target="#myModalReport">
                 <i class="fas fa-bolt"></i>Báo cáo bài viết
             </button>
             @if(session('customer'))
@@ -31,7 +31,7 @@
             @endif
         </div>
         @if(session('customer'))
-        <div id="myModal" class="modal fade" role="dialog">
+        <div id="myModalReport" class="modal fade" role="dialog">
             <div class="modal-dialog" style="max-width: 500px;">
                 <div class="modal-content" style="padding:20px;margin-left: -12%;width: 130%;">
                     <form action="{{ route('report') }}" method="POST">

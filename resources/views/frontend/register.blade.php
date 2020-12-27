@@ -16,7 +16,7 @@
                             </div>
                             <div class="form1-right" style="flex: 1;">
                                 <div class="input-register-content" id ="Email" style="flex: 1;">
-                                    <label>Email</label><br>
+                                    <label>Email (<span id="label-required">*</span>)</label><br>
                                     <input class="register-input" id="inputEmail" type="email" name="email" pattern=".+@.+(\.[a-z]{2,3})" title="Kiểm tra lại định dạng email" required>
                                 </div>
                                 <div class="input-register-content" id="Password" style="flex: 1;" >
