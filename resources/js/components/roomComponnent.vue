@@ -75,7 +75,6 @@
                             </div>
                         </div>
                         <div class="row result">
-<!--                            {{roomData.slice(1, 2)}}-->
                             <div class="col-md-6" :key="data.id" v-for="data in roomData.slice((page - 1) * 6, page * 6)">
                                 <div class="house-item">
                                     <a :href="'/roomDetail/' + data.id">

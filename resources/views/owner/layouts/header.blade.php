@@ -129,7 +129,7 @@ $user = \Illuminate\Support\Facades\Auth::user();
                         <!-- Menu Footer-->
                         <li class="user-footer">
                             <div class="pull-left">
-                                <a href="{{ route('admin.user.show', [ 'id' => $user->id]) }}" class="btn btn-default btn-flat">Profile</a>
+                                <a href="{{ route('owner.userIndex') }}" class="btn btn-default btn-flat">Profile</a>
                             </div>
                             <div class="pull-right">
                                 <a href="{{ route('admin.logout') }}" class="btn btn-default btn-flat">Sign out</a>

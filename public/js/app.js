@@ -2483,7 +2483,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "viewallroom",
   data: function data() {
@@ -40125,21 +40124,21 @@ var render = function() {
                         _vm._v(" "),
                         _c("p", { staticClass: "desc" }, [
                           _vm._v(
-                            "\n                                            Số phòng ngủ: " +
+                            "\n                                        Số phòng ngủ: " +
                               _vm._s(data.quantity) +
                               ", Diện tích: " +
                               _vm._s(data.area) +
-                              " m2\n                                        "
+                              " m2\n                                    "
                           )
                         ]),
                         _vm._v(" "),
                         _c("p", { staticClass: "desc" }, [
                           _vm._v(
-                            "\n                                            Điện : " +
+                            "\n                                        Điện : " +
                               _vm._s(data.electric_price) +
                               "VNĐ/1 số , Nước : " +
                               _vm._s(data.water_price) +
-                              "VNĐ/1 khối\n                                        "
+                              "VNĐ/1 khối\n                                    "
                           )
                         ]),
                         _vm._v(" "),
@@ -40151,9 +40150,9 @@ var render = function() {
                           },
                           [
                             _vm._v(
-                              "\n                                            Ngày đăng bài : " +
+                              "\n                                        Ngày đăng bài : " +
                                 _vm._s(data.public_date) +
-                                "\n                                        "
+                                "\n                                    "
                             )
                           ]
                         )

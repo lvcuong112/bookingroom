@@ -29,6 +29,15 @@
     <!-- Google Font -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
+@if (session('msg'))
+    <div class="pad margin no-print">
+        <div class="alert alert-success alert-dismissible" style="" id="thongbao">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <h4><i class="icon fa fa-check"></i> Thông báo !</h4>
+            {{ session('msg') }}
+        </div>
+    </div>
+@endif
 <body class="hold-transition login-page">
 <div class="login-box">
     <div class="login-logo">
@@ -39,42 +48,41 @@
         <form role="form" action="{{ route('owner.postRegister') }}" method="post">
             @csrf
             <div class="form-group has-feedback">
-                <input type="text" class="form-control" placeholder="Họ Và Tên" required>
+                <input type="text" class="form-control" placeholder="Họ Và Tên" name="name" required>
                 <span class="glyphicon glyphicon-user form-control-feedback"></span>
             </div>
             <div class="form-group has-feedback">
-                <input type="text" class="form-control" placeholder="CMND" required>
+                <input type="date" class="form-control" placeholder="Ngày Sinh" name="birthday" required>
                 <span class="glyphicon glyphicon-user form-control-feedback"></span>
             </div>
             <div class="form-group has-feedback">
-                <input type="text" class="form-control" placeholder="Địa Chỉ" required>
+                <input type="text" class="form-control" placeholder="CMND" name="cmnd" required>
                 <span class="glyphicon glyphicon-user form-control-feedback"></span>
             </div>
             <div class="form-group has-feedback">
-                <input type="tel" class="form-control" placeholder="Số Điện Thoại" pattern="\d{10,11}" title="Vui lòng kiểm tra lại số điện thoại" required>
+                <input type="text" class="form-control" placeholder="Địa Chỉ" name="address" required>
                 <span class="glyphicon glyphicon-user form-control-feedback"></span>
+            </div>
+            <div class="form-group has-feedback">
+                <input name="phone" type="tel" class="form-control" placeholder="Số Điện Thoại" pattern="\d{10,11}" title="Vui lòng kiểm tra lại số điện thoại" required>
+                <span class="glyphicon glyphicon-user form-control-feedback"></span>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputFile">Avatar</label>
+                <input type="file" id="avatar" name="avatar">
             </div>
             <div class="form-group has-feedback">
                 <input name="email" type="email" class="form-control" placeholder="Email : hovaten@gmail.com" pattern=".+@.+(\.[a-z]{2,3})" title="Kiểm tra lại định dạng email" required>
                 <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-{{--                @if ($errors->has('email'))--}}
-{{--                    <span class="invalid-feedback" role="alert" style="color:red;">{{ $errors->first('email') }}</span>--}}
-{{--                @endif--}}
             </div>
             <div class="form-group has-feedback">
                 <input id="password" name="password" type="password" class="form-control" placeholder="Mật Khẩu" pattern=".{6,}" title="Mật khẩu phải từ 6 kí tự" required>
                 <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-{{--                @if ($errors->has('password'))--}}
-{{--                    <span class="invalid-feedback" role="alert" style="color:red;">{{ $errors->first('password') }}</span>--}}
-{{--                @endif--}}
             </div>
             <div class="form-group has-feedback">
                 <input id="re_password" name="re_password" type="password" class="form-control" placeholder="Nhập Lại Mật Khẩu" oninput="checkPass()" required>
                 <span class="" id="checkPass" style="color: red" ></span>
             </div>
-{{--            @if (session('msg'))--}}
-{{--                <div class="form-group has-feedback"><a href="javascript:void(0)" style="color: red">{{ session('msg') }}</a></div>--}}
-{{--            @endif--}}
 
             <div class="row">
                 <div class="col-xs-8">

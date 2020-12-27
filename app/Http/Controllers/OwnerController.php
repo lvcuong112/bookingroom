@@ -166,9 +166,37 @@ class OwnerController extends Controller
         return view('owner.register');
     }
 
-    public function postRegister() {
-        dd(1);
-        // luu thong tin dang ki
+    public function postRegister(Request $request) {
+        $checkEmail = $request->input('email');
+        $getEmailData = UserAcc::where(['email' => $checkEmail])->count();
+        if ($getEmailData != 0) {
+            return redirect()->back()->with('msg', 'Tài khoản email đã tồn tại . Vui lòng dùng email khác !!');
+        } else {
+            $account = new UserAcc();
+            $account->name = $request->input('name');
+            $account->birthday = $request->input('birthday');
+            $account->phone = $request->input('phone');
+            $account->CMND = $request->input('cmnd');
+            $account->email = $request->input('email');
+            $account->password = bcrypt($request->input('password'));
+            if ($request->hasFile('avatar')) {
+                // get file
+                $file = $request->file('avatar');
+                // get ten
+                $filename = time().'_'.$file->getClientOriginalName();
+                // duong dan upload
+                $path_upload = 'uploads/user/';
+                // upload file
+                $request->file('avatar')->move($path_upload,$filename);
+
+                $account->image = $path_upload.$filename;
+            }
+            $account->role_id = 2;
+            $account->is_active = 1;
+            $account->save();
+            return redirect()->back()->with('msg', 'Đăng ký tài khoản chủ nhà trọ thành công. Đăng nhập để đăng bài viết');
+        }
+
     }
 
     public function viewCreateRoom() {
