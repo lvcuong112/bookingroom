@@ -5,7 +5,9 @@
             <div class="slick-images">
                 @foreach($imageRoomDetail as $data)
                 <div class="img d-flex justify-content-center align-items-center">
-                    <img src="{{ $data->image  }}" alt="" style="height: 414px; width: 650px;">
+                    <img src="{{ asset($data->image) }}" alt="" style="height: 414px; width: 650px;">
+
+
                 </div>
                 @endforeach
             </div>

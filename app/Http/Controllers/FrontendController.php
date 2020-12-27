@@ -30,10 +30,12 @@ class FrontendController
         $roomType = Room_type::all();
         $city = City::all();
         $district = District::all();
+        $roomApi = Room::orderBy('views', 'desc')->where(['is_active' => 1])->limit(8)->get();
         return view('frontend.home', [
             'roomType' => $roomType,
             'city' => $city,
-            'district' => $district
+            'district' => $district,
+            'roomApi' => $roomApi
         ]);
     }
     public function homeApi()  // api trang chủ

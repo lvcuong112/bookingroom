@@ -1,4 +1,4 @@
-<header>
+    <header>
     <div class="container-fluid d-flex justify-content-between align-items-center container-lg">
         <div class="logo d-flex align-item-center">
             <a href="/Home"><img src="https://grandetest.com/theme/findhouse-html/images/header-logo2.png" /></a>
@@ -44,7 +44,7 @@
                     <a> Đăng ký </a>
                     <ul class="sub-drop">
                         <li style="display: none" ><a href="/register">Đăng kí khách hàng</a></li>
-                        <li style="display: none"><a href="{{ route('owner.register') }}">Đăng ký chủ trọ</a></li>
+                        <li style="display: none"><a href="/owner/register">Đăng ký chủ trọ</a></li>
                     </ul>
                 </li>
             @endif

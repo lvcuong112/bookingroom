@@ -20,6 +20,8 @@ use Illuminate\Support\Facades\DB;
 
 class OwnerController extends Controller
 {
+
+
     public function  login() {
         if(!Auth::check()) {
             return view('owner.login');
@@ -162,16 +164,13 @@ class OwnerController extends Controller
         $r->save();
     }
 
-
-
-
-
     public function register() {
         return view('owner.register');
     }
 
     public function postRegister() {
         dd(1);
+        // luu thong tin dang ki
     }
 
     public function viewCreateRoom() {

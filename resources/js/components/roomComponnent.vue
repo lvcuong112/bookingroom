@@ -93,7 +93,7 @@
                                             Số phòng ngủ: {{ data.quantity }}, Diện tích: {{ data.area }} m2
                                         </p>
                                         <p class="desc">
-                                            Điện : {{ data.electric_price }}VNĐ/1 số , Nước : {{ water_price }}VNĐ/1 khối
+                                            Điện : {{ data.electric_price }}VNĐ/1 số , Nước : {{ data.water_price }}VNĐ/1 khối
                                         </p>
                                         <b class="desc" style="color: black">
                                             Ngày đăng bài : {{ data.public_date }}

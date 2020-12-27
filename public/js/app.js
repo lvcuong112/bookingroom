@@ -2082,39 +2082,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "viewhome",
   data: function data() {
@@ -2887,53 +2854,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -38676,76 +38596,15 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
-    _c("section", { staticClass: "feature container  py-5" }, [
-      _vm._m(0),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "row" },
-        _vm._l(_vm.homeData, function(data, index) {
-          return _c("div", { key: data.id, staticClass: "col-md-3" }, [
-            _c(
-              "a",
-              {
-                attrs: {
-                  href: "/roomDetail/" + data.id,
-                  to: { params: { id: data.id } }
-                }
-              },
-              [
-                _c("div", { staticClass: "product" }, [
-                  _c("div", { staticClass: "tab d-flex" }, [
-                    _c("span", { staticClass: "mr-2 city" }, [
-                      _vm._v(" " + _vm._s(data.title) + " ")
-                    ]),
-                    _vm._v(" "),
-                    _c("span", { staticClass: "mr-2 bg-red" }, [
-                      _vm._v(" Top " + _vm._s(index + 1) + " trending ")
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "img" }, [
-                    _c("img", { attrs: { src: data.image, alt: "" } })
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "content" }, [
-                    _c("p", { staticClass: "price mb-2" }, [
-                      _c("strong", [_vm._v(" " + _vm._s(data.price) + " ")]),
-                      _vm._v("/"),
-                      _c("span", [_vm._v(_vm._s(data.price_unit))])
-                    ]),
-                    _vm._v(" "),
-                    _c("p", { staticClass: "name mb-2" }, [
-                      _vm._v(" " + _vm._s(data.address) + " ")
-                    ]),
-                    _vm._v(" "),
-                    _c("p", { staticClass: "desc m-0" }, [
-                      _vm._v(
-                        " Số phòng: " +
-                          _vm._s(data.quantity) +
-                          ", Diện tích : " +
-                          _vm._s(data.area)
-                      )
-                    ])
-                  ])
-                ])
-              ]
-            )
-          ])
-        }),
-        0
-      )
-    ]),
+    _vm._m(0),
     _vm._v(" "),
     _vm._m(1),
     _vm._v(" "),
     _vm._m(2),
     _vm._v(" "),
-    _vm._m(3),
-    _vm._v(" "),
     _c("section", { staticClass: "blog-index" }, [
       _c("div", { staticClass: "container" }, [
-        _vm._m(4),
+        _vm._m(3),
         _vm._v(" "),
         _c(
           "div",
@@ -38768,16 +38627,15 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c("p", { staticClass: "name mb-2" }, [
-                    _vm._v(" " + _vm._s(data.address) + " ")
+                    _vm._v(" Địa Chỉ : "),
+                    _c("b", [_vm._v(_vm._s(data.address) + " ")])
                   ]),
                   _vm._v(" "),
                   _c("p", { staticClass: "desc m-0" }, [
-                    _vm._v(
-                      " số phòng: " +
-                        _vm._s(data.quantity) +
-                        ", Diện tích : " +
-                        _vm._s(data.area)
-                    )
+                    _vm._v(" Số Phòng: "),
+                    _c("b", [_vm._v(_vm._s(data.quantity))]),
+                    _vm._v(", Diện Tích : "),
+                    _c("b", [_vm._v(_vm._s(data.area) + " m2")])
                   ]),
                   _vm._v(" "),
                   _c(
@@ -38801,27 +38659,6 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "box-title mb-4" }, [
-      _c("h2", [_vm._v(" Sản phẩm thịnh hành  ")]),
-      _vm._v(" "),
-      _c("div", { staticClass: "d-flex justify-content-between" }, [
-        _c("p", { staticClass: "m-0" }, [
-          _vm._v(" Nhà trọ được quan tâm nhiều nhất? ")
-        ]),
-        _vm._v(" "),
-        _c("p", { staticClass: "m-0" }, [
-          _c("a", { staticClass: "viewall", attrs: { href: "/room" } }, [
-            _vm._v(" View All "),
-            _c("span", [_c("i", { staticClass: "fas fa-chevron-right" })])
-          ])
-        ])
-      ])
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -40294,7 +40131,7 @@ var render = function() {
                             "\n                                            Điện : " +
                               _vm._s(data.electric_price) +
                               "VNĐ/1 số , Nước : " +
-                              _vm._s(_vm.water_price) +
+                              _vm._s(data.water_price) +
                               "VNĐ/1 khối\n                                        "
                           )
                         ]),
@@ -40720,10 +40557,8 @@ var render = function() {
         _c("div", { staticClass: "row" }, [
           _vm._m(1),
           _vm._v(" "),
-          _vm._m(2),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-lg-8" }, [
-            _vm._m(3),
+          _c("div", { staticClass: "col-lg-12" }, [
+            _vm._m(2),
             _vm._v(" "),
             _c(
               "div",
@@ -40791,7 +40626,7 @@ var render = function() {
               0
             ),
             _vm._v(" "),
-            _vm._m(4)
+            _vm._m(3)
           ])
         ])
       ])
@@ -40828,110 +40663,6 @@ var staticRenderFns = [
     return _c("div", { staticClass: "col-12" }, [
       _c("div", { staticClass: "box-title mb-4" }, [
         _c("h2", { staticClass: "mb-4" }, [_vm._v("  Tìm kiếm phòng trọ   ")])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-lg-4" }, [
-      _c("div", { staticClass: "rent-filter" }, [
-        _c("div", { staticClass: "form-group" }, [
-          _c(
-            "select",
-            { staticClass: "select2", attrs: { name: "city", id: "" } },
-            [
-              _c("option", { attrs: { value: "0" } }, [
-                _vm._v(" Chọn địa điểm ")
-              ]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "0" } }, [_vm._v(" Hà Nội ")]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "1" } }, [_vm._v(" Hải Phòng")]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "2" } }, [_vm._v(" Đà Nẵng ")])
-            ]
-          )
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "form-group" }, [
-          _c(
-            "select",
-            { staticClass: "select2", attrs: { name: "typedata", id: "" } },
-            [
-              _c("option", { attrs: { value: "0" } }, [_vm._v(" Category ")]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "0" } }, [_vm._v(" Home stay  ")]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "1" } }, [_vm._v(" Nhà nghỉ ")]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "2" } }, [_vm._v(" Khách sạn  ")])
-            ]
-          )
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "form-group" }, [
-          _c(
-            "select",
-            { staticClass: "select2", attrs: { name: "typedata", id: "" } },
-            [
-              _c("option", { attrs: { value: "0" } }, [_vm._v(" Chỗ để xe ")]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "0" } }, [_vm._v(" 1   ")]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "1" } }, [_vm._v(" 2 ")]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "2" } }, [
-                _vm._v(" Không giới hạn   ")
-              ])
-            ]
-          )
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "form-group" }, [
-          _c(
-            "select",
-            { staticClass: "select2", attrs: { name: "typedata", id: "" } },
-            [
-              _c("option", { attrs: { value: "0" } }, [_vm._v(" Phòng ngủ ")]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "0" } }, [_vm._v(" 2 ")]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "1" } }, [_vm._v(" 3 ")]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "2" } }, [_vm._v(" 4  ")])
-            ]
-          )
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "form-group" }, [
-          _c(
-            "select",
-            { staticClass: "select2", attrs: { name: "typedata", id: "" } },
-            [
-              _c("option", { attrs: { value: "0" } }, [
-                _vm._v(" Giá thuê / đêm  ")
-              ]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "0" } }, [
-                _vm._v(" Dưới 2 triệu ")
-              ]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "1" } }, [
-                _vm._v(" Từ 2 đến 3 triệu ")
-              ]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "2" } }, [
-                _vm._v(" Trên 3 triệu ")
-              ])
-            ]
-          )
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "form-group mb-0" }, [
-          _c("button", { staticClass: "search" }, [_vm._v(" Tìm kiếm ")])
-        ])
       ])
     ])
   },

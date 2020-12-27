@@ -1,38 +1,5 @@
 <template>
     <div class="container">
-        <section class="feature container  py-5">
-            <div class="box-title mb-4">
-                <h2> Sản phẩm thịnh hành  </h2>
-                <div class="d-flex justify-content-between">
-                    <p class="m-0"> Nhà trọ được quan tâm nhiều nhất? </p>
-                    <p class="m-0"> <a href="/room" class="viewall"> View All <span> <i class="fas fa-chevron-right"></i> </span></a></p>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-3" :key="data.id" v-for="(data,index) in homeData" >
-                    <a :href="'/roomDetail/' + data.id" :to="{params: {id: data.id }}" >
-                        <div class="product">
-                            <div class="tab d-flex" >
-                                <span class="mr-2 city"> {{ data.title }} </span>
-                                <span class="mr-2 bg-red"> Top {{index + 1}} trending </span>
-                            </div>
-                            <div class="img">
-                                <img :src="data.image" alt="">
-                            </div>
-                            <div class="content">
-                                <p class="price mb-2"> <strong> {{ data.price }} </strong>/<span>{{ data.price_unit }}</span></p>
-                                <p class="name mb-2"> {{ data.address }} </p>
-                                <p class="desc m-0"> Số phòng: {{ data.quantity }}, Diện tích : {{ data.area }}</p>
-                            </div>
-
-                        </div>
-                    </a>
-                </div>
-            </div>
-
-
-        </section>
         <section class="category">
             <div class="container">
                 <div class="box-title mb-5">
@@ -160,8 +127,8 @@
                             </div>
                             <div class="content">
                                 <p class="price mb-2"> <strong> {{ data.price }} </strong>/<span>{{ data.price_unit }}</span></p>
-                                <p class="name mb-2"> {{ data.address }} </p>
-                                <p class="desc m-0"> số phòng: {{ data.quantity }}, Diện tích : {{ data.area }}</p>
+                                <p class="name mb-2"> Địa Chỉ : <b>{{ data.address }} </b></p>
+                                <p class="desc m-0"> Số Phòng: <b>{{ data.quantity }}</b>, Diện Tích : <b>{{ data.area }} m2</b></p>
                                 <a :href="'/roomDetail/' + data.id" :to="{params: {id: data.id }}"><button> Xem chi tiết </button></a>
                             </div>
                         </div>

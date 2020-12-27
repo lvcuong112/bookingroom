@@ -18,54 +18,7 @@
                             <h2 class="mb-4">  Tìm kiếm phòng trọ   </h2>
                         </div>
                     </div>
-                    <div class="col-lg-4">
-                        <div class="rent-filter">
-                            <div class="form-group">
-                                <select name="city" id="" class="select2">
-                                    <option value="0"> Chọn địa điểm </option>
-                                    <option value="0"> Hà Nội </option>
-                                    <option value="1"> Hải Phòng</option>
-                                    <option value="2"> Đà Nẵng </option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <select name="typedata" id="" class="select2">
-                                    <option value="0"> Category </option>
-                                    <option value="0"> Home stay  </option>
-                                    <option value="1"> Nhà nghỉ </option>
-                                    <option value="2"> Khách sạn  </option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <select name="typedata" id="" class="select2">
-                                    <option value="0"> Chỗ để xe </option>
-                                    <option value="0"> 1   </option>
-                                    <option value="1"> 2 </option>
-                                    <option value="2"> Không giới hạn   </option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <select name="typedata" id="" class="select2">
-                                    <option value="0"> Phòng ngủ </option>
-                                    <option value="0"> 2 </option>
-                                    <option value="1"> 3 </option>
-                                    <option value="2"> 4  </option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <select name="typedata" id="" class="select2">
-                                    <option value="0"> Giá thuê / đêm  </option>
-                                    <option value="0"> Dưới 2 triệu </option>
-                                    <option value="1"> Từ 2 đến 3 triệu </option>
-                                    <option value="2"> Trên 3 triệu </option>
-                                </select>
-                            </div>
-                            <div class="form-group mb-0">
-                                <button class="search"> Tìm kiếm </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-8">
+                    <div class="col-lg-12">
                         <div class="result-alert d-flex align-items-center justify-content-between">
                             <p class="m-0"> 9 kết quả </p>
                             <div class="sortSelect d-flex align-items-center">

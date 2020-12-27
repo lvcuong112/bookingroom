@@ -82,13 +82,11 @@ Route::group(['prefix' => 'admin','as' => 'admin.', 'middleware' => ['checkLogin
 
 //owner
 Route::get('/owner/register', 'OwnerController@register');
-Route::post('/owner/postRegister', 'OwnerController@postRegister')->name('admin.postRegister');
+Route::post('/owner/postRegister', 'OwnerController@postRegister')->name('owner.postRegister');
 Route::get('/owner/logout', 'OwnerController@logout')->name('owner.logout');
 Route::post('/owner/postLogin', 'OwnerController@postLogin')->name('owner.postLogin');
 Route::group(['prefix' => 'owner','as' => 'owner.', 'middleware' => ['CheckLoginOwner']], function() {
     Route::get('/','OwnerController@getAllRoom')->name('room.index');
-    Route::get('/register', 'OwnerController@register')->name('register');
-    Route::post('/postRegister', 'OwnerController@postRegister')->name('postRegister'); // chua lam
     Route::get('/show/{id}', 'OwnerController@showRoomDetail')->name('room.show');
     Route::get('/create', 'OwnerController@viewCreateRoom')->name('room.create');
     Route::post('/postCreate', 'OwnerController@store')->name('room.store');

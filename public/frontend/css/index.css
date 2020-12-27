@@ -118,8 +118,9 @@
 .product .img{
     height: 150%;
 }
-.product   img{
-    height: 130%;
+.product img{
+    height: 70%;
+    width: 100%;
     transition: all linear .4s;
 }
 .product:hover img{
