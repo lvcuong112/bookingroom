@@ -55,7 +55,7 @@
             </div>
         </div>
         @else
-        <div id="myModal" class="modal fade" role="dialog">
+        <div id="myModalReport" class="modal fade" role="dialog">
             <div class="modal-dialog" style="max-width: 500px;">
                 <div class="modal-content" style="padding:20px;margin-left: -12%;width: 130%;">
                     <div class="pad margin no-print">

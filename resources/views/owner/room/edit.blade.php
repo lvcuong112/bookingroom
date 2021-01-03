@@ -119,13 +119,6 @@
                                 <input value="{{ $room->water_price }}" type="text" class="form-control" id="waterPrice" name="waterPrice" placeholder="Ngày hết hạn" required>
                             </div>
 
-
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox" value="1" name="is_active" {{ ($room->is_active == 1) ? 'checked' : ''  }}> Trạng thái hiển thị
-                                </label>
-                            </div>
-
                         </div>
                         <div class="box-footer">
                             <button type="submit" class="btn btn-primary">Cập nhật</button>

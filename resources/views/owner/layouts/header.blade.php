@@ -8,7 +8,7 @@ $user = \Illuminate\Support\Facades\Auth::user();
         <!-- mini logo for sidebar mini 50x50 pixels -->
         <span class="logo-mini">RH.co</span>
         <!-- logo for regular state and mobile devices -->
-        <span class="logo-lg">BookingRoom</span>
+        <span class="logo-lg">EasyAccomod</span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">

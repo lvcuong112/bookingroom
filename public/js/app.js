@@ -38711,11 +38711,11 @@ var staticRenderFns = [
                   }),
                   _vm._v(" "),
                   _c("p", { staticClass: "name text-center" }, [
-                    _vm._v("Trung Cư")
+                    _vm._v("Chung Cư")
                   ]),
                   _vm._v(" "),
                   _c("p", { staticClass: "desc text-center" }, [
-                    _vm._v(" Những trung cư với đầy đủ tiện nghi")
+                    _vm._v(" Những Chung cư với đầy đủ tiện nghi")
                   ]),
                   _vm._v(" "),
                   _c("p", { staticClass: "text-center m-0" }, [
@@ -38751,11 +38751,11 @@ var staticRenderFns = [
                   }),
                   _vm._v(" "),
                   _c("p", { staticClass: "name text-center" }, [
-                    _vm._v(" Trung Cư Mini  ")
+                    _vm._v(" Chung Cư Mini  ")
                   ]),
                   _vm._v(" "),
                   _c("p", { staticClass: "desc text-center" }, [
-                    _vm._v(" Những trung cư nhỏ tiện nghi giá rẻ ")
+                    _vm._v(" Những Chung cư nhỏ tiện nghi giá rẻ ")
                   ]),
                   _vm._v(" "),
                   _c("p", { staticClass: "text-center m-0" }, [
@@ -40213,13 +40213,13 @@ var staticRenderFns = [
       _c("div", { staticClass: "container" }, [
         _c("div", { staticClass: "box-title mb-4" }, [
           _c("h2", { staticClass: "text-center" }, [
-            _vm._v("  Thuê nhà ở khắp cả nước  ")
+            _vm._v("  Thuê trọ ở khắp cả nước  ")
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "d-flex justify-content-center" }, [
             _c("p", { staticClass: "m-0 " }, [
               _vm._v(
-                " Đặt phòng home stay, nhà nghỉ, khách sạn, resort ở mọi nơi bạn dừng chân "
+                " Xem phòng trọ, trung cư, trung cư Mini,  ở mọi nơi trong nước "
               )
             ])
           ])
@@ -40470,16 +40470,7 @@ var render = function() {
                     })
                   ]),
                   _vm._v(" "),
-                  _c("div", {}, [
-                    _c("button", [
-                      _c("i", { staticClass: "fas fa-bolt" }),
-                      _vm._v(
-                        "\n                                Liên hệ thuệ phòng tại   " +
-                          _vm._s(data.telephone) +
-                          "\n                            "
-                      )
-                    ])
-                  ])
+                  _vm._m(6, true)
                 ])
               }),
               0
@@ -40545,6 +40536,19 @@ var staticRenderFns = [
             "Giá phòng có thể thay đổi linh hoạt khi thống nhất với chủ trọ "
           )
         ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", {}, [
+      _c("button", [
+        _c("i", { staticClass: "fas fa-bolt" }),
+        _vm._v(
+          "\n                                Liên hệ thuệ phòng tại   1231231234\n                            "
+        )
       ])
     ])
   }

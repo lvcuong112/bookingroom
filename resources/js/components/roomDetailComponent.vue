@@ -80,7 +80,7 @@
 
                             <div class="">
                                 <button> <i class="fas fa-bolt"></i>
-                                    Liên hệ thuệ phòng tại   {{ data.telephone }}
+                                    Liên hệ thuệ phòng tại   1231231234
                                 </button>
                             </div>
                         </div>

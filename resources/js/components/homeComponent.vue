@@ -16,8 +16,8 @@
                                         <i class="fas fa-home" style="margin: 25px;"></i>
                                     </div>
                                     <input type="hidden" value="1" name="typeRoom">
-                                    <p class="name text-center">Trung Cư</p>
-                                    <p class="desc text-center"> Những trung cư với đầy đủ tiện nghi</p>
+                                    <p class="name text-center">Chung Cư</p>
+                                    <p class="desc text-center"> Những Chung cư với đầy đủ tiện nghi</p>
                                     <p class="text-center m-0"><button type="submit">Tìm kiếm</button></p>
                                 </div>
                         </form>
@@ -27,8 +27,8 @@
                                     <i class="fas fa-hotel" style="margin: 25px;"></i>
                                 </div>
                                 <input type="hidden" value="2" name="typeRoom">
-                                <p class="name text-center"> Trung Cư Mini  </p>
-                                <p class="desc text-center"> Những trung cư nhỏ tiện nghi giá rẻ </p>
+                                <p class="name text-center"> Chung Cư Mini  </p>
+                                <p class="desc text-center"> Những Chung cư nhỏ tiện nghi giá rẻ </p>
                                 <p class="text-center m-0">  <button type="submit">Tìm kiếm</button></p>
                             </div>
                         </form>

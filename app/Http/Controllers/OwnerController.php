@@ -424,6 +424,10 @@ class OwnerController extends Controller
         $postExtend->user_id = $userId ;
         $postExtend->phone = $phoneData;
         $postExtend->save();
+        $roomId = $request->input('room_id');
+        $room =  Room::findorFail($roomId); // khởi tạo model
+        $room->canbe_edit = 0;
+        $room->save();
         return redirect(route('owner.room.index'))->with('msg', 'Yêu cầu thành công . Vui lòng đợi Admin duyệt');
     }
 

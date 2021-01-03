@@ -2,8 +2,8 @@
     <div class="container-fluid d-flex justify-content-between align-items-center container-lg">
         <div class="logo d-flex w-100 align-item-center" style="width: 56% !important;">
             <div>
-                <a href="/Home"><img src="https://grandetest.com/theme/findhouse-html/images/header-logo2.png" /></a>
-                <span class="ml-2"> Booking Room </span>
+                <a href="/"><img src="https://grandetest.com/theme/findhouse-html/images/header-logo2.png" /></a>
+                <span class="ml-2"> EasyAccomod </span>
             </div>
             <div class="box-search d-none ml-5 d-lg-flex align-item-center">
                 <input type="text" name="search" placeholder="Tìm kiếm?">

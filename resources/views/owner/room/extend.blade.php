@@ -39,6 +39,7 @@
                                 <label for="exampleInputEmail1">Tổng Tiền (VNĐ)</label>
                                 <input value=""  type="text" class="form-control" id="total_price" name="total_price" placeholder="Tổng tiền" readonly>
                             </div>
+                            <input type="hidden" value="0" name="canedit">
                         </div>
                         <div class="box-footer">
                             <button type="submit" class="btn btn-primary">Gia Hạn</button>

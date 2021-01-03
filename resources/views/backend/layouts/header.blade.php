@@ -8,7 +8,7 @@
         <!-- mini logo for sidebar mini 50x50 pixels -->
         <span class="logo-mini">RH.co</span>
         <!-- logo for regular state and mobile devices -->
-        <span class="logo-lg">RentHouse</span>
+        <span class="logo-lg">EasyAccomod</span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">

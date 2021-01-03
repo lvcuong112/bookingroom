@@ -22,7 +22,7 @@
 </section>
 <section class="content">
     <div class="row">
-        <form role="form" action="{{route('owner.room.extend', ['roomID' => $data->roomType_id])}}"method="post" enctype="multipart/form-data">
+        <form role="form" action="{{route('owner.room.extend', ['roomID' => $data->id])}}"method="post" enctype="multipart/form-data">
             @csrf
             <div class="col-md-6">
                 <div class="box box-primary">

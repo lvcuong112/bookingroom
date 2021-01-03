@@ -3,9 +3,9 @@
         <section class="banner-page">
             <div class="container">
                 <div class="box-title mb-4">
-                    <h2 class="text-center">  Thuê nhà ở khắp cả nước  </h2>
+                    <h2 class="text-center">  Thuê trọ ở khắp cả nước  </h2>
                     <div class="d-flex justify-content-center">
-                        <p class="m-0 " > Đặt phòng home stay, nhà nghỉ, khách sạn, resort ở mọi nơi bạn dừng chân </p>
+                        <p class="m-0 " > Xem phòng trọ, trung cư, trung cư Mini,  ở mọi nơi trong nước </p>
                     </div>
                 </div>
             </div>
