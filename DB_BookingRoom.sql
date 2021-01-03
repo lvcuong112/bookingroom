@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th12 27, 2020 lúc 08:38 PM
+-- Thời gian đã tạo: Th1 03, 2021 lúc 04:00 PM
 -- Phiên bản máy phục vụ: 10.4.11-MariaDB
 -- Phiên bản PHP: 7.4.3
 
@@ -122,7 +122,11 @@ CREATE TABLE `extend_post` (
 --
 
 INSERT INTO `extend_post` (`id`, `room_id`, `user_id`, `total_price`, `quantity`, `approved_by`, `approved_date`, `created_at`, `updated_at`, `unit_date`, `phone`) VALUES
-(8, 1, 3, 600000.00, 3, 0, NULL, '2020-12-27 13:38:25', '2020-12-27 13:38:25', 2, '0123456789');
+(8, 14, 3, 600000.00, 3, 0, NULL, '2020-12-27 13:38:25', '2020-12-27 13:38:25', 2, '0123456789'),
+(9, 15, 8, 600000.00, 3, 0, NULL, '2020-12-28 01:36:31', '2020-12-28 01:36:31', 2, '0911130699'),
+(10, 36, 8, 600000.00, 3, 5, '2020-12-28', '2020-12-28 01:46:04', '2020-12-28 01:46:26', 2, '0911130699'),
+(11, 36, 8, 800000.00, 4, 5, '2020-12-28', '2020-12-28 01:56:37', '2020-12-28 01:57:05', 2, '0911130699'),
+(12, 37, 8, 600000.00, 3, 0, NULL, '2020-12-28 08:34:56', '2020-12-28 08:34:56', 2, '0911130699');
 
 -- --------------------------------------------------------
 
@@ -216,7 +220,9 @@ INSERT INTO `notify` (`id`, `receive_id`, `title`, `content`, `be_seen`, `create
 (3, 3, 'Bài đăng Belier đã được gia hạn thành công!', 'Chào Jisoo !. Bài đăng của bạn đã được gia hạn thành công với mức phí 50000 VNĐ. Cảm ơn bạn đã tin tưởng và sử dụng dịch vụ của chúng tôi.', 0, '2020-11-15 14:24:50', '2020-11-15 14:24:50'),
 (4, 2, 'Gia hạn bài đăng Belier bị từ chối !', 'Bởi vì chúng tôi không thích!. Chúng tôi rất tiếc khi không thể duyệt yêu cầu này.', 0, '2020-11-15 14:46:51', '2020-11-15 14:46:51'),
 (5, 3, 'Yêu cầu chỉnh sửa bài viết Trung Cư Cao Cấp Cầu Giấyđược gia hạn', 'Yêu cầu chỉnh sửa bài viết của bạn đã được cho phép. Bây giờ bạn có thể chỉnh sửa bài viết của mình', 0, '2020-12-26 14:06:33', '2020-12-26 14:06:33'),
-(6, 3, 'Bài đăng Ha Noi đã được gia hạn thành công!', 'Chào Jisooo !. Bài đăng của bạn đã được gia hạn thành công với mức phí 200000 VNĐ. Cảm ơn bạn đã tin tưởng và sử dụng dịch vụ của chúng tôi.', 0, '2020-12-26 14:52:25', '2020-12-26 14:52:25');
+(6, 3, 'Bài đăng Ha Noi đã được gia hạn thành công!', 'Chào Jisooo !. Bài đăng của bạn đã được gia hạn thành công với mức phí 200000 VNĐ. Cảm ơn bạn đã tin tưởng và sử dụng dịch vụ của chúng tôi.', 0, '2020-12-26 14:52:25', '2020-12-26 14:52:25'),
+(7, 8, 'Bài đăng test đã được gia hạn thành công!', 'Chào Đậu Minh Nguyệt !. Bài đăng của bạn đã được gia hạn thành công với mức phí 600000 VNĐ. Cảm ơn bạn đã tin tưởng và sử dụng dịch vụ của chúng tôi.', 0, '2020-12-28 01:46:26', '2020-12-28 01:46:26'),
+(8, 8, 'Bài đăng test đã được gia hạn thành công!', 'Chào Đậu Minh Nguyệt !. Bài đăng của bạn đã được gia hạn thành công với mức phí 800000 VNĐ. Cảm ơn bạn đã tin tưởng và sử dụng dịch vụ của chúng tôi.', 0, '2020-12-28 01:57:05', '2020-12-28 01:57:05');
 
 -- --------------------------------------------------------
 
@@ -309,28 +315,30 @@ CREATE TABLE `room` (
 --
 
 INSERT INTO `room` (`id`, `roomType_id`, `title`, `description`, `address`, `district_id`, `city_id`, `quantity`, `price`, `image`, `area`, `note`, `live_with_owner`, `public_date`, `expired_date`, `electric_price`, `water_price`, `approval_date`, `approval_id`, `user_id`, `is_active`, `created_at`, `updated_at`, `price_unit`, `canbe_edit`, `views`, `rented`, `is_approved`) VALUES
-(14, 1, 'Trung Cư Cầu Giấy', 'Trung cư cap cấp với đầy đủ tiện nghi từ A đến Z', 'Số 4 Nguyễn Khang', 2, 1, 4, 4000000, 'uploads/room/1609030165_download1.jpg', 50, 'Trung Cư', 0, '2020-12-27', '2019-04-27', 3000.00, 3000, '2020-12-27', 5, 3, 1, '2020-12-27 00:49:25', '2020-12-27 00:49:25', 'Tháng', 0, 0, 0, NULL),
-(15, 1, 'Trung Cư Đống Đa', 'Trung cư cap cấp với đầy đủ tiện nghi từ A đến Z', 'Số 5 Chùa Láng', 3, 1, 4, 5000000, 'uploads/room/1609031816_2.jpeg', 60, 'Trung Cư', 1, '2020-12-27', NULL, 3000.00, 3000, '2020-12-27', 5, 3, 1, '2020-12-27 01:16:56', '2020-12-27 13:38:50', 'Tháng', 1, 0, 0, NULL),
-(16, 1, 'Trung Cư Cao Cấp Tây Hồ', 'Trung cư cap cấp với đầy đủ tiện nghi từ A đến Z', 'Số 15 Tây Hô', 5, 1, 4, 6000000, 'uploads/room/1609033553_3.jpeg', 50, 'Trung Cư', 0, '2020-12-27', '2021-03-27', 3000.00, 3000, '2020-12-27', 5, 3, 1, '2020-12-27 01:45:53', '2020-12-27 01:45:53', 'Tháng', 1, 0, 0, NULL),
-(17, 2, 'Trung Cư Cao Cấp Gò Vấp', 'Trung cư cap cấp với đầy đủ tiện nghi từ A đến Z', 'Số 55 Gò Vấp', 21, 2, 4, 3500000, 'uploads/room/1609033836_4.jpeg', 45, 'Trung Cư Mini', 0, '2020-12-27', '2021-01-17', 3000.00, 5000, '2020-12-27', 5, 3, 1, '2020-12-27 01:50:36', '2020-12-27 01:50:36', 'Tháng', 1, 0, 0, NULL),
+(14, 1, 'Chung Cư Cầu Giấy', 'Chung Cư cap cấp với đầy đủ tiện nghi từ A đến Z', 'Số 4 Nguyễn Khang', 2, 1, 4, 4000000, 'uploads/room/1609030165_download1.jpg', 50, 'Chung Cư', 0, '2020-12-27', '2019-04-27', 3000.00, 3000, '2020-12-27', 5, 3, 1, '2020-12-27 00:49:25', '2020-12-27 00:49:25', 'Tháng', 0, 0, 0, NULL),
+(15, 1, 'Chung Cư Đống Đa', 'Chung Cư cap cấp với đầy đủ tiện nghi từ A đến Z', 'Số 5 Chùa Láng', 3, 1, 4, 5000000, 'uploads/room/1609031816_2.jpeg', 60, 'Chung Cư', 1, '2020-12-27', NULL, 3000.00, 3000, '2020-12-27', 5, 3, 1, '2020-12-27 01:16:56', '2020-12-27 13:38:50', 'Tháng', 1, 0, 0, NULL),
+(16, 1, 'Chung Cư Cao Cấp Tây Hồ', 'Chung Cư cap cấp với đầy đủ tiện nghi từ A đến Z', 'Số 15 Tây Hô', 5, 1, 4, 6000000, 'uploads/room/1609033553_3.jpeg', 50, 'Chung Cư', 0, '2020-12-27', '2021-03-27', 3000.00, 3000, '2020-12-27', 5, 3, 1, '2020-12-27 01:45:53', '2020-12-27 01:45:53', 'Tháng', 1, 0, 0, NULL),
+(17, 2, 'Chung Cư Cao Cấp Gò Vấp', 'Chung Cư cap cấp với đầy đủ tiện nghi từ A đến Z', 'Số 55 Gò Vấp', 21, 2, 4, 3500000, 'uploads/room/1609033836_4.jpeg', 45, 'Chung Cư Mini', 0, '2020-12-27', '2021-01-17', 3000.00, 5000, '2020-12-27', 5, 3, 1, '2020-12-27 01:50:36', '2020-12-27 01:50:36', 'Tháng', 1, 0, 0, NULL),
 (18, 3, 'Nhà Trọ Phù Cừ', 'Nhà Trọ Tiện Nghi', 'Chợ Nhật Mới', 28, 3, 4, 10000000, 'uploads/room/1609033953_5.1.jpeg', 70, 'Nhà Trọ', 1, '2020-12-27', '2021-01-17', 3000.00, 3000, '2020-12-27', 5, 5, 1, '2020-12-27 01:52:33', '2020-12-27 01:52:33', 'Tháng', 1, 0, 0, NULL),
-(19, 2, 'Trung Cư Mini Cao Cấp Cầu Giấy', 'Trung cư cap cấp với đầy đủ tiện nghi từ A đến Z', '365 Cầu Giấy', 2, 1, 7, 2500000, 'uploads/room/1609034036_6.jpeg', 30, 'Trung Cư', 1, '2020-12-27', '2021-01-24', 3000.00, 4500, '2020-12-27', 5, 5, 1, '2020-12-27 01:53:56', '2020-12-27 01:53:56', 'Tháng', 1, 0, 0, NULL),
+(19, 2, 'Chung Cư Mini Cao Cấp Cầu Giấy', 'Chung Cư cap cấp với đầy đủ tiện nghi từ A đến Z', '365 Cầu Giấy', 2, 1, 7, 2500000, 'uploads/room/1609034036_6.jpeg', 30, 'Chung Cư', 1, '2020-12-27', '2021-01-24', 3000.00, 4500, '2020-12-27', 5, 5, 0, '2020-12-27 01:53:56', '2020-12-28 01:07:59', 'Tháng', 1, 0, 0, NULL),
 (20, 3, 'Nhà Trọ Cầu Giấy', 'Nhà Trọ Tiện Nghi', '165 Cầu Giấy', 2, 1, 2, 1500000, 'uploads/room/1609034126_7.jpeg', 25, 'Nhà Trọ', 1, '2020-12-27', '2021-01-17', 3000.00, 4500, '2020-12-27', 5, 5, 1, '2020-12-27 01:55:26', '2020-12-27 01:55:26', 'Tháng', 1, 0, 0, NULL),
-(21, 2, 'Trung Cư Mini  Đống Đa', 'Trung cư Mini cấp với đầy đủ tiện nghi từ A đến Z', '15 Đống Đa', 3, 1, 4, 3500000, 'uploads/room/1609034223_7.4.jpg', 30, 'Trung Cư Mini', 1, '2020-12-27', '2021-01-10', 5000.00, 1000, '2020-12-27', 5, 5, 1, '2020-12-27 01:57:03', '2020-12-27 01:57:03', 'Tháng', 1, 0, 0, NULL),
-(22, 3, 'Nhà Trọ Tân Bình', 'Nhà Trọ Tiện Nghi', '70 Tân Bình', 23, 2, 4, 2000000, 'uploads/room/1609034308_8.jpeg', 25, 'Nhà Trọ', 0, '2020-12-27', '2021-01-10', 3000.00, 1000, '2020-12-27', 5, 5, 1, '2020-12-27 01:58:28', '2020-12-27 01:58:28', 'Tháng', 1, 0, 0, NULL),
-(23, 2, 'Trung Cư Cao Cấp Tân Bình', 'Trung cư Mini với đầy đủ tiện nghi từ A đến Z', '23 Tân Bình', 23, 2, 3, 1500000, 'uploads/room/1609035123_8.jpeg', 30, 'Trung Cư Mini', 0, '2020-12-27', '2021-01-17', 3000.00, 4500, '2020-12-27', 5, 5, 1, '2020-12-27 02:12:03', '2020-12-27 02:12:03', 'Tháng', 1, 0, 0, NULL),
-(24, 2, 'Trung Cư Cao Cấp Văn Giang', 'Trung cư cap cấp với đầy đủ tiện nghi từ A đến Z', '45 Văn Giang', 30, 3, 4, 2000000, 'uploads/room/1609035367_9.jpeg', 30, 'Trung Cư', 1, '2020-12-27', '2021-01-17', 3000.00, 3000, '2020-12-27', 5, 5, 1, '2020-12-27 02:16:07', '2020-12-27 02:16:07', 'Tháng', 1, 0, 0, NULL),
-(25, 1, 'Trung Cư Cao Cấp Cầu Giấy 2', 'Trung cư cap cấp với đầy đủ tiện nghi từ A đến Z', '55 Xuân Thủy', 2, 1, 3, 3200000, 'uploads/room/1609035433_10.jpeg', 50, 'Trung Cư', 0, '2020-12-27', '2021-01-17', 3000.00, 3000, '2020-12-27', 5, 5, 1, '2020-12-27 02:17:13', '2020-12-27 02:17:13', 'Tháng', 1, 0, 0, NULL),
-(26, 1, 'Trung Cư Cao Cấp Cầu Giấy 3', 'Trung cư cap cấp với đầy đủ tiện nghi từ A đến Z', '1 Xuân Thủy', 2, 1, 3, 5200000, 'uploads/room/1609035512_11.jpeg', 30, 'Trung Cư', 1, '2020-12-27', '2021-01-24', 3000.00, 3000, '2020-12-27', 5, 5, 1, '2020-12-27 02:18:32', '2020-12-27 02:18:32', 'Tháng', 1, 0, 0, NULL),
-(27, 2, 'Trung Cư MiniCầu Giấy 2', 'Trung cư cap cấp với đầy đủ tiện nghi từ A đến Z', '3 Cầu Giấy', 2, 1, 3, 6300000, 'uploads/room/1609035586_12.jpeg', 50, 'Trung Cư Mini', 1, '2020-12-27', '2021-01-10', 3000.00, 3000, '2020-12-27', 5, 5, 1, '2020-12-27 02:19:46', '2020-12-27 02:19:46', 'Tháng', 1, 0, 0, NULL),
+(21, 2, 'Chung Cư Mini  Đống Đa', 'Chung Cư Mini cấp với đầy đủ tiện nghi từ A đến Z', '15 Đống Đa', 3, 1, 4, 3500000, 'uploads/room/1609034223_7.4.jpg', 30, 'Chung Cư Mini', 1, '2020-12-27', '2021-01-10', 5000.00, 1000, '2020-12-27', 5, 5, 1, '2020-12-27 01:57:03', '2020-12-27 01:57:03', 'Tháng', 1, 0, 0, NULL),
+(22, 3, 'Nhà Trọ Tân Bình', 'Nhà Trọ Tiện Nghi', '70 Tân Bình', 23, 2, 4, 2000000, 'uploads/room/1609034308_8.jpeg', 25, 'Nhà Trọ', 0, '2020-12-27', '2021-01-10', 3000.00, 1000, '2020-12-27', 5, 8, 1, '2020-12-27 01:58:28', '2020-12-27 01:58:28', 'Tháng', 1, 0, 0, NULL),
+(23, 2, 'Chung Cư Cao Cấp Tân Bình', 'Chung Cư Mini với đầy đủ tiện nghi từ A đến Z', '23 Tân Bình', 23, 2, 3, 1500000, 'uploads/room/1609035123_8.jpeg', 30, 'Chung Cư Mini', 0, '2020-12-27', '2021-01-17', 3000.00, 4500, '2020-12-27', 5, 8, 1, '2020-12-27 02:12:03', '2020-12-27 02:12:03', 'Tháng', 0, 0, 0, NULL),
+(24, 2, 'Chung Cư Cao Cấp Văn Giang', 'Chung Cư cap cấp với đầy đủ tiện nghi từ A đến Z', '45 Văn Giang', 30, 3, 4, 2000000, 'uploads/room/1609035367_9.jpeg', 30, 'Chung Cư', 1, '2020-12-27', '2021-01-17', 3000.00, 3000, '2020-12-27', 5, 8, 1, '2020-12-27 02:16:07', '2020-12-27 02:16:07', 'Tháng', 0, 0, 0, NULL),
+(25, 1, 'Chung Cư Cao Cấp Cầu Giấy 2', 'Chung Cư cap cấp với đầy đủ tiện nghi từ A đến Z', '55 Xuân Thủy', 2, 1, 3, 3200000, 'uploads/room/1609035433_10.jpeg', 50, 'Chung Cư', 0, '2020-12-27', '2021-01-17', 3000.00, 3000, '2020-12-27', 5, 8, 1, '2020-12-27 02:17:13', '2020-12-27 02:17:13', 'Tháng', 1, 0, 0, NULL),
+(26, 1, 'Chung Cư Cao Cấp Cầu Giấy 3', 'Chung Cư cap cấp với đầy đủ tiện nghi từ A đến Z', '1 Xuân Thủy', 2, 1, 3, 5200000, 'uploads/room/1609035512_11.jpeg', 30, 'Chung Cư', 1, '2020-12-27', '2021-01-24', 3000.00, 3000, '2020-12-27', 5, 5, 1, '2020-12-27 02:18:32', '2020-12-27 02:18:32', 'Tháng', 1, 0, 0, NULL),
+(27, 2, 'Chung Cư MiniCầu Giấy 2', 'Chung Cư cap cấp với đầy đủ tiện nghi từ A đến Z', '3 Cầu Giấy', 2, 1, 3, 6300000, 'uploads/room/1609035586_12.jpeg', 50, 'Chung Cư Mini', 1, '2020-12-27', '2021-01-10', 3000.00, 3000, '2020-12-27', 5, 8, 1, '2020-12-27 02:19:46', '2020-12-27 02:19:46', 'Tháng', 0, 0, 0, NULL),
 (28, 3, 'Nhà Trọ Đông Anh', 'Nhà Trọ Tiện Nghi', '4 Đông Anh', 1, 1, 3, 3500000, 'uploads/room/1609035745_13.jpeg', 30, 'Nhà Trọ', 0, '2020-12-27', '2021-01-10', 3000.00, 4500, '2020-12-27', 5, 5, 1, '2020-12-27 02:22:25', '2020-12-27 02:22:25', 'Tháng', 1, 0, 0, NULL),
-(29, 2, 'Trung Cư Cao Cấp Nam Từ Liêm', 'Trung cư Mini với đầy đủ tiện nghi từ A đến Z', '4 Nam Từ Liêm', 11, 1, 3, 1500000, 'uploads/room/1609035820_14.jpeg', 25, 'Trung Cư Mini', 0, '2020-12-27', '2021-01-24', 3000.00, 1000, '2020-12-27', 5, 5, 1, '2020-12-27 02:23:40', '2020-12-27 02:23:40', 'Tháng', 1, 0, 0, NULL),
-(30, 2, 'Trung Cư Đống Đa 2', 'Trung cư Mini với đầy đủ tiện nghi từ A đến Z', 'Số 45 Đường Láng', 3, 1, 3, 4500000, 'uploads/room/1609035910_15.jpeg', 50, 'Trung Cư Mini', 0, '2020-12-27', '2021-01-10', 3000.00, 5000, '2020-12-27', 5, 5, 1, '2020-12-27 02:25:10', '2020-12-27 02:25:10', 'Tháng', 1, 0, 0, NULL),
+(29, 2, 'Chung Cư Cao Cấp Nam Từ Liêm', 'Chung Cư Mini với đầy đủ tiện nghi từ A đến Z', '4 Nam Từ Liêm', 11, 1, 3, 1500000, 'uploads/room/1609035820_14.jpeg', 25, 'Chung Cư Mini', 0, '2020-12-27', '2021-01-24', 3000.00, 1000, '2020-12-27', 5, 5, 1, '2020-12-27 02:23:40', '2020-12-27 02:23:40', 'Tháng', 1, 0, 0, NULL),
+(30, 2, 'Chung Cư Đống Đa 2', 'Chung Cư Mini với đầy đủ tiện nghi từ A đến Z', 'Số 45 Đường Láng', 3, 1, 3, 4500000, 'uploads/room/1609035910_15.jpeg', 50, 'Chung Cư Mini', 0, '2020-12-27', '2021-01-10', 3000.00, 5000, '2020-12-27', 5, 5, 1, '2020-12-27 02:25:10', '2020-12-27 02:25:10', 'Tháng', 1, 0, 0, NULL),
 (31, 3, 'Nhà Trọ Tân Phú', 'Nhà Trọ Tiện Nghi', '15 Tân Phú', 24, 2, 2, 1500000, 'uploads/room/1609035979_55.jpeg', 30, 'Nhà Trọ', 1, '2020-12-27', '2021-01-10', 3000.00, 1000, '2020-12-27', 5, 5, 1, '2020-12-27 02:26:19', '2020-12-27 02:26:19', 'Tháng', 1, 0, 0, NULL),
-(32, 2, 'Trung Cư Bắc Từ Liêm', 'Trung cư Mini với đầy đủ tiện nghi từ A đến Z', '46 Bắc Từ Liêm', 12, 1, 3, 4200000, 'uploads/room/1609036066_3.3.jpeg', 30, 'Trung Cư Mini', 1, '2020-12-27', '2021-01-17', 3000.00, 5000, '2020-12-27', 5, 5, 1, '2020-12-27 02:27:46', '2020-12-27 02:27:46', 'Tháng', 1, 0, 0, NULL),
-(33, 2, 'Trung Cư Cao Cấp Hai Bà Trưng', 'Trung cư Mini với đầy đủ tiện nghi từ A đến Z', '18 Hai Bà Trưng', 8, 1, 3, 4100000, 'uploads/room/1609036150_2.4.jpg', 30, 'Trung Cư Mini', 1, '2020-12-27', '2021-01-24', 3000.00, 1000, '2020-12-27', 5, 5, 1, '2020-12-27 02:29:10', '2020-12-27 02:29:10', 'Tháng', 1, 0, 0, NULL),
-(34, 1, 'Trung Cư Cao Cấp Cầu Giấy 5', 'Gần Đại Học Quốc Gia Hà Nội', '43 Yên Hòa', 2, 1, 3, 6700000, 'uploads/room/1609036233_3.4.jpeg', 45, 'Trung Cư Mini', 1, '2020-12-27', '2021-01-24', 3000.00, 4500, '2020-12-27', 5, 5, 1, '2020-12-27 02:30:33', '2020-12-27 02:30:33', 'Tháng', 1, 0, 0, NULL),
-(35, 3, 'Nhà Trọ Cầu Giấy 3', 'Nhà Trọ Tiện Nghi', '58 Xuân Thủy', 2, 1, 3, 1700000, 'uploads/room/1609036326_10.4.jpeg', 27, 'Gần Đại Học Thương Mại', 1, '2020-12-27', '2021-01-10', 3000.00, 4500, '2020-12-27', 5, 5, 1, '2020-12-27 02:32:06', '2020-12-27 02:32:06', 'Tháng', 1, 0, 0, NULL);
+(32, 2, 'Chung Cư Bắc Từ Liêm', 'Chung Cư Mini với đầy đủ tiện nghi từ A đến Z', '46 Bắc Từ Liêm', 12, 1, 3, 4200000, 'uploads/room/1609036066_3.3.jpeg', 30, 'Chung Cư Mini', 1, '2020-12-27', '2021-01-17', 3000.00, 5000, '2020-12-27', 5, 5, 1, '2020-12-27 02:27:46', '2020-12-27 02:27:46', 'Tháng', 1, 0, 0, NULL),
+(33, 2, 'Chung Cư Cao Cấp Hai Bà Trưng', 'Chung Cư Mini với đầy đủ tiện nghi từ A đến Z', '18 Hai Bà Trưng', 8, 1, 3, 4100000, 'uploads/room/1609036150_2.4.jpg', 30, 'Chung Cư Mini', 1, '2020-12-27', '2021-01-24', 3000.00, 1000, '2020-12-27', 5, 5, 1, '2020-12-27 02:29:10', '2020-12-27 02:29:10', 'Tháng', 1, 0, 0, NULL),
+(34, 1, 'Chung Cư Cao Cấp Cầu Giấy 5', 'Gần Đại Học Quốc Gia Hà Nội', '43 Yên Hòa', 2, 1, 3, 6700000, 'uploads/room/1609036233_3.4.jpeg', 45, 'Chung Cư Mini', 1, '2020-12-27', '2021-01-24', 3000.00, 4500, '2020-12-27', 5, 5, 1, '2020-12-27 02:30:33', '2020-12-27 02:30:33', 'Tháng', 1, 0, 0, NULL),
+(35, 3, 'Nhà Trọ Cầu Giấy 3', 'Nhà Trọ Tiện Nghi', '58 Xuân Thủy', 2, 1, 3, 1700000, 'uploads/room/1609036326_10.4.jpeg', 27, 'Gần Đại Học Thương Mại', 1, '2020-12-27', '2021-01-10', 3000.00, 4500, '2020-12-27', 5, 5, 1, '2020-12-27 02:32:06', '2020-12-27 02:32:06', 'Tháng', 1, 0, 0, NULL),
+(36, 2, 'test', 'Nhà Trọ Đẹp', '12 Tiên Lữ', 29, 3, 3, 1000000, 'uploads/room/1609118751_2.3.jpeg', 30, 'Nhà Trọ', 1, NULL, '0000-00-00', 3000.00, 4500, '2020-12-28', 5, 8, 1, '2020-12-28 01:25:51', '2020-12-28 01:57:05', 'Tháng', 0, 0, 0, NULL),
+(37, 1, 'Chung Cư Cao Cấp Cầu Giấy Tesst', 'Gan DAI HOC QUOC GIA', '31 Hoan Kiem', 6, 1, 3, 1500000, 'uploads/room/1609144454_6.jpeg', 50, 'Nhà Trọ', 0, NULL, NULL, 3000.00, 3000, NULL, NULL, 8, 0, '2020-12-28 08:34:14', '2020-12-28 08:34:56', 'Tháng', 0, 0, 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -455,7 +463,13 @@ INSERT INTO `room_facilities` (`id`, `room_id`, `facilities_id`, `description`, 
 (101, 35, 3, NULL, NULL, NULL),
 (102, 35, 4, NULL, NULL, NULL),
 (103, 35, 6, NULL, NULL, NULL),
-(104, 35, 8, NULL, NULL, NULL);
+(104, 35, 8, NULL, NULL, NULL),
+(105, 36, 3, NULL, NULL, NULL),
+(106, 36, 5, NULL, NULL, NULL),
+(107, 37, 1, NULL, NULL, NULL),
+(108, 37, 3, NULL, NULL, NULL),
+(109, 37, 4, NULL, NULL, NULL),
+(110, 37, 6, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -571,7 +585,15 @@ INSERT INTO `room_image` (`id`, `room_id`, `image`, `position`, `created_at`, `u
 (97, 35, 'uploads/room/1609036326_2.4.jpg', 0, '2020-12-27 02:32:06', '2020-12-27 02:32:06'),
 (98, 35, 'uploads/room/1609036326_8.4.jpeg', 1, '2020-12-27 02:32:06', '2020-12-27 02:32:06'),
 (99, 35, 'uploads/room/1609036326_13.jpeg', 2, '2020-12-27 02:32:06', '2020-12-27 02:32:06'),
-(100, 35, 'uploads/room/1609036326_14.1.jpeg', 3, '2020-12-27 02:32:06', '2020-12-27 02:32:06');
+(100, 35, 'uploads/room/1609036326_14.1.jpeg', 3, '2020-12-27 02:32:06', '2020-12-27 02:32:06'),
+(101, 36, 'uploads/room/1609118751_1.1.jpeg', 0, '2020-12-28 01:25:51', '2020-12-28 01:25:51'),
+(102, 36, 'uploads/room/1609118751_1.3.jpeg', 1, '2020-12-28 01:25:51', '2020-12-28 01:25:51'),
+(103, 36, 'uploads/room/1609118751_3.jpeg', 2, '2020-12-28 01:25:51', '2020-12-28 01:25:51'),
+(104, 37, 'uploads/room/1609144454_1.1.jpeg', 0, '2020-12-28 08:34:14', '2020-12-28 08:34:14'),
+(105, 37, 'uploads/room/1609144454_1.2.jpeg', 1, '2020-12-28 08:34:14', '2020-12-28 08:34:14'),
+(106, 37, 'uploads/room/1609144454_1.3.jpeg', 2, '2020-12-28 08:34:14', '2020-12-28 08:34:14'),
+(107, 37, 'uploads/room/1609144454_1.4.jpeg', 3, '2020-12-28 08:34:14', '2020-12-28 08:34:14'),
+(108, 37, 'uploads/room/1609144454_2.1.jpeg', 4, '2020-12-28 08:34:14', '2020-12-28 08:34:14');
 
 -- --------------------------------------------------------
 
@@ -609,7 +631,7 @@ CREATE TABLE `room_type` (
 
 INSERT INTO `room_type` (`id`, `name`, `create_by`, `update_by`, `is_active`, `created_at`, `updated_at`) VALUES
 (1, 'Chung cư', 4, 3, 1, NULL, NULL),
-(2, 'Trung Cư Mini', 5, NULL, 1, '2020-12-26 16:16:01', '2020-12-26 16:16:01'),
+(2, 'Chung Cư Mini', 5, NULL, 1, '2020-12-26 16:16:01', '2020-12-26 16:16:01'),
 (3, 'Nhà Trọ', 5, NULL, 1, '2020-12-26 16:16:08', '2020-12-26 16:16:08');
 
 -- --------------------------------------------------------
@@ -643,12 +665,12 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `birthday`, `phone`, `CMND`, `email`, `password`, `image`, `role_id`, `is_active`, `address`, `approval_id`, `date_approval`, `remember_token`, `created_at`, `updated_at`) VALUES
 (2, 'Tr Binh Giang', '22/09/2001', '0123456987', '10032001', 'bgtr@gmail.com', '$2y$10$JMMkMn7aYIrdOos5Z7uVkewGRikSna/XIPUldPMqygfpBgVFYxkTi', 'uploads/user/1605087758_118641206_3244593622290217_8666695886033189326_n.jpg', 1, 1, 'Ho Chi Minh City, Vietnam', NULL, NULL, NULL, '2020-11-11 01:59:06', '2020-11-11 02:42:38'),
-(3, 'Jisoo', '22/09/2001', '0123456789', '88886789', 'miasoya@gmail.com', '$2y$10$a1nWTaKqKgM3pdiB9uiEq.evz31RTunl5OW0fENiYDNyZ/8OnhAdO', 'uploads/user/1605087789_jisooyah.jfif', 2, 0, 'DAV', NULL, NULL, 'v6aaLtgyiuazFPqNzESvY3uk94efXKMKrKlYiSejcrgnWDfiBw5kaHBQp4Tt', '2020-11-11 02:43:09', '2020-12-27 14:44:32'),
+(3, 'Jisoo', '22/09/2001', '0123456789', '88886789', 'miasoya@gmail.com', '$2y$10$a1nWTaKqKgM3pdiB9uiEq.evz31RTunl5OW0fENiYDNyZ/8OnhAdO', 'uploads/user/1605087789_jisooyah.jfif', 2, 0, 'DAV', NULL, NULL, 'zylWPEIVigzU9lYJnh3I2IGli6elfECaQZv0Rzp5lF7dTHikD2M4WeStTvL7', '2020-11-11 02:43:09', '2020-12-27 14:44:32'),
 (4, 'Mimosa Chu', '23/10/1992', '0349625555', '19024705183012', 'mimosachu@gmail.com', '$2y$10$BcZwqyNWlwIH4W9Mh0.CDuwFwoElZnHP7xsOHnMnYpM2vQgNIdwdS', 'uploads/user/1605103552_SophieCheneviere_belierskate_021.jpg', 2, 1, 'Hang Dau', NULL, NULL, NULL, '2020-11-11 07:05:52', '2020-11-15 00:11:14'),
 (5, 'Le Cuong', '22/09/2001', '0366065647', '19024705183012', 'devergo@gmail.com', '$2y$10$a1nWTaKqKgM3pdiB9uiEq.evz31RTunl5OW0fENiYDNyZ/8OnhAdO', 'https://vcdn1-ione.vnecdn.net/2019/02/16/Amme10-1550288079.jpg?w=460&h=0&q=100&dpr=1&fit=crop&s=IsQJN1TuiAwzhfWTWaGb4w', 1, 1, 'Dong Anh - Ha Noi', NULL, NULL, NULL, '2020-11-11 07:47:10', '2020-12-26 16:08:30'),
 (6, 'Lê Văn Cường', '01/12/2000', '0911130699', '12345678910', 'levancuong@gmail.com', '$2y$10$Ncn1cQXgT730POR2quWhJevBkNn4KTU2DCy.jSyD/E1O6Dtwrj8IO', 'uploads/user/1608999319_download.jpg', 1, 1, 'Số nhà 32 ngõ 42 yên hòa', NULL, NULL, NULL, '2020-12-26 16:15:19', '2020-12-26 16:15:19'),
 (7, 'Cường', '2020-12-10', '0911130699', '12345678910', 'c@gmail.com', '25f9e794323b453885f5181f1b624d0b', NULL, 3, 1, '2 vu ngoc phann', NULL, NULL, NULL, NULL, NULL),
-(8, 'Đậu Minh Nguyệt', '2020-12-03', '0911130699', '12345678910', 'nguyenso@gmail.com', '$2y$10$PxcC5yoKMagnu2kwzIW1p.2tz1sHcUnMWwWpWKq8PEO8CS6zUsdLO', 'uploads/user/1605103552_SophieCheneviere_belierskate_021.jpg', 2, 1, 'h', NULL, NULL, NULL, '2020-12-27 13:01:07', '2020-12-27 15:12:57'),
+(8, 'Đậu Minh Nguyệt', '2020-12-03', '0911130699', '12345678910', 'nguyenso@gmail.com', '$2y$10$PxcC5yoKMagnu2kwzIW1p.2tz1sHcUnMWwWpWKq8PEO8CS6zUsdLO', 'uploads/user/1605103552_SophieCheneviere_belierskate_021.jpg', 2, 1, 'hhh', NULL, NULL, NULL, '2020-12-27 13:01:07', '2020-12-28 08:30:58'),
 (9, 'Thiêm', '2020-12-12', '0911130699', '123557845634', 'va@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'uploads/user/1605103552_SophieCheneviere_belierskate_021.jpg', 3, 1, '245 tây hồ', NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
@@ -673,7 +695,8 @@ CREATE TABLE `user_comment` (
 --
 
 INSERT INTO `user_comment` (`id`, `user_id`, `room_id`, `comment`, `created_at`, `updated_at`, `is_approved`, `approved_by`) VALUES
-(4, 9, 16, 'okela', '2020-12-27 13:29:30', '2020-12-27 13:30:32', 1, 5);
+(4, 9, 16, 'okela', '2020-12-27 13:29:30', '2020-12-27 13:30:32', 1, 5),
+(5, 9, 15, 'khong su that', '2020-12-28 08:28:57', NULL, 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -695,7 +718,8 @@ CREATE TABLE `user_like` (
 
 INSERT INTO `user_like` (`id`, `user_id`, `room_id`, `created_at`, `updated_at`) VALUES
 (4, 9, 16, NULL, NULL),
-(5, 9, 15, NULL, NULL);
+(5, 9, 15, NULL, NULL),
+(6, 9, 14, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -730,6 +754,13 @@ CREATE TABLE `user_requesteditroom` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+
+--
+-- Đang đổ dữ liệu cho bảng `user_requesteditroom`
+--
+
+INSERT INTO `user_requesteditroom` (`id`, `user_id`, `room_id`, `reason`, `approved_by`, `created_at`, `updated_at`) VALUES
+(3, 8, 23, 'sUA DOI THONG TIN', NULL, '2020-12-28 08:36:21', '2020-12-28 08:36:21');
 
 -- --------------------------------------------------------
 
@@ -766,7 +797,8 @@ CREATE TABLE `user_vote` (
 --
 
 INSERT INTO `user_vote` (`id`, `user_id`, `room_id`, `star`, `created_at`, `updated_at`) VALUES
-(1, 9, 16, 3, '2020-12-27 13:29:30', NULL);
+(1, 9, 16, 3, '2020-12-27 13:29:30', NULL),
+(2, 9, 15, 3, '2020-12-28 08:28:57', NULL);
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -918,7 +950,7 @@ ALTER TABLE `district`
 -- AUTO_INCREMENT cho bảng `extend_post`
 --
 ALTER TABLE `extend_post`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT cho bảng `facilities`
@@ -936,7 +968,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT cho bảng `notify`
 --
 ALTER TABLE `notify`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT cho bảng `order`
@@ -954,19 +986,19 @@ ALTER TABLE `relation_address`
 -- AUTO_INCREMENT cho bảng `room`
 --
 ALTER TABLE `room`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT cho bảng `room_facilities`
 --
 ALTER TABLE `room_facilities`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=105;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=111;
 
 --
 -- AUTO_INCREMENT cho bảng `room_image`
 --
 ALTER TABLE `room_image`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=109;
 
 --
 -- AUTO_INCREMENT cho bảng `room_relation_address`
@@ -990,25 +1022,25 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT cho bảng `user_comment`
 --
 ALTER TABLE `user_comment`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT cho bảng `user_like`
 --
 ALTER TABLE `user_like`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT cho bảng `user_report`
 --
 ALTER TABLE `user_report`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT cho bảng `user_requesteditroom`
 --
 ALTER TABLE `user_requesteditroom`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT cho bảng `user_views`
@@ -1020,7 +1052,7 @@ ALTER TABLE `user_views`
 -- AUTO_INCREMENT cho bảng `user_vote`
 --
 ALTER TABLE `user_vote`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
