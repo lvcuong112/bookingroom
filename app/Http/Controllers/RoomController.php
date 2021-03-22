@@ -60,7 +60,7 @@ class RoomController extends Controller
             'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:10000'
         ]);
         $user = Auth::user();
-        $room = new Room(); // khởi tạo model
+         // khởi tạo model
         $room->roomType_id = $request->input('typeRoom');
         $room->title = $request->input('title');
         $room->address = $request->input('address');
@@ -68,7 +68,7 @@ class RoomController extends Controller
         $room->city_id = $request->input('city');
         $room->quantity = $request->input('quantity');
         $room->price = $request->input('price');
-        $room->price_unit = $request->input('priceUnit');
+        $room->price_unit = $request->input('priceUnit')$room = new Room();;
 
         // Upload file
         if ($request->hasFile('image')) { // dòng này Kiểm tra xem có image có được chọn
